@@ -26,7 +26,24 @@
     <link rel="stylesheet" type="text/css" href="/assets/styles/responsive.css">
 
     <!-- Scripts -->
-    
+    <style>
+        .logo a img{
+            width:70px;
+        }
+        .header_search, .logo_container, .wishlist_cart{
+            height:70px;
+        }
+        .banner_background{
+            background-image:url(/assets/images/banner_background.png);
+            background-size: 100% / 100%;
+            background-position:50% 0px;
+        }
+        @media max-width(764px){
+            #banner{
+                height: 180px !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="app">

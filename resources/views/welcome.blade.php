@@ -12,8 +12,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/assets/images/phone.png" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/assets/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/assets/images/phone.png" alt=""></div>+56982639595</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/assets/images/mail.png" alt=""></div><a href="mailto:importadoratatar@gmail.com">importadoratatar@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
 								<ul class="standard_dropdown top_bar_dropdown">
@@ -55,10 +55,14 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
+							<div class="logo">
+								<a href="#">
+								<img src="/assets/images/logo1.png">
+								</a>
+							</div>
 						</div>
 					</div>
-
+					
 					<!-- Search -->
 					<div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
 						<div class="header_search">
@@ -118,7 +122,7 @@
 		</div>
 		
 		<!-- Main Navigation -->
-
+		<img src="/assets/images/compra.gif" style="height:40px;width:100%;">
 		<nav class="main_nav">
 			<div class="container">
 				<div class="row">
@@ -164,7 +168,7 @@
 							</div>
 
 							<!-- Main Nav Menu -->
-
+			
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
 									<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
@@ -311,8 +315,8 @@
 							</ul>
 							
 							<div class="menu_contact">
-								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="/assets/images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="/assets/images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="/assets/images/phone_white.png" alt=""></div>+56982639595</div>
+								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="/assets/images/mail_white.png" alt=""></div><a href="mailto:importadoratatar@gmail.com">importadoratatar@gmail.com</a></div>
 							</div>
 						</div>
 					</div>
@@ -324,11 +328,13 @@
 	
 	<!-- Banner -->
 
-	<div class="banner" style="height: 500px;">
-		<div class="banner_background" style="background-image:url(images/banner_background.png);background-position: 20px -50px;" style="background-image:url(images/banner_background.png);background-position: 20px -50px;"></div>
+	<div class="banner" id="banner" style="max-height:500px ;">
+		<div class="banner_background" style=""></div>
 		<div class="container fill_height">
 			<div class="row fill_height">
-				<div class="banner_product_image"><img src="/assets/images/aaaa.jpg" alt="" style="width: 600px;"></div>
+				<div class="banner_product_image">
+					<!-- <img src="/assets/images/aaaa.jpg" alt="" style="width: 600px;"> -->
+				</div>
 				<div class="col-lg-5 offset-lg-4 fill_height">
 					<div class="banner_content">
 						<!-- <h1 class="banner_text">new era of smartphones</h1>
@@ -3260,7 +3266,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_1.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3368,7 +3374,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_1.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3386,7 +3392,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_2.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3404,7 +3410,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_3.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3422,7 +3428,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_4.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3440,7 +3446,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_5.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3458,7 +3464,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_6.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3485,7 +3491,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_1.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3503,7 +3509,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_2.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3521,7 +3527,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_3.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3539,7 +3545,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_4.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3557,7 +3563,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_5.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3575,7 +3581,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_6.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3593,7 +3599,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_1.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3611,7 +3617,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_2.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3629,7 +3635,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_3.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3647,7 +3653,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_4.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3665,7 +3671,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_5.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3683,7 +3689,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_6.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3710,7 +3716,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_1.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3728,7 +3734,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_2.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3746,7 +3752,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_3.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3764,7 +3770,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_4.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3782,7 +3788,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_5.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3800,7 +3806,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_6.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3818,7 +3824,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_1.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3836,7 +3842,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_2.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3854,7 +3860,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_3.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3872,7 +3878,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_4.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3890,7 +3896,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_5.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -3908,7 +3914,7 @@
 										<div class="bestsellers_image"><img src="/assets/images/best_6.png" alt=""></div>
 										<div class="bestsellers_content">
 											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a></div>
+											<div class="bestsellers_name"><a href="product.html">Xiaomi redmi Note 4</a></div>
 											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<div class="bestsellers_price discount">$225<span>$300</span></div>
 										</div>
@@ -4427,10 +4433,14 @@
 				<div class="col-lg-3 footer_col">
 					<div class="footer_column footer_contact">
 						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
+							<div class="logo">
+								<a href="#">
+								<img src="/assets/images/logo1.png">
+								</a>
+						</div>
 						</div>
 						<div class="footer_title">Got Question? Call Us 24/7</div>
-						<div class="footer_phone">+38 068 005 3570</div>
+						<div class="footer_phone">+56982639595</div>
 						<div class="footer_contact_text">
 							<p>17 Princess Road, London</p>
 							<p>Grester London NW18JR, UK</p>
