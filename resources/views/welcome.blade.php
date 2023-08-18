@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.web')
 
 <div class="super_container">
 	
@@ -16,7 +16,7 @@
 						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/assets/images/mail.png" alt=""></div><a href="mailto:importadoratatar@gmail.com">importadoratatar@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
-								<ul class="standard_dropdown top_bar_dropdown">
+								<!-- <ul class="standard_dropdown top_bar_dropdown">
 									<li>
 										<a href="#">English<i class="fas fa-chevron-down"></i></a>
 										<ul>
@@ -33,12 +33,12 @@
 											<li><a href="#">JPY Japanese Yen</a></li>
 										</ul>
 									</li>
-								</ul>
+								</ul> -->
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="/assets/images/user.svg" alt=""></div>
 								<div><a href="#">Register</a></div>
-								<div><a href="#">Sign in</a></div>
+								<div><a href="/login">Sign in</a></div>
 							</div>
 						</div>
 					</div>
@@ -253,7 +253,7 @@
 								</form>
 							</div>
 							<ul class="page_menu_nav">
-								<li class="page_menu_item has-children">
+								<!-- <li class="page_menu_item has-children">
 									<a href="#">Language<i class="fa fa-angle-down"></i></a>
 									<ul class="page_menu_selection">
 										<li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
@@ -261,8 +261,8 @@
 										<li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
 										<li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
 									</ul>
-								</li>
-								<li class="page_menu_item has-children">
+								</li> -->
+								<!-- <li class="page_menu_item has-children">
 									<a href="#">Currency<i class="fa fa-angle-down"></i></a>
 									<ul class="page_menu_selection">
 										<li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
@@ -270,7 +270,7 @@
 										<li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
 										<li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
 									</ul>
-								</li>
+								</li> -->
 								<li class="page_menu_item">
 									<a href="#">Home<i class="fa fa-angle-down"></i></a>
 								</li>
