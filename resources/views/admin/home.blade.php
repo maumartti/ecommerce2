@@ -7,7 +7,7 @@
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
         <span class="text-uppercase page-subtitle">Dashboard</span>
-        <h3 class="page-title">Blog Overview</h3>
+        <h3 class="page-title">Datos Generales</h3>
         </div>
     </div>
     <!-- End Page Header -->
@@ -18,7 +18,7 @@
             <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Posts</span>
+                <span class="stats-small__label text-uppercase">Ventas Totales</span>
                 <h6 class="stats-small__value count my-3">2,390</h6>
                 </div>
                 <div class="stats-small__data">
@@ -34,7 +34,7 @@
             <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Pages</span>
+                <span class="stats-small__label text-uppercase">Pedidos Totales</span>
                 <h6 class="stats-small__value count my-3">182</h6>
                 </div>
                 <div class="stats-small__data">
@@ -50,7 +50,7 @@
             <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Comments</span>
+                <span class="stats-small__label text-uppercase">Ventas del mes</span>
                 <h6 class="stats-small__value count my-3">8,147</h6>
                 </div>
                 <div class="stats-small__data">
@@ -66,7 +66,7 @@
             <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Users</span>
+                <span class="stats-small__label text-uppercase">Pedidos del mes</span>
                 <h6 class="stats-small__value count my-3">2,413</h6>
                 </div>
                 <div class="stats-small__data">
@@ -82,7 +82,7 @@
             <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Subscribers</span>
+                <span class="stats-small__label text-uppercase">Clientes</span>
                 <h6 class="stats-small__value count my-3">17,281</h6>
                 </div>
                 <div class="stats-small__data">
@@ -100,7 +100,7 @@
         <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
         <div class="card card-small">
             <div class="card-header border-bottom">
-            <h6 class="m-0">Users</h6>
+            <h6 class="m-0">Ventas</h6>
             </div>
             <div class="card-body pt-0">
             <div class="row border-bottom py-2 bg-light">
@@ -128,7 +128,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
         <div class="card card-small h-100">
             <div class="card-header border-bottom">
-            <h6 class="m-0">Users by device</h6>
+            <h6 class="m-0">Pedidos, ventas, cancelaciones</h6>
             </div>
             <div class="card-body d-flex py-0">
             <canvas height="220" class="blog-users-by-device m-auto"></canvas>
@@ -152,21 +152,22 @@
         </div>
         <!-- End Users By Device Stats -->
         <!-- New Draft Component -->
-        <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+        <div class="col-lg-5 col-md-6 col-sm-12 mb-4">
         <!-- Quick Post -->
         <div class="card card-small h-100">
             <div class="card-header border-bottom">
             <h6 class="m-0">Imágens de portada</h6>
             </div>
             <div class="card-body d-flex flex-column">
-                <form class="quick-post-form">
+                <form action="{{ route('saveData') }}" method="POST" class="quick-post-form php-email-form">
                     <div class="form-group">
                         <label>Logo Web</label>
                         <div class="slim"
-                            data-ratio="16:9"
+                            data-ratio="4:3"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
                             data-size="640,640">
-                            <input type="file" name="slim[]"/>
+                            <img src="/assets/images/{{$web->imageLogo}}"
+                            <input type="file" name="imageLogo" required/>
                         </div>
                     </div>
                     <div class="">
@@ -175,26 +176,26 @@
                 </form>
             </div>
             <div class="card-body d-flex flex-column">
-                <form class="quick-post-form">
+                <form action="{{ route('saveData') }}" method="POST" class="quick-post-form php-email-form">
                     <label>Rotor de imágenes</label>
                     <div class="form-group">
                         <div class="slim col-4 mr-1"
                             data-ratio="16:9"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
                             data-size="640,640">
-                            <input type="file" name="slim[]"/>
+                            <input type="file" name="imageRotor1"/>
                         </div>
                         <div class="slim col-4 mr-1"
                             data-ratio="16:9"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
                             data-size="640,640">
-                            <input type="file" name="slim[]"/>
+                            <input type="file" name="imageRotor2"/>
                         </div>
                         <div class="slim col-4"
                             data-ratio="16:9"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
                             data-size="640,640">
-                            <input type="file" name="slim[]"/>
+                            <input type="file" name="imageRotor3"/>
                         </div>
                     </div>
                     <div class="">
@@ -207,7 +208,7 @@
         </div>
         <!-- End New Draft Component -->
         <!-- Discussions Component -->
-        <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
+        <div class="col-lg-7 col-md-12 col-sm-12 mb-4">
         <div class="card card-small blog-comments">
             <div class="card-header border-bottom">
             <h6 class="m-0">Discussions</h6>

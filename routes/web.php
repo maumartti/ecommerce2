@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web');
 
 Auth::routes();
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/saveData', [App\Http\Controllers\HomeController::class, 'saveData'])->name('saveData');
 });
 

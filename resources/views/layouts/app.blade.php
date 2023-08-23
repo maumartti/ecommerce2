@@ -2,6 +2,7 @@
 <html class="no-js h-100" lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Shards Dashboard Lite - Free Bootstrap Admin Template – DesignRevision</title>
     <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="/assets/styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="/assets/styles/extras.1.1.0.min.css">
     <link rel="stylesheet" href="/assets/plugins/slim/slim.min.css">
+    <link rel="stylesheet" href="/assets/plugins/toast/css/toastr.min.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </head>
   <body class="h-100">
@@ -80,13 +82,13 @@
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link " href="/admin/home">
-                  <i class="material-icons">edit</i>
+                  <i class="material-icons">dashboard</i>
                   <span>Resumen</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="/admin/categories">
-                  <i class="material-icons">edit</i>
+                  <i class="material-icons">view_comfy_alt</i>
                   <span>Cateogrías</span>
                 </a>
               </li>
@@ -257,5 +259,16 @@
             $('.slim').slim();
         });
     </script>
+
+    <!-- Vendor JS Files -->
+    <!-- <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script> -->
+    <script src="/assets/plugins/toast/js/toastr.min.js"></script>
+    <script src="/assets/vendor/php-email-form/validate.js"></script>
+
   </body>
 </html>

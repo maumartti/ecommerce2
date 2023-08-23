@@ -57,7 +57,7 @@
 						<div class="logo_container">
 							<div class="logo">
 								<a href="#">
-								<img src="/assets/images/logo1.png">
+								<img src="/assets/images/{{$web->imageLogo}}">
 								</a>
 							</div>
 						</div>
