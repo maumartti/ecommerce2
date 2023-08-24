@@ -122,7 +122,7 @@
 		</div>
 		
 		<!-- Main Navigation -->
-		<img src="/assets/images/compra.gif" style="height:40px;width:100%;">
+		<img src="/assets/images/banner4.gif" style="height:40px;width:100%;">
 		<nav class="main_nav">
 			<div class="container">
 				<div class="row">
@@ -326,25 +326,47 @@
 
 	</header>
 	
-	<!-- Banner -->
+  <div class="floating-whatsapp">
+    <a href="https://wa.me/+56982639595" target="_blank">
+      <img src="/assets/images/wp.png" alt="WhatsApp">
+    </a>
+  </div>
 
-	<div class="banner" id="banner" style="max-height:500px ;">
-		<div class="banner_background" style=""></div>
-		<div class="container fill_height">
-			<div class="row fill_height">
-				<div class="banner_product_image">
-					<!-- <img src="/assets/images/aaaa.jpg" alt="" style="width: 600px;"> -->
-				</div>
-				<div class="col-lg-5 offset-lg-4 fill_height">
-					<div class="banner_content">
-						<!-- <h1 class="banner_text">new era of smartphones</h1>
-						<div class="banner_price"><span>$530</span>$460</div>
-						<div class="banner_product_name">Apple Iphone 6s</div>
-						<div class="button banner_button"><a href="#">Shop Now</a></div> -->
-					</div>
-				</div>
-			</div>
-		</div>
+	<!-- Slider -->
+	<div class="banner pt-0" id="banner" style="max-height:500px ;">
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+		@if($web->imageRotor1)
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="/assets/images/{{$web->imageRotor1}}" alt="First slide">
+    </div>
+		@endif
+		@if($web->imageRotor2)
+    <div class="carousel-item">
+      <img class="d-block w-100" src="/assets/images/{{$web->imageRotor2}}" alt="Second slide">
+    </div>
+		@endif
+		@if($web->imageRotor3)
+    <div class="carousel-item">
+      <img class="d-block w-100" src="/assets/images/{{$web->imageRotor3}}" alt="Third slide">
+    </div>
+		@endif
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
 	</div>
 
 	<!-- Characteristics -->

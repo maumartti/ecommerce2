@@ -34,7 +34,7 @@
             height:70px;
         }
         .banner_background{
-            background-image:url(/assets/images/banner_background.png);
+            background-image:url(/assets/images/1.png);
             background-size: 100% / 100%;
             background-position:50% 0px;
         }
@@ -43,6 +43,39 @@
                 height: 180px !important;
             }
         }
+        .carousel-control-next-icon, .carousel-control-prev-icon{
+            width:80px;
+            height:80px;
+        }
+
+
+
+        /* Add styles for your floating WhatsApp button */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 35px;
+  right: 32px;
+  z-index: 1000;
+}
+
+.floating-whatsapp a {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 60px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.floating-whatsapp a img {
+    width: 70px;
+height: 70px;
+border-radius: 100%;
+}
+
     </style>
 </head>
 <body>

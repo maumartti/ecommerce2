@@ -163,10 +163,14 @@
                     <div class="form-group">
                         <label>Logo Web</label>
                         <div class="slim"
+                            data-button-edit-title="Editar"
+		                    data-button-remove-title="Borrar"
                             data-ratio="4:3"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
-                            data-size="640,640">
-                            <img src="/assets/images/{{$web->imageLogo}}"
+                            data-size="400,300">
+                            @if($web->imageLogo)
+                            <img src="/assets/images/{{$web->imageLogo}}" />
+                            @endif
                             <input type="file" name="imageLogo" required/>
                         </div>
                     </div>
@@ -180,22 +184,38 @@
                     <label>Rotor de imágenes</label>
                     <div class="form-group">
                         <div class="slim col-4 mr-1"
-                            data-ratio="16:9"
+                            data-button-edit-title="Editar"
+		                    data-button-remove-title="Borrar"
+                            data-ratio="17:6"
+                            data-fetcher="/slim-cropper-uploading/server/fetch.php"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="640,640">
-                            <input type="file" name="imageRotor1"/>
+                            data-size="1800,500">
+                            <input type="file" id="imageRotor1" name="imageRotor1"/>
+                            @if($web->imageRotor1)
+                            <img src="/assets/images/{{$web->imageRotor1}}" />
+                            @endif
                         </div>
                         <div class="slim col-4 mr-1"
-                            data-ratio="16:9"
+                            data-button-edit-title="Editar"
+		                    data-button-remove-title="Borrar"
+                            data-ratio="17:6"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="640,640">
-                            <input type="file" name="imageRotor2"/>
+                            data-size="1800,500">
+                            <input type="file" id="imageRotor2" name="imageRotor2"/>
+                            @if($web->imageRotor2)
+                            <img src="/assets/images/{{$web->imageRotor2}}" />
+                            @endif
                         </div>
                         <div class="slim col-4"
-                            data-ratio="16:9"
+                            data-button-edit-title="Editar"
+		                    data-button-remove-title="Borrar"
+                            data-ratio="17:6"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="640,640">
-                            <input type="file" name="imageRotor3"/>
+                            data-size="1800,500">
+                            <input type="file" id="imageRotor3" name="imageRotor3"/>
+                            @if($web->imageRotor3)
+                            <img src="/assets/images/{{$web->imageRotor3}}" />
+                            @endif
                         </div>
                     </div>
                     <div class="">
@@ -427,5 +447,27 @@
         <!-- End Top Referrals Component -->
     </div>
 </div>
+
+@endsection
+
+@section('script')	
+		<script>
+			$(document).ready(function(){
+				//si borramos imagen exsistente para saber que exsistia y ya no
+                $('.slim-btn-remove').click(function(){
+                    var secondParent = $(this).parent().parent();
+                    var hiddenInput = secondParent.find('input[type="hidden"]');
+                    if (hiddenInput.length > 0) {
+                        hiddenInput.val("empty");//en el input hidden le ponemos = empty
+                    }
+                });
+            });
+
+
+		    //input number solo numeros inputNumber
+		   $('.inputNumber').bind('keypress', function(e) { 
+		        return ( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) ? false : true ;
+		    });
+</script>
 
 @endsection

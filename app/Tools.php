@@ -7,6 +7,10 @@ use Illuminate\Support\Str;
 
 class Tools extends Model
 {
+    public static function isValidJson($string) {
+        json_decode($string);
+        return json_last_error() === JSON_ERROR_NONE;
+    }
     public static function saveImage64($path, $imageData) {
         $imageDataArray = json_decode($imageData, true); // Decode the JSON string
         // Extract necessary information
@@ -19,6 +23,7 @@ class Tools extends Model
         file_put_contents(public_path() . $path . $imageName, base64_decode($image));
         return $imageName;
     }
+
     public static function deleteImage($path,$fileName){
 	    $old_image = public_path().$path.$fileName;
 	    if (file_exists($old_image) && $fileName != 'null' && $fileName != null) {

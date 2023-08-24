@@ -33,33 +33,62 @@ class HomeController extends Controller
         try {
             $data = $request->all();
             $tools = new Tools;
-            // Guardar la imagen Logo
-            if ($request->has('imageLogo') && $request->imageLogo !== 'null') {
-                $data['imageLogo'] = $tools->saveImage64('/assets/images/', $request->imageLogo);
-            } else {
-                unset($data['imageLogo']);
-            }
-            //imagenes de rotor
-            if ($request->has('imageRotor1') && $request->imageRotor1 !== 'null') {
-                $data['imageRotor1'] = $tools->saveImage64('/assets/images/', $request->imageRotor1);
-            } else {
-                unset($data['imageRotor1']);
-            }
-            if ($request->has('imageRotor2') && $request->imageRotor2 !== 'null') {
-                $data['imageRotor2'] = $tools->saveImage64('/assets/images/', $request->imageRotor2);
-            } else {
-                unset($data['imageRotor2']);
-            }
-            if ($request->has('imageRotor3') && $request->imageRotor3 !== 'null') {
-                $data['imageRotor3'] = $tools->saveImage64('/assets/images/', $request->imageRotor3);
-            } else {
-                unset($data['imageRotor3']);
-            }
 
             $web = Web::find(1);
+            //return $data;
+            // Guardar la imagen Logo
+            if(isset($data['imageLogo'])){
+                if ($data['imageLogo'] !== '' && $data['imageLogo'] !== null && Tools::isValidJson($request->imageLogo)) {
+                    $data['imageLogo'] = $tools->saveImage64('/assets/images/', $request->imageLogo);
+                } elseif($data['imageLogo'] == 'empty'){
+                    $data['imageLogo'] = null;   
+                }else{
+                    $data['imageLogo'] = $web->imageLogo;
+                }
+            }else{
+                $data['imageLogo'] = $web->imageLogo;
+            }    
+
+            // Imagenes de rotor
+            if(isset($data['imageRotor1'])){
+                if ($data['imageRotor1'] !== '' && $data['imageRotor1'] !== null && Tools::isValidJson($request->imageRotor1)) {
+                        $data['imageRotor1'] = $tools->saveImage64('/assets/images/', $request->imageRotor1);
+                } elseif($data['imageRotor1'] == 'empty'){
+                    $data['imageRotor1'] = null;   
+                }else{
+                    $data['imageRotor1'] = $web->imageRotor1;
+                }
+            }else{
+                $data['imageRotor1'] = $web->imageRotor1;
+            }
+            //img 2
+            if(isset($data['imageRotor2'])){
+                if ($data['imageRotor2'] !== '' && $data['imageRotor2'] !== null && Tools::isValidJson($request->imageRotor2)) {
+                    $data['imageRotor2'] = $tools->saveImage64('/assets/images/', $request->imageRotor2);
+                } elseif($data['imageRotor2'] == 'empty'){
+                    $data['imageRotor2'] = null;   
+                }else{
+                    $data['imageRotor2'] = $web->imageRotor2;
+                }
+            }else{
+                $data['imageRotor2'] = $web->imageRotor2;
+            }
+            //img 3
+            if(isset($data['imageRotor3'])){
+                if ($data['imageRotor3'] !== '' && $data['imageRotor3'] !== null && Tools::isValidJson($request->imageRotor3)) {
+                    $data['imageRotor3'] = $tools->saveImage64('/assets/images/', $request->imageRotor3);
+                } elseif($data['imageRotor3'] == 'empty'){
+                    $data['imageRotor3'] = null;   
+                }else{
+                    $data['imageRotor3'] = $web->imageRotor3;
+                }
+            }else{
+                $data['imageRotor3'] = $web->imageRotor3;
+            }
+
             $web->update($data);
-            
-            return response()->json(['message' => 'Data saved successfully'], 200);            
+    
+            return response()->json(['message' => 'Data saved successfully'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred while saving data'], 500);
         }
