@@ -28,6 +28,42 @@ class HomeController extends Controller
         $web = Web::find(1);
         return view('admin.home')->with('web',$web);
     }
+/*
+    public function saveData(Request $request) {
+        try {
+            $data = $request->all();
+            $web = Web::find(1);
+    
+            $this->updateImage($data, $web, 'imageLogo');
+            $this->updateImage($data, $web, 'imageRotor1');
+            $this->updateImage($data, $web, 'imageRotor2');
+            $this->updateImage($data, $web, 'imageRotor3');
+    
+            $web->update($data);
+    
+            return response()->json(['message' => 'Data saved successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An error occurred while saving data'], 500);
+        }
+    }
+    
+    private function updateImage(&$data, $web, $imageName) {
+        if (isset($data[$imageName])) {
+            $imageData = $data[$imageName];
+    
+            if ($imageData === 'empty') {
+                $data[$imageName] = null;
+            } elseif (Tools::isValidJson($imageData)) {
+                $data[$imageName] = Tools::saveImage64('/assets/images/', $imageData);
+            } else {
+                $data[$imageName] = $web->{$imageName};
+            }
+        } else {
+            $data[$imageName] = $web->{$imageName};
+        }
+    }*/
+
+
 
     public function saveData(Request $request) {
         try {
@@ -92,6 +128,11 @@ class HomeController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred while saving data'], 500);
         }
+    }
+
+    public function settings(Request $request){
+        $web = Web::find(1);
+        return view('admin.settings')->with('web',$web);
     }
     
 }

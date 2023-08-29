@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="/assets/plugins/slim/slim.min.css">
     <link rel="stylesheet" href="/assets/plugins/toast/css/toastr.min.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <style>
+      .header_main {
+          position: sticky !important;
+          top: 0 !important;
+          background-color: #ffffff !important; /* Cambia esto al color de fondo deseado */
+          z-index: 1000 !important; /* Asegura que el encabezado aparezca por encima del contenido al hacer scroll */
+          /* Otros estilos como altura, relleno, bordes, etc. */
+      }
+    </style>
   </head>
   <body class="h-100">
     <div class="color-switcher animated">
@@ -120,6 +129,12 @@
                 <a class="nav-link " href="user-profile-lite.html">
                   <i class="material-icons">person</i>
                   <span>Mi Perfil</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/settings">
+                  <i class="material-icons">settings</i>
+                  <span>Generales</span>
                 </a>
               </li>
               <li class="nav-item">

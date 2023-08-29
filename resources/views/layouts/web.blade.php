@@ -28,7 +28,7 @@
     <!-- Scripts -->
     <style>
         .logo a img{
-            width:70px;
+            width:180px;
         }
         .header_search, .logo_container, .wishlist_cart{
             height:70px;

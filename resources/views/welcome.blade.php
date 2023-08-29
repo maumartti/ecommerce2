@@ -37,8 +37,8 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="/assets/images/user.svg" alt=""></div>
-								<div><a href="{{ route('register') }}">Register</a></div>
-								<div><a href="{{ route('login') }}">Sign in</a></div>
+								<div><a href="{{ route('register') }}">Registro</a></div>
+								<div><a href="{{ route('login') }}">Iniciar sesión</a></div>
 							</div>
 						</div>
 					</div>
@@ -72,15 +72,17 @@
 										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
-												<span class="custom_dropdown_placeholder clc">All Categories</span>
+												<span class="custom_dropdown_placeholder clc">Categorías</span>
 												<i class="fas fa-chevron-down"></i>
 												<ul class="custom_list clc">
-													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">Computers</a></li>
-													<li><a class="clc" href="#">Laptops</a></li>
-													<li><a class="clc" href="#">Cameras</a></li>
-													<li><a class="clc" href="#">Hardware</a></li>
-													<li><a class="clc" href="#">Smartphones</a></li>
+													<li><a class="clc" href="#">Todas</a></li>
+													<li><a class="clc" href="#">Mujer</a></li>
+													<li><a class="clc" href="#">Hombre</a></li>
+													<li><a class="clc" href="#">Niños</a></li>
+													<li><a class="clc" href="#">Unisex</a></li>
+													<li><a class="clc" href="#">Hogar</a></li>
+													<li><a class="clc" href="#">Temporada</a></li>
+													<li><a class="clc" href="#">Ofertas</a></li>
 												</ul>
 											</div>
 										</div>
@@ -97,7 +99,7 @@
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="/assets/images/heart.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="#">Wishlist</a></div>
+									<div class="wishlist_text"><a href="#">Likes</a></div>
 									<div class="wishlist_count">115</div>
 								</div>
 							</div>
@@ -110,7 +112,7 @@
 										<div class="cart_count"><span>10</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="#">Cart</a></div>
+										<div class="cart_text"><a href="#">Carrito</a></div>
 										<div class="cart_price">$85</div>
 									</div>
 								</div>
@@ -122,7 +124,7 @@
 		</div>
 		
 		<!-- Main Navigation -->
-		<img src="/assets/images/banner4.gif" style="height:40px;width:100%;">
+		<img src="/assets/images/bb.gif" style="height:40px;width:100%;">
 		<nav class="main_nav">
 			<div class="container">
 				<div class="row">
@@ -132,81 +134,44 @@
 
 							<!-- Categories Menu -->
 
-							<div class="cat_menu_container">
-								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-									<div class="cat_burger"><span></span><span></span><span></span></div>
-									<div class="cat_menu_text">categories</div>
-								</div>
-
-								<ul class="cat_menu">
-									<li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-									<li class="hassubs">
-										<a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-										<ul>
-											<li class="hassubs">
-												<a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-										</ul>
-									</li>
-									<li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
-								</ul>
-							</div>
+							
 
 							<!-- Main Nav Menu -->
 			
-							<div class="main_nav_menu ml-auto">
+							<div class="main_nav_menu m-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="#">Mujer</a></li>
 									<li class="hassubs">
-										<a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-										<ul>
+										<a href="#">Hombre</a>
+										<!-- <ul>
+											<li><a href="#">Mujer<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Hombre<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Niño<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Unisex<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Hogar<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Temporada<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="#">Ofertas<i class="fas fa-chevron-down"></i></a></li>
+										</ul> -->
+									</li>
+									<li class="hassubs">
+										<a href="#">Niño</a>
+										<!-- <ul>
 											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+												<a href="#">Unisex<i class="fas fa-chevron-down"></i></a>
 												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Hogar<i class="fas fa-chevron-down"></i></a></li>
+													<li><a href="#">Temporada<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
 												</ul>
 											</li>
 											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
+										</ul> -->
 									</li>
 									<li class="hassubs">
-										<a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li class="hassubs">
-										<a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-										<ul>
+										<a href="#">Unisex</a>
+										<!-- <ul>
 											<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
@@ -214,10 +179,12 @@
 											<li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
+										</ul> -->
 									</li>
-									<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="blog.html">Hogar<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="blog.html">Temporada<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="blog.html">Ofertas<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="contact.html">Contacto<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 
@@ -333,7 +300,7 @@
   </div>
 
 	<!-- Slider -->
-	<div class="banner pt-0" id="banner" style="max-height:500px ;">
+	<div class="banner pt-0" id="banner" style="max-height:500px;max-width:1900px;margin:auto;">
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -1837,7 +1804,7 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="popular_categories_content">
-						<div class="popular_categories_title">Popular Categories</div>
+						<div class="popular_categories_title">Categorías Populares</div>
 						<div class="popular_categories_slider_nav">
 							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-angle-left ml-auto"></i></div>
 							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
@@ -1856,7 +1823,7 @@
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_1.png" alt=""></div>
-									<div class="popular_category_text">Smartphones & Tablets</div>
+									<div class="popular_category_text">Mujer</div>
 								</div>
 							</div>
 
@@ -1864,7 +1831,7 @@
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_2.png" alt=""></div>
-									<div class="popular_category_text">Computers & Laptops</div>
+									<div class="popular_category_text">Hombre</div>
 								</div>
 							</div>
 
@@ -1872,7 +1839,7 @@
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_3.png" alt=""></div>
-									<div class="popular_category_text">Gadgets</div>
+									<div class="popular_category_text">Niño</div>
 								</div>
 							</div>
 
@@ -1880,7 +1847,7 @@
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_4.png" alt=""></div>
-									<div class="popular_category_text">Video Games & Consoles</div>
+									<div class="popular_category_text">Unisex</div>
 								</div>
 							</div>
 
@@ -1888,7 +1855,7 @@
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_5.png" alt=""></div>
-									<div class="popular_category_text">Accessories</div>
+									<div class="popular_category_text">Temporada</div>
 								</div>
 							</div>
 
@@ -1901,92 +1868,6 @@
 
 	<!-- Banner -->
 
-	<div class="banner_2">
-		<div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>
-		<div class="banner_2_container">
-			<div class="banner_2_dots"></div>
-			<!-- Banner 2 Slider -->
-
-			<div class="owl-carousel owl-theme banner_2_slider">
-
-				<!-- Banner 2 Slider Item -->
-				<div class="owl-item">
-					<div class="banner_2_item">
-						<div class="container fill_height">
-							<div class="row fill_height">
-								<div class="col-lg-4 col-md-6 fill_height">
-									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
-									</div>
-									
-								</div>
-								<div class="col-lg-8 col-md-6 fill_height">
-									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="/assets/images/banner_2_product.png" alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>			
-					</div>
-				</div>
-
-				<!-- Banner 2 Slider Item -->
-				<div class="owl-item">
-					<div class="banner_2_item">
-						<div class="container fill_height">
-							<div class="row fill_height">
-								<div class="col-lg-4 col-md-6 fill_height">
-									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
-									</div>
-									
-								</div>
-								<div class="col-lg-8 col-md-6 fill_height">
-									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="/assets/images/banner_2_product.png" alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>			
-					</div>
-				</div>
-
-				<!-- Banner 2 Slider Item -->
-				<div class="owl-item">
-					<div class="banner_2_item">
-						<div class="container fill_height">
-							<div class="row fill_height">
-								<div class="col-lg-4 col-md-6 fill_height">
-									<div class="banner_2_content">
-										<div class="banner_2_category">Laptops</div>
-										<div class="banner_2_title">MacBook Air 13</div>
-										<div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Explore</a></div>
-									</div>
-									
-								</div>
-								<div class="col-lg-8 col-md-6 fill_height">
-									<div class="banner_2_image_container">
-										<div class="banner_2_image"><img src="/assets/images/banner_2_product.png" alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>			
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
 
 	<!-- Hot New Arrivals -->
 
@@ -4388,6 +4269,36 @@
 		</div>
 	</div>
 
+
+	<div class="mt-5">
+		<div class="container">
+			<h2>Nuestra Propuesta de Valor </h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div class="row">
+				<p></p>
+					<div class="col-4">
+						<div style="background:#eff6fa" class="popular_category d-flex flex-column align-items-center justify-content-center">
+						<div class="popular_category_image"><img src="/assets/images/heart.png" alt=""></div>
+						<div class="popular_category_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+					</div>
+				</div>
+				<div class="col-4">
+					<div style="background:#eff6fa" class="popular_category d-flex flex-column align-items-center justify-content-center">
+						<div class="popular_category_image"><img src="/assets/images/popular_1.png" alt=""></div>
+						<div class="popular_category_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+					</div>
+				</div>
+				<div class="col-4">
+					<div style="background:#eff6fa" class="popular_category d-flex flex-column align-items-center justify-content-center">
+						<div class="popular_category_image"><img src="/assets/images/cart.png" alt=""></div>
+						<div class="popular_category_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- Brands -->
 
 	<div class="brands">
@@ -4445,6 +4356,9 @@
 			</div>
 		</div>
 	</div>
+
+
+	
 
 	<!-- Footer -->
 

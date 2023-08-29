@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
     Route::post('/saveData', [App\Http\Controllers\HomeController::class, 'saveData'])->name('saveData');
 });
 
