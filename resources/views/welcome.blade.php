@@ -4299,6 +4299,14 @@
 	</div>
 
 
+	    <div class="container">
+			
+@foreach($feed as $post)
+    <img src="{{ $post->url }}" style="width:120px;">
+@endforeach
+			</div>
+
+
 	<!-- Brands -->
 
 	<div class="brands">

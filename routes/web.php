@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web');
+Route::get('/privacidad', [App\Http\Controllers\WebController::class, 'index'])->name('web');
 
 Auth::routes();
 
