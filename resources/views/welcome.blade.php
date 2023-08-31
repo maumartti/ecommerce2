@@ -348,8 +348,8 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="/assets/images/char_1.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">Entregas gratis</div>
+							<!-- <div class="char_subtitle">from $50</div> -->
 						</div>
 					</div>
 				</div>
@@ -360,8 +360,8 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="/assets/images/char_2.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">Devoluciónes gratis</div>
+							<!-- <div class="char_subtitle">from $50</div> -->
 						</div>
 					</div>
 				</div>
@@ -372,8 +372,8 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="/assets/images/char_3.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">Pagos online</div>
+							<!-- <div class="char_subtitle">from $50</div> -->
 						</div>
 					</div>
 				</div>
@@ -384,8 +384,8 @@
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
 						<div class="char_icon"><img src="/assets/images/char_4.png" alt=""></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">Pagos online</div>
+							<!-- <div class="char_subtitle">from $50</div> -->
 						</div>
 					</div>
 				</div>
@@ -403,7 +403,7 @@
 					<!-- Deals -->
 
 					<div class="deals">
-						<div class="deals_title">Deals of the Week</div>
+						<div class="deals_title">Ofertas semanales</div>
 						<div class="deals_slider_container">
 							
 							<!-- Deals Slider -->
@@ -414,24 +414,24 @@
 									<div class="deals_image"><img src="/assets/images/items/n1.jpg" alt=""></div>
 									<div class="deals_content">
 										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
+											<div class="deals_item_category"><a href="#">Inperdible</a></div>
+											<div class="deals_item_price_a ml-auto">Oferta</div>
 										</div>
 										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
+											<div class="deals_item_name">Bolsones Importados</div>
+											<div class="deals_item_price ml-auto">$16000</div>
 										</div>
 										<div class="available">
 											<div class="available_line d-flex flex-row justify-content-start">
-												<div class="available_title">Available: <span>6</span></div>
-												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
+												<div class="available_title">Dispojibles: <span>6</span></div>
+												<div class="sold_title ml-auto">Vendidos: <span>28</span></div>
 											</div>
 											<div class="available_bar"><span style="width:17%"></span></div>
 										</div>
 										<div class="deals_timer d-flex flex-row align-items-center justify-content-start">
 											<div class="deals_timer_title_container">
-												<div class="deals_timer_title">Hurry Up</div>
-												<div class="deals_timer_subtitle">Offer ends in:</div>
+												<div class="deals_timer_title">Oferta especial</div>
+												<div class="deals_timer_subtitle">Oferta termina en:</div>
 											</div>
 											<div class="deals_timer_content ml-auto">
 												<div class="deals_timer_box clearfix" data-target-time="">
@@ -556,9 +556,9 @@
 						<div class="tabbed_container">
 							<div class="tabs">
 								<ul class="clearfix">
-									<li class="active">Featured</li>
-									<li>On Sale</li>
-									<li>Best Rated</li>
+									<li class="active">Niños</li>
+									<li>Hombre</li>
+									<li>Mujer</li>
 								</ul>
 								<div class="tabs_line"><span></span></div>
 							</div>
@@ -1799,7 +1799,7 @@
 
 	<!-- Popular Categories -->
 
-	<div class="popular_categories">
+	<!-- <div class="popular_categories">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
@@ -1812,14 +1812,11 @@
 						<div class="popular_categories_link"><a href="#">full catalog</a></div>
 					</div>
 				</div>
-				
-				<!-- Popular Categories Slider -->
 
 				<div class="col-lg-9">
 					<div class="popular_categories_slider_container">
 						<div class="owl-carousel owl-theme popular_categories_slider">
 
-							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_1.png" alt=""></div>
@@ -1827,7 +1824,6 @@
 								</div>
 							</div>
 
-							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_2.png" alt=""></div>
@@ -1835,7 +1831,6 @@
 								</div>
 							</div>
 
-							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_3.png" alt=""></div>
@@ -1843,7 +1838,7 @@
 								</div>
 							</div>
 
-							<!-- Popular Categories Item -->
+	
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_4.png" alt=""></div>
@@ -1851,7 +1846,6 @@
 								</div>
 							</div>
 
-							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/assets/images/popular_5.png" alt=""></div>
@@ -1864,7 +1858,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Banner -->
 
@@ -1877,11 +1871,11 @@
 				<div class="col">
 					<div class="tabbed_container">
 						<div class="tabs clearfix tabs-right">
-							<div class="new_arrivals_title">Hot New Arrivals</div>
+							<div class="new_arrivals_title">Recién llegados</div>
 							<ul class="clearfix">
-								<li class="active">Featured</li>
-								<li>Audio & Video</li>
-								<li>Laptops & Computers</li>
+								<li class="active">Hombre</li>
+								<li>Unisex</li>
+								<li>Mujer</li>
 							</ul>
 							<div class="tabs_line"><span></span></div>
 						</div>
@@ -3116,10 +3110,10 @@
 									<div class="d-flex flex-column align-items-center justify-content-center">
 										<div class="arrivals_single_image"><img src="/assets/images/items/vic5.jpg" alt=""></div>
 										<div class="arrivals_single_content">
-											<div class="arrivals_single_category"><a href="#">Smartphones</a></div>
+											<div class="arrivals_single_category"><a href="#">OFERTON</a></div>
 											<div class="arrivals_single_name_container clearfix">
-												<div class="arrivals_single_name"><a href="#">LUNA Smartphone</a></div>
-												<div class="arrivals_single_price text-right">$379</div>
+												<div class="arrivals_single_name"><a href="#">Buso Nike</a></div>
+												<div class="arrivals_single_price text-right">$3079</div>
 											</div>
 											<div class="rating_r rating_r_4 arrivals_single_rating"><i></i><i></i><i></i><i></i><i></i></div>
 											<form action="#"><button class="arrivals_single_button">Add to Cart</button></form>
@@ -3148,11 +3142,11 @@
 				<div class="col">
 					<div class="tabbed_container">
 						<div class="tabs clearfix tabs-right">
-							<div class="new_arrivals_title">Hot Best Sellers</div>
+							<div class="new_arrivals_title">Más solicitados</div>
 							<ul class="clearfix">
 								<li class="active">Top 20</li>
-								<li>Audio & Video</li>
-								<li>Laptops & Computers</li>
+								<li>Más vendidos</li>
+								<li>Solicitados Mes</li>
 							</ul>
 							<div class="tabs_line"><span></span></div>
 						</div>
@@ -3899,8 +3893,8 @@
 				<!-- Trends Content -->
 				<div class="col-lg-3">
 					<div class="trends_container">
-						<h2 class="trends_title">Trends 2016</h2>
-						<div class="trends_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</p></div>
+						<h2 class="trends_title">Tendencias 2023</h2>
+						<div class="trends_text"><p>Contamos con una amplia variedad de prendas importadas.</p></div>
 						<div class="trends_slider_nav">
 							<div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
 							<div class="trends_next trends_nav"><i class="fas fa-angle-right ml-auto"></i></div>
@@ -4046,7 +4040,7 @@
 				<div class="col">
 					
 					<div class="reviews_title_container">
-						<h3 class="reviews_title">Latest Reviews</h3>
+						<h3 class="reviews_title">Más buscadas</h3>
 						<div class="reviews_all ml-auto"><a href="#">view all <span>reviews</span></a></div>
 					</div>
 
@@ -4160,7 +4154,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="viewed_title_container">
-						<h3 class="viewed_title">Recently Viewed</h3>
+						<h3 class="viewed_title">Vistas recientemente</h3>
 						<div class="viewed_nav_container">
 							<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
 							<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
@@ -4273,25 +4267,25 @@
 	<div class="mt-5 pb-5">
 		<div class="container">
 			<h2>Nuestra Propuesta de Valor </h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p>Bienvenidos a Importadora Tatar. Sumérgete en un mundo de moda incomparable con nuestra selección de ropa importada de segunda mano desde USA y Europa. Con pasión por la calidad, brindamos opciones únicas y asequibles para tu estilo. Únete a nosotros y descubre la distinción en cada prenda.</p>
 			<div class="row">
 				<p></p>
 					<div class="col-4">
 						<div style="background:#eff6fa" class="popular_category d-flex flex-column align-items-center justify-content-center">
 						<div class="popular_category_image"><img src="/assets/images/heart.png" alt=""></div>
-						<div class="popular_category_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+						<div class="popular_category_text">Sonrisas garantizadas: En Importadora Tatar, la satisfacción del cliente es nuestra prioridad número uno.</div>
 					</div>
 				</div>
 				<div class="col-4">
 					<div style="background:#eff6fa" class="popular_category d-flex flex-column align-items-center justify-content-center">
 						<div class="popular_category_image"><img src="/assets/images/popular_1.png" alt=""></div>
-						<div class="popular_category_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+						<div class="popular_category_text">Paga con facilidad: Experimenta la comodidad de pagar en línea en Importadora Tatar.</div>
 					</div>
 				</div>
 				<div class="col-4">
 					<div style="background:#eff6fa" class="popular_category d-flex flex-column align-items-center justify-content-center">
 						<div class="popular_category_image"><img src="/assets/images/cart.png" alt=""></div>
-						<div class="popular_category_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+						<div class="popular_category_text">Ofertas siempre frescas: En Tatar, las ofertas nunca se detienen. ¡Aprovecha los descuentos constantes!</div>
 						</div>
 					</div>
 			</div>
@@ -4386,13 +4380,12 @@
 
 	<!-- Brands -->
 
-	<div class="brands">
+	<!-- <div class="brands">
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<div class="brands_slider_container">
 						
-						<!-- Brands Slider -->
 
 						<div class="owl-carousel owl-theme brands_slider">
 							
@@ -4407,7 +4400,6 @@
 
 						</div>
 						
-						<!-- Brands Slider Navigation -->
 						<div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
 						<div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
 
@@ -4415,7 +4407,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Newsletter -->
 
@@ -4426,7 +4418,7 @@
 					<div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
 						<div class="newsletter_title_container">
 							<div class="newsletter_icon"><img src="/assets/images/send.png" alt=""></div>
-							<div class="newsletter_title">Sign up for Newsletter</div>
+							<div class="newsletter_title">Regístrate para recibir el boletín informativo</div>
 							<div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
 						</div>
 						<div class="newsletter_content clearfix">
