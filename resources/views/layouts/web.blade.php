@@ -76,6 +76,96 @@ height: 70px;
 border-radius: 100%;
 }
 
+
+/*********** instaaaaaa  */
+.profile-container {
+      text-align: left;
+      display: flex;
+      align-items: center;
+    }
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      overflow: hidden;
+      margin-right: 10px;
+      margin:auto;
+    }
+    .profile-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .profile-name {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .card-video video {
+      width: 100%;
+      max-width: 100%;
+    }
+.profile-name {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.video-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-thumbnail {
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.video-thumbnail video {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 3rem;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.play-icon i {
+  transition: transform 0.2s;
+}
+
+.video-thumbnail:hover video {
+  transform: scale(1.1);
+}
+
+.video-thumbnail:hover .play-icon i {
+  transform: scale(1.2);
+}
+
+
     </style>
 </head>
 <body>
@@ -151,5 +241,7 @@ border-radius: 100%;
 <script src="/assets/plugins/slick-1.8.0/slick.js"></script>
 <script src="/assets/plugins/easing/easing.js"></script>
 <script src="/assets/js/custom.js"></script>
+
+@yield('script')
 </body>
 </html>

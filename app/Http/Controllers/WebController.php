@@ -17,10 +17,11 @@ class WebController extends Controller
     {
         $web = Web::find(1);
 
-        $profile = \Dymantic\InstagramFeed\Profile::for('user_tt');
-        $feed = $profile->refreshFeed();
-        //$feed = \Dymantic\InstagramFeed\InstagramFeed::for('user_tt');
-        //dd($feed);
+        $profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
+        //$feed = [];
+        //$feed = $profile->refreshFeed(8);
+        $feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
+    //dd($feed);
         return view('welcome')->with('web',$web)->with('feed',$feed);
     }
 
