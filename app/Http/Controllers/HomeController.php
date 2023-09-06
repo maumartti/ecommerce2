@@ -124,7 +124,7 @@ class HomeController extends Controller
 
             $web->update($data);
     
-            return response()->json(['message' => 'Data saved successfully'], 200);
+            return response()->json(['status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred while saving data'], 500);
         }

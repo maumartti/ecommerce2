@@ -76,7 +76,7 @@
             </div>
             <div class="card-body d-flex flex-column">
                 <form action="{{ route('saveData') }}" method="POST" class="quick-post-form php-email-form">
-                    <div class="form-group">
+                    <div class="form-group pb-5 border-bottom">
                         <div class="slim"
                             data-button-edit-title="Editar"
 		                    data-button-remove-title="Borrar"
@@ -89,19 +89,20 @@
                             <input type="file" name="imageLogo" required/>
                         </div>
                     </div>
-                    <h6 class="mb-5">Banner promocional</h6>
-                    <div class="form-group">
-                        <div class="slim"
-                            data-button-edit-title="Editar"
-		                    data-button-remove-title="Borrar"
-                            data-ratio="86:3"
-                            data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
-                            data-size="1900,66">
-                            @if($web->imageLogo)
-                            <img src="/assets/images/{{$web->imageLogo}}" />
-                            @endif
-                            <input type="file" name="imageBanner1" required/>
-                        </div>
+                    <div>
+                        <div class="form-group pb-5 border-bottom">
+                            <h6 class="mb-5">Banner promocional</h6>
+                            <div class="slim"
+                                data-button-edit-title="Editar"
+                                data-button-remove-title="Borrar"
+                                data-ratio="86:3"
+                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
+                                data-size="1900,66">
+                                @if($web->imageLogo)
+                                <img src="/assets/images/{{$web->imageLogo}}" />
+                                @endif
+                                <input type="file" name="imageBanner1" required/>
+                            </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group" style="height: 120px;">

@@ -23,6 +23,9 @@
           z-index: 1000 !important; /* Asegura que el encabezado aparezca por encima del contenido al hacer scroll */
           /* Otros estilos como altura, relleno, bordes, etc. */
       }
+      .bg-light-two {
+          background-color: #f8f9fa !important;
+      }
     </style>
   </head>
   <body class="h-100">

@@ -47,6 +47,9 @@
             width:80px;
             height:80px;
         }
+        .bg-light-two {
+          background-color: #f8f9fa !important;
+        }
 
 
 

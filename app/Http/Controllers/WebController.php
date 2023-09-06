@@ -19,8 +19,8 @@ class WebController extends Controller
 
         $profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
         //$feed = [];
-        //$feed = $profile->refreshFeed(8);
-        $feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
+        $feed = $profile->refreshFeed(8);
+        //$feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
     //dd($feed);
         return view('welcome')->with('web',$web)->with('feed',$feed);
     }

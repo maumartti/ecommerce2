@@ -156,72 +156,10 @@
         <!-- Quick Post -->
         <div class="card card-small h-100">
             <div class="card-header border-bottom">
-            <h6 class="m-0">Imágens de portada</h6>
+            <h6 class="m-0">Datos de  portada</h6>
             </div>
             <div class="card-body d-flex flex-column">
-                <form action="{{ route('saveData') }}" method="POST" class="quick-post-form php-email-form">
-                    <div class="form-group">
-                        <label>Logo Web</label>
-                        <div class="slim"
-                            data-button-edit-title="Editar"
-		                    data-button-remove-title="Borrar"
-                            data-ratio="10:2"
-                            data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
-                            data-size="330,60">
-                            @if($web->imageLogo)
-                            <img src="/assets/images/{{$web->imageLogo}}" />
-                            @endif
-                            <input type="file" name="imageLogo" required/>
-                        </div>
-                    </div>
-                    <div class="">
-                        <button type="submit" class="btn btn-accent btn-block">Guardar Logo</button>
-                    </div>
-                </form>
-            </div>
-            <div class="card-body d-flex flex-column">
-                <form action="{{ route('saveData') }}" method="POST" class="quick-post-form php-email-form">
-                    <label>Rotor de imágenes</label>
-                    <div class="form-group">
-                        <div class="slim col-4 mr-1"
-                            data-button-edit-title="Editar"
-		                    data-button-remove-title="Borrar"
-                            data-ratio="17:6"
-                            data-fetcher="/slim-cropper-uploading/server/fetch.php"
-                            data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="1800,500">
-                            <input type="file" id="imageRotor1" name="imageRotor1"/>
-                            @if($web->imageRotor1)
-                            <img src="/assets/images/{{$web->imageRotor1}}" />
-                            @endif
-                        </div>
-                        <div class="slim col-4 mr-1"
-                            data-button-edit-title="Editar"
-		                    data-button-remove-title="Borrar"
-                            data-ratio="17:6"
-                            data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="1800,500">
-                            <input type="file" id="imageRotor2" name="imageRotor2"/>
-                            @if($web->imageRotor2)
-                            <img src="/assets/images/{{$web->imageRotor2}}" />
-                            @endif
-                        </div>
-                        <div class="slim col-4"
-                            data-button-edit-title="Editar"
-		                    data-button-remove-title="Borrar"
-                            data-ratio="17:6"
-                            data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="1800,500">
-                            <input type="file" id="imageRotor3" name="imageRotor3"/>
-                            @if($web->imageRotor3)
-                            <img src="/assets/images/{{$web->imageRotor3}}" />
-                            @endif
-                        </div>
-                    </div>
-                    <div class="">
-                        <button type="submit" class="btn btn-block btn-accent">Guardar Imágenes</button>
-                    </div>
-                </form>
+                
             </div>
         </div>
         <!-- End Quick Post -->
@@ -272,90 +210,6 @@
                     <span class="text-muted">– 4 days ago</span>
                 </div>
                 <p class="m-0 my-1 mb-2 text-muted">After the avalanche, it took us a week to climb out. Now...</p>
-                <div class="blog-comments__actions">
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-white">
-                        <span class="text-success">
-                        <i class="material-icons">check</i>
-                        </span> Approve </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-danger">
-                        <i class="material-icons">clear</i>
-                        </span> Reject </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-light">
-                        <i class="material-icons">more_vert</i>
-                        </span> Edit </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="blog-comments__item d-flex p-3">
-                <div class="blog-comments__avatar mr-3">
-                <img src="images/avatars/3.jpg" alt="User avatar" /> </div>
-                <div class="blog-comments__content">
-                <div class="blog-comments__meta text-muted">
-                    <a class="text-secondary" href="#">James Johnson</a> on
-                    <a class="text-secondary" href="#">Hello World!</a>
-                    <span class="text-muted">– 5 days ago</span>
-                </div>
-                <p class="m-0 my-1 mb-2 text-muted">My money's in that office, right? If she start giving me...</p>
-                <div class="blog-comments__actions">
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-white">
-                        <span class="text-success">
-                        <i class="material-icons">check</i>
-                        </span> Approve </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-danger">
-                        <i class="material-icons">clear</i>
-                        </span> Reject </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-light">
-                        <i class="material-icons">more_vert</i>
-                        </span> Edit </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="blog-comments__item d-flex p-3">
-                <div class="blog-comments__avatar mr-3">
-                <img src="images/avatars/3.jpg" alt="User avatar" /> </div>
-                <div class="blog-comments__content">
-                <div class="blog-comments__meta text-muted">
-                    <a class="text-secondary" href="#">James Johnson</a> on
-                    <a class="text-secondary" href="#">Hello World!</a>
-                    <span class="text-muted">– 5 days ago</span>
-                </div>
-                <p class="m-0 my-1 mb-2 text-muted">My money's in that office, right? If she start giving me...</p>
-                <div class="blog-comments__actions">
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-white">
-                        <span class="text-success">
-                        <i class="material-icons">check</i>
-                        </span> Approve </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-danger">
-                        <i class="material-icons">clear</i>
-                        </span> Reject </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-light">
-                        <i class="material-icons">more_vert</i>
-                        </span> Edit </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="blog-comments__item d-flex p-3">
-                <div class="blog-comments__avatar mr-3">
-                <img src="images/avatars/3.jpg" alt="User avatar" /> </div>
-                <div class="blog-comments__content">
-                <div class="blog-comments__meta text-muted">
-                    <a class="text-secondary" href="#">James Johnson</a> on
-                    <a class="text-secondary" href="#">Hello World!</a>
-                    <span class="text-muted">– 5 days ago</span>
-                </div>
-                <p class="m-0 my-1 mb-2 text-muted">My money's in that office, right? If she start giving me...</p>
                 <div class="blog-comments__actions">
                     <div class="btn-group btn-group-sm">
                     <button type="button" class="btn btn-white">

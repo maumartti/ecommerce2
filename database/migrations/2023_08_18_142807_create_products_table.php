@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('descount')->nullable();
             $table->tinyInteger('promo')->length(1)->default(0);
             $table->tinyInteger('new')->length(1)->default(1);
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
     }
