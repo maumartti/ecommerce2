@@ -82,15 +82,15 @@
                                         </thead>
                                         <tbody>
                                             @if($categories)
-                                            @foreach ($categories as $index => $category)
+                                            @foreach ($categories as $index => $item)
                                             @php
                                                 $key = $index + 1;
                                             @endphp
                                             <tr>
                                                 <td>{{$key}}</td>
-                                                <td>{{$category->name}}</td>
-                                                <td class="text-center"><button class="btn btn-warning">Editar <i class="material-icons">edit</i></button></td>
-                                                <td class="text-center"><button class="btn btn-danger delete-button" id="{{$category->id}}">Borrar <i class="material-icons">delete</i></button></td>
+                                                <td>{{$item->name}}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}">Editar <i class="material-icons">edit</i></button></td>
+                                                <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
                                             </tr>
                                             @endforeach
                                             @endif
@@ -119,16 +119,16 @@
                                         </thead>
                                         <tbody>
                                             @if($subcategories)
-                                            @foreach ($subcategories as $index => $sub)
+                                            @foreach ($subcategories as $index => $item)
                                             @php
                                                 $key = $index + 1;
                                             @endphp
                                             <tr>
                                                 <td>{{$key}}</td>
-                                                <td>{{$sub->name}}</td>
-                                                <td>{{$sub->category ? $sub->category->name : ''}}</td>
-                                                <td class="text-center"><button class="btn btn-warning">Editar <i class="material-icons">edit</i></button></td>
-                                                <td class="text-center"><button class="btn btn-danger">Borrar <i class="material-icons">delete</i></button></td>
+                                                <td>{{$item->name}}</td>
+                                                <td>{{$item->category ? $item->category->name : ''}}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-category_id="{{$item->category ? $item->category->id : ''}}">Editar <i class="material-icons">edit</i></button></td>
+                                                <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="subcategories">Borrar <i class="material-icons">delete</i></button></td>
                                             </tr>
                                             @endforeach
                                             @endif
@@ -148,65 +148,131 @@
         <!-- End Users Stats -->
         <!-- Users By Device Stats -->
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card card-small h-100">
-            <div class="card-header border-bottom">
-            <h6 class="m-0">Agregar Categoría</h6>
-            </div>
-            <div class="card-body py-0">
-                <div class="row">
-                    <div class="col-12 border-bottom">
-                        <form action="categories" method="POST" class="php-email-form">
-                            <div class="form-group pt-3">
-                                <label>Nombre de la categoría:</label>
-                                <input type="text" name="name" class="form-control" placeholder="nombre">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-accent btn-block">Agregar</button>
-                            </div>
-                        </form>
-                        <div class="pt-5" >
-                            <div class="card-header border-bottom px-0 ">
-                                <h6 class="m-0">Agregar Sub-Categoría</h6>
-                            </div>
-                            <form action="subcategories" method="POST" class="php-email-form">
+            <div class="card card-small h-100">
+                <div class="card-header border-bottom">
+                <h6 class="m-0">Agregar Categoría</h6>
+                </div>
+                <div class="card-body py-0">
+                    <div class="row">
+                        <div class="col-12 border-bottom">
+                            <form action="categories" method="POST" class="php-email-form">
                                 <div class="form-group pt-3">
-                                    <label for="categoria">Selecciona categoría:</label>
-                                    <select name="category_id" id="categorias" class="form-control">
-                                        @if($subcategories)
-                                        @foreach ($categories as $index => $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                        @endif
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nombreSubcategoria">Nombre de la sub-categoría:</label>
-                                    <input type="text" name="name" class="form-control" id="nombreSubcategoria" placeholder="nombre">
+                                    <label>Nombre de la categoría:</label>
+                                    <input type="text" name="name" class="form-control" placeholder="nombre">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-accent btn-block">Agregar</button>
                                 </div>
                             </form>
+                            <div class="pt-5" >
+                                <div class="card-header border-bottom px-0 ">
+                                    <h6 class="m-0">Agregar Sub-Categoría</h6>
+                                </div>
+                                <form action="subcategories" method="POST" class="php-email-form">
+                                    <div class="form-group pt-3">
+                                        <label for="categoria">Selecciona categoría:</label>
+                                        <select name="category_id" id="categorias" class="form-control">
+                                            @if($subcategories)
+                                            @foreach ($categories as $index => $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombreSubcategoria">Nombre de la sub-categoría:</label>
+                                        <input type="text" name="name" class="form-control" id="nombreSubcategoria" placeholder="nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-accent btn-block">Agregar</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="card-footer border-top">
-            <div class="row">
-                <div class="col">
-                <select class="custom-select custom-select-sm" style="max-width: 130px;">
-                    <option selected>Last Week</option>
-                    <option value="1">Today</option>
-                    <option value="2">Last Month</option>
-                    <option value="3">Last Year</option>
-                </select>
+                <!-- <div class="card-footer border-top">
+                <div class="row">
+                    <div class="col">
+                    <select class="custom-select custom-select-sm" style="max-width: 130px;">
+                        <option selected>Last Week</option>
+                        <option value="1">Today</option>
+                        <option value="2">Last Month</option>
+                        <option value="3">Last Year</option>
+                    </select>
+                    </div>
+                    <div class="col text-right view-report">
+                    <a href="#">Full report &rarr;</a>
+                    </div>
                 </div>
-                <div class="col text-right view-report">
-                <a href="#">Full report &rarr;</a>
-                </div>
+                </div> -->
             </div>
-            </div> -->
         </div>
+
+
+        <!-- Modal Editar Categoria-->
+        <div class="modal fade" id="ModalEditCat">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Categoría</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="categories/" method="POST" class="php-email-form">
+                    @method('PUT')
+                    <div class="form-group pt-3">
+                        <label>Nombre de la categoría:</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="nombre">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-accent btn-block">Guardar</button>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Modal Editar Sub-Categoria-->
+        <div class="modal fade" id="ModalEditSubCat">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Sub-Categoría</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="subcategories/" method="POST" class="php-email-form">
+                    @method('PUT')
+                    <div class="form-group pt-3">
+                        <label for="categoria">Selecciona categoría:</label>
+                        <select name="category_id" id="categorias" class="form-control" autocomplete="off">
+                            @if($subcategories)
+                                @foreach ($categories as $index => $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group pt-3">
+                        <label>Nombre de la categoría:</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="nombre" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-accent btn-block">Guardar</button>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+
+                </div>
+            </div>
         </div>
 
     </div>
@@ -225,6 +291,38 @@ $(document).ready(function(){
             hiddenInput.val("empty");//en el input hidden le ponemos = empty
         }
     });
+
+
+    //Datos al modal Categorias
+    $('.edit-button').click(function () {
+        console.log('entra click')
+        var id = $(this).data('id'); // Obtener el ID de la categoría
+        var form = $('#ModalEditCat form'); // Obtener el formulario del modal
+        $.each($(this).data(), function (key, value) {
+            if (key == 'name') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value); 
+            }
+        });
+        form.attr('action', 'categories/' + id);
+    });
+
+    //Datos al modal Sub-Cateogrias
+    $('.edit-button').click(function () {
+        console.log('entra click')
+        var id = $(this).data('id'); // Obtener el ID de la categoría
+        var form = $('#ModalEditSubCat form'); // Obtener el formulario del modal
+        $.each($(this).data(), function (key, value) {
+            var input = form.find('[name="' + key + '"]');
+            if (input.is('select')) {
+                input.find('option[value="' + value + '"]').prop('selected', true);
+            } else {
+                input.val(value);
+            }
+        });
+        form.attr('action', 'subcategories/' + id);
+    });
+
+    
 });
 
 
@@ -239,16 +337,17 @@ $('.inputNumber').bind('keypress', function(e) {
 document.addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('delete-button')) {
         const itemId = e.target.getAttribute('id');
-        deleteItem(itemId);
+        const url = e.target.getAttribute('data-url');
+        deleteItem(itemId, url);
     }
 });
 
 // Función para eliminar un elemento
-function deleteItem(itemId) {
+function deleteItem(itemId, url) {
     if (confirm('¿Estás seguro de que deseas eliminar este elemento? ,\n\n TODAS LAS SUBCATEGORÍAS HIJAS SERÁN ELIMINADAS')) {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         // Realiza na solicitud FETCH para eliminar el elemento en el servidor
-        fetch('categories/' + itemId, {
+        fetch(url+'/' + itemId, {
             method: 'DELETE',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',

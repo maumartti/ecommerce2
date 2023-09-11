@@ -75,7 +75,25 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $subcategory = SubCategory::find($id);
+    
+            if (!$subcategory) {
+                return response()->json(['status' => 'error', 'message' => 'SubCategoría no encontrada'], 404);
+            }
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'category_id' => 'required',
+                // Add other validation rules as needed
+            ]);
+    
+            $subcategory->update($validatedData);
+            
+            $subcategories = SubCategory::with('category')->get();
+            return response()->json(['status' => 'success', 'subcategories' => $subcategories], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error al actualizar la categoría: ' . $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -83,6 +101,16 @@ class SubCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $subcategory = SubCategory::find($id);
+            if (!$subcategory) {
+                return response()->json(['status' => 'error', 'message' => 'Categoría no encontrada'], 404);
+            }
+            // Elimina
+            $subcategory->delete();
+            return response()->json(['status' => 'success', 'message' => 'SubCategoría eliminada con éxito'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error al eliminar la sub-categoría: ' . $e->getMessage()], 500);
+        }
     }
 }

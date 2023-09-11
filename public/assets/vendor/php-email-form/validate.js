@@ -151,8 +151,8 @@ function addSubCategoryRow(table, sub, index) {
   row.innerHTML = `
       <td>${index + 1}</td>
       <td>${sub.name}</td>
-      <td>${sub.category.name}</td>
-      <td class="text-center"><button class="btn btn-warning">Editar <i class="material-icons">edit</i></button></td>
+      <td>${sub.category ? sub.category.name : ''}</td>
+      <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="${sub.id}" data-name="${sub.name}" data-category_id="${sub.category ? sub.category.id : ''}">Editar <i class="material-icons">edit</i></button></td>
       <td class="text-center"><button class="btn btn-danger">Borrar <i class="material-icons">delete</i></button></td>`;
   tbody.appendChild(row);
   // Actualizar count"
