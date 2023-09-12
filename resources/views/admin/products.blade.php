@@ -7,19 +7,19 @@
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
         <span class="text-uppercase page-subtitle">Dashboard</span>
-        <h3 class="page-title">Categorías / Sub-categorías</h3>
+        <h3 class="page-title">Productos</h3>
         </div>
     </div>
     <!-- End Page Header -->
     <!-- Small Stats Blocks -->
     <div class="row">
-        <div class="col-lg col-md-6 col-sm-6 mb-4">
+        <div class="col-lg col-md-4 col-sm-4 mb-4">
         <div class="stats-small stats-small--1 card card-small">
             <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Categorías Totales</span>
-                <h6 id="count-cat" class="stats-small__value count my-3">{{ isset($categories) && count($categories) > 0 ? count($categories) : '0' }}</h6>
+                <span class="stats-small__label text-uppercase">Productos Totales</span>
+                <h6 id="count-cat" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
                 </div>
                 <!-- <div class="stats-small__data">
                 <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
@@ -29,13 +29,29 @@
             </div>
         </div>
         </div>
-        <div class="col-lg col-md-6 col-sm-6 mb-4">
+        <div class="col-lg col-md-4 col-sm-4 mb-4">
         <div class="stats-small stats-small--1 card card-small">
             <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Sub-categorías Totales</span>
-                <h6 id="count-subcat" class="stats-small__value count my-3">{{ isset($subcategories) && count($subcategories) > 0 ? count($subcategories) : '0' }}</h6>
+                <span class="stats-small__label text-uppercase">Productos Activos</span>
+                <h6 id="count-subcat" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
+                </div>
+                <!-- <div class="stats-small__data">
+                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+                </div> -->
+            </div>
+            <!-- <canvas height="120" class="blog-overview-stats-small-2"></canvas> -->
+            </div>
+        </div>
+        </div>
+        <div class="col-lg col-md-4 col-sm-4 mb-4">
+        <div class="stats-small stats-small--1 card card-small">
+            <div class="card-body p-0 d-flex">
+            <div class="d-flex flex-column m-auto">
+                <div class="stats-small__data text-center">
+                <span class="stats-small__label text-uppercase">Productos Inactivos</span>
+                <h6 id="count-subcat" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
                 </div>
                 <!-- <div class="stats-small__data">
                 <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
@@ -53,16 +69,16 @@
         <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
         <div class="card card-small">
             <div class="card-header border-bottom">
-            <h6 class="m-0">Categorías / Sub-categorías</h6>
+            <h6 class="m-0">Productos de la tienda</h6>
             </div>
             <div class="card-body pt-0">
                 <div class="container pt-3">
                     <ul class="nav nav-tabs" id="myTabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Categorías</a>
+                            <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Productos</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Subcategorías</a>
+                            <a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">-----</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabsContent">
@@ -154,46 +170,141 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card card-small h-100">
                 <div class="card-header border-bottom">
-                <h6 class="m-0">Agregar Categoría</h6>
+                <h6 class="m-0">Agregar Producto</h6>
                 </div>
                 <div class="card-body py-0">
                     <div class="row">
                         <div class="col-12 border-bottom">
-                            <form action="categories" method="POST" class="php-email-form">
+                            <form action="subcategories" method="POST" class="php-email-form">
                                 <div class="form-group pt-3">
-                                    <label>Nombre de la categoría:</label>
-                                    <input type="text" name="name" class="form-control" placeholder="nombre">
+                                    <label for="nombreSubcategoria">Nombre del producto:</label>
+                                    <input type="text" name="name" class="form-control" id="nombreSubcategoria" placeholder="nombre">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 pr-0">
+                                        <div class="form-group">
+                                            <div class="slim"
+                                                data-button-edit-title="Editar"
+                                                data-button-remove-title="Borrar"
+                                                data-ratio="6:4"
+                                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                                data-size="600,400"
+                                                style="background:#e6e6e6">
+                                                <input type="file" name="imageLogo" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pl-0">
+                                        <div class="form-group">
+                                            <div class="slim"
+                                                data-button-edit-title="Editar"
+                                                data-button-remove-title="Borrar"
+                                                data-ratio="6:4"
+                                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                                data-size="600,400">
+                                                <input type="file" name="imageLogo" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pr-0">
+                                        <div class="form-group">
+                                            <div class="slim"
+                                                data-button-edit-title="Editar"
+                                                data-button-remove-title="Borrar"
+                                                data-ratio="6:4"
+                                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                                data-size="600,400">
+                                                <input type="file" name="imageLogo" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pl-0">
+                                        <div class="form-group">
+                                            <div class="slim"
+                                                data-button-edit-title="Editar"
+                                                data-button-remove-title="Borrar"
+                                                data-ratio="6:4"
+                                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                                data-size="600,400"
+                                                style="background:#e6e6e6">
+                                                <input type="file" name="imageLogo" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pr-0">
+                                        <div class="form-group">
+                                            <div class="slim"
+                                                data-button-edit-title="Editar"
+                                                data-button-remove-title="Borrar"
+                                                data-ratio="6:4"
+                                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                                data-size="600,400"
+                                                style="background:#e6e6e6">
+                                                <input type="file" name="imageLogo" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pl-0">
+                                        <div class="form-group">
+                                            <div class="slim"
+                                                data-button-edit-title="Editar"
+                                                data-button-remove-title="Borrar"
+                                                data-ratio="6:4"
+                                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                                data-size="600,400">
+                                                <input type="file" name="imageLogo" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categoria">Selecciona categoría:</label>
+                                    <select name="category_id" id="categorias" class="form-control">
+                                        @if(isset($categories))
+                                            @if($categories)
+                                            @foreach ($categories as $index => $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                            @endif
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categoria">Selecciona sub-categoría:</label>
+                                    <select name="category_id" id="categorias" class="form-control">
+                                        @if(isset($subcategories))
+                                            @if($subcategories)
+                                            @foreach ($subcategories as $index => $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                            @endif
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio">Precio:</label>
+                                    <input type="text" name="precio" class="form-control" id="precio" placeholder="Precio">
+                                </div>
+                                <div class="form-group">
+                                    <label for="old_precio">Precio Anterior:</label>
+                                    <input type="text" name="old_precio" class="form-control" id="old_precio" placeholder="Precio Anterior">
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcion">Descripción:</label>
+                                    <textarea name="descripcion" class="form-control" id="descripcion" rows="4" placeholder="Descripción"></textarea>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="descuento" id="descuento">
+                                    <label class="form-check-label" for="descuento">Descuento</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="promo" id="promo">
+                                    <label class="form-check-label" for="promo">Promo</label>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-accent btn-block">Agregar</button>
                                 </div>
                             </form>
-                            <div class="pt-5" >
-                                <div class="card-header border-bottom px-0 ">
-                                    <h6 class="m-0">Agregar Sub-Categoría</h6>
-                                </div>
-                                <form action="subcategories" method="POST" class="php-email-form">
-                                    <div class="form-group pt-3">
-                                        <label for="categoria">Selecciona categoría:</label>
-                                        <select name="category_id" id="categorias" class="form-control">
-                                            @if(isset($subcategories))
-                                                @if($subcategories)
-                                                @foreach ($categories as $index => $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                                @endforeach
-                                                @endif
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nombreSubcategoria">Nombre de la sub-categoría:</label>
-                                        <input type="text" name="name" class="form-control" id="nombreSubcategoria" placeholder="nombre">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-accent btn-block">Agregar</button>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>

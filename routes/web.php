@@ -26,5 +26,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('categories', App\Http\Controllers\CategoryController::class);
     Route::get('categoriesAll', [App\Http\Controllers\CategoryController::class, 'all']);
     Route::resource('subcategories', App\Http\Controllers\SubCategoryController::class);
+    Route::resource('products', App\Http\Controllers\ProductsController::class);
 });
 

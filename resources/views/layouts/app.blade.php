@@ -105,7 +105,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="components-blog-posts.html">
+                <a class="nav-link " href="/admin/products">
                   <i class="material-icons">vertical_split</i>
                   <span>Productos</span>
                 </a>
