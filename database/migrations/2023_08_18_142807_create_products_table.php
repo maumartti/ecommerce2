@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('image5')->nullable();
             $table->string('image6')->nullable();
             $table->string('description')->nullable();
+            $table->string('origen')->nullable();
             $table->string('descount')->nullable();
             $table->integer('stock')->length(11)->default(0);
             $table->tinyInteger('promo')->length(1)->default(0);

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+<link href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+@endsection
+
 @section('content')
 
 <div class="main-content-container container-fluid px-4">
@@ -86,26 +90,30 @@
                         <div class="tab-pane fade show active" id="categories" role="tabpanel" aria-labelledby="categories-tab">
                             <div class="row border-bottom py-2 bg-light">
                                 <div class="col-12 col-sm-12">
-                                    <table id="categories-table" class="table mb-0">
+                                    <table id="products-table" class="table mb-0">
                                         <!-- Encabezados de la tabla de Categorías -->
                                         <thead class="bg-light">
                                             <tr>
                                                 <th scope="col" class="border-0">#</th>
+                                                <th scope="col" class="border-0">Imágen 1</th>
                                                 <th scope="col" class="border-0">Nombre</th>
+                                                <th scope="col" class="border-0">Precio</th>
                                                 <th scope="col" class="border-0 text-center">Editar</th>
                                                 <th scope="col" class="border-0 text-center">Borrar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if(isset($categories))
-                                            @if($categories)
-                                                @foreach ($categories as $index => $item)
+                                            @if(isset($products))
+                                            @if($products)
+                                                @foreach ($products as $index => $item)
                                                 @php
                                                     $key = $index + 1;
                                                 @endphp
                                                 <tr>
                                                     <td>{{$key}}</td>
+                                                    <td><img src="/assets/images/products/{{$item->image1}}" style="width:65px;"></td>
                                                     <td>{{$item->name}}</td>
+                                                    <td>${{$item->price}}</td>
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}">Editar <i class="material-icons">edit</i></button></td>
                                                     <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
@@ -175,7 +183,7 @@
                 <div class="card-body py-0">
                     <div class="row">
                         <div class="col-12 border-bottom">
-                            <form action="subcategories" method="POST" class="php-email-form">
+                            <form action="products" method="POST" class="php-email-form">
                                 <div class="form-group pt-3">
                                     <label for="nombreSubcategoria">Nombre del producto:</label>
                                     <input type="text" name="name" class="form-control" id="nombreSubcategoria" placeholder="nombre">
@@ -190,7 +198,7 @@
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400"
                                                 style="background:#e6e6e6">
-                                                <input type="file" name="imageLogo" required/>
+                                                <input type="file" name="image1" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -202,7 +210,7 @@
                                                 data-ratio="6:4"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400">
-                                                <input type="file" name="imageLogo" required/>
+                                                <input type="file" name="image2" />
                                             </div>
                                         </div>
                                     </div>
@@ -214,7 +222,7 @@
                                                 data-ratio="6:4"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400">
-                                                <input type="file" name="imageLogo" required/>
+                                                <input type="file" name="image3"/>
                                             </div>
                                         </div>
                                     </div>
@@ -227,7 +235,7 @@
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400"
                                                 style="background:#e6e6e6">
-                                                <input type="file" name="imageLogo" required/>
+                                                <input type="file" name="image4"/>
                                             </div>
                                         </div>
                                     </div>
@@ -240,7 +248,7 @@
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400"
                                                 style="background:#e6e6e6">
-                                                <input type="file" name="imageLogo" required/>
+                                                <input type="file" name="image5"/>
                                             </div>
                                         </div>
                                     </div>
@@ -252,7 +260,7 @@
                                                 data-ratio="6:4"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400">
-                                                <input type="file" name="imageLogo" required/>
+                                                <input type="file" name="image6"/>
                                             </div>
                                         </div>
                                     </div>
@@ -270,8 +278,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="categoria">Selecciona sub-categoría:</label>
-                                    <select name="category_id" id="categorias" class="form-control">
+                                    <label for="subcategoria">Selecciona sub-categoría:</label>
+                                    <select name="subcategory_id" id="subcategorias" class="form-control">
                                         @if(isset($subcategories))
                                             @if($subcategories)
                                             @foreach ($subcategories as $index => $category)
@@ -283,23 +291,26 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="precio">Precio:</label>
-                                    <input type="text" name="precio" class="form-control" id="precio" placeholder="Precio">
+                                    <input type="text" name="price" class="form-control" id="precio" placeholder="Precio">
                                 </div>
                                 <div class="form-group">
                                     <label for="old_precio">Precio Anterior:</label>
-                                    <input type="text" name="old_precio" class="form-control" id="old_precio" placeholder="Precio Anterior">
+                                    <input type="text" name="price_old" class="form-control" id="old_precio" placeholder="Precio Anterior">
                                 </div>
                                 <div class="form-group">
                                     <label for="descripcion">Descripción:</label>
-                                    <textarea name="descripcion" class="form-control" id="descripcion" rows="4" placeholder="Descripción"></textarea>
+                                    <textarea name="description" class="form-control" id="descripcion" rows="4" placeholder="Descripción"></textarea>
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="descuento" id="descuento">
-                                    <label class="form-check-label" for="descuento">Descuento</label>
+                                <div class="form-group">
+                                    <label  for="descuento">Descuento</label>
+                                    <input type="text" class="form-control" name="descount" id="descuento">
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="promo" id="promo">
-                                    <label class="form-check-label" for="promo">Promo</label>
+                                <div class="form-group">
+                                    <label class="custom-control custom-checkbox">
+                                        <input name="promo" type="checkbox" class="custom-control-input" checked="">
+                                        <label class="custom-control-label" aria-hidden="true"></label>
+                                        <span class="custom-control-description">Promo</span>
+                                    </label>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-accent btn-block">Agregar</button>
@@ -400,8 +411,12 @@
 @endsection
 
 @section('script')	
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
 $(document).ready(function(){
+
+    $('#products-table').DataTable();
+
     //si borramos imagen exsistente para saber que exsistia y ya no
     $('.slim-btn-remove').click(function(){
         var secondParent = $(this).parent().parent();
@@ -463,7 +478,7 @@ document.addEventListener('click', function (e) {
 
 // Función para eliminar un elemento
 function deleteItem(itemId, url) {
-    if (confirm('¿Estás seguro de que deseas eliminar este elemento? ,\n\n TODAS LAS SUBCATEGORÍAS HIJAS SERÁN ELIMINADAS')) {
+    if (confirm('¿Estás seguro de que deseas eliminar este elemento? \n\n')) {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         // Realiza na solicitud FETCH para eliminar el elemento en el servidor
         fetch(url+'/' + itemId, {

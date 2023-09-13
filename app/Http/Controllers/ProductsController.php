@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Product;
+
 
 
 class ProductsController extends Controller
@@ -50,9 +52,25 @@ class ProductsController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'image1' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'price' => 'string|max:255',
+            'price_old' => 'string|max:255',
+            'cescription' => 'string|max:255',
+            'descount' => 'string|max:255',
+            'promo' => 'string'
         ]);
-    
+
         try {
+            $tools = new Tools;
+            if ($validatedData['image1'] !== '' && $validatedData['image1'] !== null && Tools::isValidJson($validatedData['image1'])) {
+                $validatedData['image1'] = $tools->saveImage64('/assets/images/products/', $validatedData['image1']);
+            }
+            $validatedData['url'] = $tools->generateUrl($validatedData['name']);
+            $validatedData['user_id'] = Auth::user()->id;
+            $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
+            //dd($validatedData);
             $category = Product::create($validatedData);
             $products = Product::all();
             return response()->json(['status' => 'success', 'products' => $products], 200);

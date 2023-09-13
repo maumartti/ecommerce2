@@ -27,6 +27,7 @@
           background-color: #f8f9fa !important;
       }
     </style>
+    @yield('head')
   </head>
   <body class="h-100">
     <div class="color-switcher animated">
