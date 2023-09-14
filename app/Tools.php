@@ -13,16 +13,26 @@ class Tools extends Model
     }
     public static function saveImage64($path, $imageData) {
         $imageDataArray = json_decode($imageData, true); // Decode the JSON string
-        // Extract necessary information
+        if (!$imageDataArray || !isset($imageDataArray['output']['name']) || !isset($imageDataArray['output']['image'])) {
+            return false; // Datos de imagen incorrectos
+        }
         $extencion = pathinfo($imageDataArray['output']['name'], PATHINFO_EXTENSION);
+        // Verificar si la extensión es '.jpg' y cambiarla a '.jpeg'
+        if ($extencion === 'jpg') {
+            $extencion = 'jpeg';
+        }
         $imageBase64 = $imageDataArray['output']['image'];
         $image = str_replace('data:image/'.$extencion.';base64,', '', $imageBase64);
         $image = str_replace(' ', '+', $image);
-        $imageName = Str::random(16).'.'.$extencion;
-        // Save the image with the correct path
-        file_put_contents(public_path() . $path . $imageName, base64_decode($image));
-        return $imageName;
+        $imageName = Str::random(16) . '.' . $extencion; // Agrega el punto antes de la extensión
+        $fullPath = public_path() . $path . $imageName;
+        if (file_put_contents($fullPath, base64_decode($image))) {
+            return $imageName;
+        } else {
+            return false; // Error al guardar la imagen
+        }
     }
+    
 
     public static function deleteImage($path,$fileName){
 	    $old_image = public_path().$path.$fileName;

@@ -78,15 +78,22 @@
         if(data.categories) {
           const categoriesTable = document.querySelector('#categories-table');
           clearTable(categoriesTable);
-          data.categories.forEach((category, index) => {
-              addCategoryRow(categoriesTable, category, index);
+          data.categories.forEach((item, index) => {
+              addCategoryRow(categoriesTable, item, index);
           });
           updateCategorySelect()//actualiza select categorias
         }else if(data.subcategories){
           const categoriesTable = document.querySelector('#subcategories-table');
           clearTable(categoriesTable);
-          data.subcategories.forEach((Subcategory, index) => {
-            addSubCategoryRow(categoriesTable, Subcategory, index);
+          data.subcategories.forEach((item, index) => {
+            addSubCategoryRow(categoriesTable, item, index);
+          });
+          updateCategorySelect()//actualiza select categorias
+        }else if(data.products){
+          const itemsTable = document.querySelector('#products-table');
+          clearTable(itemsTable);
+          data.products.forEach((item, index) => {
+            addProductsRow(itemsTable, item, index);
           });
           updateCategorySelect()//actualiza select categorias
         }
@@ -158,6 +165,21 @@ function addSubCategoryRow(table, sub, index) {
   // Actualizar count"
   const countSubcat = document.getElementById('count-subcat');
   countSubcat.textContent = index + 1;
+}
+// Actualiza tabla productos
+function addProductsRow(table, item, index) {
+  const tbody = table.querySelector('tbody');
+  const row = document.createElement('tr');
+  row.innerHTML = `
+      <td><img src="/assets/images/products/${item.image1}" style="width:65px;"></td>
+      <td>${item.name}</td>
+      <td>${item.category ? item.category.name : ''}</td>
+      <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="${item.id}" data-name="${item.name}" data-category_id="${item.category ? item.category.id : ''}">Editar <i class="material-icons">edit</i></button></td>
+      <td class="text-center"><button class="btn btn-danger">Borrar <i class="material-icons">delete</i></button></td>`;
+  tbody.appendChild(row);
+  // Actualizar count"
+  const count = document.getElementById('count-product');
+  count.textContent = index + 1;
 }
 
 //Actualiza SELECT Categorias

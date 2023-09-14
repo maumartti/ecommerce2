@@ -167,22 +167,17 @@ class ProductsController extends Controller
     public function destroy(string $id)
     {
         try {
-            // Encuentra la categoría por su ID
-            $category = Product::find($id);
-            // Verifica si la categoría existe
-            if (!$category) {
-                return response()->json(['status' => 'error', 'message' => 'Categoría no encontrada'], 404);
+            // Encuentra la Producto por su ID
+            $product = Product::find($id);
+            // Verifica si la Producto existe
+            if (!$product) {
+                return response()->json(['status' => 'error', 'message' => 'Producto no encontrada'], 404);
             }
-             // Encuentra y borra todas las SubCategory relacionadas con esta categoría
-            $subcategories = SubProduct::where('category_id', $category->id)->get();
-            foreach ($subcategories as $subcategory) {
-                $subcategory->delete();
-            }
-            // Elimina la categoría
-            $category->delete();
-            return response()->json(['status' => 'success', 'message' => 'Categoría eliminada con éxito'], 200);
+            // Elimina la Producto
+            $product->delete();
+            return response()->json(['status' => 'success', 'message' => 'Producto eliminada con éxito'], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => 'Error al eliminar la categoría: ' . $e->getMessage()], 500);
+            return response()->json(['status' => 'error', 'message' => 'Error al eliminar la Producto: ' . $e->getMessage()], 500);
         }
     }
 }

@@ -23,7 +23,7 @@
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
                 <span class="stats-small__label text-uppercase">Productos Totales</span>
-                <h6 id="count-cat" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
+                <h6 id="count-product" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
                 </div>
                 <!-- <div class="stats-small__data">
                 <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
@@ -39,7 +39,7 @@
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
                 <span class="stats-small__label text-uppercase">Productos Activos</span>
-                <h6 id="count-subcat" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
+                <h6 id="count-product" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
                 </div>
                 <!-- <div class="stats-small__data">
                 <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
@@ -55,7 +55,7 @@
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
                 <span class="stats-small__label text-uppercase">Productos Inactivos</span>
-                <h6 id="count-subcat" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
+                <h6 id="count-product" class="stats-small__value count my-3">{{ isset($products) && count($products) > 0 ? count($products) : '0' }}</h6>
                 </div>
                 <!-- <div class="stats-small__data">
                 <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
@@ -117,7 +117,7 @@
                                                     <td>${{$item->price}}</td>
                                                     <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td>
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)'>Editar <i class="material-icons">edit</i></button></td>
-                                                    <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="products">Borrar <i class="material-icons">delete</i></button></td>
+                                                    <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)'>Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
                                                 @endforeach
                                             @endif
@@ -131,11 +131,10 @@
                             </div>
                         </div>
                         <!-- Pestaña de Subcategorías -->
-                        <div class="tab-pane fade" id="subcategories" role="tabpanel" aria-labelledby="subcategories-tab">
+                        <!-- <div class="tab-pane fade" id="subcategories" role="tabpanel" aria-labelledby="subcategories-tab">
                             <div class="row border-bottom py-2 bg-light">
                                 <div class="col-12 col-sm-12">
                                     <table id="subcategories-table" class="table mb-0">
-                                        <!-- Encabezados de la tabla de Subcategorías -->
                                         <thead class="bg-light">
                                             <tr>
                                                 <th scope="col" class="border-0">#</th>
@@ -166,11 +165,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="col-12 col-sm-12 d-flex mb-2 mb-sm-0">
-                                    <!-- <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button> -->
-                                </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -577,6 +573,32 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Borrar Producto-->
+        <div class="modal fade" id="ModalDeleteOne">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar Producto</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nombre del producto:</label>
+                            <h5 id="name"></h5>
+                            <img id="image" src="" class="w-100">
+                        </div>
+                        <div class="form-group">
+                            <h5 class="text-danger pt-4">¿Está seguro de que desea borrar el producto?</h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger delete-button" id="#">Confirmar y Borrar <i class="material-icons">delete</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         
 
@@ -630,7 +652,6 @@ $(document).ready(function(){
         } else {
             $('#ModalShowOne #promo').text('NO');
         }
-        
         //images
         if (itemData.image1) {
             $("#ModalShowOne #image1").attr('src', '/assets/images/products/' + itemData.image1);
@@ -697,6 +718,19 @@ $(document).ready(function(){
         $('#ModalEditOne').modal('show');
     });
 
+    //Modal confirma borrar
+    $('.delete-modal-button').click(function () {
+        var itemData = $(this).data('item');
+        $('#ModalDeleteOne #name').text(itemData.name);
+        $('#ModalDeleteOne #image').attr('src', '/assets/images/products/' + itemData.image1);
+        $('#ModalDeleteOne .delete-button').attr('id', itemData.id);
+    });
+    //Funcion borrar
+    $('.delete-button').click(function () {
+        var deleteId = $(this).attr('id')
+        deleteItem(deleteId);
+        $('#ModalDeleteOne').modal('hide');
+    });
     
 });
 
@@ -708,52 +742,42 @@ $('.inputNumber').bind('keypress', function(e) {
 
 
 
-// Asigna la función deleteItem a los botones "Borrar" con la clase "delete-button"
-document.addEventListener('click', function (e) {
-    if (e.target && e.target.classList.contains('delete-button')) {
-        const itemId = e.target.getAttribute('id');
-        const url = e.target.getAttribute('data-url');
-        deleteItem(itemId, url);
-    }
-});
 
 // Función para eliminar un elemento
-function deleteItem(itemId, url) {
-    if (confirm('¿Estás seguro de que deseas eliminar este elemento? \n\n')) {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        // Realiza na solicitud FETCH para eliminar el elemento en el servidor
-        fetch(url+'/' + itemId, {
-            method: 'DELETE',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json(); // Parse the JSON response
-            } else {
-                return response.text().then(errorText => {
-                    throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
-                });
-            }
-        })
-        .then(data => {
-            if (data.status === 'success') {
-                // Elimina la fila de la tabla
-                $.toastr.success('Eliminado con éxito');
-                $(`[id="${itemId}"]`).closest('tr').remove();
-                //alert('Elemento eliminado con éxito');
-            } else {
-                $.toastr.success('Error al Eliminar');
-            }
-        })
-        .catch(error => {
-            console.error('Error al eliminar el elemento: ', error);
-            alert('Error al eliminar el elemento');
-        });
-    }
+function deleteItem(itemId) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    // Realiza na solicitud FETCH para eliminar el elemento en el servidor
+    fetch('products/' + itemId, {
+        method: 'DELETE',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': csrfToken,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json(); // Parse the JSON response
+        } else {
+            return response.text().then(errorText => {
+                throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
+            });
+        }
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            // Elimina la fila de la tabla
+            $.toastr.success('Eliminado con éxito');
+            $(`[id="${itemId}"]`).closest('tr').remove();
+            //alert('Elemento eliminado con éxito');
+        } else {
+            $.toastr.success('Error al Eliminar');
+        }
+    })
+    .catch(error => {
+        console.error('Error al eliminar el elemento: ', error);
+        alert('Error al eliminar el elemento');
+    });
 }
 
 </script>
