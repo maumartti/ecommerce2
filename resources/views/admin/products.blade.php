@@ -86,7 +86,7 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabsContent">
-                        <!-- Pestaña de Categorías -->
+                        <!-- Pestaña de Productos -->
                         <div class="tab-pane fade show active" id="categories" role="tabpanel" aria-labelledby="categories-tab">
                             <div class="row border-bottom py-2 bg-light">
                                 <div class="col-12 col-sm-12">
@@ -94,10 +94,11 @@
                                         <!-- Encabezados de la tabla de Categorías -->
                                         <thead class="bg-light">
                                             <tr>
-                                                <th scope="col" class="border-0">#</th>
+                                                <!-- <th scope="col" class="border-0">#</th> -->
                                                 <th scope="col" class="border-0">Imágen 1</th>
                                                 <th scope="col" class="border-0">Nombre</th>
                                                 <th scope="col" class="border-0">Precio</th>
+                                                <th scope="col" class="border-0 text-center">Ver</th>
                                                 <th scope="col" class="border-0 text-center">Editar</th>
                                                 <th scope="col" class="border-0 text-center">Borrar</th>
                                             </tr>
@@ -110,12 +111,13 @@
                                                     $key = $index + 1;
                                                 @endphp
                                                 <tr>
-                                                    <td>{{$key}}</td>
+                                                    <!-- <td>{{$key}}</td> -->
                                                     <td><img src="/assets/images/products/{{$item->image1}}" style="width:65px;"></td>
                                                     <td>{{$item->name}}</td>
                                                     <td>${{$item->price}}</td>
-                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}">Editar <i class="material-icons">edit</i></button></td>
-                                                    <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
+                                                    <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td>
+                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)'>Editar <i class="material-icons">edit</i></button></td>
+                                                    <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="products">Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
                                                 @endforeach
                                             @endif
@@ -154,6 +156,7 @@
                                                     <td>{{$key}}</td>
                                                     <td>{{$item->name}}</td>
                                                     <td>{{$item->category ? $item->category->name : ''}}</td>
+                                                    <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-category_id="{{$item->category ? $item->category->id : ''}}">Editar <i class="material-icons">edit</i></button></td>
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-category_id="{{$item->category ? $item->category->id : ''}}">Editar <i class="material-icons">edit</i></button></td>
                                                     <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="subcategories">Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
@@ -338,72 +341,244 @@
         </div>
 
 
-        <!-- Modal Editar Categoria-->
-        <div class="modal fade" id="ModalEditCat">
+        <!-- Modal Editar Producto-->
+        <div class="modal fade" id="ModalEditOne">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Editar Categoría</h4>
+                    <h4 class="modal-title">Editar Producto</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="categories/" method="POST" class="php-email-form">
+                    <form action="" method="POST" id="formModalEditOne" class="php-email-form">
                     @method('PUT')
                     <div class="form-group pt-3">
-                        <label>Nombre de la categoría:</label>
+                        <label for="nombreSubcategoria">Nombre del producto:</label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="nombre">
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-accent btn-block">Guardar</button>
+                    <div class="row">
+                        <div class="col-6 pr-0">
+                            <div class="form-group">
+                                <div class="slim" id="slim1" 
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="6:4"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                    data-size="600,400"
+                                    style="background:#e6e6e6">
+                                    <input type="file" name="image1" equired/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 pl-0">
+                            <div class="form-group">
+                                <div class="slim" id="slim2"
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="6:4"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                    data-size="600,400">
+                                    <input type="file" name="image2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 pr-0">
+                            <div class="form-group">
+                                <div class="slim" id="slim3"
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="6:4"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                    data-size="600,400">
+                                    <input type="file" name="image3"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 pl-0">
+                            <div class="form-group">
+                                <div class="slim" id="slim4"
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="6:4"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                    data-size="600,400"
+                                    style="background:#e6e6e6">
+                                    <input type="file" name="image4"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 pr-0">
+                            <div class="form-group">
+                                <div class="slim" id="slim5"
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="6:4"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                    data-size="600,400"
+                                    style="background:#e6e6e6">
+                                    <input type="file" name="image5"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 pl-0">
+                            <div class="form-group">
+                                <div class="slim" id="slim6"
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="6:4"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                    data-size="600,400">
+                                    <input type="file" name="image6"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Modal Editar Sub-Categoria-->
-        <div class="modal fade" id="ModalEditSubCat">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Editar Sub-Categoría</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form action="subcategories/" method="POST" class="php-email-form">
-                    @method('PUT')
-                    <div class="form-group pt-3">
+                    <div class="form-group">
                         <label for="categoria">Selecciona categoría:</label>
-                        <select name="category_id" id="categorias" class="form-control" autocomplete="off">
+                        <select name="category_id" id="categorias" class="form-control">
                             @if(isset($categories))
-                                @if($subcategories)
-                                    @foreach ($categories as $index => $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                    @endforeach
+                                @if($categories)
+                                @foreach ($categories as $index => $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
                                 @endif
                             @endif
                         </select>
                     </div>
-                    <div class="form-group pt-3">
-                        <label>Nombre de la categoría:</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="nombre" autocomplete="off">
+                    <div class="form-group">
+                        <label for="subcategoria">Selecciona sub-categoría:</label>
+                        <select name="subcategory_id" id="subcategorias" class="form-control">
+                            @if(isset($subcategories))
+                                @if($subcategories)
+                                @foreach ($subcategories as $index => $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                                @endif
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio:</label>
+                        <input type="text" name="price" id="price" class="form-control" id="precio" placeholder="Precio">
+                    </div>
+                    <div class="form-group">
+                        <label for="old_precio">Precio Anterior:</label>
+                        <input type="text" name="price_old" id="price_old" class="form-control" placeholder="Precio Anterior">
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea name="description" id="description" class="form-control" rows="4" placeholder="Descripción"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label  for="descuento">Descuento</label>
+                        <input type="text" name="descount" id="descount" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input name="promo" type="checkbox" class="custom-control-input" checked="">
+                            <label class="custom-control-label" aria-hidden="true"></label>
+                            <span class="custom-control-description">Promo</span>
+                        </label>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-accent btn-block">Guardar</button>
                     </div>
                     </form>
                 </div>
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-
+                </div> -->
                 </div>
             </div>
         </div>
+        <!-- Modal Ver Producto-->
+        <div class="modal fade" id="ModalShowOne">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Detalles del Producto</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nombreSubcategoria">Nombre del producto:</label>
+                            <h5 id="name"></h5>
+                        </div>
+                        <div class="row px-3">
+                            <div class="col-6 pl-0">
+                                <div class="form-group">
+                                    <!-- <label for="categoria">Imagen 1:</label> -->
+                                    <img id="image1" class="w-100 border" src="/assets/images/no-image.png">
+                                </div>
+                            </div>
+                            <div class="col-6 pl-0">
+                                <div class="form-group">
+                                    <!-- <label for="categoria">Imagen 2:</label> -->
+                                    <img id="image2" class="w-100 border" src="/assets/images/no-image.png">
+                                </div>
+                            </div>
+                            <div class="col-6 pl-0">
+                                <div class="form-group">
+                                    <!-- <label for="categoria">Imagen 3:</label> -->
+                                    <img id="image3" class="w-100 border" src="/assets/images/no-image.png">
+                                </div>
+                            </div>
+                            <div class="col-6 pl-0">
+                                <div class="form-group">
+                                    <!-- <label for="categoria">Imagen 4:</label> -->
+                                    <img id="image4" class="w-100 border" src="/assets/images/no-image.png">
+                                </div>
+                            </div>
+                            <div class="col-6 pl-0">
+                                <div class="form-group">
+                                    <!-- <label for="categoria">Imagen 5:</label> -->
+                                    <img id="image5" class="w-100 border" src="/assets/images/no-image.png">
+                                </div>
+                            </div>
+                            <div class="col-6 pl-0">
+                                <div class="form-group">
+                                    <!-- <label for="categoria">Imagen 6:</label> -->
+                                    <img id="image6" class="w-100 border" src="/assets/images/no-image.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoría:</label>
+                            <h5 id="category"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="subcategoria">Subcategoría:</label>
+                            <h5 id="subcategory"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Precio:</label>
+                            <h5 id="price"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="price_old">Precio anterior:</label>
+                            <h5 id="price_old"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Descripción:</label>
+                            <h5 id="description"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="descount">Descuento:</label>
+                            <h5 id="descount"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="promo">Promo:</label>
+                            <h5 id="promo"></h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
 
     </div>
 </div>
@@ -427,33 +602,99 @@ $(document).ready(function(){
     });
 
 
-    //Datos al modal Categorias
-    $('.edit-button').click(function () {
-        console.log('entra click')
-        var id = $(this).data('id'); // Obtener el ID de la categoría
-        var form = $('#ModalEditCat form'); // Obtener el formulario del modal
-        $.each($(this).data(), function (key, value) {
-            if (key == 'name') { // Verificar si el atributo de datos comienza con 'field'
-                form.find('[name="' + key + '"]').val(value); 
-            }
-        });
-        form.attr('action', 'categories/' + id);
+    //Modal VER
+    $('.show-button').click(function () {
+        var itemData = $(this).data('item');
+        console.log('item', itemData);
+        $('#ModalShowOne #name').text(itemData.name);
+        if(itemData.category){
+            $('#ModalShowOne #category').text(itemData.category.name);
+        }
+        if(itemData.subcategory){
+            $('#ModalShowOne #subcategory').text(itemData.subcategory.name);
+        }
+        if(itemData.price){
+            $('#ModalShowOne #price').text('$'+itemData.price);
+        }
+        if(itemData.price_old){
+            $('#ModalShowOne #price_old').text('$'+itemData.price_old);
+        }
+        if(itemData.description){
+            $('#ModalShowOne #description').text(itemData.description);
+        }
+        if(itemData.descount){
+            $('#ModalShowOne #descount').text(itemData.descount+' %');
+        }
+        if(itemData.promo || itemData.promo == 1){
+            $('#ModalShowOne #promo').text('SI');
+        } else {
+            $('#ModalShowOne #promo').text('NO');
+        }
+        
+        //images
+        if (itemData.image1) {
+            $("#ModalShowOne #image1").attr('src', '/assets/images/products/' + itemData.image1);
+        }
+        if (itemData.image2) {
+            $("#ModalShowOne #image2").attr('src', '/assets/images/products/' + itemData.image2);
+        }
+        if (itemData.image3) {
+            $("#ModalShowOne #image3").attr('src', '/assets/images/products/' + itemData.image3);
+        }
+        if (itemData.image4) {
+            $("#ModalShowOne #image4").attr('src', '/assets/images/products/' + itemData.image4);
+        }
+        if (itemData.image5) {
+            $("#ModalShowOne #image5").attr('src', '/assets/images/products/' + itemData.image5);
+        }
+        if (itemData.image6) {
+            $("#ModalShowOne #image6").attr('src', '/assets/images/products/' + itemData.image6);
+        }
+        $('#ModalShowOne').modal('show');
     });
 
-    //Datos al modal Sub-Cateogrias
+    //Modal EDITAR
     $('.edit-button').click(function () {
-        console.log('entra click')
-        var id = $(this).data('id'); // Obtener el ID de la categoría
-        var form = $('#ModalEditSubCat form'); // Obtener el formulario del modal
-        $.each($(this).data(), function (key, value) {
-            var input = form.find('[name="' + key + '"]');
-            if (input.is('select')) {
-                input.find('option[value="' + value + '"]').prop('selected', true);
-            } else {
-                input.val(value);
-            }
-        });
-        form.attr('action', 'subcategories/' + id);
+        var itemData = $(this).data('item');
+        $('#formModalEditOne #name').val(itemData.name);
+        $('#formModalEditOne #price').val(itemData.price);
+        $('#formModalEditOne #price_old').val(itemData.price_old);
+        $('#formModalEditOne #description').val(itemData.description);
+        $('#formModalEditOne #descount').val(itemData.descount);
+        $('#formModalEditOne #promo').val(itemData.promo);
+        //images
+        if (itemData.image1) {
+            $("#ModalEditOne #slim1").slim('load', '/assets/images/products/' + itemData.image1);
+        }
+        if (itemData.image2) {
+            console.log('image', itemData.image2)
+            $("#ModalEditOne #slim2").slim('load', '/assets/images/products/' + itemData.image2);
+        }
+        if (itemData.image3) {
+            $("#ModalEditOne #slim3").slim('load', '/assets/images/products/' + itemData.image3);
+        }
+        if (itemData.image4) {
+            $("#ModalEditOne #slim4").slim('load', '/assets/images/products/' + itemData.image4);
+        }
+        if (itemData.image5) {
+            $("#ModalEditOne #slim5").slim('load', '/assets/images/products/' + itemData.image5);
+        }
+        if (itemData.image6) {
+            $("#ModalEditOne #slim6").slim('load', '/assets/images/products/' + itemData.image6);
+        }
+        $('#categorias').val(itemData.category_id);
+        $('#subcategorias').val(itemData.subcategory_id);
+        //promo
+        if (itemData.promo === 1) {
+            $('#formModalEditOne [name="promo"]').prop('checked', true);
+        } else {
+            $('#formModalEditOne [name="promo"]').prop('checked', false);
+        }
+        //Formulario url
+        var id = $(this).data('id');
+        var form = $('#ModalEditOne form'); 
+        form.attr('action', 'products/' + itemData.id);
+        $('#ModalEditOne').modal('show');
     });
 
     

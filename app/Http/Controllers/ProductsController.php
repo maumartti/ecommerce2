@@ -25,7 +25,7 @@ class ProductsController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $products = Product::all();
+        $products = Product::with('category', 'subcategory')->get();
         $categories = Category::all();
         $subcategories = SubCategory::with('category')->get();
         return view('admin.products')->with('web',$web)->with('products',$products)->with('categories',$categories)->with('subcategories',$subcategories);   
@@ -57,7 +57,7 @@ class ProductsController extends Controller
             'subcategory_id' => 'required',
             'price' => 'string|max:255',
             'price_old' => 'string|max:255',
-            'cescription' => 'string|max:255',
+            'description' => 'string|max:255',
             'descount' => 'string|max:255',
             'promo' => 'string'
         ]);
@@ -101,17 +101,57 @@ class ProductsController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $category = Product::find($id);
+            $product = Product::find($id);
     
-            if (!$category) {
-                return response()->json(['status' => 'error', 'message' => 'Categoría no encontrada'], 404);
+            if (!$product) {
+                return response()->json(['status' => 'error', 'message' => 'Producto no encontrada'], 404);
             }
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
-                // Add other validation rules as needed
+                'image1' => 'json|required',
+                'image2' => '',
+                'image3' => '',
+                'image4' => '',
+                'image5' => '',
+                'image6' => '',
+                'category_id' => 'required',
+                'subcategory_id' => 'required',
+                'price' => 'string|max:255',
+                'price_old' => 'string|max:255',
+                'description' => 'string|min:0|max:255',
+                'descount' => 'string|max:255',
+                'promo' => 'string'
             ]);
-    
-            $category->update($validatedData);
+            $tools = new Tools;
+            if ($validatedData['image1'] !== 'empty' && $validatedData['image1'] !== null && Tools::isValidJson($validatedData['image1'])) {
+                $validatedData['image1'] = $tools->saveImage64('/assets/images/products/', $validatedData['image1']);
+            }
+            if ($validatedData['image2'] !== 'empty' && $validatedData['image2'] !== null && Tools::isValidJson($validatedData['image2'])) {
+                $validatedData['image2'] = $tools->saveImage64('/assets/images/products/', $validatedData['image2']);
+            }
+            if ($validatedData['image3'] !== 'empty' && $validatedData['image3'] !== null && Tools::isValidJson($validatedData['image3'])) {
+                $validatedData['image3'] = $tools->saveImage64('/assets/images/products/', $validatedData['image3']);
+            }
+            if ($validatedData['image4'] !== 'empty' && $validatedData['image4'] !== null && Tools::isValidJson($validatedData['image4'])) {
+                $validatedData['image4'] = $tools->saveImage64('/assets/images/products/', $validatedData['image4']);
+            }
+            if ($validatedData['image5'] !== 'empty' && $validatedData['image5'] !== null && Tools::isValidJson($validatedData['image5'])) {
+                $validatedData['image5'] = $tools->saveImage64('/assets/images/products/', $validatedData['image5']);
+            }
+            if ($validatedData['image6'] !== 'empty' && $validatedData['image6'] !== null && Tools::isValidJson($validatedData['image6'])) {
+                $validatedData['image6'] = $tools->saveImage64('/assets/images/products/', $validatedData['image6']);
+            }
+            if($validatedData['image1'] == 'empty'){ $validatedData['image1'] = null;}
+            if($validatedData['image2'] == 'empty'){ $validatedData['image2'] = null;}
+            if($validatedData['image3'] == 'empty'){ $validatedData['image3'] = null;}
+            if($validatedData['image4'] == 'empty'){ $validatedData['image4'] = null;}
+            if($validatedData['image5'] == 'empty'){ $validatedData['image5'] = null;}
+            if($validatedData['image6'] == 'empty'){ $validatedData['image6'] = null;}
+
+            $validatedData['url'] = $tools->generateUrl($validatedData['name']);
+            $validatedData['user_id'] = Auth::user()->id;
+            $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
+            $product->update($validatedData);
 
             $products = Product::all();
             return response()->json(['status' => 'success', 'products' => $products], 200);
