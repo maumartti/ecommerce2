@@ -87,11 +87,11 @@
                                                 @php
                                                     $key = $index + 1;
                                                 @endphp
-                                                <tr>
+                                                <tr id="categories-{{$item->id}}">
                                                     <td>{{$key}}</td>
                                                     <td>{{$item->name}}</td>
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}">Editar <i class="material-icons">edit</i></button></td>
-                                                    <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
+                                                    <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
                                                 @endforeach
                                             @endif
@@ -126,12 +126,12 @@
                                                 @php
                                                     $key = $index + 1;
                                                 @endphp
-                                                <tr>
+                                                <tr id="subcategories-{{$item->id}}">
                                                     <td>{{$key}}</td>
                                                     <td>{{$item->name}}</td>
                                                     <td>{{$item->category ? $item->category->name : ''}}</td>
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-category_id="{{$item->category ? $item->category->id : ''}}">Editar <i class="material-icons">edit</i></button></td>
-                                                    <td class="text-center"><button class="btn btn-danger delete-button" id="{{$item->id}}" data-url="subcategories">Borrar <i class="material-icons">delete</i></button></td>
+                                                    <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="subcategoría" data-url="subcategories">Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -282,6 +282,31 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Borrar Categoria-subcategoria-->
+        <div class="modal fade" id="ModalDeleteOne">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar <span class="type"></span></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nombre de la <span class="type"></span>:</label>
+                            <h5 id="name"></h5>
+                            <img id="image" src="" class="w-100">
+                        </div>
+                        <div class="form-group">
+                            <h5 class="text-danger">¿Está seguro de que desea borrar esta <span class="type"></span>?</h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger delete-button" id="#" data-url="#">Confirmar y Borrar <i class="material-icons">delete</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -302,7 +327,7 @@ $(document).ready(function(){
 
 
     //Datos al modal Categorias
-    $('.edit-button').click(function () {
+    $(document).on('click', '.edit-button', function () {
         console.log('entra click')
         var id = $(this).data('id'); // Obtener el ID de la categoría
         var form = $('#ModalEditCat form'); // Obtener el formulario del modal
@@ -315,7 +340,7 @@ $(document).ready(function(){
     });
 
     //Datos al modal Sub-Cateogrias
-    $('.edit-button').click(function () {
+    $(document).on('click', '.edit-button', function () {
         console.log('entra click')
         var id = $(this).data('id'); // Obtener el ID de la categoría
         var form = $('#ModalEditSubCat form'); // Obtener el formulario del modal
@@ -329,6 +354,8 @@ $(document).ready(function(){
         });
         form.attr('action', 'subcategories/' + id);
     });
+    //Modal confirma borrar
+
 
     
 });
@@ -342,52 +369,49 @@ $('.inputNumber').bind('keypress', function(e) {
 
 
 // Asigna la función deleteItem a los botones "Borrar" con la clase "delete-button"
-document.addEventListener('click', function (e) {
-    if (e.target && e.target.classList.contains('delete-button')) {
-        const itemId = e.target.getAttribute('id');
-        const url = e.target.getAttribute('data-url');
-        deleteItem(itemId, url);
-    }
-});
+// document.addEventListener('click', function (e) {
+//     if (e.target && e.target.classList.contains('delete-button')) {
+//         const itemId = e.target.getAttribute('id');
+//         const url = e.target.getAttribute('data-url');
+//         deleteItem(itemId, url);
+//     }
+// });
 
 // Función para eliminar un elemento
-function deleteItem(itemId, url) {
-    if (confirm('¿Estás seguro de que deseas eliminar este elemento? ,\n\n TODAS LAS SUBCATEGORÍAS HIJAS SERÁN ELIMINADAS')) {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        // Realiza na solicitud FETCH para eliminar el elemento en el servidor
-        fetch(url+'/' + itemId, {
-            method: 'DELETE',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json(); // Parse the JSON response
-            } else {
-                return response.text().then(errorText => {
-                    throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
-                });
-            }
-        })
-        .then(data => {
-            if (data.status === 'success') {
-                // Elimina la fila de la tabla
-                $.toastr.success('Eliminado con éxito');
-                $(`[id="${itemId}"]`).closest('tr').remove();
-                //alert('Elemento eliminado con éxito');
-            } else {
-                $.toastr.success('Error al Eliminar');
-            }
-        })
-        .catch(error => {
-            console.error('Error al eliminar el elemento: ', error);
-            alert('Error al eliminar el elemento');
-        });
-    }
-}
+// function deleteItem(itemId, url=null) {
+//     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+//     fetch(url+'/' + itemId, {
+//         method: 'DELETE',
+//         headers: {
+//             'X-Requested-With': 'XMLHttpRequest',
+//             'X-CSRF-TOKEN': csrfToken,
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//     .then(response => {
+//         if (response.ok) {
+//             return response.json(); // Parse the JSON response
+//         } else {
+//             return response.text().then(errorText => {
+//                 throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
+//             });
+//         }
+//     })
+//     .then(data => {
+//         if (data.status === 'success') {
+//             // Elimina la fila de la tabla
+//             $.toastr.success('Eliminado con éxito');
+//             $(`[id="${url}-${itemId}"]`).closest('tr').remove();
+//             //alert('Elemento eliminado con éxito');
+//         } else {
+//             $.toastr.success('Error al Eliminar');
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error al eliminar el elemento: ', error);
+//         alert('Error al eliminar el elemento');
+//     });
+// }
 
 </script>
 

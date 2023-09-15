@@ -50,6 +50,66 @@
     });
   });
 
+
+
+//------ PARTE FUNCIONES BORAR ITEM ----
+
+  //abre el modal BORRAR
+  $(document).on('click', '.delete-modal-button', function () {
+    console.log('open modal delete')
+    var itemData = $(this).data('item');
+    var type = $(this).data('type');
+    var url = $(this).data('url');
+    $('#ModalDeleteOne .type').text(type);
+    $('#ModalDeleteOne #name').text(itemData.name);
+    $('#ModalDeleteOne .delete-button').attr('id', itemData.id);
+    $('#ModalDeleteOne .delete-button').attr('data-url', url);
+
+});
+  //Funcion borrar
+  $('.delete-button').click(function () {
+      var deleteId = $(this).attr('id')
+      var url = $(this).attr('data-url');
+      deleteItem(deleteId, url);
+      $('#ModalDeleteOne').modal('hide');
+  });
+  // Función para eliminar un elemento
+  function deleteItem(itemId, url = null) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetch(url + '/' + itemId, {
+      method: 'DELETE',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': csrfToken,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json(); // Parse the JSON response
+        } else {
+          return response.text().then(errorText => {
+            throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
+          });
+        }
+      })
+      .then(data => {
+        if (data.status === 'success') {
+          $.toastr.success('Eliminado con éxito');
+          $(`[id="${url}-${itemId}"]`).closest('tr').remove();
+        } else {
+          $.toastr.success('Error al Eliminar');
+        }
+      })
+      .catch(error => {
+        console.error('Error al eliminar el elemento: ', error);
+        alert('Error al eliminar el elemento');
+      });
+  }
+//------END--PARTE--BORAR-ITEMMM
+
+
+
   function php_email_form_submit(thisForm, action, formData) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     fetch(action, {
@@ -129,6 +189,7 @@
 
 
 
+
 //FUNCIONES AGREGADAS PARA GESTIONAR ACTUALIZACIONES DE DATOS EN LAS VISTAS
 
 // Función para limpiar una tabla
@@ -145,7 +206,7 @@ function addCategoryRow(table, category, index) {
       <td>${index + 1}</td>
       <td>${category.name}</td>
       <td class="text-center"><button class="btn btn-warning">Editar <i class="material-icons">edit</i></button></td>
-      <td class="text-center"><button class="btn btn-danger">Borrar <i class="material-icons">delete</i></button></td>`;
+      <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(category)}' data-type="categoría" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>`;
   tbody.appendChild(row);
   // Actualizar count"
   const countSubcat = document.getElementById('count-cat');
@@ -160,7 +221,7 @@ function addSubCategoryRow(table, sub, index) {
       <td>${sub.name}</td>
       <td>${sub.category ? sub.category.name : ''}</td>
       <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="${sub.id}" data-name="${sub.name}" data-category_id="${sub.category ? sub.category.id : ''}">Editar <i class="material-icons">edit</i></button></td>
-      <td class="text-center"><button class="btn btn-danger">Borrar <i class="material-icons">delete</i></button></td>`;
+      <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(sub)}' data-type="subcategoría" data-url="subcategories">Borrar <i class="material-icons">delete</i></button></td>`;
   tbody.appendChild(row);
   // Actualizar count"
   const countSubcat = document.getElementById('count-subcat');

@@ -108,7 +108,8 @@ class SubCategoryController extends Controller
             }
             // Elimina
             $subcategory->delete();
-            return response()->json(['status' => 'success', 'message' => 'SubCategoría eliminada con éxito'], 200);
+            $subcategories = SubCategory::with('category')->get();
+            return response()->json(['status' => 'success', 'categories' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar la sub-categoría: ' . $e->getMessage()], 500);
         }
