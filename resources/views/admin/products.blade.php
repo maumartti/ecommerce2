@@ -118,7 +118,7 @@
                                                     <td>${{$item->price}}</td>
                                                     <td>{{$item->category ? $item->category->name : '----'}}</td>
                                                     <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td>
-                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)'>Editar <i class="material-icons">edit</i></button></td>
+                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' data-subcategories='@json($subcategories)'>Editar <i class="material-icons">edit</i></button></td>
                                                     <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
                                                 @endforeach
@@ -429,7 +429,6 @@
                     <div class="form-group">
                         <label for="categoria">Selecciona categoría:</label>
                         <select name="category_id" id="categoriasEdit" class="form-control">
-                            <option value="" selected>Seleccionar una...</option>
                             @if(isset($categories))
                                 @if($categories)
                                 @foreach ($categories as $index => $category)
@@ -441,7 +440,7 @@
                     </div>
                     <div class="form-group">
                         <label for="subcategoria">Selecciona sub-categoría:</label>
-                        <select name="subcategory_id" id="subcategorias" class="form-control subcategorias-select">
+                        <select name="subcategory_id" id="subcategoriasEdit" class="form-control subcategorias-select">
                             @if(isset($subcategories))
                                 @if($subcategories)
                                 @foreach ($subcategories as $index => $category)
@@ -702,7 +701,25 @@ $(document).ready(function(){
             $("#ModalEditOne #slim6").slim('load', '/assets/images/products/' + itemData.image6);
         }
         $('#categorias').val(itemData.category_id);
-        $('#subcategorias').val(itemData.subcategory_id);
+
+
+        //select subcategories
+        var subcategories = $(this).data('subcategories');
+        console.log('subcategories',subcategories)
+        var category_id = itemData.category_id; // Obtén el category_id de itemData
+        var $subcategorias = $('#subcategoriasEdit'); // Obtén el elemento select
+        $subcategorias.empty();
+        //<options> solos las subcategoreies de la categoria del item
+        $.each(subcategories, function(index, subcategory) {
+            if (subcategory.category_id == category_id) {
+                $subcategorias.append($('<option>', {
+                    value: subcategory.category_id,
+                    text: subcategory.name
+                }));
+            }
+        });
+
+
         //promo
         if (itemData.promo === 1) {
             $('#formModalEditOne [name="promo"]').prop('checked', true);
@@ -723,7 +740,7 @@ $(document).ready(function(){
 
     //GET SUB-CATEGORIAS SELECT
     $(document).on('change', '#categorias, #categoriasEdit', function () {
-        var categoryId = $(this).val();
+        var categoryId = $(this).val();console.log('change-Select-CAT')
         $.ajax({
             url: 'subcategories/' + categoryId,
             type: 'GET',

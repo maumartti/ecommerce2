@@ -116,7 +116,7 @@
             const itemsTable = document.querySelector('#products-table');
             clearTable(itemsTable);
             data.products.forEach((item, index) => {
-              addProductsRow(itemsTable, item, index);
+              addProductsRow(itemsTable, item, index, data.subcategories);
             });
             updateCategorySelect()//actualiza select categorias
           }
@@ -179,7 +179,7 @@
           const itemsTable = document.querySelector('#products-table');
           clearTable(itemsTable);
           data.products.forEach((item, index) => {
-            addProductsRow(itemsTable, item, index);
+            addProductsRow(itemsTable, item, index, data.subcategories);
           });
           updateCategorySelect()//actualiza select categorias
         }
@@ -254,7 +254,7 @@ function addSubCategoryRow(table, sub, index) {
   countSubcat.textContent = index + 1;
 }
 // Actualiza tabla productos
-function addProductsRow(table, item, index) {
+function addProductsRow(table, item, index, subcategories) {
   const tbody = table.querySelector('tbody');
   const row = document.createElement('tr');
   row.innerHTML = `
@@ -262,8 +262,8 @@ function addProductsRow(table, item, index) {
       <td>${item.name}</td>
       <td>$${item.price}</td>
       <td>${item.category ? item.category.name : '----'}</td>
-      <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='${JSON.stringify(item)}'>Ver <i class="material-icons">visibility</i></button></td>
-      <td class="text-center"><type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>
+      <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne">Ver <i class="material-icons">visibility</i></button></td>
+      <td class="text-center"><type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}' data-item='${JSON.stringify(item)}' data-subcategories='${JSON.stringify(subcategories)}'>Editar <i class="material-icons">edit</i></button></td>
       <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(item)}' data-type="producto" data-url="products">Borrar <i class="material-icons">delete</i></button></td>`;
   tbody.appendChild(row);
   // Actualizar count"

@@ -72,7 +72,7 @@ class ProductsController extends Controller
             $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
             //dd($validatedData);
             $category = Product::create($validatedData);
-            $products = Product::all();
+            $products = Product::with('category', 'subcategory')->get();
             return response()->json(['status' => 'success', 'products' => $products], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear la categoría: ' . $e->getMessage()], 500);
@@ -154,7 +154,8 @@ class ProductsController extends Controller
             $product->update($validatedData);
 
             $products = Product::with('category', 'subcategory')->get();
-            return response()->json(['status' => 'success', 'products' => $products], 200);
+            $subcategories = SubCategory::with('category')->get();
+            return response()->json(['status' => 'success', 'products' => $products, 'subcategories' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar la categoría: ' . $e->getMessage()], 500);
         }
