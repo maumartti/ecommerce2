@@ -121,7 +121,8 @@ class CategoryController extends Controller
             // Elimina la categoría
             $category->delete();
             $categories = Category::all();
-            return response()->json(['status' => 'success', 'categories' => $categories], 200);
+            $subcategories = SubCategory::with('category')->get();
+            return response()->json(['status' => 'success', 'categories' => $categories, 'subcategories' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar la categoría: ' . $e->getMessage()], 500);
         }

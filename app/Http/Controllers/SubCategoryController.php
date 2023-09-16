@@ -59,7 +59,8 @@ class SubCategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $subcategories = SubCategory::where('category_id', $id)->get();
+        return response()->json(['subcategories' => $subcategories], 200);
     }
 
     /**
@@ -109,7 +110,7 @@ class SubCategoryController extends Controller
             // Elimina
             $subcategory->delete();
             $subcategories = SubCategory::with('category')->get();
-            return response()->json(['status' => 'success', 'categories' => $subcategories], 200);
+            return response()->json(['status' => 'success', 'subcategories' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar la sub-categoría: ' . $e->getMessage()], 500);
         }

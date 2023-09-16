@@ -95,8 +95,34 @@
       })
       .then(data => {
         if (data.status === 'success') {
+          // categorías actualizada 
+          if(data.categories) {
+            const categoriesTable = document.querySelector('#categories-table');
+            clearTable(categoriesTable);
+            data.categories.forEach((item, index) => {
+                addCategoryRow(categoriesTable, item, index);
+            });
+            updateCategorySelect()//actualiza select categorias
+          }
+          if(data.subcategories){
+            const categoriesTable = document.querySelector('#subcategories-table');
+            clearTable(categoriesTable);
+            data.subcategories.forEach((item, index) => {
+              addSubCategoryRow(categoriesTable, item, index);
+            });
+            updateCategorySelect()//actualiza select categorias
+          }
+          if(data.products){
+            const itemsTable = document.querySelector('#products-table');
+            clearTable(itemsTable);
+            data.products.forEach((item, index) => {
+              addProductsRow(itemsTable, item, index);
+            });
+            updateCategorySelect()//actualiza select categorias
+          }
+          //toast y quita elemento de tabla 
           $.toastr.success('Eliminado con éxito');
-          $(`[id="${url}-${itemId}"]`).closest('tr').remove();
+          //$(`[id="${url}-${itemId}"]`).closest('tr').remove();
         } else {
           $.toastr.success('Error al Eliminar');
         }
@@ -234,9 +260,11 @@ function addProductsRow(table, item, index) {
   row.innerHTML = `
       <td><img src="/assets/images/products/${item.image1}" style="width:65px;"></td>
       <td>${item.name}</td>
-      <td>${item.category ? item.category.name : ''}</td>
-      <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="${item.id}" data-name="${item.name}" data-category_id="${item.category ? item.category.id : ''}">Editar <i class="material-icons">edit</i></button></td>
-      <td class="text-center"><button class="btn btn-danger">Borrar <i class="material-icons">delete</i></button></td>`;
+      <td>$${item.price}</td>
+      <td>${item.category ? item.category.name : '----'}</td>
+      <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='${JSON.stringify(item)}'>Ver <i class="material-icons">visibility</i></button></td>
+      <td class="text-center"><type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>
+      <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(item)}' data-type="producto" data-url="products">Borrar <i class="material-icons">delete</i></button></td>`;
   tbody.appendChild(row);
   // Actualizar count"
   const count = document.getElementById('count-product');

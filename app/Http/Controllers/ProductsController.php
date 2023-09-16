@@ -153,7 +153,7 @@ class ProductsController extends Controller
             $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
             $product->update($validatedData);
 
-            $products = Product::all();
+            $products = Product::with('category', 'subcategory')->get();
             return response()->json(['status' => 'success', 'products' => $products], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar la categoría: ' . $e->getMessage()], 500);
@@ -175,7 +175,8 @@ class ProductsController extends Controller
             }
             // Elimina la Producto
             $product->delete();
-            return response()->json(['status' => 'success', 'message' => 'Producto eliminada con éxito'], 200);
+            $products = Product::with('category', 'subcategory')->get();
+            return response()->json(['status' => 'success', 'products' => $products], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar la Producto: ' . $e->getMessage()], 500);
         }

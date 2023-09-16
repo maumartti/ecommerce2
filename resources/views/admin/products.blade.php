@@ -95,9 +95,10 @@
                                         <thead class="bg-light">
                                             <tr>
                                                 <!-- <th scope="col" class="border-0">#</th> -->
-                                                <th scope="col" class="border-0">Imágen 1</th>
+                                                <th scope="col" class="border-0">Imágen</th>
                                                 <th scope="col" class="border-0">Nombre</th>
                                                 <th scope="col" class="border-0">Precio</th>
+                                                <th scope="col" class="border-0">Categoría</th>
                                                 <th scope="col" class="border-0 text-center">Ver</th>
                                                 <th scope="col" class="border-0 text-center">Editar</th>
                                                 <th scope="col" class="border-0 text-center">Borrar</th>
@@ -115,9 +116,10 @@
                                                     <td><img src="/assets/images/products/{{$item->image1}}" style="width:65px;"></td>
                                                     <td>{{$item->name}}</td>
                                                     <td>${{$item->price}}</td>
+                                                    <td>{{$item->category ? $item->category->name : '----'}}</td>
                                                     <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td>
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)'>Editar <i class="material-icons">edit</i></button></td>
-                                                    <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)'>Borrar <i class="material-icons">delete</i></button></td>
+                                                    <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
                                                 @endforeach
                                             @endif
@@ -266,7 +268,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="categoria">Selecciona categoría:</label>
-                                    <select name="category_id" id="categorias" class="form-control">
+                                    <select name="category_id" id="categorias" class="form-control" autocomplete="off" required>
+                                        <option value="" selected>Seleccionar una...</option>
                                         @if(isset($categories))
                                             @if($categories)
                                             @foreach ($categories as $index => $category)
@@ -278,14 +281,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="subcategoria">Selecciona sub-categoría:</label>
-                                    <select name="subcategory_id" id="subcategorias" class="form-control">
-                                        @if(isset($subcategories))
-                                            @if($subcategories)
-                                            @foreach ($subcategories as $index => $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                            @endif
-                                        @endif
+                                    <select name="subcategory_id" id="subcategorias" class="form-control subcategorias-select" required>
+                                        
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -431,7 +428,8 @@
                     </div>
                     <div class="form-group">
                         <label for="categoria">Selecciona categoría:</label>
-                        <select name="category_id" id="categorias" class="form-control">
+                        <select name="category_id" id="categoriasEdit" class="form-control">
+                            <option value="" selected>Seleccionar una...</option>
                             @if(isset($categories))
                                 @if($categories)
                                 @foreach ($categories as $index => $category)
@@ -443,7 +441,7 @@
                     </div>
                     <div class="form-group">
                         <label for="subcategoria">Selecciona sub-categoría:</label>
-                        <select name="subcategory_id" id="subcategorias" class="form-control">
+                        <select name="subcategory_id" id="subcategorias" class="form-control subcategorias-select">
                             @if(isset($subcategories))
                                 @if($subcategories)
                                 @foreach ($subcategories as $index => $category)
@@ -477,7 +475,7 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-accent btn-block">Guardar</button>
+                        <button type="submit" id="BtnSaveEdit" class="btn btn-accent btn-block">Guardar</button>
                     </div>
                     </form>
                 </div>
@@ -625,7 +623,7 @@ $(document).ready(function(){
 
 
     //Modal VER
-    $('.show-button').click(function () {
+    $(document).on('click', '.show-button', function () {
         var itemData = $(this).data('item');
         console.log('item', itemData);
         $('#ModalShowOne #name').text(itemData.name);
@@ -675,7 +673,7 @@ $(document).ready(function(){
     });
 
     //Modal EDITAR
-    $('.edit-button').click(function () {
+    $(document).on('click', '.edit-button', function () { 
         var itemData = $(this).data('item');
         $('#formModalEditOne #name').val(itemData.name);
         $('#formModalEditOne #price').val(itemData.price);
@@ -715,21 +713,35 @@ $(document).ready(function(){
         var id = $(this).data('id');
         var form = $('#ModalEditOne form'); 
         form.attr('action', 'products/' + itemData.id);
-        $('#ModalEditOne').modal('show');
+        //$('#ModalEditOne').modal('hide');
     });
 
-    //Modal confirma borrar
-    $('.delete-modal-button').click(function () {
-        var itemData = $(this).data('item');
-        $('#ModalDeleteOne #name').text(itemData.name);
-        $('#ModalDeleteOne #image').attr('src', '/assets/images/products/' + itemData.image1);
-        $('#ModalDeleteOne .delete-button').attr('id', itemData.id);
+    //Cerrar Modal EDIT
+    $('#BtnSaveEdit').click(function () {
+        $('#ModalEditOne').modal('hide');
     });
-    //Funcion borrar
-    $('.delete-button').click(function () {
-        var deleteId = $(this).attr('id')
-        deleteItem(deleteId);
-        $('#ModalDeleteOne').modal('hide');
+
+    //GET SUB-CATEGORIAS SELECT
+    $(document).on('change', '#categorias, #categoriasEdit', function () {
+        var categoryId = $(this).val();
+        $.ajax({
+            url: 'subcategories/' + categoryId,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $('.subcategorias-select').empty();
+                if (data.subcategories && data.subcategories.length > 0) {
+                    $.each(data.subcategories, function (index, subcategory) {
+                        $('.subcategorias-select').append('<option value="' + subcategory.id + '">' + subcategory.name + '</option>');
+                    });
+                } else {
+                    $('.subcategorias-select').append('<option value="">No hay subcategorías disponibles</option>');
+                }
+            },
+            error: function () {
+                console.error('Error al cargar las subcategorías');
+            }
+        });
     });
     
 });
@@ -744,41 +756,41 @@ $('.inputNumber').bind('keypress', function(e) {
 
 
 // Función para eliminar un elemento
-function deleteItem(itemId) {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    // Realiza na solicitud FETCH para eliminar el elemento en el servidor
-    fetch('products/' + itemId, {
-        method: 'DELETE',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN': csrfToken,
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json(); // Parse the JSON response
-        } else {
-            return response.text().then(errorText => {
-                throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
-            });
-        }
-    })
-    .then(data => {
-        if (data.status === 'success') {
-            // Elimina la fila de la tabla
-            $.toastr.success('Eliminado con éxito');
-            $(`[id="${itemId}"]`).closest('tr').remove();
-            //alert('Elemento eliminado con éxito');
-        } else {
-            $.toastr.success('Error al Eliminar');
-        }
-    })
-    .catch(error => {
-        console.error('Error al eliminar el elemento: ', error);
-        alert('Error al eliminar el elemento');
-    });
-}
+// function deleteItem(itemId) {
+//     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+//     // Realiza na solicitud FETCH para eliminar el elemento en el servidor
+//     fetch('products/' + itemId, {
+//         method: 'DELETE',
+//         headers: {
+//             'X-Requested-With': 'XMLHttpRequest',
+//             'X-CSRF-TOKEN': csrfToken,
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//     .then(response => {
+//         if (response.ok) {
+//             return response.json(); // Parse the JSON response
+//         } else {
+//             return response.text().then(errorText => {
+//                 throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
+//             });
+//         }
+//     })
+//     .then(data => {
+//         if (data.status === 'success') {
+//             // Elimina la fila de la tabla
+//             $.toastr.success('Eliminado con éxito');
+//             $(`[id="${itemId}"]`).closest('tr').remove();
+//             //alert('Elemento eliminado con éxito');
+//         } else {
+//             $.toastr.success('Error al Eliminar');
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error al eliminar el elemento: ', error);
+//         alert('Error al eliminar el elemento');
+//     });
+// }
 
 </script>
 
