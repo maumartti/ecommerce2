@@ -428,7 +428,7 @@
                     </div>
                     <div class="form-group">
                         <label for="categoria">Selecciona categoría:</label>
-                        <select name="category_id" id="categoriasEdit" class="form-control">
+                        <select name="category_id" id="categoriasEdit" autocomplete="off" class="form-control">
                             @if(isset($categories))
                                 @if($categories)
                                 @foreach ($categories as $index => $category)
@@ -440,7 +440,7 @@
                     </div>
                     <div class="form-group">
                         <label for="subcategoria">Selecciona sub-categoría:</label>
-                        <select name="subcategory_id" id="subcategoriasEdit" class="form-control subcategorias-select">
+                        <select name="subcategory_id" id="subcategoriasEdit" autocomplete="off" class="form-control subcategorias-select-edit">
                             @if(isset($subcategories))
                                 @if($subcategories)
                                 @foreach ($subcategories as $index => $category)
@@ -700,12 +700,12 @@ $(document).ready(function(){
         if (itemData.image6) {
             $("#ModalEditOne #slim6").slim('load', '/assets/images/products/' + itemData.image6);
         }
-        $('#categorias').val(itemData.category_id);
+        $('#categoriasEdit').val(itemData.category_id);
 
 
         //select subcategories
         var subcategories = $(this).data('subcategories');
-        console.log('subcategories',subcategories)
+        console.log('subcategorie',itemData.subcategory_id)
         var category_id = itemData.category_id; // Obtén el category_id de itemData
         var $subcategorias = $('#subcategoriasEdit'); // Obtén el elemento select
         $subcategorias.empty();
@@ -713,11 +713,12 @@ $(document).ready(function(){
         $.each(subcategories, function(index, subcategory) {
             if (subcategory.category_id == category_id) {
                 $subcategorias.append($('<option>', {
-                    value: subcategory.category_id,
+                    value: subcategory.id,
                     text: subcategory.name
                 }));
             }
         });
+        $('#subcategoriasEdit').val(itemData.subcategory_id);//selecciona el correcto
 
 
         //promo
@@ -739,27 +740,38 @@ $(document).ready(function(){
     });
 
     //GET SUB-CATEGORIAS SELECT
-    $(document).on('change', '#categorias, #categoriasEdit', function () {
-        var categoryId = $(this).val();console.log('change-Select-CAT')
+    $(document).on('change', '#categorias', function () {
+        var categoryId = $(this).val();
+        console.log('change-Select-CAT')
+        cargarSubcategorias(categoryId, '.subcategorias-select');
+    });
+    $(document).on('change', '#categoriasEdit', function () {
+        var categoryId = $(this).val();
+        console.log('change-Select-CAT-Edit')
+        cargarSubcategorias(categoryId, '.subcategorias-select-edit');
+    });
+    function cargarSubcategorias(categoryId, targetSelector) {
         $.ajax({
             url: 'subcategories/' + categoryId,
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                $('.subcategorias-select').empty();
+                $(targetSelector).empty();
                 if (data.subcategories && data.subcategories.length > 0) {
                     $.each(data.subcategories, function (index, subcategory) {
-                        $('.subcategorias-select').append('<option value="' + subcategory.id + '">' + subcategory.name + '</option>');
+                        $(targetSelector).append('<option value="' + subcategory.id + '">' + subcategory.name + '</option>');
                     });
                 } else {
-                    $('.subcategorias-select').append('<option value="">No hay subcategorías disponibles</option>');
+                    $(targetSelector).append('<option value="">No hay subcategorías disponibles</option>');
                 }
             },
             error: function () {
                 console.error('Error al cargar las subcategorías');
             }
         });
-    });
+    }
+    //END SUB-CAT CHANGE SELECT
+
     
 });
 

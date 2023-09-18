@@ -155,7 +155,7 @@ class ProductsController extends Controller
 
             $products = Product::with('category', 'subcategory')->get();
             $subcategories = SubCategory::with('category')->get();
-            return response()->json(['status' => 'success', 'products' => $products, 'subcategories' => $subcategories], 200);
+            return response()->json(['status' => 'success', 'products' => $products, 'subcategoriesAll' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar la categoría: ' . $e->getMessage()], 500);
         }
