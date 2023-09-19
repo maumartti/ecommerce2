@@ -195,7 +195,7 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="6:4"
+                                                data-ratio="5:6"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400"
                                                 style="background:#e6e6e6">
@@ -208,7 +208,7 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="6:4"
+                                                data-ratio="5:6"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400">
                                                 <input type="file" name="image2" />
@@ -220,7 +220,7 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="6:4"
+                                                data-ratio="5:6"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400">
                                                 <input type="file" name="image3"/>
@@ -232,7 +232,7 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="6:4"
+                                                data-ratio="5:6"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400"
                                                 style="background:#e6e6e6">
@@ -245,7 +245,7 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="6:4"
+                                                data-ratio="5:6"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400"
                                                 style="background:#e6e6e6">
@@ -258,7 +258,7 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="6:4"
+                                                data-ratio="5:6"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                                 data-size="600,400">
                                                 <input type="file" name="image6"/>
@@ -281,7 +281,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="subcategoria">Selecciona sub-categoría:</label>
-                                    <select name="subcategory_id" id="subcategorias" class="form-control subcategorias-select" required>
+                                    <select name="subcategory_id" id="subcategorias" class="form-control subcategorias-select" >
                                         
                                     </select>
                                 </div>
@@ -305,7 +305,7 @@
                                     <label class="custom-control custom-checkbox">
                                         <input name="promo" type="checkbox" class="custom-control-input" checked="">
                                         <label class="custom-control-label" aria-hidden="true"></label>
-                                        <span class="custom-control-description">Promo</span>
+                                        <span class="custom-control-description">Destacado</span>
                                     </label>
                                 </div>
                                 <div class="form-group">
@@ -355,7 +355,7 @@
                                 <div class="slim" id="slim1" 
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="6:4"
+                                    data-ratio="5:6"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                     data-size="600,400"
                                     style="background:#e6e6e6">
@@ -368,7 +368,7 @@
                                 <div class="slim" id="slim2"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="6:4"
+                                    data-ratio="5:6"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                     data-size="600,400">
                                     <input type="file" name="image2" />
@@ -380,7 +380,7 @@
                                 <div class="slim" id="slim3"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="6:4"
+                                    data-ratio="5:6"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                     data-size="600,400">
                                     <input type="file" name="image3"/>
@@ -392,7 +392,7 @@
                                 <div class="slim" id="slim4"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="6:4"
+                                    data-ratio="5:6"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                     data-size="600,400"
                                     style="background:#e6e6e6">
@@ -405,7 +405,7 @@
                                 <div class="slim" id="slim5"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="6:4"
+                                    data-ratio="5:6"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                     data-size="600,400"
                                     style="background:#e6e6e6">
@@ -418,7 +418,7 @@
                                 <div class="slim" id="slim6"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="6:4"
+                                    data-ratio="5:6"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
                                     data-size="600,400">
                                     <input type="file" name="image6"/>
@@ -470,7 +470,7 @@
                         <label class="custom-control custom-checkbox">
                             <input name="promo" type="checkbox" class="custom-control-input" checked="">
                             <label class="custom-control-label" aria-hidden="true"></label>
-                            <span class="custom-control-description">Promo</span>
+                            <span class="custom-control-description">Destacado</span>
                         </label>
                     </div>
                     <div class="form-group">

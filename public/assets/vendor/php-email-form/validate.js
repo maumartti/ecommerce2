@@ -51,7 +51,6 @@
   });
 
 
-
 //------ PARTE FUNCIONES BORAR ITEM ----
 
   //abre el modal BORRAR
@@ -61,10 +60,14 @@
     var type = $(this).data('type');
     var url = $(this).data('url');
     $('#ModalDeleteOne .type').text(type);
-    $('#ModalDeleteOne #name').text(itemData.name);
+    $('#ModalDeleteOne #name').html('<i class="material-icons">arrow_forward</i> '+itemData.name);
     $('#ModalDeleteOne .delete-button').attr('id', itemData.id);
     $('#ModalDeleteOne .delete-button').attr('data-url', url);
-
+    if (type === 'categoría') {
+      $('.deletesub').css('display', 'block');
+    } else {
+        $('.deletesub').css('display', 'none');
+    }
 });
   //Funcion borrar
   $('.delete-button').click(function () {

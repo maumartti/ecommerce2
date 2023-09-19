@@ -293,11 +293,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Nombre de la <span class="type"></span>:</label>
-                            <h5 id="name"></h5>
+                            <h4 id="name"></h4>
                             <img id="image" src="" class="w-100">
                         </div>
                         <div class="form-group">
                             <h5 class="text-danger">¿Está seguro de que desea borrar esta <span class="type"></span>?</h5>
+                            <h5 class="text-danger deletesub" style="display:none;"><i class="material-icons">warning</i> Atención!! <br> Se eliminarán todas las sub-categorías hijas!</h5>
                         </div>
                     </div>
                     <div class="modal-footer">

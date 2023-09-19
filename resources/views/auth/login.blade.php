@@ -29,9 +29,9 @@
             <div class="container p-5">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">{{ __('Login') }}</div>
-
+                    <div class="card pt-5">
+                        <img src="/assets/images/logo1.png" style="width: 160px;margin: auto;">
+                        <div class="card-header text-center font-weight-bold">Iniciar Sesión</div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
@@ -79,7 +79,7 @@
                                 <div class="row mb-0">
                                     <div class="col-md-8 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Login') }}
+                                            Entrar
                                         </button>
 
                                         @if (Route::has('password.request'))

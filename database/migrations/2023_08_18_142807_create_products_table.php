@@ -27,9 +27,12 @@ return new class extends Migration
             $table->string('origen')->nullable();
             $table->string('descount')->nullable();
             $table->integer('stock')->length(11)->default(0);
+            $table->integer('likes')->length(11)->default(0);
+            $table->integer('views')->length(11)->default(0);
             $table->tinyInteger('promo')->length(1)->default(0);
             $table->tinyInteger('new')->length(1)->default(1);
             $table->unsignedInteger('category_id');
+            $table->unsignedInteger('subcategory_id')->nullable();
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });

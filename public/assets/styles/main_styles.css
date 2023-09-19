@@ -2266,7 +2266,7 @@ select option
 	-ms-transform: translateX(-50%);
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
-	bottom: 50px;
+	bottom: 110px;
 }
 .arrivals_slider .slick-slide
 {
@@ -2694,7 +2694,7 @@ select option
 	-ms-transform: translateX(-50%);
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
-	bottom: -5px;
+	bottom: 145px;
 }
 .bestsellers_slider .slick-dots li
 {
@@ -3117,7 +3117,7 @@ select option
 .reviews_dots
 {
 	position: absolute;
-	bottom: -69px;
+	bottom: 15px;
 	left: 50%;
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
