@@ -54,7 +54,6 @@ class ProductsController extends Controller
             'name' => 'required|string|max:255',
             'image1' => 'required',
             'category_id' => 'required',
-            'subcategory_id' => 'required',
             'price' => 'string|max:255',
             'price_old' => 'string|max:255',
             'description' => 'string|max:255',

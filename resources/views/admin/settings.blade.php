@@ -101,7 +101,7 @@
                                 @if($web->imageLogo)
                                 <img src="/assets/images/{{$web->imageLogo}}" />
                                 @endif
-                                <input type="file" name="imageBanner1" required/>
+                                <input type="file" name="imageBanner1" />
                             </div>
                     </div>
                     <div class="form-group">
