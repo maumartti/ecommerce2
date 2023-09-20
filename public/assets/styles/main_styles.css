@@ -2869,7 +2869,7 @@ select option
 .trends_nav i
 {
 	line-height: 36px;
-	color: #e5e5e5;
+	color: #343a40;
 	font-size: 18px;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -2927,7 +2927,7 @@ select option
 {
 	font-size: 16px;
 	font-weight: 500;
-	float: right;
+	float: left;
 }
 .trends_fav
 {

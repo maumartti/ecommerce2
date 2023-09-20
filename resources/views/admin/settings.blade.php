@@ -32,6 +32,7 @@
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
                             data-size="1800,500">
                             <input type="file" id="imageRotor1" name="imageRotor1"/>
+                            
                             @if($web->imageRotor1)
                             <img src="/assets/images/{{$web->imageRotor1}}" />
                             @endif

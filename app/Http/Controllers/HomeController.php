@@ -132,6 +132,7 @@ class HomeController extends Controller
 
     public function settings(Request $request){
         $web = Web::find(1);
+       // dd($web);
         return view('admin.settings')->with('web',$web);
     }
     

@@ -57,7 +57,7 @@ class ProductsController extends Controller
             'price' => 'string|max:255',
             'price_old' => 'string|max:255',
             'description' => 'string|max:255',
-            'descount' => 'string|max:255',
+            'descount' => 'nullable|string',
             'promo' => 'string'
         ]);
 
@@ -114,11 +114,10 @@ class ProductsController extends Controller
                 'image5' => '',
                 'image6' => '',
                 'category_id' => 'required',
-                'subcategory_id' => 'required',
                 'price' => 'string|max:255',
                 'price_old' => 'string|max:255',
                 'description' => 'string|min:0|max:255',
-                'descount' => 'string|max:255',
+                'descount' => 'nullable|string',
                 'promo' => 'string'
             ]);
             $tools = new Tools;

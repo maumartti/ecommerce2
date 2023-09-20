@@ -14,14 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web');
+Route::get('/item/{url}', [App\Http\Controllers\WebController::class, 'item'])->name('item');
 Route::get('/privacidad', [App\Http\Controllers\WebController::class, 'index'])->name('web');
 
 Auth::routes();
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
-    Route::post('/saveData', [App\Http\Controllers\HomeController::class, 'saveData'])->name('saveData');
+    Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
+    Route::post('saveData', [App\Http\Controllers\HomeController::class, 'saveData'])->name('saveData');
 
     Route::resource('categories', App\Http\Controllers\CategoryController::class);
     Route::get('categoriesAll', [App\Http\Controllers\CategoryController::class, 'all']);

@@ -298,12 +298,26 @@
                                     <textarea name="description" class="form-control" id="descripcion" rows="4" placeholder="Descripción"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label  for="descuento">Descuento</label>
-                                    <input type="text" class="form-control" name="descount" id="descuento">
+                                    <label  for="descuento">Descuento:</label>
+                                    <select name="descount" id="descount" class="form-control" autocomplete="off" >
+                                        <option value="" selected>Sin descuento</option>
+                                        <option value="5">5%</option>
+                                        <option value="10">10%</option>
+                                        <option value="15">15%</option>
+                                        <option value="20">20%</option>
+                                        <option value="25">25%</option>
+                                        <option value="30">30%</option>
+                                        <option value="35">35%</option>
+                                        <option value="40">40%</option>
+                                        <option value="45">45%</option>
+                                        <option value="50">50%</option>
+                                        <option value="55">55%</option>
+                                        <option value="60">60%</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="custom-control custom-checkbox">
-                                        <input name="promo" type="checkbox" class="custom-control-input" checked="">
+                                        <input name="promo" type="checkbox" class="custom-control-input" checked="false">
                                         <label class="custom-control-label" aria-hidden="true"></label>
                                         <span class="custom-control-description">Destacado</span>
                                     </label>
@@ -463,12 +477,26 @@
                         <textarea name="description" id="description" class="form-control" rows="4" placeholder="Descripción"></textarea>
                     </div>
                     <div class="form-group">
-                        <label  for="descuento">Descuento</label>
-                        <input type="text" name="descount" id="descount" class="form-control">
+                        <label  for="descuento">Descuento:</label>
+                        <select name="descount" id="descount" class="form-control" autocomplete="off" >
+                            <option value="" >Sin descuento</option>
+                            <option value="5">5%</option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+                            <option value="50">50%</option>
+                            <option value="55">55%</option>
+                            <option value="60">60%</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
-                            <input name="promo" type="checkbox" class="custom-control-input" checked="">
+                            <input name="promo" type="checkbox" class="custom-control-input" checked="false">
                             <label class="custom-control-label" aria-hidden="true"></label>
                             <span class="custom-control-description">Destacado</span>
                         </label>
@@ -609,7 +637,9 @@
 <script>
 $(document).ready(function(){
 
-    $('#products-table').DataTable();
+    $('#products-table').DataTable({
+        "pageLength": 50 // Configura el número de elementos por página
+    });
 
     //si borramos imagen exsistente para saber que exsistia y ya no
     $('.slim-btn-remove').click(function(){
