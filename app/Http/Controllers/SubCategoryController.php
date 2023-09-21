@@ -46,7 +46,9 @@ class SubCategoryController extends Controller
         ]);
     
         try {
-            $category = SubCategory::create($validatedData);
+            $tools = new Tools;
+            $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
+            $subcategory = SubCategory::create($validatedData);
             $subcategories = SubCategory::with('category')->get();
             return response()->json(['status' => 'success', 'subcategories' => $subcategories], 200);
         } catch (\Exception $e) {
@@ -87,7 +89,8 @@ class SubCategoryController extends Controller
                 'category_id' => 'required',
                 // Add other validation rules as needed
             ]);
-    
+            $tools = new Tools;
+            $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $subcategory->update($validatedData);
             
             $subcategories = SubCategory::with('category')->get();

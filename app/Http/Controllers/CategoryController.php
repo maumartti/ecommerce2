@@ -51,6 +51,8 @@ class CategoryController extends Controller
         ]);
     
         try {
+            $tools = new Tools;
+            $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $category = Category::create($validatedData);
             $categories = Category::all();
             return response()->json(['status' => 'success', 'categories' => $categories], 200);
@@ -90,7 +92,8 @@ class CategoryController extends Controller
                 'name' => 'required|string|max:255',
                 // Add other validation rules as needed
             ]);
-    
+            $tools = new Tools;
+            $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $category->update($validatedData);
 
             $categories = Category::all();

@@ -35,14 +35,25 @@ class WebController extends Controller
         return view('home')->with('web',$web)->with('feed',$feed)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
 
-    public function item(Request $request, $url){
+    public function item(Request $request, $urlCat){
         $web = Web::find(1);
-        $product = Product::where('url', $url)->with('category')->first();
+        $product = Product::where('url', $urlCat)->with('category')->first();
         if ($product) {
             $product->views += 1;// Incrementa el contador de vistas
             $product->save();
         }
         $productsViews = Product::whereNotNull('views')->get();
-        return view('product')->with('web',$web)->with('product',$product)->with('productsViews',$productsViews);
+        $categories = Category::with('subcategories')->get();
+        $subcategories = SubCategory::with('category')->get();
+        return view('product')->with('web',$web)->with('product',$product)->with('productsViews',$productsViews)->with('categories',$categories)->with('subcategories',$subcategories);
+    }
+    public function category(Request $request, $urlCat){
+        $web = Web::find(1);
+        $productsViews = Product::whereNotNull('views')->get();
+        $category = Category::where('url', $urlCat)->with('subcategories')->first();
+        $productsCategory = Product::where('category_id',$category->id)->get();
+        $categories = Category::with('subcategories')->get();
+        $subcategories = SubCategory::with('category')->get();
+        return view('category')->with('web',$web)->with('category',$category)->with('productsCategory',$productsCategory)->with('categories',$categories)->with('subcategories',$subcategories)->with('productsViews',$productsViews);
     }
 }

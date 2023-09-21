@@ -40,16 +40,24 @@ class Tools extends Model
 	        unlink($old_image);
 	    }
 	}
-    public static function generateUrl($string, $space="-") {
-        $string = utf8_encode($string);
-        if (function_exists('iconv')) {
-            $string = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
-        }
+    public static function generateUrl($string, $numRnd = false) {
+        // Reemplaza caracteres acentuados y la "ñ" por sus equivalentes sin acentos
+        $replaceChars = array(
+            'á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u',
+            'Á' => 'A', 'É' => 'E', 'Í' => 'I', 'Ó' => 'O', 'Ú' => 'U',
+            'ñ' => 'n', 'Ñ' => 'N'
+        );
+        $string = strtr($string, $replaceChars);
         $string = preg_replace("/[^a-zA-Z0-9 \-]/", "", $string);
         $string = trim(preg_replace("/\\s+/", " ", $string));
         $string = strtolower($string);
-        $string = str_replace(" ", $space, $string);
-        $rnd = rand(1000, 9999);
-        return $string.'-'.$rnd;
+        $string = str_replace(" ", "-", $string);
+        if ($numRnd) {
+            $rnd = rand(1000, 99999);
+            return $string . '-' . $rnd;
+        } else {
+            return $string;
+        }
     }
+    
 }

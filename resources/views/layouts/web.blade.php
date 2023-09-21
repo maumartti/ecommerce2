@@ -22,9 +22,10 @@
     <link rel="stylesheet" type="text/css" href="/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="/assets/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="/assets/plugins/slick-1.8.0/slick.css">
+    @yield('head')
     <link rel="stylesheet" type="text/css" href="/assets/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="/assets/styles/responsive.css">
-    <link rel="stylesheet" type="text/css" href="/assets/styles/product_styles.css">
+    
     <!-- Scripts -->
     <style>
         .logo a img{
@@ -240,14 +241,13 @@
                                 <span class="custom_dropdown_placeholder clc">Categorías</span>
                                 <i class="fas fa-chevron-down"></i>
                                 <ul class="custom_list clc">
-                                                        @if(isset($categories))
-                                                            @if($subcategories)
-                                                                @foreach ($categories as $index => $category)
-                                                                <li><a class="clc" href="#">{{$category->name}}</a></li>
-                                                                @endforeach
-                                                            @endif
-                                                        @endif
-                                                        
+                                @if(isset($categories))
+                                    @if($subcategories)
+                                        @foreach ($categories as $index => $category)
+                                        <li><a class="clc" href="#">{{$category->name}}</a></li>
+                                        @endforeach
+                                    @endif
+                                @endif
                                 </ul>
                               </div>
                             </div>
@@ -308,12 +308,12 @@
                                                 @if($subcategories)
                                                     @foreach ($categories as $index => $category)
                                                   <li class="hassubs">
-                                                        <a href="#">{{$category->name}}</a>
+                                                        <a href="/categoria/{{$category->url}}">{{$category->name}}</a>
                                                         @if(isset($category->subcategories))
                                                             @if($category->subcategories)
                                                             <ul>
                                                                 @foreach ($category->subcategories as $index => $subcategory)
-                                                                <li><a href="#">{{$subcategory->name}}<i class="fas fa-chevron-down"></i></a></li>
+                                                                <li><a href="/categoria/{{$category->url}}/{{$subcategory->url}}">{{$subcategory->name}}<i class="fas fa-chevron-down"></i></a></li>
                                                                 @endforeach
                                                             </ul>
                                                             @endif

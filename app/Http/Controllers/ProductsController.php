@@ -66,7 +66,7 @@ class ProductsController extends Controller
             if ($validatedData['image1'] !== '' && $validatedData['image1'] !== null && Tools::isValidJson($validatedData['image1'])) {
                 $validatedData['image1'] = $tools->saveImage64('/assets/images/products/', $validatedData['image1']);
             }
-            $validatedData['url'] = $tools->generateUrl($validatedData['name']);
+            $validatedData['url'] = $tools->generateUrl($validatedData['name'], true);
             $validatedData['user_id'] = Auth::user()->id;
             $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
             //dd($validatedData);
@@ -146,7 +146,7 @@ class ProductsController extends Controller
             if($validatedData['image5'] == 'empty'){ $validatedData['image5'] = null;}
             if($validatedData['image6'] == 'empty'){ $validatedData['image6'] = null;}
 
-            $validatedData['url'] = $tools->generateUrl($validatedData['name']);
+            $validatedData['url'] = $tools->generateUrl($validatedData['name'], true);
             $validatedData['user_id'] = Auth::user()->id;
             $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
             $product->update($validatedData);

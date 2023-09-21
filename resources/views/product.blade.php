@@ -1,5 +1,11 @@
 @extends('layouts.web')
 
+
+@section('head')
+<link rel="stylesheet" type="text/css" href="/assets/styles/product_styles.css">
+@endsection
+
+
 @section('content')
 <div class="super_container">
 	
