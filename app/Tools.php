@@ -49,7 +49,7 @@ class Tools extends Model
         $string = trim(preg_replace("/\\s+/", " ", $string));
         $string = strtolower($string);
         $string = str_replace(" ", $space, $string);
-        $rnd = Str::random(6);
+        $rnd = rand(1000, 9999);
         return $string.'-'.$rnd;
     }
 }

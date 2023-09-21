@@ -1549,7 +1549,7 @@ select option
 	display: inline-block;
 	font-size: 24px;
 	font-weight: 500;
-	margin-top: 75px;
+	/* margin-top: 75px; */
 	clear: left;
 }
 .button_container
@@ -1635,7 +1635,7 @@ select option
 }
 .viewed_nav i
 {
-	color: #dadada;
+	color: #000;
 	font-size: 18px;
 	padding: 5px;
 	-webkit-transition: all 200ms ease;
@@ -2113,4 +2113,14 @@ select option
 .logos_list li:last-child
 {
 	margin-right: 0px;
+}
+.contenedorName {
+	max-width: 200px; /* Cambia el valor según tus necesidades */
+	word-wrap: break-word;
+}
+
+.contenedorName > a{
+	white-space: normal;
+  display: inline-block;
+  line-height: 2;
 }

@@ -295,7 +295,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descripcion">Descripción:</label>
-                                    <textarea name="description" class="form-control" id="descripcion" rows="4" placeholder="Descripción"></textarea>
+                                    <textarea name="description" class="form-control" id="descripcion" maxlength="255" rows="4" placeholder="Descripción"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label  for="descuento">Descuento:</label>
@@ -474,7 +474,7 @@
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripción:</label>
-                        <textarea name="description" id="description" class="form-control" rows="4" placeholder="Descripción"></textarea>
+                        <textarea name="description" id="description" class="form-control" rows="4"  maxlength="255" placeholder="Descripción"></textarea>
                     </div>
                     <div class="form-group">
                         <label  for="descuento">Descuento:</label>

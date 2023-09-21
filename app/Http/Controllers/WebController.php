@@ -27,7 +27,7 @@ class WebController extends Controller
         $products = Product::all();
         $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
         $productsDescount = Product::whereNotNull('descount')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->get();
+        $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
         $productsViews = Product::whereNotNull('views')->get();
         $productsPromo = Product::whereNotNull('promo')->get();
         $categories = Category::with('subcategories')->get();
@@ -38,6 +38,11 @@ class WebController extends Controller
     public function item(Request $request, $url){
         $web = Web::find(1);
         $product = Product::where('url', $url)->with('category')->first();
-        return view('product')->with('web',$web)->with('product',$product);
+        if ($product) {
+            $product->views += 1;// Incrementa el contador de vistas
+            $product->save();
+        }
+        $productsViews = Product::whereNotNull('views')->get();
+        return view('product')->with('web',$web)->with('product',$product)->with('productsViews',$productsViews);
     }
 }

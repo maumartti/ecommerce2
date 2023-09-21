@@ -458,7 +458,7 @@
 <script src="/assets/plugins/slick-1.8.0/slick.js"></script>
 <script src="/assets/plugins/easing/easing.js"></script>
 <script src="/assets/js/custom.js"></script>
-
+<script src="/assets/js/product_custom.js"></script>
 @yield('script')
 </body>
 

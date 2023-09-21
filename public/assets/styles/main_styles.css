@@ -1679,7 +1679,8 @@ select option
 {
 	font-size: 16px;
 	font-weight: 500;
-	margin-top: 25px;
+	/* margin-top: 25px; */
+	width: 100%;
 }
 .product_price.discount
 {
@@ -1707,7 +1708,8 @@ select option
 	font-size: 14px;
 	font-weight: 400;
 	color: #000000;
-	white-space: nowrap;
+	white-space: normal; 
+	/* line-height:1 !important; */
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -2266,7 +2268,7 @@ select option
 	-ms-transform: translateX(-50%);
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
-	bottom: 110px;
+	bottom: 10px;
 }
 .arrivals_slider .slick-slide
 {
@@ -2694,7 +2696,7 @@ select option
 	-ms-transform: translateX(-50%);
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
-	bottom: 145px;
+	bottom: 14px;
 }
 .bestsellers_slider .slick-dots li
 {
@@ -3117,7 +3119,7 @@ select option
 .reviews_dots
 {
 	position: absolute;
-	bottom: 15px;
+	bottom: -70px;
 	left: 50%;
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
@@ -3178,7 +3180,7 @@ select option
 }
 .viewed_nav i
 {
-	color: #dadada;
+	color: #000;
 	font-size: 18px;
 	padding: 5px;
 	-webkit-transition: all 200ms ease;
