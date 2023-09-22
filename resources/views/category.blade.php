@@ -117,7 +117,7 @@
 								</div>
 								<div class="product_content">
 									<div class="product_price" style="color:#DE2423;background: #ffffffa3;">${{$product->price}}</div>
-									<div class="product_name"><div><a href="#" tabindex="0">{{$product->name}}</a></div></div>
+									<div class="product_name mt-4"><div><a href="#" tabindex="0">{{$product->name}}</a></div></div>
 								</div>
 								<div class="product_fav"><i class="fas fa-heart"></i></div>
 								<ul class="product_marks">

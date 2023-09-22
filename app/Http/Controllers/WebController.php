@@ -56,4 +56,80 @@ class WebController extends Controller
         $subcategories = SubCategory::with('category')->get();
         return view('category')->with('web',$web)->with('category',$category)->with('productsCategory',$productsCategory)->with('categories',$categories)->with('subcategories',$subcategories)->with('productsViews',$productsViews);
     }
+
+    public function cart(Request $request){
+
+        //se calcula el total,subtotal,iva del carrito
+        $cart = session('cart', []);
+        $subtotal = 0;
+        foreach ($cart as $item) {
+            $subtotal += $item['quantity'] * $item['price'];
+        }
+        $iva = $subtotal * 0.19;// Suponiendo que el IVA es el 19%
+        $total = $subtotal + $iva;
+        // END carrito data
+        
+        $web = Web::find(1);
+        $categories = Category::with('subcategories')->get();
+        $subcategories = SubCategory::with('category')->get();
+        return view('cart')->with('iva',$iva)->with('total',$total)->with('web',$web)->with('subtotal',$subtotal)->with('categories',$categories)->with('subcategories',$subcategories);
+    }
+
+    public function addToCart(Request $request, $productId) {
+        //session()->forget('cart');
+        $product = Product::find($productId);
+        if (!$product) {
+            return response()->json(['status' => 'error']);
+        }
+    
+        // Obtiene o crea el carrito de compras en la sesión
+        $cart = session()->get('cart', []);
+    
+        // Busca el producto en el carrito por su ID
+        $existingProduct = null;
+        foreach ($cart as $key => $item) {
+            if ($item['id'] == $product->id) {
+                $existingProduct = $key;
+                break;
+            }
+        }
+    
+        // Obtener la cantidad de la solicitud POST, si está presente, de lo contrario, establecer en 1
+        $quantity = $request->input('quantity', 1);
+    
+        // Si el producto ya existe en el carrito, aumenta la cantidad en $quantity
+        if ($existingProduct !== null) {
+            $cart[$existingProduct]['quantity'] += $quantity;
+        } else {
+            // Si no existe, agrega el producto al carrito con la cantidad especificada
+            $cart[] = [
+                'id' => $product->id,
+                'name' => $product->name,
+                'url' => $product->url,
+                'image1' => $product->image1,
+                'price' => $product->price,
+                'quantity' => $quantity
+            ];
+        }
+    
+        // Calcula la cantidad total de productos en el carrito
+        $totalCart = 0;
+        foreach ($cart as $item) {
+            $totalCart += $item['quantity'];
+        }
+        session()->put('totalCart', $totalCart);
+    
+        // Actualiza la sesión con el carrito modificado
+        session()->put('cart', $cart);
+    
+        // Devuelve la respuesta JSON que incluye 'quantity'
+        return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart], 200);
+    }
+    
+    
+    public function clearCart(Request $request) {
+        session()->forget('cart');
+        return response()->json(['status' => 'success'], 200);
+    }
+    
 }

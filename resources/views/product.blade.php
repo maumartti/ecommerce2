@@ -120,7 +120,7 @@
 
 								<div class="product_price mt-5">Precio: ${{$product->price}}</div>
 								<div class="button_container mt-4">
-									<button type="button" class="button cart_button">Agregar al carrito</button>
+									<button type="button" class="button cart_button cart_button" data-product-id="{{$product->id}}">Agregar al carrito</button>
 									<div class="product_fav"><i class="fas fa-heart"></i></div>
 								</div>
 								

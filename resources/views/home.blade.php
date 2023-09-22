@@ -290,7 +290,7 @@
                                                                     </div>
                                                                     <div class="product_content">
                                                                         <div class="product_price discount" style="background: #ffffffa3;">${{$product->price}}</div>
-                                                                        <div class="product_name"><div class="contenedorName"><a href="/item/{{$product->url}}">{{$product->name}}</a></div></div>
+                                                                        <div class="product_name mt-4"><div class="contenedorName"><a href="/item/{{$product->url}}">{{$product->name}}</a></div></div>
                                                                         <div class="product_extras">
                                                                             <button class="product_cart_button">Agregar al carrito</button>
                                                                         </div>
@@ -363,7 +363,7 @@
                                                                         </div>
                                                                         <div class="product_content">
                                                                             <div class="product_price" style="background: #ffffffa3;">$225</div>
-                                                                            <div class="product_name" style="background: #ffffffb5;">
+                                                                            <div class="product_name mt-4" style="background: #ffffffb5;">
                                                                                 <div class="contenedorName" ><a href="/item/{{$product->url}}">{{$product->name}}</a></div>
                                                                             </div>
                                                                             <div class="product_extras">

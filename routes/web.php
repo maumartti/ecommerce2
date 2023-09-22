@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web');
 Route::get('/item/{url}', [App\Http\Controllers\WebController::class, 'item'])->name('item');
 Route::get('/categoria/{urlCat}/{urlSub?}', [App\Http\Controllers\WebController::class, 'category'])->name('category');
-Route::get('/privacidad', [App\Http\Controllers\WebController::class, 'index'])->name('web');
+Route::get('/privacidad', [App\Http\Controllers\WebController::class, 'index'])->name('index');
+Route::get('/carrito', [App\Http\Controllers\WebController::class, 'cart'])->name('cart');
+Route::post('/add-to-cart/{productId}', [App\Http\Controllers\WebController::class, 'addToCart'])->name('addToCart');
+Route::post('/clear-cart', [App\Http\Controllers\WebController::class, 'clearCart'])->name('clearCart');
 
 Auth::routes();
 
