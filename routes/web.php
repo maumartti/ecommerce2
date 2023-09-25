@@ -20,7 +20,7 @@ Route::get('/privacidad', [App\Http\Controllers\WebController::class, 'index'])-
 Route::get('/carrito', [App\Http\Controllers\WebController::class, 'cart'])->name('cart');
 Route::post('/add-to-cart/{productId}', [App\Http\Controllers\WebController::class, 'addToCart'])->name('addToCart');
 Route::post('/clear-cart', [App\Http\Controllers\WebController::class, 'clearCart'])->name('clearCart');
-
+Route::post('/actualizar-carrito/{productId}', [App\Http\Controllers\WebController::class, 'actualizarCarrito'])->name('actualizarCarrito');
 Auth::routes();
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {

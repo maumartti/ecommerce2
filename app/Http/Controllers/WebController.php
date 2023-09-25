@@ -108,6 +108,7 @@ class WebController extends Controller
                 'url' => $product->url,
                 'image1' => $product->image1,
                 'price' => $product->price,
+                'stock' => $product->stock,
                 'quantity' => $quantity
             ];
         }
@@ -126,6 +127,33 @@ class WebController extends Controller
         return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart], 200);
     }
     
+    public function actualizarCarrito(Request $request, $productId)
+    {
+        // Obtén el producto del carrito
+        $cart = session()->get('cart', []);
+
+        foreach ($cart as $key => $item) {
+            if ($item['id'] == $productId) {
+                // Actualiza la cantidad del producto con la cantidad proporcionada en la solicitud
+                $cart[$key]['quantity'] = $request->input('quantity');
+                break;
+            }
+        }
+
+        // Actualiza la sesión con el carrito modificado
+        session()->put('cart', $cart);
+
+        // Calcula la cantidad total de productos en el carrito
+        $totalCart = 0;
+        foreach ($cart as $item) {
+            $totalCart += $item['quantity'];
+        }
+        session()->put('totalCart', $totalCart);
+
+        // Devuelve una respuesta JSON con los nuevos datos del carrito
+        return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart], 200);
+    }
+
     
     public function clearCart(Request $request) {
         session()->forget('cart');

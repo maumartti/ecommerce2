@@ -56,6 +56,7 @@ class ProductsController extends Controller
             'category_id' => 'required',
             'price' => 'string|max:255',
             'price_old' => 'string|max:255',
+            'stock' => 'required',
             'description' => 'string|max:255',
             'descount' => 'nullable|string',
             'promo' => 'string'
@@ -116,6 +117,7 @@ class ProductsController extends Controller
                 'category_id' => 'required',
                 'price' => 'string|max:255',
                 'price_old' => 'string|max:255',
+                'stock' => 'required',
                 'description' => 'string|min:0|max:255',
                 'descount' => 'nullable|string',
                 'promo' => 'string'

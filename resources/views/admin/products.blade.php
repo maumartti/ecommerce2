@@ -294,6 +294,10 @@
                                     <input type="text" name="price_old" class="form-control" id="old_precio" placeholder="Precio Anterior">
                                 </div>
                                 <div class="form-group">
+                                    <label for="old_precio">Stock:</label>
+                                    <input type="text" name="stock" class="form-control" id="stock" maxlength="5" placeholder="Cantidad disponible" pattern="[0-9]+" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="descripcion">Descripción:</label>
                                     <textarea name="description" class="form-control" id="descripcion" maxlength="255" rows="4" placeholder="Descripción"></textarea>
                                 </div>
@@ -473,6 +477,10 @@
                         <input type="text" name="price_old" id="price_old" class="form-control" placeholder="Precio Anterior">
                     </div>
                     <div class="form-group">
+                        <label for="old_precio">Stock:</label>
+                        <input type="text" name="stock" class="form-control" id="stock" maxlength="5" placeholder="Cantidad disponible" pattern="[0-9]+">
+                    </div>
+                    <div class="form-group">
                         <label for="descripcion">Descripción:</label>
                         <textarea name="description" id="description" class="form-control" rows="4"  maxlength="255" placeholder="Descripción"></textarea>
                     </div>
@@ -580,6 +588,10 @@
                             <h5 id="price_old"></h5>
                         </div>
                         <div class="form-group">
+                            <label for="stock">En stock:</label>
+                            <h5 id="stock"></h5>
+                        </div>
+                        <div class="form-group">
                             <label for="description">Descripción:</label>
                             <h5 id="description"></h5>
                         </div>
@@ -668,6 +680,9 @@ $(document).ready(function(){
         if(itemData.price_old){
             $('#ModalShowOne #price_old').text('$'+itemData.price_old);
         }
+        if(itemData.stock){
+            $('#ModalShowOne #stock').text(itemData.stock);
+        }
         if(itemData.description){
             $('#ModalShowOne #description').text(itemData.description);
         }
@@ -707,6 +722,7 @@ $(document).ready(function(){
         $('#formModalEditOne #name').val(itemData.name);
         $('#formModalEditOne #price').val(itemData.price);
         $('#formModalEditOne #price_old').val(itemData.price_old);
+        $('#formModalEditOne #stock').val(itemData.stock);
         $('#formModalEditOne #description').val(itemData.description);
         $('#formModalEditOne #descount').val(itemData.descount);
         $('#formModalEditOne #promo').val(itemData.promo);

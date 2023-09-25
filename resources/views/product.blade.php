@@ -117,12 +117,17 @@
 									</ul> -->
 
 								</div>
-
-								<div class="product_price mt-5">Precio: ${{$product->price}}</div>
-								<div class="button_container mt-4">
-									<button type="button" class="button cart_button cart_button" data-product-id="{{$product->id}}">Agregar al carrito</button>
-									<div class="product_fav"><i class="fas fa-heart"></i></div>
-								</div>
+								@if (isset($product->stock))
+									@if ($product->stock > '0')
+										<div class="product_price mt-5">Precio: ${{$product->price}}</div>
+										<div class="button_container mt-4">
+											<button type="button" class="button cart_button cart_button" data-product-id="{{$product->id}}">Agregar al carrito</button>
+											<div class="product_fav"><i class="fas fa-heart"></i></div>
+										</div>
+									@else
+										<div class="product_price mt-5" style="color:#DE2423;font-size:20px">Sin Stock !</div>
+									@endif
+								@endif
 								
 							</form>
 						</div>

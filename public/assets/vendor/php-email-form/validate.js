@@ -234,7 +234,7 @@ function addCategoryRow(table, category, index) {
   row.innerHTML = `
       <td>${index + 1}</td>
       <td>${category.name}</td>
-      <td class="text-center"><button class="btn btn-warning">Editar <i class="material-icons">edit</i></button></td>
+      <td class="text-center"><button class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="${category.id}" data-name="${category.name}" data-image="${category.image}" >Editar <i class="material-icons">edit</i></button></td>
       <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(category)}' data-type="categoría" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>`;
   tbody.appendChild(row);
   // Actualizar count"

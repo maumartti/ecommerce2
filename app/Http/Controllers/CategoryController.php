@@ -48,10 +48,19 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'image' => 'nullable|string',
         ]);
     
         try {
             $tools = new Tools;
+            // Guardar la imagen Portada
+            if(isset($validatedData['image'])){
+                if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($request->image)) {
+                    $validatedData['image'] = $tools->saveImage64('/assets/images/', $request->image);
+                } elseif($validatedData['image'] == 'empty'){
+                    $validatedData['image'] = null;   
+                }
+            }
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $category = Category::create($validatedData);
             $categories = Category::all();
@@ -90,9 +99,21 @@ class CategoryController extends Controller
             }
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
-                // Add other validation rules as needed
+                'image' => 'nullable|string'
             ]);
             $tools = new Tools;
+            // Guardar la imagen Portada
+            if(isset($validatedData['image'])){
+                if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($request->image)) {
+                    $validatedData['image'] = $tools->saveImage64('/assets/images/', $request->image);
+                } elseif($validatedData['image'] == 'empty'){
+                    $validatedData['image'] = null;   
+                }else{
+                    $validatedData['image'] = $category->image;
+                }
+            }else{
+                $validatedData['image'] = $category->image;
+            }    
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $category->update($validatedData);
 

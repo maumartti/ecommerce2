@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 
 <div class="main-content-container container-fluid px-4">
@@ -90,7 +91,7 @@
                                                 <tr id="categories-{{$item->id}}">
                                                     <td>{{$key}}</td>
                                                     <td>{{$item->name}}</td>
-                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}">Editar <i class="material-icons">edit</i></button></td>
+                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-image="{{$item->image}}">Editar <i class="material-icons">edit</i></button></td>
                                                     <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
                                                 </tr>
                                                 @endforeach
@@ -164,6 +165,16 @@
                                     <label>Nombre de la categoría:</label>
                                     <input type="text" name="name" class="form-control" placeholder="nombre">
                                 </div>
+                                <div class="form-group py-5" style="background: #eee;">
+                                    <div class="slim"
+                                        data-button-edit-title="Editar"
+                                        data-button-remove-title="Borrar"
+                                        data-ratio="26:2"
+                                        data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Imágen de Portada</p></p>"
+                                        data-size="2200,170">
+                                        <input type="file" name="image" />
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-accent btn-block">Agregar</button>
                                 </div>
@@ -230,6 +241,16 @@
                     <div class="form-group pt-3">
                         <label>Nombre de la categoría:</label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="nombre">
+                    </div>
+                    <div class="form-group py-5" style="background: #eee;">
+                        <div class="slim" id="slimEditCat"
+                            data-button-edit-title="Editar"
+                            data-button-remove-title="Borrar"
+                            data-ratio="26:2"
+                            data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Imágen de Portada</p></p>"
+                            data-size="2200,170">
+                            <input type="file" name="image" />
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-accent btn-block">Guardar</button>
@@ -315,8 +336,16 @@
 @endsection
 
 @section('script')	
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $(document).ready(function(){
+
+    //arrastrar y cambiar de lugar items de tabla
+    $("#categories-table tbody").sortable();
+    $("#categories-table tbody").disableSelection();
+    //end arrastra
+
     //si borramos imagen exsistente para saber que exsistia y ya no
     $('.slim-btn-remove').click(function(){
         var secondParent = $(this).parent().parent();
@@ -335,6 +364,11 @@ $(document).ready(function(){
         $.each($(this).data(), function (key, value) {
             if (key == 'name') { // Verificar si el atributo de datos comienza con 'field'
                 form.find('[name="' + key + '"]').val(value); 
+                //images
+            }
+            if (key == 'image') {
+                console.log('key image',value)
+                $('#slimEditCat').slim('load', '/assets/images/' + value);
             }
         });
         form.attr('action', 'categories/' + id);
