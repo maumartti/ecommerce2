@@ -176,47 +176,9 @@
         <main class="py-4">
           	<!-- Header -->
           <header class="header">
-            <!-- Top Bar -->
-            <div class="top_bar">
-              <div class="container">
-                <div class="row">
-                  <div class="col d-flex flex-row">
-                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/assets/images/phone.png" alt=""></div>+56982639595</div>
-                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/assets/images/mail.png" alt=""></div><a href="mailto:importadoratatar@gmail.com">importadoratatar@gmail.com</a></div>
-                    <div class="top_bar_content ml-auto">
-                      <div class="top_bar_menu">
-                        <!-- <ul class="standard_dropdown top_bar_dropdown">
-                          <li>
-                            <a href="#">English<i class="fas fa-chevron-down"></i></a>
-                            <ul>
-                              <li><a href="#">Italian</a></li>
-                              <li><a href="#">Spanish</a></li>
-                              <li><a href="#">Japanese</a></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-                            <ul>
-                              <li><a href="#">EUR Euro</a></li>
-                              <li><a href="#">GBP British Pound</a></li>
-                              <li><a href="#">JPY Japanese Yen</a></li>
-                            </ul>
-                          </li>
-                        </ul> -->
-                      </div>
-                      <div class="top_bar_user">
-                        <div class="user_icon"><img src="/assets/images/user.svg" alt=""></div>
-                        <div><a href="{{ route('register') }}">Registro</a></div>
-                        <div><a href="{{ route('login') }}">Iniciar sesión</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>		
-            </div>
             <!-- Header Main -->
             <div class="header_main">
-              <div class="container">
+              <div class="container-fluid">
                 <div class="row">
 
                   <!-- Logo -->
@@ -231,7 +193,7 @@
                   </div>
                   
                   <!-- Search -->
-                  <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+                  <div class="col-lg-4 col-12 order-lg-2 order-3 text-lg-left text-right">
                     <div class="header_search">
                       <div class="header_search_content">
                         <div class="header_search_form_container">
@@ -260,7 +222,7 @@
                   </div>
 
                   <!-- Wishlist -->
-                  <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                  <div class="col-lg-6 col-9 order-lg-3 order-2 text-lg-left text-right">
                     <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                       <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                         <div class="wishlist_icon"><img src="/assets/images/heart.png" alt=""></div>
@@ -271,7 +233,7 @@
                       </div>
 
                       <!-- Cart -->
-                      <div class="cart">
+                      <div class="cart wishlist">
                         <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                           <div class="cart_icon">
                             <img src="/assets/images/cart.png" alt="">
@@ -283,6 +245,20 @@
                           </div>
                         </div>
                       </div>
+
+
+                      <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                        <div class="wishlist_content ml-0">
+                          <div class="user_icon float-left"><img src="/assets/images/user.svg" alt=""></div>
+                          <div class="cart_text float-right"><a href="#">Registro</a></div>
+                        </div>
+                      </div>
+                      <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                        <div class="wishlist_content ml-0">
+                          <div class="cart_text"><a href="{{ route('login') }}">Iniciar sesión</a></div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>

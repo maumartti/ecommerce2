@@ -115,51 +115,54 @@
 						<div class="shop_bar clearfix">
 							<div class="shop_product_count"><span>{{count($productsCategory)}}</span> productos encontrados</div>
 							<div class="shop_sorting">
-								<span>Sort by:</span>
+								<span>Filtrar por:</span>
 								<ul>
 									<li>
-										<span class="sorting_text">highest rated<i class="fas fa-chevron-down"></span></i>
+										<span class="sorting_text">últimos agregados <i class="fas fa-chevron-down"></span></i>
 										<ul>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li>
+											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>últimos agregados</li>
+											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>Nombre</li>
+											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>Precio</li>
 										</ul>
 									</li>
 								</ul>
 							</div>
 						</div>
 
-						<div class="product_grid">
+						<div class="">
 							<div class="product_grid_border"></div>
 
 							<!-- Product Item -->
 							@if (isset($productsCategory))
-							@if ($productsCategory)
-							<div class="row">
-							@foreach ($productsCategory as $product)
-							<div class="product_item col-md-3">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center">
-									<a href="/item/{{$product->url}}">
-										<img src="/assets/images/products/{{$product->image1}}" alt="">
-									</a>
-								</div>
-								<div class="product_content">
-									<div class="product_price" style="color:#DE2423;background: #ffffffa3;">${{$product->price}}</div>
-									<div class="product_name mt-4"><div><a href="#" tabindex="0">{{$product->name}}</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									@if($product->descount)
-									<li class="product_mark product_discount">-{{$product->descount}}%</li>
-									@endif
-									<!-- <li class="product_mark product_new">new</li> -->
-								</ul>
-							</div>
-							@endforeach
-							</div>
+								@if ($productsCategory)
+										<div class="col-12">
+										<div class="row">
+												@foreach ($productsCategory as $product)
+														<div class="product_item col-md-3 col-sm-6">
+																<div class="product_border"></div>
+																<div class="product_image d-flex flex-column align-items-center justify-content-center">
+																		<a href="/item/{{$product->url}}">
+																				<img src="/assets/images/products/{{$product->image1}}" alt="">
+																		</a>
+																</div>
+																<div class="product_content">
+																		<div class="product_price" style="color:#DE2423;background: #ffffffa3;">${{$product->price}}</div>
+																		<div class="product_name mt-4"><div><a href="#" tabindex="0">{{$product->name}}</a></div></div>
+																</div>
+																<div class="product_fav"><i class="fas fa-heart"></i></div>
+																<ul class="product_marks">
+																		@if($product->descount)
+																				<li class="product_mark product_discount">-{{$product->descount}}%</li>
+																		@endif
+																		<!-- <li class="product_mark product_new">new</li> -->
+																</ul>
+														</div>
+												@endforeach
+										</div>
+										</div>
+								@endif
 							@endif
-							@endif
+
 
 						</div>
 
