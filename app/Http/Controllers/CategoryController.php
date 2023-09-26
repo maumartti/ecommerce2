@@ -151,4 +151,8 @@ class CategoryController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar la categoría: ' . $e->getMessage()], 500);
         }
     }
+
+    public function reOrder(Request $request){
+        dd('reorder');
+    }
 }

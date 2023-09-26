@@ -76,6 +76,7 @@
                                         <thead class="bg-light">
                                             <tr>
                                                 <th scope="col" class="border-0">#</th>
+                                                <th scope="col" class="border-0">Id</th>
                                                 <th scope="col" class="border-0">Nombre</th>
                                                 <th scope="col" class="border-0 text-center">Editar</th>
                                                 <th scope="col" class="border-0 text-center">Borrar</th>
@@ -88,8 +89,9 @@
                                                 @php
                                                     $key = $index + 1;
                                                 @endphp
-                                                <tr id="categories-{{$item->id}}">
+                                                <tr id="categories-{{$item->id}}" data-id="{{$item->id}}">
                                                     <td>{{$key}}</td>
+                                                    <td>{{$item->id}}</td>
                                                     <td>{{$item->name}}</td>
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-image="{{$item->image}}">Editar <i class="material-icons">edit</i></button></td>
                                                     <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
@@ -341,58 +343,48 @@
 <script>
 $(document).ready(function(){
 
-    //arrastrar y cambiar de lugar items de tabla
-    $("#categories-table tbody").sortable();
-    $("#categories-table tbody").disableSelection();
-    //end arrastra
+    $("#categories-table tbody").sortable({
+        update: function(event, ui) {
+            // Update the sequential numbers after sorting
+            $("#categories-table tbody tr").each(function(index) {
+                $(this).find("td:first").text(index + 1);
+            });
 
-    //si borramos imagen exsistente para saber que exsistia y ya no
-    $('.slim-btn-remove').click(function(){
-        var secondParent = $(this).parent().parent();
-        var hiddenInput = secondParent.find('input[type="hidden"]');
-        if (hiddenInput.length > 0) {
-            hiddenInput.val("empty");//en el input hidden le ponemos = empty
+            // Create an array to store the new order
+            var newOrder = [];
+
+            // Iterate through the table rows and add id: index pairs to the array
+            $("#categories-table tbody tr").each(function(index) {
+                var id = $(this).data("id"); // Assuming you store the ID in a data attribute
+                newOrder.push({ id: id, index: index + 1 });
+            });
+
+            // Send the new order data to the server using AJAX
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            $.ajax({
+                url: 'categoriesReOrder', // Replace with your actual server route
+                method: 'POST', // Adjust the HTTP method as needed
+                data: JSON.stringify(newOrder),
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+                },
+                contentType: 'application/json',
+                success: function(response) {
+                    console.log('Order saved successfully.');
+                },
+                error: function(error) {
+                    console.error('Error saving order:', error);
+                }
+            });
         }
     });
 
+    $("#categories-table tbody").disableSelection();
 
-    //Datos al modal Categorias
-    $(document).on('click', '.edit-button', function () {
-        console.log('entra click')
-        var id = $(this).data('id'); // Obtener el ID de la categoría
-        var form = $('#ModalEditCat form'); // Obtener el formulario del modal
-        $.each($(this).data(), function (key, value) {
-            if (key == 'name') { // Verificar si el atributo de datos comienza con 'field'
-                form.find('[name="' + key + '"]').val(value); 
-                //images
-            }
-            if (key == 'image') {
-                console.log('key image',value)
-                $('#slimEditCat').slim('load', '/assets/images/' + value);
-            }
-        });
-        form.attr('action', 'categories/' + id);
+    // Assign initial sequential numbers to rows
+    $("#categories-table tbody tr").each(function(index) {
+        $(this).find("td:first").text(index + 1);
     });
-
-    //Datos al modal Sub-Cateogrias
-    $(document).on('click', '.edit-button', function () {
-        console.log('entra click')
-        var id = $(this).data('id'); // Obtener el ID de la categoría
-        var form = $('#ModalEditSubCat form'); // Obtener el formulario del modal
-        $.each($(this).data(), function (key, value) {
-            var input = form.find('[name="' + key + '"]');
-            if (input.is('select')) {
-                input.find('option[value="' + value + '"]').prop('selected', true);
-            } else {
-                input.val(value);
-            }
-        });
-        form.attr('action', 'subcategories/' + id);
-    });
-    //Modal confirma borrar
-
-
-    
 });
 
 
