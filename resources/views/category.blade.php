@@ -4,6 +4,30 @@
 @section('head')
 <link rel="stylesheet" type="text/css" href="/assets/styles/shop_styles.css">
 <link rel="stylesheet" type="text/css" href="/assets/styles/shop_responsive.css">
+<style>
+    .category-arrow {
+        float: right;
+				transition: transform 0.3s;
+    }
+    .category-arrow::before {
+        content: ">"; /* Unicode for right-pointing triangle */
+				transition: transform 0.3s;
+				display: inline-block; /* Add this line to ensure the arrow takes up space */
+				width: 10px; /* Adjust the width as needed */
+				text-align: right; /* Align the arrow to the right */
+    }
+		/* .collapsed .category-arrow::before {
+    transform: rotate(90deg); 
+		} */
+		.category-item{
+			border:1px solid silver;
+			border-radius:2px;
+		}
+		.category-rotated {
+        transform: rotate(90deg);
+    }
+</style>
+
 @endsection
 
 @section('content')
@@ -16,7 +40,9 @@
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
 		<div class="home_content d-flex flex-column align-items-center justify-content-center" style="background-image: url('/assets/images/{{ isset($category->image) ? $category->image : '' }}');background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;">
+			@if(!$category->image)
 			<h2 class="home_title" style="background: #dfdfdfa3;border-radius: 7px;padding: 0px 10px;">Categoría: {{$category->name}}</h2>
+			@endif
 		</div>
 	</div>
 
@@ -31,21 +57,24 @@
 					<div class="shop_sidebar">
 						<div class="sidebar_section">
 							<div class="sidebar_title">Categorías</div>
-							<ul class="sidebar_categories">
-							@if(isset($categories))
-									@if($subcategories)
+							<ul class="sidebar_categories mt-2">
+									@if(isset($categories))
 											@foreach ($categories as $index => $category)
-											<li><a href="/categoria/{{$category->url}}">{{$category->name}}</a></li>
-											@if(isset($category->subcategories))
-												@if($category->subcategories)
-														@foreach ($category->subcategories as $index => $subcategory)
-														<li class="pl-3">- <a href="/categoria/{{$category->url}}/{{$subcategory->url}}">{{$subcategory->name}}</a></li>
-														@endforeach
-														@endif
-												@endif
+													<li class="category-toggle category-item p-2"  data-toggle="collapse" data-target="#submenu{{$index}}">
+															<a href="#">
+																	<span class="category-name">{{$category->name}}</span>
+																	<span class="category-arrow"></span>
+															</a>
+															@if(isset($category->subcategories))
+																	<ul id="submenu{{$index}}" class="submenu collapse mt-2">
+																			@foreach ($category->subcategories as $index => $subcategory)
+																					<li class="pl-3"><a href="/categoria/{{$category->url}}/{{$subcategory->url}}">{{$subcategory->name}} →</a></li>
+																			@endforeach
+																	</ul>
+															@endif
+													</li>
 											@endforeach
 									@endif
-							@endif
 							</ul>
 						</div>
 						<!-- <div class="sidebar_section filter_by_section">
@@ -212,4 +241,15 @@
 
 
 
+@endsection
+
+@section('script')
+<script>
+    // Add a click event listener to category toggles
+    $(".category-toggle").click(function (e) {
+        e.preventDefault();
+        var arrow = $(this).find(".category-arrow");
+        arrow.toggleClass("category-rotated");
+    });
+</script>
 @endsection

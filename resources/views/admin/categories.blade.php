@@ -385,6 +385,50 @@ $(document).ready(function(){
     $("#categories-table tbody tr").each(function(index) {
         $(this).find("td:first").text(index + 1);
     });
+
+    //----------END REORDENAR TABLA CAT
+
+     //si borramos imagen exsistente para saber que exsistia y ya no
+    $('.slim-btn-remove').click(function(){
+        var secondParent = $(this).parent().parent();
+        var hiddenInput = secondParent.find('input[type="hidden"]');
+        if (hiddenInput.length > 0) {
+            hiddenInput.val("empty");//en el input hidden le ponemos = empty
+        }
+    });
+
+    //Datos al modal Categorias
+    $(document).on('click', '.edit-button', function () {
+        console.log('entra click')
+        var id = $(this).data('id'); // Obtener el ID de la categoría
+        var form = $('#ModalEditCat form'); // Obtener el formulario del modal
+        $.each($(this).data(), function (key, value) {
+            if (key == 'name') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value); 
+            }
+            if (key == 'image') { 
+                $('#slimEditCat').slim('load','/assets/images/'+value); 
+            }
+        });
+        form.attr('action', 'categories/' + id);
+    });
+
+    //Datos al modal Sub-Cateogrias
+    $(document).on('click', '.edit-button', function () {
+        console.log('entra click')
+        var id = $(this).data('id'); // Obtener el ID de la categoría
+        var form = $('#ModalEditSubCat form'); // Obtener el formulario del modal
+        $.each($(this).data(), function (key, value) {
+            var input = form.find('[name="' + key + '"]');
+            if (input.is('select')) {
+                input.find('option[value="' + value + '"]').prop('selected', true);
+            } else {
+                input.val(value);
+            }
+        });
+        form.attr('action', 'subcategories/' + id);
+    });
+    //Modal confirma borrar
 });
 
 

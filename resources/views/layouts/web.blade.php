@@ -275,7 +275,7 @@
                         <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                           <div class="cart_icon">
                             <img src="/assets/images/cart.png" alt="">
-                            <div class="cart_count"><span>{{ session('totalCart') }}</span></div>
+                            <div class="cart_count"><span>{{ session('totalCart') ?? '0' }}</span></div>
                           </div>
                           <div class="cart_content">
                             <div class="cart_text"><a href="/carrito">Carrito</a></div>
