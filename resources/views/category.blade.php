@@ -15,8 +15,8 @@
 	<div class="home">
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
-		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title">Categoría: {{$category->name}}</h2>
+		<div class="home_content d-flex flex-column align-items-center justify-content-center" style="background-image: url('/assets/images/{{ isset($category->image) ? $category->image : '' }}');background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;">
+			<h2 class="home_title" style="background: #dfdfdfa3;border-radius: 7px;padding: 0px 10px;">Categoría: {{$category->name}}</h2>
 		</div>
 	</div>
 

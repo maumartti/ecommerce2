@@ -22,14 +22,14 @@ class CategoryController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $categories = Category::all();
+        $categories = Category::orderBy('pos')->get();
         $subcategories = SubCategory::all();
         return view('admin.categories')->with('web',$web)->with('categories',$categories)->with('subcategories',$subcategories);   
     }
 
     public function all()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('pos')->get();
         return response()->json(['categories' => $categories]);
     }
 
@@ -63,7 +63,7 @@ class CategoryController extends Controller
             }
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $category = Category::create($validatedData);
-            $categories = Category::all();
+            $categories = Category::orderBy('pos')->get();
             return response()->json(['status' => 'success', 'categories' => $categories], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear la categoría: ' . $e->getMessage()], 500);
@@ -117,7 +117,7 @@ class CategoryController extends Controller
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $category->update($validatedData);
 
-            $categories = Category::all();
+            $categories = Category::orderBy('pos')->get();
             return response()->json(['status' => 'success', 'categories' => $categories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar la categoría: ' . $e->getMessage()], 500);
@@ -152,7 +152,20 @@ class CategoryController extends Controller
         }
     }
 
-    public function reOrder(Request $request){
-        dd('reorder');
+    public function reOrder(Request $request)
+    {
+        try {
+            $newOrder = $request->json()->all();
+            // Loop through the new order and update the 'pos' field for each category
+            foreach ($newOrder as $item) {
+                $category = Category::find($item['id']);
+                if ($category) {
+                    $category->update(['pos' => $item['index']]);
+                }
+            }
+            return response()->json(['status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error reordering categories: ' . $e->getMessage()], 500);
+        }
     }
 }
