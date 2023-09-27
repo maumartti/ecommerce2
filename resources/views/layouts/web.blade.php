@@ -1,545 +1,644 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/assets/theme/images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/assets/theme/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/assets/theme/css/main.css">
+<!--===============================================================================================-->
+@yield('head')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<style>
+    .cl2 {
+      color: {{ $web->color }};
+    }
+</style>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="OneTech shop project">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/assets/styles/bootstrap4/bootstrap.min.css">
-    <link href="/assets/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="/assets/plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="/assets/plugins/slick-1.8.0/slick.css">
-    <link rel="stylesheet" href="/assets/plugins/toast/css/toastr.min.css">
-    @yield('head')
-    <link rel="stylesheet" type="text/css" href="/assets/styles/main_styles.css">
-    <link rel="stylesheet" type="text/css" href="/assets/styles/responsive.css">
-    
-    <!-- Scripts -->
-    <style>
-        .logo a img{
-            width:180px;
-        }
-        .header_search, .logo_container, .wishlist_cart{
-            height:70px;
-        }
-        .banner_background{
-            background-image:url(/assets/images/1.png);
-            background-size: 100% / 100%;
-            background-position:50% 0px;
-        }
-        @media max-width(764px){
-            #banner{
-                height: 180px !important;
-            }
-        }
-        .carousel-control-next-icon, .carousel-control-prev-icon{
-            width:80px;
-            height:80px;
-        }
-        .bg-light-two {
-          background-color: #f8f9fa !important;
-        }
-
-
-
-        /* Add styles for your floating WhatsApp button */
-        .floating-whatsapp {
-          position: fixed;
-          bottom: 35px;
-          right: 32px;
-          z-index: 1000;
-        }
-
-        .floating-whatsapp a {
-          display: block;
-          width: 60px;
-          height: 60px;
-          background-color: #25D366;
-          border-radius: 50%;
-          text-align: center;
-          line-height: 60px;
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-          transition: background-color 0.3s ease;
-        }
-
-        .floating-whatsapp a img {
-            width: 70px;
-        height: 70px;
-        border-radius: 100%;
-        }
-
-
-        /*********** instaaaaaa  */
-        .profile-container {
-              text-align: left;
-              display: flex;
-              align-items: center;
-            }
-            .profile-picture {
-              width: 150px;
-              height: 150px;
-              position: relative;
-              overflow: hidden;
-              margin-right: 10px;
-              margin:auto;
-            }
-            .profile-border {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            }
-            .profile-img {
-              width: 100%;
-              height: 100%;
-              border-radius: 50%;
-              object-fit: cover;
-              border: 4px solid #ffffff;
-              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .profile-name {
-              font-size: 24px;
-              font-weight: bold;
-            }
-            .card-video video {
-              width: 100%;
-              max-width: 100%;
-            }
-        .profile-name {
-          font-size: 24px;
-          font-weight: bold;
-          background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-
-        .video-card {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .video-thumbnail {
-          position: relative;
-          overflow: hidden;
-          background-color: #000;
-          cursor: pointer;
-        }
-
-        .video-thumbnail video {
-          width: 100%;
-          height: auto;
-          display: block;
-          transition: transform 0.2s;
-        }
-
-        .play-icon {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          color: #fff;
-          font-size: 3rem;
-          z-index: 1;
-          cursor: pointer;
-        }
-
-        .play-icon i {
-          transition: transform 0.2s;
-        }
-
-        .video-thumbnail:hover video {
-          transform: scale(1.1);
-        }
-
-        .video-thumbnail:hover .play-icon i {
-          transform: scale(1.2);
-        }
-    </style>
 </head>
-<body>
-    <div id="app">
-        <main class="py-4">
-          	<!-- Header -->
-          <header class="header">
-            <!-- Header Main -->
-            <div class="header_main">
-              <div class="container-fluid">
-                <div class="row">
+<body class="animsition">
+	
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						Envío gratis en compras a partir de $30.000
+					</div>
 
-                  <!-- Logo -->
-                  <div class="col-lg-2 col-sm-3 col-3 order-1">
-                    <div class="logo_container">
-                      <div class="logo">
-                        <a href="/">
-                        <img src="/assets/images/{{$web->imageLogo}}">
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <!-- Search -->
-                  <div class="col-lg-4 col-12 order-lg-2 order-3 text-lg-left text-right">
-                    <div class="header_search">
-                      <div class="header_search_content">
-                        <div class="header_search_form_container">
-                          <form action="#" class="header_search_form clearfix">
-                            <input type="search" required="required" class="header_search_input" placeholder="Search for products...">
-                            <div class="custom_dropdown">
-                              <div class="custom_dropdown_list">
-                                <span class="custom_dropdown_placeholder clc">Categorías</span>
-                                <i class="fas fa-chevron-down"></i>
-                                <ul class="custom_list clc">
-                                @if(isset($categories))
-                                    @if($subcategories)
-                                        @foreach ($categories as $index => $category)
-                                        <li><a class="clc" href="#">{{$category->name}}</a></li>
-                                        @endforeach
-                                    @endif
-                                @endif
-                                </ul>
-                              </div>
-                            </div>
-                            <button type="submit" class="header_search_button trans_300" value="Submit"><img src="/assets/images/search.png" alt=""></button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							Registro
+						</a>
 
-                  <!-- Wishlist -->
-                  <div class="col-lg-6 col-9 order-lg-3 order-2 text-lg-left text-right">
-                    <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                      <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                        <div class="wishlist_icon"><img src="/assets/images/heart.png" alt=""></div>
-                        <div class="wishlist_content">
-                          <div class="wishlist_text"><a href="#">Likes</a></div>
-                          <div class="wishlist_count">115</div>
-                        </div>
-                      </div>
+						<a href="/login" class="flex-c-m trans-04 p-lr-25">
+							Admin
+						</a>
 
-                      <!-- Cart -->
-                      <div class="cart wishlist">
-                        <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                          <div class="cart_icon">
-                            <img src="/assets/images/cart.png" alt="">
-                            <div class="cart_count"><span>{{ session('totalCart') ?? '0' }}</span></div>
-                          </div>
-                          <div class="cart_content">
-                            <div class="cart_text"><a href="/carrito">Carrito</a></div>
-                            <div class="cart_price">$85</div>
-                          </div>
-                        </div>
-                      </div>
+						<!-- <a href="#" class="flex-c-m trans-04 p-lr-25">
+							EN
+						</a>
 
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							USD
+						</a> -->
+					</div>
+				</div>
+			</div>
 
-                      <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                        <div class="wishlist_content ml-0">
-                          <div class="user_icon float-left"><img src="/assets/images/user.svg" alt=""></div>
-                          <div class="cart_text float-right"><a href="#">Registro</a></div>
-                        </div>
-                      </div>
-                      <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                        <div class="wishlist_content ml-0">
-                          <div class="cart_text"><a href="{{ route('login') }}">Iniciar sesión</a></div>
-                        </div>
-                      </div>
+			<div class="wrap-menu-desktop" >
+				<nav class="limiter-menu-desktop container">
+					
+					<!-- Logo desktop -->		
+					<a href="#" class="logo">
+						<img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO">
+					</a>
 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Main Navigation -->
-            <img src="/assets/images/bb.gif" style="height:40px;width:100%;">
-            <nav class="main_nav">
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    
-                    <div class="main_nav_content d-flex flex-row">
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="active-menu">
+								<a href="index.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Home</a>
+								<ul class="sub-menu">
+									<li><a href="index.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Homepage 1</a></li>
+									<li><a href="home-02.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Homepage 2</a></li>
+									<li><a href="home-03.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Homepage 3</a></li>
+								</ul>
+							</li>
 
-                      <!-- Categories Menu -->
+							<li>
+								<a href="product.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Shop</a>
+							</li>
 
-                      
+							<li class="label1" data-label1="hot">
+								<a href="shoping-cart.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Features</a>
+							</li>
 
-                      <!-- Main Nav Menu -->
-              
-                      <div class="main_nav_menu m-auto">
-                        <ul class="standard_dropdown main_nav_dropdown">
-                                            @if(isset($categories))
-                                                @if($subcategories)
-                                                    @foreach ($categories as $index => $category)
-                                                  <li class="hassubs">
-                                                        <a href="/categoria/{{$category->url}}">{{$category->name}}</a>
-                                                        @if(isset($category->subcategories))
-                                                            @if($category->subcategories)
-                                                            <ul>
-                                                                @foreach ($category->subcategories as $index => $subcategory)
-                                                                <li><a href="/categoria/{{$category->url}}/{{$subcategory->url}}">{{$subcategory->name}}<i class="fas fa-chevron-down"></i></a></li>
-                                                                @endforeach
-                                                            </ul>
-                                                            @endif
-                                                        @endif
-                                                        </a>
-                                                    </li>
-                                                    @endforeach
-                                                @endif
-                                            @endif
+							<li>
+								<a href="blog.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Blog</a>
+							</li>
 
-                                            
-                          <!-- <li><a href="blog.html">Hogar<i class="fas fa-chevron-down"></i></a></li>
-                          <li><a href="blog.html">Temporada<i class="fas fa-chevron-down"></i></a></li>
-                          <li><a href="blog.html">Ofertas<i class="fas fa-chevron-down"></i></a></li>
-                          <li><a href="contact.html">Contacto<i class="fas fa-chevron-down"></i></a></li> -->
-                        </ul>
-                      </div>
+							<li>
+								<a href="/about.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>About</a>
+							</li>
 
-                      <!-- Menu Trigger -->
+							<li>
+								<a href="contact.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Contact</a>
+							</li>
+						</ul>
+					</div>	
 
-                      <div class="menu_trigger_container ml-auto">
-                        <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
-                          <div class="menu_burger">
-                            <div class="menu_trigger_text">menu</div>
-                            <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
-                          </div>
-                        </div>
-                      </div>
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nav>
-            <!-- Menu -->
-            <div class="page_menu">
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    
-                    <div class="page_menu_content">
-                      
-                      <div class="page_menu_search">
-                        <form action="#">
-                          <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
-                        </form>
-                      </div>
-                      <ul class="page_menu_nav">
-                        <!-- <li class="page_menu_item has-children">
-                          <a href="#">Language<i class="fa fa-angle-down"></i></a>
-                          <ul class="page_menu_selection">
-                            <li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
-                          </ul>
-                        </li> -->
-                        <!-- <li class="page_menu_item has-children">
-                          <a href="#">Currency<i class="fa fa-angle-down"></i></a>
-                          <ul class="page_menu_selection">
-                            <li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
-                          </ul>
-                        </li> -->
-                        <li class="page_menu_item">
-                          <a href="#">Home<i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <li class="page_menu_item has-children">
-                          <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
-                          <ul class="page_menu_selection">
-                            <li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
-                            <li class="page_menu_item has-children">
-                              <a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
-                              <ul class="page_menu_selection">
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                              </ul>
-                            </li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                          </ul>
-                        </li>
-                        <li class="page_menu_item has-children">
-                          <a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
-                          <ul class="page_menu_selection">
-                            <li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                          </ul>
-                        </li>
-                        <li class="page_menu_item has-children">
-                          <a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
-                          <ul class="page_menu_selection">
-                            <li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                          </ul>
-                        </li>
-                        <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
-                        <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
-                      </ul>
-                      
-                      <div class="menu_contact">
-                        <div class="menu_contact_item"><div class="menu_contact_icon"><img src="/assets/images/phone_white.png" alt=""></div>+56982639595</div>
-                        <div class="menu_contact_item"><div class="menu_contact_icon"><img src="/assets/images/mail_white.png" alt=""></div><a href="mailto:importadoratatar@gmail.com">importadoratatar@gmail.com</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </header>
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
 
-          <div class="floating-whatsapp">
-            <a href="https://wa.me/+56982639595" target="_blank">
-              <img src="/assets/images/wp.png" alt="WhatsApp">
-            </a>
-          </div>
+						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</a>
+					</div>
+				</nav>
+			</div>	
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->		
+			<div class="logo-mobile">
+				<a href="index.html"><img src="/assets/theme/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<i class="zmdi zmdi-search"></i>
+				</div>
+
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</div>
+
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
 
 
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
+					</div>
+				</li>
 
-            @yield('content')
-        </main>
-    </div>
+				<li>
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							Help & FAQs
+						</a>
 
-<script src="/assets/js/jquery-3.3.1.min.js"></script>
-<script src="/assets/styles/bootstrap4/popper.js"></script>
-<script src="/assets/styles/bootstrap4/bootstrap.min.js"></script>
-<script src="/assets/plugins/greensock/TweenMax.min.js"></script>
-<script src="/assets/plugins/greensock/TimelineMax.min.js"></script>
-<script src="/assets/plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="/assets/plugins/greensock/animation.gsap.min.js"></script>
-<script src="/assets/plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="/assets/plugins/slick-1.8.0/slick.js"></script>
-<script src="/assets/plugins/easing/easing.js"></script>
-<script src="/assets/js/custom.js"></script>
-<script src="/assets/js/product_custom.js"></script>
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							My Account
+						</a>
 
-<script src="/assets/plugins/toast/js/toastr.min.js"></script>
-<script src="/assets/js/cart_custom.js"></script>
-@yield('script')
-</body>
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							EN
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							USD
+						</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a href="index.html">Home</a>
+					<ul class="sub-menu-m">
+						<li><a href="index.html">Homepage 1</a></li>
+						<li><a href="home-02.html">Homepage 2</a></li>
+						<li><a href="home-03.html">Homepage 3</a></li>
+					</ul>
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+				</li>
+
+				<li>
+					<a href="product.html">Shop</a>
+				</li>
+
+				<li>
+					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+				</li>
+
+				<li>
+					<a href="blog.html">Blog</a>
+				</li>
+
+				<li>
+					<a href="/about.html">About</a>
+				</li>
+
+				<li>
+					<a href="contact.html">Contact</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="/assets/theme/images/icons/icon-close2.png" alt="CLOSE">
+				</button>
+
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</header>
+
+	<!-- Cart -->
+	<div class="wrap-header-cart js-panel-cart">
+		<div class="s-full js-hide-cart"></div>
+
+		<div class="header-cart flex-col-l p-l-65 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Your Cart
+				</span>
+
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+			
+			<div class="header-cart-content flex-w js-pscroll">
+				<ul class="header-cart-wrapitem w-full">
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="/assets/theme/images/item-cart-01.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								White Shirt Pleat
+							</a>
+
+							<span class="header-cart-item-info">
+								1 x $19.00
+							</span>
+						</div>
+					</li>
+
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="/assets/theme/images/item-cart-02.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								Converse All Star
+							</a>
+
+							<span class="header-cart-item-info">
+								1 x $39.00
+							</span>
+						</div>
+					</li>
+
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="/assets/theme/images/item-cart-03.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								Nixon Porter Leather
+							</a>
+
+							<span class="header-cart-item-info">
+								1 x $17.00
+							</span>
+						</div>
+					</li>
+				</ul>
+				
+				<div class="w-full">
+					<div class="header-cart-total w-full p-tb-40">
+						Total: $75.00
+					</div>
+
+					<div class="header-cart-buttons flex-w w-full">
+						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							View Cart
+						</a>
+
+						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+							Check Out
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		
+
+@yield('content')
+
 
 	<!-- Footer -->
-
-	<footer class="footer">
+	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Categories
+					</h4>
 
-				<div class="col-lg-3 footer_col">
-					<div class="footer_column footer_contact">
-						<div class="logo_container">
-							<div class="logo">
-								<a href="#">
-								<img src="/assets/images/logo1.png">
-								</a>
-						</div>
-						</div>
-						<div class="footer_title">Got Question? Call Us 24/7</div>
-						<div class="footer_phone">+56982639595</div>
-						<div class="footer_contact_text">
-							<p>17 Princess Road, London</p>
-							<p>Grester London NW18JR, UK</p>
-						</div>
-						<div class="footer_social">
-							<ul>
-								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fab fa-youtube"></i></a></li>
-								<li><a href="#"><i class="fab fa-google"></i></a></li>
-								<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
-							</ul>
-						</div>
+					<ul>
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Women
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Men
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Shoes
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Watches
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Help
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Track Order
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Returns 
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Shipping
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								FAQs
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						GET IN TOUCH
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+					</p>
+
+					<div class="p-t-27">
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-instagram"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-pinterest-p"></i>
+						</a>
 					</div>
 				</div>
 
-				<div class="col-lg-2 offset-lg-2">
-					<div class="footer_column">
-						<div class="footer_title">Find it Fast</div>
-						<ul class="footer_list">
-							<li><a href="#">Computers & Laptops</a></li>
-							<li><a href="#">Cameras & Photos</a></li>
-							<li><a href="#">Hardware</a></li>
-							<li><a href="#">Smartphones & Tablets</a></li>
-							<li><a href="#">TV & Audio</a></li>
-						</ul>
-						<div class="footer_subtitle">Gadgets</div>
-						<ul class="footer_list">
-							<li><a href="#">Car Electronics</a></li>
-						</ul>
-					</div>
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Newsletter
+					</h4>
+
+					<form>
+						<div class="wrap-input1 w-full p-b-4">
+							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+							<div class="focus-input1 trans-04"></div>
+						</div>
+
+						<div class="p-t-18">
+							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								Subscribe
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="p-t-40">
+				<div class="flex-c-m flex-w p-b-18">
+					<a href="#" class="m-all-1">
+						<img src="/assets/theme/images/icons/icon-pay-01.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="/assets/theme/images/icons/icon-pay-02.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="/assets/theme/images/icons/icon-pay-03.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="/assets/theme/images/icons/icon-pay-04.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="/assets/theme/images/icons/icon-pay-05.png" alt="ICON-PAY">
+					</a>
 				</div>
 
-				<div class="col-lg-2">
-					<div class="footer_column">
-						<ul class="footer_list footer_list_2">
-							<li><a href="#">Video Games & Consoles</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Cameras & Photos</a></li>
-							<li><a href="#">Hardware</a></li>
-							<li><a href="#">Computers & Laptops</a></li>
-						</ul>
-					</div>
-				</div>
+				<p class="stext-107 cl6 txt-center">
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
-				<div class="col-lg-2">
-					<div class="footer_column">
-						<div class="footer_title">Customer Care</div>
-						<ul class="footer_list">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Order Tracking</a></li>
-							<li><a href="#">Wish List</a></li>
-							<li><a href="#">Customer Services</a></li>
-							<li><a href="#">Returns / Exchange</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="#">Product Support</a></li>
-						</ul>
-					</div>
-				</div>
-
+				</p>
 			</div>
 		</div>
 	</footer>
 
-	<!-- Copyright -->
 
-	<div class="copyright">
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+	<!-- Modal1 -->
+	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+		<div class="overlay-modal1 js-hide-modal1"></div>
+
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					
-					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
-						<div class="copyright_content">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
+					<img src="/assets/theme/images/icons/icon-close.png" alt="CLOSE">
+				</button>
+
+				<div class="row">
+					<div class="col-md-6 col-lg-7 p-b-30">
+						<div class="p-l-25 p-r-30 p-lr-0-lg">
+							<div class="wrap-slick3 flex-sb flex-w">
+								<div class="wrap-slick3-dots"></div>
+								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+								<div class="slick3 gallery-lb">
+									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="/assets/theme/images/product-detail-01.jpg" alt="IMG-PRODUCT">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="/assets/theme/images/product-detail-02.jpg" alt="IMG-PRODUCT">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="/assets/theme/images/product-detail-03.jpg" alt="IMG-PRODUCT">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="logos ml-sm-auto">
-							<ul class="logos_list">
-								<li><a href="#"><img src="/assets/images/logos_1.png" alt=""></a></li>
-								<li><a href="#"><img src="/assets/images/logos_2.png" alt=""></a></li>
-								<li><a href="#"><img src="/assets/images/logos_3.png" alt=""></a></li>
-								<li><a href="#"><img src="/assets/images/logos_4.png" alt=""></a></li>
-							</ul>
+					</div>
+					
+					<div class="col-md-6 col-lg-5 p-b-30">
+						<div class="p-r-50 p-t-5 p-lr-0-lg">
+							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+								Lightweight Jacket
+							</h4>
+
+							<span class="mtext-106 cl2">
+								$58.79
+							</span>
+
+							<p class="stext-102 cl3 p-t-23">
+								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+							</p>
+							
+							<!--  -->
+							<div class="p-t-33">
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-203 flex-c-m respon6">
+										Size
+									</div>
+
+									<div class="size-204 respon6-next">
+										<div class="rs1-select2 bor8 bg0">
+											<select class="js-select2" name="time">
+												<option>Choose an option</option>
+												<option>Size S</option>
+												<option>Size M</option>
+												<option>Size L</option>
+												<option>Size XL</option>
+											</select>
+											<div class="dropDownSelect2"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-203 flex-c-m respon6">
+										Color
+									</div>
+
+									<div class="size-204 respon6-next">
+										<div class="rs1-select2 bor8 bg0">
+											<select class="js-select2" name="time">
+												<option>Choose an option</option>
+												<option>Red</option>
+												<option>Blue</option>
+												<option>White</option>
+												<option>Grey</option>
+											</select>
+											<div class="dropDownSelect2"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-204 flex-w flex-m respon6-next">
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+
+										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+											Add to cart
+										</button>
+									</div>
+								</div>	
+							</div>
+
+							<!--  -->
+							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+								<div class="flex-m bor9 p-r-10 m-r-11">
+									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+										<i class="zmdi zmdi-favorite"></i>
+									</a>
+								</div>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+									<i class="fa fa-facebook"></i>
+								</a>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+									<i class="fa fa-twitter"></i>
+								</a>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+									<i class="fa fa-google-plus"></i>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -547,4 +646,107 @@
 		</div>
 	</div>
 
+<!--===============================================================================================-->	
+	<script src="/assets/theme/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/bootstrap/js/popper.js"></script>
+	<script src="/assets/theme/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/assets/theme/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/slick/slick.min.js"></script>
+	<script src="/assets/theme/js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/parallax100/parallax100.js"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	
+	</script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="/assets/theme/js/main.js"></script>
+
+</body>
 </html>

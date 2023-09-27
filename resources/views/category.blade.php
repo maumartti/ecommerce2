@@ -4,6 +4,9 @@
 @section('head')
 <link rel="stylesheet" type="text/css" href="/assets/styles/shop_styles.css">
 <link rel="stylesheet" type="text/css" href="/assets/styles/shop_responsive.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
 <style>
     .category-arrow {
         float: right;
@@ -56,6 +59,24 @@
 					<!-- Shop Sidebar -->
 					<div class="shop_sidebar">
 						<div class="sidebar_section">
+
+						<div class="sidebar_section">
+							<div class="sidebar_subtitle brands_subtitle"></div>
+							<ul class="brands_list">
+									<li class="brand">
+											<img src="/assets/images/char_1.png" class="mr-2 float-left" alt="Imagen">
+											<h4 style="color:#5a9edb;">Envío gratis
+											<div class="custom-control custom-switch" style="width: 70px;float: right;">
+													<input type="checkbox" class="custom-control-input" id="customSwitch1">
+													<label class="custom-control-label" for="customSwitch1"></label>
+											</div>
+											</h4>
+											<p class="pt-2">En productos pequeños por compras desde: $30.000</p>
+									</li>
+							</ul>
+							</div>
+						</div>
+						
 							<div class="sidebar_title">Categorías</div>
 							<ul class="sidebar_categories mt-2">
 									@if(isset($categories))
@@ -97,13 +118,8 @@
 								<li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
 							</ul>
 						</div> -->
-						<div class="sidebar_section">
-							<div class="sidebar_subtitle brands_subtitle"></div>
-							<ul class="brands_list">
-											<li class="brand"><a href="#">-</a></li>
-							</ul>
-						</div>
-					</div>
+						
+
 
 				</div>
 

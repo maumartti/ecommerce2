@@ -1835,7 +1835,7 @@ select option
 .newsletter
 {
 	width: 100%;
-	background: #fafafa;
+	background: #000;
 	padding-top: 60px;
 	padding-bottom: 60px;
 	box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
@@ -1863,7 +1863,7 @@ select option
 .newsletter_title
 {
 	font-size: 18px;
-	color: #000000;
+	color: #fff;
 }
 .newsletter_text p:last-child
 {

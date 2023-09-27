@@ -171,9 +171,9 @@
                                     <div class="slim"
                                         data-button-edit-title="Editar"
                                         data-button-remove-title="Borrar"
-                                        data-ratio="26:2"
+                                        data-ratio="12:8"
                                         data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Imágen de Portada</p></p>"
-                                        data-size="2200,170">
+                                        data-size="1200,809">
                                         <input type="file" name="image" />
                                     </div>
                                 </div>
@@ -248,9 +248,9 @@
                         <div class="slim" id="slimEditCat"
                             data-button-edit-title="Editar"
                             data-button-remove-title="Borrar"
-                            data-ratio="26:2"
+                            data-ratio="12:8"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Imágen de Portada</p></p>"
-                            data-size="2200,170">
+                            data-size="1200,809">
                             <input type="file" name="image" />
                         </div>
                     </div>

@@ -539,7 +539,7 @@
 	.banner
 	{
 		/*height: calc(100vh - 125px);*/
-		height: 310px;
+		/* height: 310px; */
 		padding-top: 0px;
 		padding-bottom: 0px;
 	}
