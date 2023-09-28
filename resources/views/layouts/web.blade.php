@@ -37,7 +37,7 @@
 @yield('head')
 
 <style>
-  .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover{
+  .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
     color: {{ $web->color }} ;
   }
   .bg1 , .icon-header-noti::after, .btn-back-to-top, .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after {
@@ -71,6 +71,9 @@
   height: 70px;
   border-radius: 100%;
   }
+	.slick3-dots li{
+		margin-bottom:14px !important;
+	}
 </style>
 
 </head>
@@ -120,19 +123,23 @@
 						<ul class="main-menu">
 							<li class="active-menu">
 								<a href="index.html">Home</a>
-								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.html">Categorías</a>
+									<ul class="sub-menu">
+									@if (isset($categories))
+										@if ($categories)
+											@foreach ($categories as $index => $category)
+											<li><a href="index.html">{{$category->name}}</a></li>
+											@endforeach
+										@endif
+									@endif
+									</ul>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="shoping-cart.html">Destacados</a>
 							</li>
 
 							<li>
@@ -140,11 +147,11 @@
 							</li>
 
 							<li>
-								<a href="/about.html">About</a>
+								<a href="/about.html">Nosotros</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.html">Contacto</a>
 							</li>
 						</ul>
 					</div>	
@@ -201,40 +208,48 @@
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
 			<ul class="topbar-mobile">
-				<li>
+				<!-- <li>
 					<div class="left-top-bar">
 						Free shipping for standard order over $100
 					</div>
-				</li>
+				</li> -->
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
 						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
+							Registro
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							My Account
+						<a href="/login" class="flex-c-m p-lr-10 trans-04">
+							Admin
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						<!-- <a href="#" class="flex-c-m p-lr-10 trans-04">
 							EN
 						</a>
 
 						<a href="#" class="flex-c-m p-lr-10 trans-04">
 							USD
-						</a>
+						</a> -->
 					</div>
 				</li>
 			</ul>
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="#">Home</a>
+				</li>
+
+				<li>
+					<a>Cateogrías</a>
 					<ul class="sub-menu-m">
-						<li><a href="index.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li>
+						@if (isset($categories))
+							@if ($categories)
+								@foreach ($categories as $index => $category)
+								<li><a href="index.html">{{$category->name}}</a></li>
+								@endforeach
+							@endif
+						@endif
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -242,11 +257,7 @@
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
-				</li>
-
-				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Destacados</a>
 				</li>
 
 				<li>
@@ -254,11 +265,11 @@
 				</li>
 
 				<li>
-					<a href="/about.html">About</a>
+					<a href="/about.html">Nosotros</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contact</a>
+					<a href="contact.html">Contacto</a>
 				</li>
 			</ul>
 		</div>
@@ -520,7 +531,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 
 	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+	<!-- <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
 		<div class="container">
@@ -585,7 +596,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
 							</p>
 							
-							<!--  -->
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-203 flex-c-m respon6">
@@ -646,7 +656,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								</div>	
 							</div>
 
-							<!--  -->
+					
 							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 								<div class="flex-m bor9 p-r-10 m-r-11">
 									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
@@ -671,7 +681,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
+	@yield('modal')
 
 <!--===============================================================================================-->	
 	<script src="/assets/theme/vendor/jquery/jquery-3.2.1.min.js"></script>

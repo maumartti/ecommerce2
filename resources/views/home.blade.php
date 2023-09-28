@@ -187,7 +187,7 @@
 					<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 						<!-- Block1 -->
 						<div class="block1 wrap-pic-w">
-							<img src="/assets/images/{{$category->image ? $category->image : 'no-image.png'}}" alt="IMG-BANNER">
+							<img src="/assets/images/{{$category->image ? $category->image : 'no-image2.png'}}" alt="IMG-BANNER">
 
 							<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 								<div class="block1-txt-child1 flex-col-l">
@@ -465,37 +465,37 @@
       @if (isset($products))
         @if ($products)
           @foreach ($products as $product)
-          @if ($loop->iteration <= 8)
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}}">
-            <!-- Block2 -->
-            <div class="block2">
-              <div class="block2-pic hov-img0">
-                <img src="/assets/images/products/{{$product->image1}}" alt="IMG-PRODUCT">
-                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                  Ver
-                </a>
-              </div>
-              <div class="block2-txt flex-w flex-t p-t-14">
-                <div class="block2-txt-child1 flex-col-l ">
-                  <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                  {{$product->name}}
-                  </a>
-                  <span class="stext-105 cl3">
-                  ${{$product->price}}
-                  </span>
-                </div>
-                <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          @else
-            @break
-          @endif
+          	@if ($loop->iteration <= 8)
+						<div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}}">
+							<!-- Block2 -->
+							<div class="block2">
+								<div class="block2-pic hov-img0">
+									<img src="/assets/images/products/{{$product->image1}}" alt="IMG-PRODUCT">
+									<a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+										Ver
+									</a>
+								</div>
+								<div class="block2-txt flex-w flex-t p-t-14">
+									<div class="block2-txt-child1 flex-col-l ">
+										<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										{{$product->name}}
+										</a>
+										<span class="stext-105 cl3">
+											<strong>${{$product->price}}</strong>
+										</span>
+									</div>
+									<div class="block2-txt-child2 flex-r p-t-3">
+										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+											<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
+											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+          	@else
+            	@break
+          	@endif
           @endforeach
       	@endif
       @endif
@@ -541,7 +541,7 @@
                                         {{ $product->name }}
                                     </a>
                                     <span class="stext-105 cl3">
-                                        ${{ $product->price }}
+																			<strong>${{$product->price}}</strong>
                                     </span>
                                 </div>
                                 <div class="block2-txt-child2 flex-r p-t-3">
@@ -642,14 +642,245 @@
 		</div>
 	</section>
 
-
-
-
-  
 @endsection
 
+
+
+
+
+
+@section('modal')
+<!-- Modal1 Ver Producto-->
+<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+    <div class="overlay-modal1 js-hide-modal1"></div>
+    <div class="container">
+        <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+            <button class="how-pos3 hov3 trans-04 js-hide-modal1">
+                <img src="/assets/theme/images/icons/icon-close.png" alt="CLOSE">
+            </button>
+            <div class="row">
+                <div class="col-md-6 col-lg-7 p-b-30">
+                    <div class="p-l-25 p-r-30 p-lr-0-lg">
+                        <div class="wrap-slick3 flex-sb flex-w">
+                            <div class="wrap-slick3-dots"></div>
+                            <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+                            <div class="slick3 gallery-lb">
+                                <div id="img-modal1" class="item-slick3" data-thumb="/assets/images/no-image2.png" >
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image1" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal2" class="item-slick2" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image2" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal3" class="item-slick3" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image3" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal4" class="item-slick4" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image4" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal5" class="item-slick5" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image5" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal6" class="item-slick6" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image6" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5 p-b-30">
+                    <div class="p-r-50 p-t-5 p-lr-0-lg">
+                        <h4 id="modal-name" class="mtext-105 cl2 js-name-detail p-b-14">
+                            Lightweight Jacket
+                        </h4>
+
+                        <span id="modal-price" class="mtext-106 cl2">
+                            $58.79
+                        </span>
+												
+                        <p id="modal-description" class="stext-102 cl3 p-t-23">
+													Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+                        </p>
+
+												<div id="modal-stock" class="mtext-106 cl2 p-t-23">
+														Stock: 0
+												</div>
+                        <div class="p-t-33">
+                            <!-- <div class="flex-w flex-r-m p-b-10">
+                                <div class="size-203 flex-c-m respon6">
+                                    Size
+                                </div>
+                                <div class="size-204 respon6-next">
+                                    <div class="rs1-select2 bor8 bg0">
+                                        <select class="js-select2" name="time">
+                                            <option>Choose an option</option>
+                                            <option>Size S</option>
+                                            <option>Size M</option>
+                                            <option>Size L</option>
+                                            <option>Size XL</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="flex-w flex-r-m p-b-10">
+                                <div class="size-203 flex-c-m respon6">
+                                    Color
+                                </div>
+
+                                <div class="size-204 respon6-next">
+                                    <div class="rs1-select2 bor8 bg0">
+                                        <select class="js-select2" name="time">
+                                            <option>Choose an option</option>
+                                            <option>Red</option>
+                                            <option>Blue</option>
+                                            <option>White</option>
+                                            <option>Grey</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="flex-w flex-r-m p-b-10">
+                                <div class="size-204 flex-w flex-m respon6-next">
+                                    <div class="wrap-num-product flex-w m-l-20 m-tb-20">
+                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+
+                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        </div>
+                                    </div>
+                                    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>	
+                        </div>
+                        <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                            <div class="flex-m  p-l-10 m-l-11">
+                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                                    <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
+                                </a>
+                            </div>
+
+                            <!-- <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+
+                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+
+                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+
+
+
+
 @section('script')
+
 <script>
+//al Abrir modal Prdocuto cargar info
+$(document).ready(function () {
+		$(".js-show-modal1").click(function (e) {
+				e.preventDefault(); // Evita que el enlace redirija
+
+				// Obtén el objeto JSON del atributo data-product y analízalo
+				var productData = $(this).attr("data-product");
+				var product = JSON.parse(productData);
+
+				// Ahora puedes acceder a las propiedades del producto en JavaScript
+				console.log('moda product');
+				console.log(product);
+
+				$("#modal-name").text(product.name);
+				$("#modal-price").text('$'+product.price);
+				$("#modal-description").text(product.description);
+				$("#modal-stock").text('Stock: '+product.stock);
+
+				// Agrega las imagenes del producto al modal
+				var imagenes = $(".slick3-dots img");
+				imagenes.each(function (index, elemento) {
+						var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
+						if (product[propiedadImagen] !== null) {
+								$(elemento).show();
+								$(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+								$("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
+							}else{
+								// $(elemento).remove();
+								// $("#img-modal"+propiedadImagen).remove();
+								// $("#modal-image"+propiedadImagen).remove();
+								$(elemento).attr("src", '/assets/images/no-image2.png');
+								$("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
+								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
+						}
+				});
+
+				// Abre el modal
+				$(".wrap-modal1").show();
+		});
+
+		// Cierra el modal cuando se hace clic en el botón de cerrar
+		$(".js-hide-modal1").click(function () {
+				$(".wrap-modal1").hide();
+		});
+});
+</script>
+
+
+
+
+
+<script>
+//play - stop video instagram
 function toggleVideo(index) {
     var video = document.getElementById('video-' + index);
     var playIcon = document.getElementById('play-icon-' + index);
@@ -674,9 +905,9 @@ document.querySelectorAll('.play-icon a').forEach(function(link) {
 
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <script>
   //codigo de rotor de destacados
     $(document).ready(function(){
