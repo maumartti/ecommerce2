@@ -37,7 +37,7 @@
 @yield('head')
 
 <style>
-  .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .rot{
+  .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover{
     color: {{ $web->color }} ;
   }
   .bg1 , .icon-header-noti::after, .btn-back-to-top, .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after {
@@ -45,6 +45,31 @@
   }
   .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after{
     border-color: {{ $web->color }} ;
+  }
+  /* Add styles for your floating WhatsApp button */
+  .floating-whatsapp {
+    position: fixed;
+    bottom: 55px;
+    right: 32px;
+    z-index: 1000;
+  }
+
+  .floating-whatsapp a {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
+    transition: background-color 0.3s ease;
+  }
+
+  .floating-whatsapp a img {
+      width: 70px;
+  height: 70px;
+  border-radius: 100%;
   }
 </style>
 
@@ -255,6 +280,11 @@
 		</div>
 	</header>
 
+  <div class="floating-whatsapp">
+    <a href="https://wa.me/+56982639595" target="_blank">
+      <img src="/assets/images/wp.png" alt="WhatsApp">
+    </a>
+  </div>
 	<!-- Cart -->
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
@@ -407,27 +437,30 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+          Av. Obispo Manuel Umaña 299, 9160000 Estación Central, Región Metropolitana, Chile
 					</p>
 
 					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="https://www.facebook.com/ImportadoraTatarSpA/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="https://www.instagram.com/importadora_tatar/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-instagram"></i>
 						</a>
 
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
+						<a href="https://g.co/kgs/cXg3UX" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-google"></i>
+						</a>
+						<a href="https://www.tiktok.com/@importadora_tatar" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="top: 2px;position: relative;" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#b2b2b2}</style><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
 						</a>
 					</div>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Newsletter
+						Subscribeté
 					</h4>
 
 					<form>
@@ -448,7 +481,7 @@
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
-						<img src="/assets/theme/images/icons/icon-pay-01.png" alt="ICON-PAY">
+						<img src="/assets/theme/images/icons/m.png" alt="ICON-PAY" style="width:32px;position:relative;top:-1px;height:21px;border-radius:3px;">
 					</a>
 
 					<a href="#" class="m-all-1">
@@ -470,7 +503,7 @@
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | importadoratatar.cl
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>

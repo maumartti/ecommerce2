@@ -481,7 +481,7 @@
                   {{$product->name}}
                   </a>
                   <span class="stext-105 cl3">
-                  {{$product->price}}
+                  ${{$product->price}}
                   </span>
                 </div>
                 <div class="block2-txt-child2 flex-r p-t-3">
@@ -526,7 +526,7 @@
         <div class="carousel-inner row w-100 mx-auto flex-nowrap" role="listbox">
             @if (isset($products) && $products)
                 @foreach ($products as $index => $product)
-                      <div class="carousel-item col-md-3 isotope-item p-0 @if ($loop->first) active @endif">
+                      <div class="carousel-item pl-1 col-md-3 isotope-item p-0 @if ($loop->first) active @endif">
                         <!-- Contenido del producto -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
@@ -541,7 +541,7 @@
                                         {{ $product->name }}
                                     </a>
                                     <span class="stext-105 cl3">
-                                        {{ $product->price }}
+                                        ${{ $product->price }}
                                     </span>
                                 </div>
                                 <div class="block2-txt-child2 flex-r p-t-3">
@@ -557,12 +557,12 @@
                 @endforeach
             @endif
         </div>
-        <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev" style="left: -2.3rem;">
-            <i class="zmdi zmdi-caret-left rot" style="font-size: 12rem;"></i>
+        <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev" style="left: -1.5rem;">
+            <i class="zmdi zmdi-caret-left rot" style="font-size: 12rem;color:grey;"></i>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next text-faded" href="#productCarousel" role="button" data-slide="next" style="right: -2.3rem;">
-            <i class="zmdi zmdi-caret-right rot" style="font-size: 12rem;"></i>
+        <a class="carousel-control-next text-faded" href="#productCarousel" role="button" data-slide="next" style="right: -1.5rem;">
+            <i class="zmdi zmdi-caret-right rot" style="font-size: 12rem;color:grey;"></i>
             <span class="sr-only">Next</span>
         </a>
     </div>
