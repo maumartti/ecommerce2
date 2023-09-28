@@ -21,7 +21,7 @@ class WebController extends Controller
         $web = Web::find(1);
         $profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
         //$feed = [];
-        $feed = $profile->refreshFeed(8);
+        $feed = $profile->refreshFeed(4);
         //$feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
         //dd($feed);
         $products = Product::all();

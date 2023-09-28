@@ -37,15 +37,9 @@
 @yield('head')
 
 <style>
-  .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .rot{
-    color: {{ $web->color }} ;
-  }
-  .bg1 , .icon-header-noti::after, .btn-back-to-top, .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after {
-    background-color: {{ $web->color }} ;
-  }
-  .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after{
-    border-color: {{ $web->color }} ;
-  }
+    .cl2 {
+      color: {{ $web->color }};
+    }
 </style>
 
 </head>
@@ -58,9 +52,9 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">
-						<!-- Envío gratis en compras a partir de $30.000 -->
-					</div>
+					<!-- <div class="left-top-bar">
+						Envío gratis en compras a partir de $30.000
+					</div> -->
 
 					<div class="right-top-bar flex-w h-full">
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
@@ -94,32 +88,32 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="index.html">Home</a>
+								<a href="index.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Home</a>
 								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
+									<li><a href="index.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Homepage 1</a></li>
+									<li><a href="home-02.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Homepage 2</a></li>
+									<li><a href="home-03.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Homepage 3</a></li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Shop</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="shoping-cart.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Features</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="blog.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Blog</a>
 							</li>
 
 							<li>
-								<a href="/about.html">About</a>
+								<a href="/about.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>About</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.html" @isset($web->color) style="color: {{ $web->color }};" @endisset>Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -146,7 +140,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO"></a>
+				<a href="index.html"><img src="/assets/theme/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -351,45 +345,57 @@
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Categorías
+						Categories
 					</h4>
 
 					<ul>
-          @if (isset($categories))
-            @if ($categories)
-              @foreach ($categories as $index => $category)
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								{{$category->name}}
+								Women
 							</a>
 						</li>
-            @endforeach
-      	    @endif
-          @endif 
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Men
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Shoes
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Watches
+							</a>
+						</li>
 					</ul>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Ayuda
+						Help
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Sistema de envíos
+								Track Order
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Devoluciónes 
+								Returns 
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Políticas
+								Shipping
 							</a>
 						</li>
 
@@ -403,7 +409,7 @@
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Contacto
+						GET IN TOUCH
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
@@ -742,6 +748,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="/assets/theme/js/main.js"></script>
 
-  @yield('script')
 </body>
 </html>

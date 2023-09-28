@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="form-group pb-5 border-bottom">
+                        <!-- <div class="form-group pb-5 border-bottom">
                             <h6 class="mb-5">Banner promocional</h6>
                             <div class="slim"
                                 data-button-edit-title="Editar"
@@ -104,7 +104,7 @@
                                 @endif
                                 <input type="file" name="imageBanner1" />
                             </div>
-                    </div>
+                        </div> -->
                     <div class="form-group">
                         <div class="input-group" style="height: 120px;">
                             <h6>Color institucional</h6>
