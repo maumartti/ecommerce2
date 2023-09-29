@@ -34,6 +34,58 @@ class WebController extends Controller
         $subcategories = SubCategory::with('category')->get();
         return view('home')->with('web',$web)->with('feed',$feed)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
+    public function contact()
+    {
+        $web = Web::find(1);
+        $products = Product::all();
+        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
+        $productsDescount = Product::whereNotNull('descount')->get();
+        $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
+        $productsViews = Product::whereNotNull('views')->get();
+        $productsPromo = Product::whereNotNull('promo')->get();
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        $subcategories = SubCategory::with('category')->get();
+        return view('contact')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+    }
+    public function about()
+    {
+        $web = Web::find(1);
+        $products = Product::all();
+        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
+        $productsDescount = Product::whereNotNull('descount')->get();
+        $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
+        $productsViews = Product::whereNotNull('views')->get();
+        $productsPromo = Product::whereNotNull('promo')->get();
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        $subcategories = SubCategory::with('category')->get();
+        return view('about')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+    }
+    public function blog()
+    {
+        $web = Web::find(1);
+        $products = Product::all();
+        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
+        $productsDescount = Product::whereNotNull('descount')->get();
+        $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
+        $productsViews = Product::whereNotNull('views')->get();
+        $productsPromo = Product::whereNotNull('promo')->get();
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        $subcategories = SubCategory::with('category')->get();
+        return view('blog')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+    }
+    // public function cart()
+    // {
+    //     $web = Web::find(1);
+    //     $products = Product::all();
+    //     $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
+    //     $productsDescount = Product::whereNotNull('descount')->get();
+    //     $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
+    //     $productsViews = Product::whereNotNull('views')->get();
+    //     $productsPromo = Product::whereNotNull('promo')->get();
+    //     $categories = Category::with('subcategories')->orderBy('pos')->get();
+    //     $subcategories = SubCategory::with('category')->get();
+    //     return view('blog')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+    // }
 
     public function item(Request $request, $urlCat){
         $web = Web::find(1);

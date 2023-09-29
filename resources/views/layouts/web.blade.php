@@ -85,7 +85,7 @@
 <body class="animsition">
 	
 	<!-- Header -->
-	<header>
+	<header class="header-v4">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
@@ -131,7 +131,7 @@
 							</li>
 
 							<li>
-								<a href="product.html">Categorías</a>
+								<a href="#">Categorías</a>
 									<ul class="sub-menu">
 									@if (isset($categories))
 										@if ($categories)
@@ -144,19 +144,19 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Destacados</a>
+								<a href="#">Destacados</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="/blog">Blog</a>
 							</li>
 
 							<li>
-								<a href="/about.html">Nosotros</a>
+								<a href="/nosotros">Nosotros</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contacto</a>
+								<a href="/contacto">Contacto</a>
 							</li>
 						</ul>
 					</div>	
@@ -262,19 +262,19 @@
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Destacados</a>
+					<a href="#" class="label1 rs1" data-label1="hot">Destacados</a>
 				</li>
 
 				<li>
-					<a href="blog.html">Blog</a>
+					<a href="/blog">Blog</a>
 				</li>
 
 				<li>
-					<a href="/about.html">Nosotros</a>
+					<a href="/nosotros">Nosotros</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contacto</a>
+					<a href="/contacto">Contacto</a>
 				</li>
 			</ul>
 		</div>
@@ -344,10 +344,10 @@
 						Total: ${{ number_format(session('totalPrice', 0), 2) }}
 					</div>
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							Ver Carrito
 						</a>
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Completar compra
 						</a>
 					</div>

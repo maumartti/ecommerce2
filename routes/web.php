@@ -17,6 +17,9 @@ Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web
 Route::get('/item/{url}', [App\Http\Controllers\WebController::class, 'item'])->name('item');
 Route::get('/categoria/{urlCat}/{urlSub?}', [App\Http\Controllers\WebController::class, 'category'])->name('category');
 Route::get('/privacidad', [App\Http\Controllers\WebController::class, 'index'])->name('index');
+Route::get('/contacto', [App\Http\Controllers\WebController::class, 'contact'])->name('contact');
+Route::get('/nosotros', [App\Http\Controllers\WebController::class, 'about'])->name('about');
+Route::get('/blog', [App\Http\Controllers\WebController::class, 'blog'])->name('blog');
 Route::get('/carrito', [App\Http\Controllers\WebController::class, 'cart'])->name('cart');
 Route::post('/add-to-cart/{productId}', [App\Http\Controllers\WebController::class, 'addToCart'])->name('addToCart');
 Route::get('/quit-to-cart/{productId}', [App\Http\Controllers\WebController::class, 'quitToCart'])->name('quitToCart');
