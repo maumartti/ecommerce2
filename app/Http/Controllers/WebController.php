@@ -24,12 +24,12 @@ class WebController extends Controller
         $feed = $profile->refreshFeed(4);
         //$feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
         //dd($feed);
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc')->get();
         $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
         $productsDescount = Product::whereNotNull('descount')->get();
         $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
         $productsViews = Product::whereNotNull('views')->get();
-        $productsPromo = Product::whereNotNull('promo')->get();
+        $productsPromo = Product::where('promo', 1)->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         return view('home')->with('web',$web)->with('feed',$feed)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
@@ -73,20 +73,6 @@ class WebController extends Controller
         $subcategories = SubCategory::with('category')->get();
         return view('blog')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
-    // public function cart()
-    // {
-    //     $web = Web::find(1);
-    //     $products = Product::all();
-    //     $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
-    //     $productsDescount = Product::whereNotNull('descount')->get();
-    //     $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
-    //     $productsViews = Product::whereNotNull('views')->get();
-    //     $productsPromo = Product::whereNotNull('promo')->get();
-    //     $categories = Category::with('subcategories')->orderBy('pos')->get();
-    //     $subcategories = SubCategory::with('category')->get();
-    //     return view('blog')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
-    // }
-
     public function item(Request $request, $urlCat){
         $web = Web::find(1);
         $product = Product::where('url', $urlCat)->with('category')->first();
@@ -106,11 +92,23 @@ class WebController extends Controller
         $productsCategory = Product::where('category_id',$category->id)->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
-        return view('category')->with('web',$web)->with('category',$category)->with('productsCategory',$productsCategory)->with('categories',$categories)->with('subcategories',$subcategories)->with('productsViews',$productsViews);
+        $subcategoriesCategory = SubCategory::where('category_id', $category->id)->get();
+        return view('category')->with('web',$web)->with('category',$category)->with('productsCategory',$productsCategory)->with('categories',$categories)->with('subcategories',$subcategories)->with('subcategoriesCategory',$subcategoriesCategory)->with('productsViews',$productsViews);
+    }
+    public function featured(Request $request){
+        $web = Web::find(1);
+        $products = Product::where('promo', 1)->get();
+        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
+        $productsDescount = Product::whereNotNull('descount')->get();
+        $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
+        $productsViews = Product::whereNotNull('views')->get();
+        $productsPromo = Product::whereNotNull('promo')->get();
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        $subcategories = SubCategory::with('category')->get();
+        return view('featured')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
 
     public function cart(Request $request){
-
         //se calcula el total,subtotal,iva del carrito
         $cart = session('cart', []);
         $subtotal = 0;

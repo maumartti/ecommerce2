@@ -1,249 +1,26 @@
 @extends('layouts.web')
 
+
 @section('head')
-<style>
 
-@media (min-width: 768px) {
-    /* show 4 items */
-    .carousel-inner .active,
-    .carousel-inner .active + .carousel-item,
-    .carousel-inner .active + .carousel-item + .carousel-item,
-    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
-        display: block;
-    }
-    
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
-        transition: none;
-    }
-    
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev {
-      position: relative;
-      transform: translate3d(0, 0, 0);
-    }
-    
-    /* last visible item + 1 */
-    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: absolute;
-        top: 0;
-        right: -25%;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-    
-    /* left or forward direction */
-    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
-    .carousel-item-next.carousel-item-left + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: relative;
-        transform: translate3d(-100%, 0, 0);
-        visibility: visible;
-    }
-    
-    /* farthest right hidden item must be abso position for animations */
-    .carousel-inner .carousel-item-next.carousel-item-left {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-    
-    .carousel-inner .carousel-item-prev.carousel-item-right {
-        position: absolute;
-        top: 0;
-        left: -25%;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-    
-    /* right or prev direction */
-    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
-    .carousel-item-prev.carousel-item-right + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: relative;
-        transform: translate3d(100%, 0, 0);
-        display: block;
-        visibility: visible;
-    }
-
-}
-.carousel-control-next-icon, .carousel-control-prev-icon, .fa-lg {
-  width: 60px !important;
-  height: 60px !important;
-  font-size:64px !important;
-}
-/* .carousel-inner, #productCarousel{
-  width: 100% !important;
-} */
-</style>
 @endsection
 
 @section('content')
-
-
-  <!-- Slider -->
-	<section class="section-slide">
-		<div class="wrap-slick1">
-			<div class="slick1">
-        @if($web->imageRotor1)
-				<div class="item-slick1" style="background-image: url(/assets/images/{{$web->imageRotor1}});">
-					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-									Nueva colección 2023
-								</span>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									DE TEMPORADA
-								</h2>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="/categoria/ofertas" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Ver Ofertas
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-        @endif
-        @if($web->imageRotor2)
-				<div class="item-slick1" style="background-image: url(/assets/images/{{$web->imageRotor2}});">
-					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-									Material recién llegado
-								</span>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									USA y EUROPA
-								</h2>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Ver Más
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-        @endif
-        @if($web->imageRotor3)
-				<div class="item-slick1" style="background-image: url(/assets/images/{{$web->imageRotor3}});">
-					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-									Buena calidad
-								</span>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									OFERTAS 2023
-								</h2>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Ver más
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-        @endif
-
-			</div>
-		</div>
-	</section>
-
-	<!-- Categprias -->
-	<div class="sec-banner bg0 p-t-80 p-b-50">
-		<div class="container">
-			<div class="row">
-
-			@if (isset($categories))
-        @if ($categories)
-          @foreach ($categories as $index => $category)
-					<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-						<!-- Block1 -->
-						<div class="block1 wrap-pic-w">
-							<img src="/assets/images/{{$category->image ? $category->image : 'no-image2.png'}}" alt="IMG-BANNER">
-
-							<a href="/categoria/{{$category->url}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-								<div class="block1-txt-child1 flex-col-l">
-									<span class="block1-name ltext-102 trans-04 p-b-8">
-									{{$category->name}}
-									</span>
-
-									<!-- <span class="block1-info stext-102 trans-04">
-										Temporada 2023
-									</span> -->
-								</div>
-
-								<div class="block1-txt-child2 p-b-4 trans-05">
-									<div class="block1-link stext-101 cl0 trans-09">
-										Ver productos
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-					@endforeach
-      	@endif
-      @endif
-
-			</div>
-		</div>
-	</div>
-
-
-
-  
 	<!-- Product -->
-	<section class="bg0 p-t-23 p-b-20">
+	<section class="bg0 p-t-73 p-b-60">
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">
-					Nuestros Productos
+					Destacados
+					<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="position:relative;top:4px;"><path fill="currentColor" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"/></svg>
 				</h3>
 			</div>
 
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						Ver Todos
+						Todos los destacados 
 					</button>
-
-          @if (isset($categories))
-            @if ($categories)
-              @foreach ($categories as $index => $category)
-              <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{$category->id}}">
-                {{$category->name}}
-              </button>
-              @endforeach
-      	    @endif
-          @endif     
-
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -501,148 +278,9 @@
       @endif
 			</div>
 
-			<!-- Load more -->
-			<!-- <div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Cargar más
-				</a>
-			</div> -->
 		</div>
 	</section>
-
-
-
-
- 	<!-- Product Ofertas -->
-  <section class="bg0 p-t-23 p-b-40">
-    <div class="container">
-        <div class="p-b-30">
-            <h3 class="ltext-103 cl5">
-                Destacados
-            </h3>
-        </div>
-        <div class="container-fluid p-0">
-				<div id="productCarousel" class="carousel slide" data-ride="carousel" data-interval="12000">
-						<div class="carousel-inner row w-100 mx-auto flex-nowrap" role="listbox">
-								@if (isset($productsPromo) && $productsPromo)
-										@foreach ($productsPromo as $index => $product)
-													<div class="carousel-item pl-1 col-md-3 isotope-item p-0 @if ($loop->first) active @endif">
-														<!-- Contenido del producto -->
-														<div class="block2">
-																<div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
-																		<img src="/assets/images/products/{{ $product->image1 }}" alt="{{ $product->name }}">
-																		<a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-																				Ver
-																		</a>
-																</div>
-																<div class="block2-txt flex-w flex-t p-t-14">
-																		<div class="block2-txt-child1 flex-col-l">
-																				<a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-																						{{ $product->name }}
-																				</a>
-																				<span class="stext-105 cl3">
-																					<strong>${{number_format($product->price, 2)}}</strong>
-																				</span>
-																		</div>
-																		<div class="block2-txt-child2 flex-r p-t-3">
-																				<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-																						<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-																						<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-																				</a>
-																		</div>
-																</div>
-														</div>
-												
-													</div>
-										@endforeach
-								@endif
-						</div>
-						<a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev" style="left: -1.5rem;">
-								<i class="zmdi zmdi-caret-left rot" style="font-size: 12rem;color:grey;"></i>
-								<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next text-faded" href="#productCarousel" role="button" data-slide="next" style="right: -1.5rem;">
-								<i class="zmdi zmdi-caret-right rot" style="font-size: 12rem;color:grey;"></i>
-								<span class="sr-only">Next</span>
-						</a>
-					</div>
-			</div>
-    </div>
-	</section>
-
-
-  
-  
-
-
-
-	<!-- Instagram feed -->
-	<section class="bg0 p-t-23 p-b-40">
-		<div class="container">
-			<div class="p-b-10">
-				<h3 class="ltext-103 cl5">
-          Síguenos en Instagram
-          <div class="col-12 mt-3">
-            <div class="row">
-                <div style="/*! width: 80px !important; */" class="col-0 p-0">
-                    <div class="bg-transparent">
-                        <a href="https://www.instagram.com/importadora_tatar" target="_blank" style="position: relative;">
-                            <img src="/assets/images/instaC.png" class="profile-border" alt="Border" style="width: 50px;">
-                            <img src="/assets/images/logoInsta.jpg" class="profile-img" alt="Foto de perfil" style="position: absolute;left: 10px;width: 30px;top:11px;">
-                        </a>
-                    </div>
-                </div>
-                <div class="col pl-1">
-                    <div class="trends_container p-0">
-                        <h6 class="trends_title p-0 pt-1">
-                            <div class="profile-picture">
-                                <a href="https://www.instagram.com/importadora_tatar" target="_blank">
-                                    <h4 class="text-center mb-0"></h4>
-                                </a>
-                            </div>
-                        </h6>
-                        <div class="trends_text text-left">
-                            <div class="profile-name">
-                                <a href="https://www.instagram.com/importadora_tatar" target="_blank" style="font-size: 18px;">
-                                    @importadora_tatar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-				</h3>
-			</div>
-			<div class="row">
-      @if (isset($feed))
-        @if ($feed)
-        @foreach($feed as $item)
-        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item d-inline-block" >
-            <div class="block2-pic hov-img0" style="background:black;">
-                @if($item->type === 'video')
-                <video preload="metadata" id="video-{{ $loop->index }}" class="video-element" style="width: 100%;">
-                    <source src="{{ $item->url }}" type="video/mp4">
-                </video>
-                <a href="javascript:void(0);" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" onclick="toggleVideo({{ $loop->index }})">
-                    Ver <svg xmlns="http://www.w3.org/2000/svg" class="pl-1" width="20" height="18" viewBox="0 0 20 20"><path fill="currentColor" d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM7 6l8 4l-8 4V6z"/></svg>
-                </a>
-                @else
-                <img src="{{ $item->url }}" alt="Imagen" class="hov-img0">
-                @endif
-            </div>
-        </div>
-        @endforeach
-      	@endif
-      @endif
-			</div>
-
-		</div>
-	</section>
-
 @endsection
-
-
 
 
 
@@ -822,9 +460,7 @@
 
 
 
-
 @section('script')
-
 <script>
 //al Abrir modal Prdocuto cargar info
 $(document).ready(function () {
@@ -890,37 +526,6 @@ $(document).ready(function () {
 
 
 
-
-
-<script>
-//play - stop video instagram
-function toggleVideo(index) {
-    var video = document.getElementById('video-' + index);
-    var playIcon = document.getElementById('play-icon-' + index);
-
-    if (video.paused) {
-        video.volume = 0.3; // Establecer el volumen al 30%
-        video.play();
-        playIcon.style.display = 'none';
-    } else {
-        video.pause();
-        playIcon.style.display = 'block';
-    }
-}
-// Detener la propagación del clic en el icono de enlace
-document.querySelectorAll('.play-icon a').forEach(function(link) {
-    link.addEventListener('click', function(event) {
-        event.stopPropagation();
-    });
-});
-</script>
-
-
-
-
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <script>
   //codigo de rotor de destacados
     $(document).ready(function(){

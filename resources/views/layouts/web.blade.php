@@ -79,6 +79,9 @@
 	.slick3-dots li{
 		margin-bottom:14px !important;
 	}
+	.label-featured::before:hover {
+  	display:inline-block !important;
+	}
 </style>
 
 </head>
@@ -119,7 +122,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="/" class="logo">
 						<img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO">
 					</a>
 
@@ -136,7 +139,7 @@
 									@if (isset($categories))
 										@if ($categories)
 											@foreach ($categories as $index => $category)
-											<li><a href="/">{{$category->name}}</a></li>
+											<li><a href="/categoria/{{$category->url}}">{{$category->name}}</a></li>
 											@endforeach
 										@endif
 									@endif
@@ -144,7 +147,7 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="#">Destacados</a>
+								<a href="/destacados">Destacados</a>
 							</li>
 
 							<li>
@@ -251,7 +254,7 @@
 						@if (isset($categories))
 							@if ($categories)
 								@foreach ($categories as $index => $category)
-								<li><a href="/">{{$category->name}}</a></li>
+								<li><a href="/categoria/{{$category->url}}">{{$category->name}}</a></li>
 								@endforeach
 							@endif
 						@endif
@@ -262,7 +265,7 @@
 				</li>
 
 				<li>
-					<a href="#" class="label1 rs1" data-label1="hot">Destacados</a>
+					<a href="/destacados" class="label1 rs1" data-label1="hot">Destacados</a>
 				</li>
 
 				<li>
@@ -375,7 +378,7 @@
             @if ($categories)
               @foreach ($categories as $index => $category)
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="/categoria/{{$category->url}}" class="stext-107 cl7 hov-cl1 trans-04">
 								{{$category->name}}
 							</a>
 						</li>

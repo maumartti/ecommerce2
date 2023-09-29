@@ -2,273 +2,563 @@
 
 
 @section('head')
-<link rel="stylesheet" type="text/css" href="/assets/styles/shop_styles.css">
-<link rel="stylesheet" type="text/css" href="/assets/styles/shop_responsive.css">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   
-<style>
-    .category-arrow {
-        float: right;
-				transition: transform 0.3s;
-    }
-    .category-arrow::before {
-        content: ">"; /* Unicode for right-pointing triangle */
-				transition: transform 0.3s;
-				display: inline-block; /* Add this line to ensure the arrow takes up space */
-				width: 10px; /* Adjust the width as needed */
-				text-align: right; /* Align the arrow to the right */
-    }
-		/* .collapsed .category-arrow::before {
-    transform: rotate(90deg); 
-		} */
-		.category-item{
-			border:1px solid silver;
-			border-radius:2px;
-		}
-		.category-rotated {
-        transform: rotate(90deg);
-    }
-</style>
 
 @endsection
 
 @section('content')
-<div class="super_container">
-	
-	
-	<!-- Home -->
-
-	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
-		<div class="home_overlay"></div>
-		<div class="home_content d-flex flex-column align-items-center justify-content-center" style="background-image: url('/assets/images/{{ isset($category->image) ? $category->image : '' }}');background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;">
-			@if(!$category->image)
-			<h2 class="home_title" style="background: #dfdfdfa3;border-radius: 7px;padding: 0px 10px;">Categoría: {{$category->name}}</h2>
-			@endif
-		</div>
-	</div>
-
-	<!-- Shop -->
-
-	<div class="shop">
+	<!-- Product -->
+	<section class="bg0 p-t-73 p-b-60">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5">
+					Categoría: {{$category->name}}
+				</h3>
+			</div>
 
-					<!-- Shop Sidebar -->
-					<div class="shop_sidebar">
-						<div class="sidebar_section">
+			<div class="flex-w flex-sb-m p-b-52">
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+						Ver Todos
+					</button>
 
-						<div class="sidebar_section">
-							<div class="sidebar_subtitle brands_subtitle"></div>
-							<ul class="brands_list">
-									<li class="brand">
-											<img src="/assets/images/char_1.png" class="mr-2 float-left" alt="Imagen">
-											<h4 style="color:#5a9edb;">Envío gratis
-											<div class="custom-control custom-switch" style="width: 70px;float: right;">
-													<input type="checkbox" class="custom-control-input" id="customSwitch1">
-													<label class="custom-control-label" for="customSwitch1"></label>
-											</div>
-											</h4>
-											<p class="pt-2">En productos pequeños por compras desde: $30.000</p>
-									</li>
-							</ul>
-							</div>
-						</div>
-						
-							<div class="sidebar_title">Categorías</div>
-							<ul class="sidebar_categories mt-2">
-									@if(isset($categories))
-											@foreach ($categories as $index => $category)
-													<li class="category-toggle category-item p-2"  data-toggle="collapse" data-target="#submenu{{$index}}">
-															<a href="#">
-																	<span class="category-name">{{$category->name}}</span>
-																	<span class="category-arrow"></span>
-															</a>
-															@if(isset($category->subcategories))
-																	<ul id="submenu{{$index}}" class="submenu collapse mt-2">
-																			@foreach ($category->subcategories as $index => $subcategory)
-																					<li class="pl-3"><a href="/categoria/{{$category->url}}/{{$subcategory->url}}">{{$subcategory->name}} →</a></li>
-																			@endforeach
-																	</ul>
-															@endif
-													</li>
-											@endforeach
-									@endif
-							</ul>
-						</div>
-						<!-- <div class="sidebar_section filter_by_section">
-							<div class="sidebar_title">Filter By</div>
-							<div class="sidebar_subtitle">Price</div>
-							<div class="filter_price">
-								<div id="slider-range" class="slider_range"></div>
-								<p>Range: </p>
-								<p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
-							</div>
-						</div>
-						<div class="sidebar_section">
-							<div class="sidebar_subtitle color_subtitle">Color</div>
-							<ul class="colors_list">
-								<li class="color"><a href="#" style="background: #b19c83;"></a></li>
-								<li class="color"><a href="#" style="background: #000000;"></a></li>
-								<li class="color"><a href="#" style="background: #999999;"></a></li>
-								<li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
-								<li class="color"><a href="#" style="background: #df3b3b;"></a></li>
-								<li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
-							</ul>
-						</div> -->
-						
-
+          @if (isset($subcategoriesCategory))
+            @if ($subcategoriesCategory)
+              @foreach ($subcategoriesCategory as $index => $category)
+              <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{$category->id}}">
+                {{$category->name}}
+              </button>
+              @endforeach
+      	    @endif
+          @endif     
 
 				</div>
 
-				<div class="col-lg-9">
-					
-					<!-- Shop Content -->
-
-					<div class="shop_content">
-						<div class="shop_bar clearfix">
-							<div class="shop_product_count"><span>{{count($productsCategory)}}</span> productos encontrados</div>
-							<div class="shop_sorting">
-								<span>Filtrar por:</span>
-								<ul>
-									<li>
-										<span class="sorting_text">últimos agregados <i class="fas fa-chevron-down"></span></i>
-										<ul>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>últimos agregados</li>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>Nombre</li>
-											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>Precio</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="">
-							<div class="product_grid_border"></div>
-
-							<!-- Product Item -->
-							@if (isset($productsCategory))
-								@if ($productsCategory)
-										<div class="col-12">
-										<div class="row">
-												@foreach ($productsCategory as $product)
-														<div class="product_item col-md-3 col-sm-6">
-																<div class="product_border"></div>
-																<div class="product_image d-flex flex-column align-items-center justify-content-center">
-																		<a href="/item/{{$product->url}}">
-																				<img src="/assets/images/products/{{$product->image1}}" alt="">
-																		</a>
-																</div>
-																<div class="product_content">
-																		<div class="product_price" style="color:#DE2423;background: #ffffffa3;">${{$product->price}}</div>
-																		<div class="product_name mt-4"><div><a href="#" tabindex="0">{{$product->name}}</a></div></div>
-																</div>
-																<div class="product_fav"><i class="fas fa-heart"></i></div>
-																<ul class="product_marks">
-																		@if($product->descount)
-																				<li class="product_mark product_discount">-{{$product->descount}}%</li>
-																		@endif
-																		<!-- <li class="product_mark product_new">new</li> -->
-																</ul>
-														</div>
-												@endforeach
-										</div>
-										</div>
-								@endif
-							@endif
-
-
-						</div>
-
-						<!-- Shop Page Navigation -->
-
-						<div class="shop_page_nav d-flex flex-row">
-							<div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
-							<ul class="page_nav d-flex flex-row">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">...</a></li>
-								<li><a href="#">21</a></li>
-							</ul>
-							<div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
-						</div>
-
+				<div class="flex-w flex-c-m m-tb-10">
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						 Filter
 					</div>
 
+					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						Search
+					</div>
+				</div>
+				
+				<!-- Search product -->
+				<div class="dis-none panel-search w-full p-t-10 p-b-15">
+					<div class="bor8 dis-flex p-l-15">
+						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+							<i class="zmdi zmdi-search"></i>
+						</button>
+
+						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+					</div>	
+				</div>
+
+				<!-- Filter -->
+				<div class="dis-none panel-filter w-full p-t-10">
+					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+						<div class="filter-col1 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Sort By
+							</div>
+
+							<ul>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Default
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Popularity
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Average rating
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+										Newness
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Price: Low to High
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Price: High to Low
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="filter-col2 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Price
+							</div>
+
+							<ul>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+										All
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										$0.00 - $50.00
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										$50.00 - $100.00
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										$100.00 - $150.00
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										$150.00 - $200.00
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										$200.00+
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="filter-col3 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Color
+							</div>
+
+							<ul>
+								<li class="p-b-6">
+									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
+										<i class="zmdi zmdi-circle"></i>
+									</span>
+
+									<a href="#" class="filter-link stext-106 trans-04">
+										Black
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
+										<i class="zmdi zmdi-circle"></i>
+									</span>
+
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+										Blue
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
+										<i class="zmdi zmdi-circle"></i>
+									</span>
+
+									<a href="#" class="filter-link stext-106 trans-04">
+										Grey
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
+										<i class="zmdi zmdi-circle"></i>
+									</span>
+
+									<a href="#" class="filter-link stext-106 trans-04">
+										Green
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
+										<i class="zmdi zmdi-circle"></i>
+									</span>
+
+									<a href="#" class="filter-link stext-106 trans-04">
+										Red
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
+										<i class="zmdi zmdi-circle-o"></i>
+									</span>
+
+									<a href="#" class="filter-link stext-106 trans-04">
+										White
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="filter-col4 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Tags
+							</div>
+
+							<div class="flex-w p-t-4 m-r--5">
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Fashion
+								</a>
+
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Lifestyle
+								</a>
+
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Denim
+								</a>
+
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Streetstyle
+								</a>
+
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Crafts
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 
-	<!-- Recently Viewed -->
-
-	<div class="viewed">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="viewed_title_container">
-						<h3 class="viewed_title">Vistos Recientes</h3>
-						<div class="viewed_nav_container">
-							<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
-							<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
-						</div>
-					</div>
-
-					<div class="viewed_slider_container">
-						
-						<!-- Recently Viewed Slider -->
-
-						<div class="owl-carousel owl-theme viewed_slider">
-							
-						@if (isset($productsViews))
-							@if ($productsViews)
-								@foreach ($productsViews as $product)
-									<div class="owl-item">
-										<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-											<div class="viewed_image">
-												<a href="/item/{{$product->url}}">
-													<img src="/assets/images/products/{{$product->image1}}" alt="">
-												</a>
-											</div>
-											<div class="viewed_content text-center">
-												<div class="viewed_price">${{$product->price}}
-													<span>{{$product->price_old ? '$'.$product->price_old : ''}}</span>
-												</div>
-												<div class="viewed_name"><a href="/item/{{$product->url}}">{{$product->name}}</a></div>
-											</div>
-											<ul class="item_marks">
-											@if($product->descount)
-												<li class="item_mark item_discount">-{{$product->descount}}%</li>
-											@endif	
-												<li class="item_mark item_new">new</li>
-											</ul>
-										</div>
+			<div class="row isotope-grid">
+      @if (isset($productsCategory))
+        @if ($productsCategory)
+          @foreach ($productsCategory as $product)
+          	@if ($loop->iteration <= 8)
+						<div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}}">
+							<!-- Block2 -->
+							<div class="block2">
+								<div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }}" data-label="New">
+									<img src="/assets/images/products/{{$product->image1}}" alt="IMG-PRODUCT">
+									<a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+										Ver
+									</a>
+								</div>
+								<div class="block2-txt flex-w flex-t p-t-14">
+									<div class="block2-txt-child1 flex-col-l ">
+										<a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										{{$product->name}}
+										</a>
+										<span class="stext-105 cl3">
+											<strong>${{number_format($product->price, 2)}}</strong>
+										</span>
 									</div>
-								@endforeach
-							@endif
-						@endif
+									<div class="block2-txt-child2 flex-r p-t-3">
+										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+											<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
+											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
+										</a>
+									</div>
+								</div>
+							</div>
 						</div>
-
-					</div>
-				</div>
+          	@else
+            	@break
+          	@endif
+          @endforeach
+      	@endif
+      @endif
 			</div>
+
 		</div>
-	</div>
-
-
-
+	</section>
 @endsection
+
+
+
+
+@section('modal')
+<!-- Modal1 Ver Producto-->
+<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+    <div class="overlay-modal1 js-hide-modal1"></div>
+    <div class="container">
+        <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+            <button class="how-pos3 hov3 trans-04 js-hide-modal1">
+                <img src="/assets/theme/images/icons/icon-close.png" alt="CLOSE">
+            </button>
+            <div class="row">
+                <div class="col-md-6 col-lg-7 p-b-30">
+                    <div class="p-l-25 p-r-30 p-lr-0-lg">
+                        <div class="wrap-slick3 flex-sb flex-w">
+                            <div class="wrap-slick3-dots"></div>
+                            <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+                            <div class="slick3 gallery-lb">
+                                <div id="img-modal1" class="item-slick3" data-thumb="/assets/images/no-image2.png" >
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image1" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal2" class="item-slick2" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image2" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal3" class="item-slick3" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image3" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal4" class="item-slick4" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image4" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal5" class="item-slick5" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image5" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="img-modal6" class="item-slick6" data-thumb="/assets/images/no-image2.png">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img id="modal-image6" src="/assets/images/no-image2.png" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/no-image2.png">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5 p-b-30">
+                    <div class="p-r-50 p-t-5 p-lr-0-lg">
+                        <h4 id="modal-name" class="mtext-105 cl2 js-name-detail p-b-14">
+                            Product name
+                        </h4>
+
+                        <span id="modal-price" class="mtext-106 cl2">
+                            $0
+                        </span>
+												
+                        <p id="modal-description" class="stext-102 cl3 p-t-23">
+													Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+                        </p>
+
+												<div id="modal-stock" class="mtext-106 cl2 p-t-23">
+														Stock: 0
+												</div>
+                        <div class="p-t-33">
+                            <!-- <div class="flex-w flex-r-m p-b-10">
+                                <div class="size-203 flex-c-m respon6">
+                                    Size
+                                </div>
+                                <div class="size-204 respon6-next">
+                                    <div class="rs1-select2 bor8 bg0">
+                                        <select class="js-select2" name="time">
+                                            <option>Choose an option</option>
+                                            <option>Size S</option>
+                                            <option>Size M</option>
+                                            <option>Size L</option>
+                                            <option>Size XL</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="flex-w flex-r-m p-b-10">
+                                <div class="size-203 flex-c-m respon6">
+                                    Color
+                                </div>
+
+                                <div class="size-204 respon6-next">
+                                    <div class="rs1-select2 bor8 bg0">
+                                        <select class="js-select2" name="time">
+                                            <option>Choose an option</option>
+                                            <option>Red</option>
+                                            <option>Blue</option>
+                                            <option>White</option>
+                                            <option>Grey</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="flex-w flex-r-m p-b-10">
+                                <div id="modal-cont-cart" class="size-204 flex-w flex-m respon6-next">
+                                    <div class="wrap-num-product flex-w m-l-20 m-tb-20">
+                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+
+                                        <input id="modal-cant" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" max="" min="1">
+
+                                        <div id="modal-cant-sum" data-max="" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        </div>
+                                    </div>
+                                    <button id="modal-btn-cart" data-product-id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+																<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
+                            </div>	
+                        </div>
+                        <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                            <div class="flex-m  p-l-10 m-l-11">
+                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                                    <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
+                                </a>
+                            </div>
+
+                            <!-- <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+
+                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+
+                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+
+
 
 @section('script')
 <script>
-    // Add a click event listener to category toggles
-    $(".category-toggle").click(function (e) {
-        e.preventDefault();
-        var arrow = $(this).find(".category-arrow");
-        arrow.toggleClass("category-rotated");
+//al Abrir modal Prdocuto cargar info
+$(document).ready(function () {
+		$(".js-show-modal1").click(function (e) {
+				e.preventDefault(); // Evita que el enlace redirija
+
+				// Obtén el objeto JSON del atributo data-product y analízalo
+				var productData = $(this).attr("data-product");
+				var product = JSON.parse(productData);
+
+				// Ahora puedes acceder a las propiedades del producto en JavaScript
+				console.log('moda product');
+				console.log(product);
+
+
+				$("#modal-btn-cart").attr('data-product-id', product.id);
+				$("#modal-name").text(product.name);
+				var price = parseFloat(product.price).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+				$("#modal-price").text('$'+price);
+				$("#modal-description").text(product.description);
+				$("#modal-stock").text('Stock: '+product.stock);
+				$("#modal-cant").attr('max', product.stock);
+				$("#modal-cant").val(1);
+				$("#modal-cant-sum").attr('data-max', product.stock);
+				if(product.stock == 0){
+					$("#modal-cont-cart").hide();
+					$("#modal-no-stock").show();
+					
+				}else{
+					$("#modal-no-stock").hide();
+					$("#modal-cont-cart").show();
+				}
+
+				// Agrega las imagenes del producto al modal
+				var imagenes = $(".slick3-dots img");
+				imagenes.each(function (index, elemento) {
+						var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
+						if (product[propiedadImagen] !== null) {
+								$(elemento).show();
+								$(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+								$("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
+							}else{
+								// $(elemento).remove();
+								// $("#img-modal"+propiedadImagen).remove();
+								// $("#modal-image"+propiedadImagen).remove();
+								$(elemento).attr("src", '/assets/images/no-image2.png');
+								$("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
+								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
+						}
+				});
+
+				// Abre el modal
+				$(".wrap-modal1").show();
+		});
+
+		// Cierra el modal cuando se hace clic en el botón de cerrar
+		$(".js-hide-modal1").click(function () {
+				$(".wrap-modal1").hide();
+		});
+});
+</script>
+
+
+
+<script>
+  //codigo de rotor de destacados
+    $(document).ready(function(){
+      $('#carouselExample').on('slide.bs.carousel', function (e) {
+      var $e = $(e.relatedTarget);
+      var idx = $e.index();
+      var itemsPerSlide = 4;
+      var totalItems = $('.carousel-item').length;
+
+      if (idx >= totalItems-(itemsPerSlide-1)) {
+          var it = itemsPerSlide - (totalItems - idx);
+          for (var i=0; i<it; i++) {
+              // append slides to end
+              if (e.direction=="left") {
+                  $('.carousel-item').eq(i).appendTo('.carousel-inner');
+              }
+              else {
+                  $('.carousel-item').eq(0).appendTo('.carousel-inner');
+              }
+          }
+      }
+      });
     });
 </script>
+
 @endsection
