@@ -531,7 +531,7 @@
                         <div class="block2">
                             <div class="block2-pic hov-img0">
                                 <img src="/assets/images/products/{{ $product->image1 }}" alt="{{ $product->name }}">
-                                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                <a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Ver
                                 </a>
                             </div>
@@ -724,11 +724,11 @@
                 <div class="col-md-6 col-lg-5 p-b-30">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 id="modal-name" class="mtext-105 cl2 js-name-detail p-b-14">
-                            Lightweight Jacket
+                            Product name
                         </h4>
 
                         <span id="modal-price" class="mtext-106 cl2">
-                            $58.79
+                            $0
                         </span>
 												
                         <p id="modal-description" class="stext-102 cl3 p-t-23">
@@ -775,22 +775,23 @@
                                 </div>
                             </div> -->
                             <div class="flex-w flex-r-m p-b-10">
-                                <div class="size-204 flex-w flex-m respon6-next">
+                                <div id="modal-cont-cart" class="size-204 flex-w flex-m respon6-next">
                                     <div class="wrap-num-product flex-w m-l-20 m-tb-20">
                                         <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-minus"></i>
                                         </div>
 
-                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+                                        <input id="modal-cant" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" max="" min="1">
 
-                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                        <div id="modal-cant-sum" data-max="" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-plus"></i>
                                         </div>
                                     </div>
-                                    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                    <button id="modal-btn-cart" data-product-id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
                                         Agregar al carrito
                                     </button>
                                 </div>
+																<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
                             </div>	
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -840,10 +841,23 @@ $(document).ready(function () {
 				console.log('moda product');
 				console.log(product);
 
+
+				$("#modal-btn-cart").attr('data-product-id', product.id);
 				$("#modal-name").text(product.name);
 				$("#modal-price").text('$'+product.price);
 				$("#modal-description").text(product.description);
 				$("#modal-stock").text('Stock: '+product.stock);
+				$("#modal-cant").attr('max', product.stock);
+				$("#modal-cant").val(1);
+				$("#modal-cant-sum").attr('data-max', product.stock);
+				if(product.stock == 0){
+					$("#modal-cont-cart").hide();
+					$("#modal-no-stock").show();
+					
+				}else{
+					$("#modal-no-stock").hide();
+					$("#modal-cont-cart").show();
+				}
 
 				// Agrega las imagenes del producto al modal
 				var imagenes = $(".slick3-dots img");

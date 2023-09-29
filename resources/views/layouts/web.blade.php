@@ -3,6 +3,8 @@
 <head>
 	<title>Home</title>
 	<meta charset="UTF-8">
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="/assets/theme/images/icons/favicon.png"/>
@@ -37,13 +39,16 @@
 @yield('head')
 
 <style>
-  .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
-    color: {{ $web->color }} ;
+	/* a{
+		color: {{ $web->color }} ;
+  } */
+  .quit-cart:hover, a:hover, .hov-tag1:hover, .js-addedwish-detail, .filter-link-active, .filter-link:hover, .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
+    color: {{ $web->color }} !important;
   }
-  .bg1 , .icon-header-noti::after, .btn-back-to-top, .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after {
+  .bg1 , .btn-back-to-top, .btn-back-to-top:hover, .icon-header-noti::after, .loader05, .swal-button, .icon-header-noti::after, .btn-back-to-top, .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after, .main-menu-m {
     background-color: {{ $web->color }} ;
   }
-  .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after{
+  .hov-btn3:hover, .filter-link-active, .hov-tag1:hover, .filter-link:hover, .show-search:hover::after, .show-filter:hover::after, .loader05{
     border-color: {{ $web->color }} ;
   }
   /* Add styles for your floating WhatsApp button */
@@ -122,7 +127,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="index.html">Home</a>
+								<a href="/">Home</a>
 							</li>
 
 							<li>
@@ -131,7 +136,7 @@
 									@if (isset($categories))
 										@if ($categories)
 											@foreach ($categories as $index => $category)
-											<li><a href="index.html">{{$category->name}}</a></li>
+											<li><a href="/">{{$category->name}}</a></li>
 											@endforeach
 										@endif
 									@endif
@@ -162,7 +167,7 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{ session()->has('totalCart') ? session('totalCart') : 0 }}">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
@@ -178,7 +183,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO"></a>
+				<a href="/"><img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -187,7 +192,7 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="{{ session()->has('totalCart') ? session('totalCart') : 0 }}">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
@@ -246,7 +251,7 @@
 						@if (isset($categories))
 							@if ($categories)
 								@foreach ($categories as $index => $category)
-								<li><a href="index.html">{{$category->name}}</a></li>
+								<li><a href="/">{{$category->name}}</a></li>
 								@endforeach
 							@endif
 						@endif
@@ -300,80 +305,50 @@
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
+		<div class="header-cart flex-col-l p-l-30 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Your Cart
+					Tu Carrito
 				</span>
-
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="/assets/theme/images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="/assets/theme/images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="/assets/theme/images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
-				</ul>
-				
+					@if(session()->has('cart'))
+						@foreach (session('cart') as $item)
+						<li class="header-cart-item flex-w flex-t m-b-20">
+								<div class="header-cart-item-img">
+										<img src="/assets/images/products/{{ $item['image1'] }}" alt="IMG">
+								</div>
+								<div class="header-cart-item-txt p-t-8">
+										<a href="{{ $item['url'] }}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+												{{ $item['name'] }}
+										</a>
+										<span class="header-cart-item-info">
+												{{ $item['quantity'] }} x ${{ $item['price'] }}
+												<a product-id="{{ $item['id'] }}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
+													<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
+												</a>
+										</span>
+								</div>
+						</li>
+						@endforeach
+				@else
+						<li class="empty-cart">El carrito está vacío</li>
+				@endif
+			</ul>
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
+						Total: ${{ number_format(session('totalPrice', 0), 2) }}
 					</div>
-
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
+							Ver Carrito
 						</a>
-
 						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
+							Completar compra
 						</a>
 					</div>
 				</div>
@@ -756,12 +731,77 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			});
 		});
 
-		/*---------------------------------------------*/
 
-		$('.js-addcart-detail').each(function(){
+
+
+		//funcion agregar al carrito click
+		/*---------------------------------------------*/
+		$('.js-addcart-detail').on('click', function(){
+			console.log('click add cart');
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+			var productId = $(this).data('product-id');
+			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
+			var quantity = $('#modal-cant').val(); //
+			// Realiza una solicitud AJAX para agregar el producto al carrito
+			$.ajax({
+					url: '/add-to-cart/' + productId,
+					type: 'POST',
+					data: {
+							_token: csrfToken, // Incluye el token CSRF en los datos de la solicitud
+							quantity: quantity
+					},
+					success: function(data) {
+							if (data.status == 'success') {
+									// El producto se agregó exitosamente al carrito
+									//$.toastr.success('Agregado con éxito');
+									swal(nameProduct, "Agregado al carrito !", "success");
+									//cambiamos el count de cart
+									var newCartCount = data.totalCart;
+        					$('.js-show-cart').attr('data-notify',newCartCount);
+							} else {
+									// Maneja el caso de error si es necesario
+									//$.toastr.error('Error al agregar');
+									swal(nameProduct, "Error al agregar !", "error");
+							}
+					},
+					error: function() {
+							// Maneja el caso de error si la solicitud falla
+							alert('Error al realizar la solicitud');
+					}
+			});
+		});
+		//quitar item del carrito
+		/*---------------------------------------------*/
+		$('.quit-cart').on('click', function(){
+			console.log('click quit cart');
+			//var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var productId = $(this).data('product-id');
+			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
+			// Realiza una solicitud AJAX para agregar el producto al carrito
+			$.ajax({
+					url: '/quit-to-cart/' + productId,
+					type: 'GET',
+					data: {
+							_token: csrfToken, // Incluye el token CSRF en los datos de la solicitud
+					},
+					success: function(data) {
+							if (data.status == 'success') {
+									// El producto se agregó exitosamente al carrito
+									//$.toastr.success('Agregado con éxito');
+									//swal(nameProduct, "Agregado al carrito !", "success");
+									//cambiamos el count de cart
+									var newCartCount = data.totalCart;
+        					$('.js-show-cart').attr('data-notify',newCartCount);
+							} else {
+									// Maneja el caso de error si es necesario
+									//$.toastr.error('Error al agregar');
+									swal(nameProduct, "Error al quitar !", "error");
+							}
+					},
+					error: function() {
+							// Maneja el caso de error si la solicitud falla
+							alert('Error al realizar la solicitud');
+					}
 			});
 		});
 	

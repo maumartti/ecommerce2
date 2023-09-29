@@ -115,10 +115,13 @@ class WebController extends Controller
     
         // Calcula la cantidad total de productos en el carrito
         $totalCart = 0;
+        $totalPrice = 0;
         foreach ($cart as $item) {
             $totalCart += $item['quantity'];
+            $totalPrice += $item['price'];
         }
         session()->put('totalCart', $totalCart);
+        session()->put('totalPrice', $totalPrice);
     
         // Actualiza la sesión con el carrito modificado
         session()->put('cart', $cart);
@@ -145,10 +148,13 @@ class WebController extends Controller
 
         // Calcula la cantidad total de productos en el carrito
         $totalCart = 0;
+        $totalPrice = 0;
         foreach ($cart as $item) {
             $totalCart += $item['quantity'];
+            $totalPrice += $item['price'];
         }
         session()->put('totalCart', $totalCart);
+        session()->put('totalPrice', $totalPrice);
 
         // Devuelve una respuesta JSON con los nuevos datos del carrito
         return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart], 200);
