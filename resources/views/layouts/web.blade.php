@@ -39,14 +39,14 @@
 @yield('head')
 
 <style>
-	/* a{
-		color: {{ $web->color }} ;
-  } */
-  .quit-cart:hover, a:hover, .hov-tag1:hover, .js-addedwish-detail, .filter-link-active, .filter-link:hover, .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
-    color: {{ $web->color }} !important;
+	.quit-cart:hover, a:hover, .hov-tag1:hover, .js-addedwish-detail, .filter-link-active, .filter-link:hover, .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
+		color: {{ $web->color }} !important;
   }
+	.block2-btn:hover{
+		color: white !important;
+	}
   .bg1 , .btn-back-to-top, .btn-back-to-top:hover, .icon-header-noti::after, .loader05, .swal-button, .icon-header-noti::after, .btn-back-to-top, .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after, .main-menu-m {
-    background-color: {{ $web->color }} ;
+		background-color: {{ $web->color }} ;
   }
   .hov-btn3:hover, .filter-link-active, .hov-tag1:hover, .filter-link:hover, .show-search:hover::after, .show-filter:hover::after, .loader05{
     border-color: {{ $web->color }} ;
@@ -318,7 +318,7 @@
 				<ul class="header-cart-wrapitem w-full">
 					@if(session()->has('cart'))
 						@foreach (session('cart') as $item)
-						<li class="header-cart-item flex-w flex-t m-b-20">
+						<li product-id="{{$item['id']}}" class="header-cart-item flex-w flex-t m-b-20">
 								<div class="header-cart-item-img">
 										<img src="/assets/images/products/{{ $item['image1'] }}" alt="IMG">
 								</div>
@@ -327,7 +327,7 @@
 												{{ $item['name'] }}
 										</a>
 										<span class="header-cart-item-info">
-												{{ $item['quantity'] }} x ${{ $item['price'] }}
+												{{ $item['quantity'] }} x ${{ number_format($item['price'], 2) }}
 												<a product-id="{{ $item['id'] }}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
 													<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
 												</a>
@@ -335,9 +335,9 @@
 								</div>
 						</li>
 						@endforeach
-				@else
+					@else
 						<li class="empty-cart">El carrito está vacío</li>
-				@endif
+					@endif
 			</ul>
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
@@ -739,7 +739,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$('.js-addcart-detail').on('click', function(){
 			console.log('click add cart');
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			var productId = $(this).data('product-id');
+			var productId = $(this).attr('data-product-id');
 			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
 			var quantity = $('#modal-cant').val(); //
 			// Realiza una solicitud AJAX para agregar el producto al carrito
@@ -756,8 +756,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									//$.toastr.success('Agregado con éxito');
 									swal(nameProduct, "Agregado al carrito !", "success");
 									//cambiamos el count de cart
-									var newCartCount = data.totalCart;
-        					$('.js-show-cart').attr('data-notify',newCartCount);
+									$('.js-show-cart').attr('data-notify',data.totalCart);
+									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+        					$('.header-cart-total').text('Total: '+totalPriceFormatted);
+									// Agrega el nuevo elemento al carrito usando jQuery
+									var cartItem = data.cart; // Último elemento del carrito
+									//console.log('cartItem',cartItem)
+									if(cartItem){
+										var price = parseFloat(cartItem.price).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+										var cartItemHtml = `
+											<li product-id="${cartItem.id}" class="header-cart-item flex-w flex-t m-b-20">
+													<div class="header-cart-item-img">
+															<img src="/assets/images/products/${cartItem.image1}" alt="IMG">
+													</div>
+													<div class="header-cart-item-txt p-t-8">
+															<a href="${cartItem.url}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+																	${cartItem.name}
+															</a>
+															<span class="header-cart-item-info">
+																	${cartItem.quantity} x $${price}
+																	<a product-id="${cartItem.id}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
+																			<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"></path></svg>
+																	</a>
+															</span>
+													</div>
+											</li>`;
+										//quite el elemento y aAgrega el nuevo elemento al carrito
+										$('.header-cart-wrapitem li[product-id="' + cartItem.id + '"]').remove();
+										$('.header-cart-wrapitem').append(cartItemHtml);
+									}
 							} else {
 									// Maneja el caso de error si es necesario
 									//$.toastr.error('Error al agregar');
@@ -772,10 +799,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 		//quitar item del carrito
 		/*---------------------------------------------*/
-		$('.quit-cart').on('click', function(){
+		$('.header-cart-wrapitem').on('click', '.quit-cart', function() {
 			console.log('click quit cart');
 			//var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			var productId = $(this).data('product-id');
+			var btnQuit = $(this);
+			var productId = $(this).attr('product-id');
 			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
 			// Realiza una solicitud AJAX para agregar el producto al carrito
 			$.ajax({
@@ -786,12 +814,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					},
 					success: function(data) {
 							if (data.status == 'success') {
-									// El producto se agregó exitosamente al carrito
 									//$.toastr.success('Agregado con éxito');
 									//swal(nameProduct, "Agregado al carrito !", "success");
-									//cambiamos el count de cart
-									var newCartCount = data.totalCart;
-        					$('.js-show-cart').attr('data-notify',newCartCount);
+									btnQuit.parents('.header-cart-item').remove();
+        					$('.js-show-cart').attr('data-notify',data.totalCart);
+									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+        					$('.header-cart-total').text('Total: '+totalPriceFormatted);
 							} else {
 									// Maneja el caso de error si es necesario
 									//$.toastr.error('Error al agregar');

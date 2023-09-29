@@ -81,10 +81,8 @@ class WebController extends Controller
         if (!$product) {
             return response()->json(['status' => 'error']);
         }
-    
         // Obtiene o crea el carrito de compras en la sesión
         $cart = session()->get('cart', []);
-    
         // Busca el producto en el carrito por su ID
         $existingProduct = null;
         foreach ($cart as $key => $item) {
@@ -93,10 +91,8 @@ class WebController extends Controller
                 break;
             }
         }
-    
         // Obtener la cantidad de la solicitud POST, si está presente, de lo contrario, establecer en 1
         $quantity = $request->input('quantity', 1);
-    
         // Si el producto ya existe en el carrito, aumenta la cantidad en $quantity
         if ($existingProduct !== null) {
             $cart[$existingProduct]['quantity'] += $quantity;
@@ -112,23 +108,56 @@ class WebController extends Controller
                 'quantity' => $quantity
             ];
         }
-    
         // Calcula la cantidad total de productos en el carrito
         $totalCart = 0;
         $totalPrice = 0;
         foreach ($cart as $item) {
             $totalCart += $item['quantity'];
-            $totalPrice += $item['price'];
+            $totalPrice += $item['price'] * $item['quantity'];
         }
         session()->put('totalCart', $totalCart);
         session()->put('totalPrice', $totalPrice);
-    
         // Actualiza la sesión con el carrito modificado
         session()->put('cart', $cart);
-    
+        $latestCartItem = end($cart);//ultimo item
         // Devuelve la respuesta JSON que incluye 'quantity'
-        return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart], 200);
+        return response()->json(['status' => 'success', 'cart' => $latestCartItem, 'totalCart' => $totalCart, 'totalPrice' => $totalPrice], 200);
     }
+    
+
+
+    public function quitToCart(Request $request, $productId) {
+        // Obtiene el carrito de compras de la sesión
+        $cart = session()->get('cart', []);
+        //buscamos si esta en carrito el item
+        $productIndex = null;
+        foreach ($cart as $key => $item) {
+            if ($item['id'] == $productId) {
+                unset($cart[$key]);
+                break;
+            }
+        }
+        $totalCart = 0;
+        $totalPrice = 0;
+        if (!empty($cart)) {
+            foreach ($cart as $item) {
+                $totalCart += $item['quantity'];
+                $totalPrice += $item['price'] * $item['quantity'];
+            }
+            session()->put('totalCart', $totalCart);
+            session()->put('totalPrice', $totalPrice);
+            // Actualiza la sesión con el carrito modificado
+            session()->put('cart', $cart);
+        }else{
+            session()->put('totalCart', 0);
+            session()->put('totalPrice', 0);
+            session()->forget('cart');
+        }    
+        return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart, 'totalPrice' => $totalPrice], 200);
+    }
+    
+    
+    
     
     public function actualizarCarrito(Request $request, $productId)
     {
@@ -151,7 +180,7 @@ class WebController extends Controller
         $totalPrice = 0;
         foreach ($cart as $item) {
             $totalCart += $item['quantity'];
-            $totalPrice += $item['price'];
+            $totalPrice += $item['price'] * $item['quantity'];
         }
         session()->put('totalCart', $totalCart);
         session()->put('totalPrice', $totalPrice);
