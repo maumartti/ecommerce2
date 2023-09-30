@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tools;
@@ -9,7 +10,6 @@ use App\Models\Web;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Product;
-
 
 
 class ProductsController extends Controller
@@ -70,6 +70,7 @@ class ProductsController extends Controller
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], true);
             $validatedData['user_id'] = Auth::user()->id;
             $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
+            $validatedData['code'] = strtoupper(Str::random(6));//AT5F1P
             //dd($validatedData);
             $category = Product::create($validatedData);
             $products = Product::with('category', 'subcategory')->get();

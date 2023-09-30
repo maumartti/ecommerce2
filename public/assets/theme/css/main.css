@@ -2134,6 +2134,7 @@ input.num-product::-webkit-inner-spin-button {
   height: 22px;
   border-radius: 11px;
   padding: 0 5px;
+  z-index:1;
   background-color: #393e37;
   top: 11px;
   right: 12px;
@@ -2144,8 +2145,6 @@ input.num-product::-webkit-inner-spin-button {
     left: 6px;
   }
   .label-featured::before {
-    width: 22px;
-    height: 22px;
     top: 6px;
     right: 6px;
   }
