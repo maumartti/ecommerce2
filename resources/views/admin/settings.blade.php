@@ -24,43 +24,169 @@
                 <form action="{{ route('saveData') }}" method="POST" class="quick-post-form php-email-form">
                     <label></label>
                     <div class="form-group row">
+                        <div class="col-12 p-0">
+                            <h4>Rotor 1</h4>  
+                            <div class="form-container">
+                                <div class="row">
+                                    <div class="col-md-6 pr-0">
+                                        <div class="form-group">
+                                            <label for="pretitle">Pre-título imágen 1</label>
+                                            <input type="text" class="form-control" id="pretitleRotor1" name="pretitleRotor1" maxlength="36" placeholder="Pre-title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="title">Título imágen 1</label>
+                                            <input type="text" class="form-control" id="titleRotor1" name="titleRotor1" maxlength="36" placeholder="Title">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check mr-4">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor1" value="1" id="conBoton" autocomplete="off" checked>
+                                        <label class="form-check-label" for="conBoton">Con Botón</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor1" value="0" id="sinBoton" autocomplete="off">
+                                        <label class="form-check-label" for="sinBoton">Sin Botón</label>
+                                    </div>
+                                </div>
+                                <div class="form-group p-2" id="buttonFields" style="background: #e8e8e8;border-radius: 4px;">
+                                    <div class="row">
+                                        <div class="col-md-4 pr-0">
+                                            <label for="btntext">Texto del botón</label>
+                                            <input type="text" class="form-control mb-2" id="btnTextRotor1" name="btnTextRotor1" maxlength="22" placeholder="Texto del botón">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label for="btnurl">URL del botón</label>
+                                            <input type="text" class="form-control" id="btnUrlRotor1" name="btnUrlRotor1" maxlength="255" placeholder="URL del botón, ej: mitienda.com/destacados">
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
                         <div class="slim col-12 "
                             data-button-edit-title="Editar"
 		                    data-button-remove-title="Borrar"
-                            data-ratio="17:6"
+                            data-ratio="19:9"
                             data-fetcher="/slim-cropper-uploading/server/fetch.php"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="1800,500">
+                            data-size="1920,930">
                             <input type="file" id="imageRotor1" name="imageRotor1"/>
-                            
                             @if($web->imageRotor1)
                             <img src="/assets/images/{{$web->imageRotor1}}" />
                             @endif
                         </div>
+                        <!-- segundo slider -->
+                        <div class="col-12 p-0 mt-4">
+                            <hr>
+                            <h4>Rotor 2</h4>  
+                            <div class="form-container">
+                                <div class="row">
+                                    <div class="col-md-6 pr-0">
+                                        <div class="form-group">
+                                            <label for="pretitle">Pre-título imágen 2</label>
+                                            <input type="text" class="form-control" id="pretitleRotor2" name="pretitleRotor2" maxlength="36" placeholder="Pre-title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="title">Título imágen 2</label>
+                                            <input type="text" class="form-control" id="titleRotor2" name="titleRotor2" maxlength="36" placeholder="Title">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check mr-4">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor2" value="1" id="conBoton2" autocomplete="off" checked>
+                                        <label class="form-check-label" for="conBoton2">Con Botón</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor2" value="0" id="sinBoton2" autocomplete="off">
+                                        <label class="form-check-label" for="sinBoton2">Sin Botón</label>
+                                    </div>
+                                </div>
+                                <div class="form-group p-2" id="buttonFields2" style="background: #e8e8e8;border-radius: 4px;">
+                                    <div class="row">
+                                        <div class="col-md-4 pr-0">
+                                            <label for="btntext">Texto del botón</label>
+                                            <input type="text" class="form-control mb-2" id="btnTextRotor2" name="btnTextRotor2" maxlength="22" placeholder="Texto del botón">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label for="btnurl">URL del botón</label>
+                                            <input type="text" class="form-control" id="btnUrlRotor2" name="btnUrlRotor2" maxlength="255" placeholder="URL del botón, ej: mitienda.com/destacados">
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
                         <div class="slim col-12 mt-1"
                             data-button-edit-title="Editar"
 		                    data-button-remove-title="Borrar"
-                            data-ratio="17:6"
+                            data-ratio="19:9"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="1800,500">
+                            data-size="1920,930">
                             <input type="file" id="imageRotor2" name="imageRotor2"/>
                             @if($web->imageRotor2)
                             <img src="/assets/images/{{$web->imageRotor2}}" />
                             @endif
                         </div>
+                        <!-- tercer slider -->
+                        <div class="col-12 p-0 mt-4">
+                            <hr>
+                            <h4>Rotor 3</h4>  
+                            <div class="form-container">
+                                <div class="row">
+                                    <div class="col-md-6 pr-0">
+                                        <div class="form-group">
+                                            <label for="pretitle">Pre-título imágen 3</label>
+                                            <input type="text" class="form-control" id="pretitleRotor3" name="pretitleRotor3" maxlength="36" placeholder="Pre-title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="title">Título imágen 3</label>
+                                            <input type="text" class="form-control" id="titleRotor3" name="titleRotor3" maxlength="36" placeholder="Title">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check mr-4">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor3" value="1" id="conBoton3" autocomplete="off" checked>
+                                        <label class="form-check-label" for="conBoton3">Con Botón</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor3" value="0" id="sinBoton3" autocomplete="off">
+                                        <label class="form-check-label" for="sinBoton3">Sin Botón</label>
+                                    </div>
+                                </div>
+                                <div class="form-group p-2" id="buttonFields3" style="background: #e8e8e8;border-radius: 4px;">
+                                    <div class="row">
+                                        <div class="col-md-4 pr-0">
+                                            <label for="btntext">Texto del botón</label>
+                                            <input type="text" class="form-control mb-2" id="btnTextRotor3" name="btnTextRotor3" maxlength="22" placeholder="Texto del botón">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label for="btnurl">URL del botón</label>
+                                            <input type="text" class="form-control" id="btnUrlRotor3" name="btnUrlRotor3" maxlength="255" placeholder="URL del botón, ej: mitienda.com/destacados">
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
                         <div class="slim col-12 mt-1"
                             data-button-edit-title="Editar"
 		                    data-button-remove-title="Borrar"
-                            data-ratio="17:6"
+                            data-ratio="19:9"
                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                            data-size="1800,500">
+                            data-size="1920,930">
                             <input type="file" id="imageRotor3" name="imageRotor3"/>
                             @if($web->imageRotor3)
                             <img src="/assets/images/{{$web->imageRotor3}}" />
                             @endif
                         </div>
                     </div>
-                    <div class="">
+                    <div class="row">
                         <button type="submit" class="btn btn-block btn-accent">Guardar Imágenes</button>
                     </div>
                 </form>
@@ -347,23 +473,51 @@
 @endsection
 
 @section('script')	
-		<script>
-			$(document).ready(function(){
-				//si borramos imagen exsistente para saber que exsistia y ya no
-                $('.slim-btn-remove').click(function(){
-                    var secondParent = $(this).parent().parent();
-                    var hiddenInput = secondParent.find('input[type="hidden"]');
-                    if (hiddenInput.length > 0) {
-                        hiddenInput.val("empty");//en el input hidden le ponemos = empty
-                    }
-                });
-            });
+<script>
+    $(document).ready(function(){
+        //si borramos imagen exsistente para saber que exsistia y ya no
+        $('.slim-btn-remove').click(function(){
+            var secondParent = $(this).parent().parent();
+            var hiddenInput = secondParent.find('input[type="hidden"]');
+            if (hiddenInput.length > 0) {
+                hiddenInput.val("empty");//en el input hidden le ponemos = empty
+            }
+        });
+    });
 
 
-		    //input number solo numeros inputNumber
-		   $('.inputNumber').bind('keypress', function(e) { 
-		        return ( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) ? false : true ;
-		    });
+    //input number solo numeros inputNumber
+    $('.inputNumber').bind('keypress', function(e) { 
+        return ( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) ? false : true ;
+    });
 </script>
+
+<script>
+    $(document).ready(function() {
+        // Listen for changes on the radio buttons
+        $('input[name="useBtnRotor1"]').change(function() {
+            if ($(this).val() === "1") {
+                $('#buttonFields').show();
+            } else {
+                $('#buttonFields').hide();
+            }
+        });
+        $('input[name="useBtnRotor2"]').change(function() {
+            if ($(this).val() === "1") {
+                $('#buttonFields2').show();
+            } else {
+                $('#buttonFields2').hide();
+            }
+        });
+        $('input[name="useBtnRotor3"]').change(function() {
+            if ($(this).val() === "1") {
+                $('#buttonFields3').show();
+            } else {
+                $('#buttonFields3').hide();
+            }
+        });
+    });
+</script>
+
 
 @endsection

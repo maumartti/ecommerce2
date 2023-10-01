@@ -17,6 +17,21 @@ return new class extends Migration
             $table->string('imageRotor1')->nullable();
             $table->string('imageRotor2')->nullable();
             $table->string('imageRotor3')->nullable();
+            $table->string('pretitleRotor1',36)->nullable();
+            $table->string('titleRotor1',36)->nullable();
+            $table->string('btnTextRotor1',22)->nullable();
+            $table->string('btnUrlRotor1')->nullable();
+            $table->string('pretitleRotor2',36)->nullable();
+            $table->string('titleRotor2',36)->nullable();
+            $table->string('btnTextRotor2',22)->nullable();
+            $table->string('btnUrlRotor2')->nullable();
+            $table->string('pretitleRotor3',36)->nullable();
+            $table->string('titleRotor3',36)->nullable();
+            $table->string('btnTextRotor3',22)->nullable();
+            $table->string('btnUrlRotor3')->nullable();
+            $table->tinyInteger('useBtnRotor1')->length(1)->default(0);
+            $table->tinyInteger('useBtnRotor2')->length(1)->default(0);
+            $table->tinyInteger('useBtnRotor3')->length(1)->default(0);
             $table->timestamps();
         });
     }

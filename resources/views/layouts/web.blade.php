@@ -88,7 +88,7 @@
 <body class="animsition">
 	
 	<!-- Header -->
-	<header class="header-v4">
+	<header class="header-v1">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
