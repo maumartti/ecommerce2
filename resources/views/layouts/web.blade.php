@@ -39,7 +39,7 @@
 @yield('head')
 
 <style>
-	.quit-cart:hover, a:hover, .hov-tag1:hover, .js-addedwish-detail, .filter-link-active, .filter-link:hover, .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
+	.quit-cart:hover, .hov-tag1:hover, .js-addedwish-detail, .filter-link-active, .filter-link:hover, .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
 		color: {{ $web->color }} !important;
   }
 	.block2-btn:hover{
