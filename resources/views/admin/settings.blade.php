@@ -341,7 +341,7 @@
                                             <label for="title">Título imágen 1</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="titleRotor2" name="titleRotor2" maxlength="36" placeholder="Title">
-                                                <div class="input-group-append" style="padding: 0px;">
+                                                <div class="input-group-append" style="padding: 0px; ">
                                                     <span class="input-group-text p-0" style="border-radius: 4px;">
                                                         <input type="color"name="colorPretitleRotor2" class="form-control input-in-text form-control-rounded" value="{{ $web->colorPretitleRotor2 ?? '#333' }}" autocomplete="off">
                                                     </span>
