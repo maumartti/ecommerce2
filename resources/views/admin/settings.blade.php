@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 
 <div class="main-content-container container-fluid px-4">
@@ -30,14 +31,131 @@
                                 <div class="row">
                                     <div class="col-md-6 pr-0">
                                         <div class="form-group">
-                                            <label for="pretitle">Pre-título imágen 1</label>
-                                            <input type="text" class="form-control" id="pretitleRotor1" name="pretitleRotor1" maxlength="36" placeholder="Pre-title">
+                                            <label for="pretitle">Pre-título imagen 1</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="pretitleRotor1" name="pretitleRotor1" maxlength="36" placeholder="Pre-title">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="colorPretitleRotor1" class="form-control input-in-text form-control-rounded" value="{{ $web->colorPretitleRotor1 ?? '#333' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontPretitleRotor1" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                       
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="title">Título imágen 1</label>
-                                            <input type="text" class="form-control" id="titleRotor1" name="titleRotor1" maxlength="36" placeholder="Title">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="titleRotor1" name="titleRotor1" maxlength="36" placeholder="Title">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color"name="colorTitleRotor1" class="form-control input-in-text form-control-rounded" value="{{ $web->colorTitleRotor1 ?? '#333' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontTitleRotor1" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -53,13 +171,83 @@
                                 </div>
                                 <div class="form-group p-2" id="buttonFields" style="background: #e8e8e8;border-radius: 4px;">
                                     <div class="row">
-                                        <div class="col-md-4 pr-0">
+                                        <div class="col-md-5 pr-0">
                                             <label for="btntext">Texto del botón</label>
-                                            <input type="text" class="form-control mb-2" id="btnTextRotor1" name="btnTextRotor1" maxlength="22" placeholder="Texto del botón">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="btnTextRotor1" name="btnTextRotor1" maxlength="22" placeholder="Texto del botón">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="colorBtnTextRotor1" class="form-control input-in-text form-control-rounded" value="{{ $web->colorBtnTextRotor1 ?? '#FFFFFF' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontBtnTextRotor1" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-2 pr-0">
+                                            <label for="btntext">Color de botón</label>
+                                            <div class="input-group">
+                                                <div class="input-group-append m-auto" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="backgroundBtnTextRotor1" class="form-control input-in-text form-control-rounded" value="{{ $web->backgroundBtnTextRotor1 ?? '#DE2423' }}" autocomplete="off">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
                                             <label for="btnurl">URL del botón</label>
-                                            <input type="text" class="form-control" id="btnUrlRotor1" name="btnUrlRotor1" maxlength="255" placeholder="URL del botón, ej: mitienda.com/destacados">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="btnUrlRotor1" name="btnUrlRotor1" maxlength="255" placeholder="ej: mitienda.com/destacados">
+                                            </div>
                                         </div>
                                     </div>    
                                 </div>
@@ -85,14 +273,131 @@
                                 <div class="row">
                                     <div class="col-md-6 pr-0">
                                         <div class="form-group">
-                                            <label for="pretitle">Pre-título imágen 2</label>
-                                            <input type="text" class="form-control" id="pretitleRotor2" name="pretitleRotor2" maxlength="36" placeholder="Pre-title">
+                                            <label for="pretitle">Pre-título imagen 1</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="pretitleRotor2" name="pretitleRotor2" maxlength="36" placeholder="Pre-title">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="colorTitleRotor2" class="form-control input-in-text form-control-rounded" value="{{ $web->colorTitleRotor2 ?? '#333' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontPretitleRotor2" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                       
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="title">Título imágen 2</label>
-                                            <input type="text" class="form-control" id="titleRotor2" name="titleRotor2" maxlength="36" placeholder="Title">
+                                            <label for="title">Título imágen 1</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="titleRotor2" name="titleRotor2" maxlength="36" placeholder="Title">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color"name="colorPretitleRotor2" class="form-control input-in-text form-control-rounded" value="{{ $web->colorPretitleRotor2 ?? '#333' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontTitleRotor2" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -108,13 +413,83 @@
                                 </div>
                                 <div class="form-group p-2" id="buttonFields2" style="background: #e8e8e8;border-radius: 4px;">
                                     <div class="row">
-                                        <div class="col-md-4 pr-0">
+                                        <div class="col-md-5 pr-0">
                                             <label for="btntext">Texto del botón</label>
-                                            <input type="text" class="form-control mb-2" id="btnTextRotor2" name="btnTextRotor2" maxlength="22" placeholder="Texto del botón">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="btnTextRotor2" name="btnTextRotor2" maxlength="22" placeholder="Texto del botón">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="colorBtnTextRotor2" class="form-control input-in-text form-control-rounded" value="{{ $web->colorBtnTextRotor2 ?? '#FFFFFF' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontBtnTextRotor2" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-2 pr-0">
+                                            <label for="btntext">Color de botón</label>
+                                            <div class="input-group">
+                                                <div class="input-group-append m-auto" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="backgroundBtnTextRotor2" class="form-control input-in-text form-control-rounded" value="{{ $web->backgroundBtnTextRotor2 ?? '#DE2423' }}" autocomplete="off">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
                                             <label for="btnurl">URL del botón</label>
-                                            <input type="text" class="form-control" id="btnUrlRotor2" name="btnUrlRotor2" maxlength="255" placeholder="URL del botón, ej: mitienda.com/destacados">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="btnUrlRotor2" name="btnUrlRotor2" maxlength="255" placeholder="ej: mitienda.com/destacados">
+                                            </div>
                                         </div>
                                     </div>    
                                 </div>
@@ -139,14 +514,131 @@
                                 <div class="row">
                                     <div class="col-md-6 pr-0">
                                         <div class="form-group">
-                                            <label for="pretitle">Pre-título imágen 3</label>
-                                            <input type="text" class="form-control" id="pretitleRotor3" name="pretitleRotor3" maxlength="36" placeholder="Pre-title">
+                                            <label for="pretitle">Pre-título imagen 1</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="pretitleRotor3" name="pretitleRotor3" maxlength="36" placeholder="Pre-title">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="colorTitleRotor3" class="form-control input-in-text form-control-rounded" value="{{ $web->colorTitleRotor3 ?? '#333' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontPretitleRotor3" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                       
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="title">Título imágen 3</label>
-                                            <input type="text" class="form-control" id="titleRotor3" name="titleRotor3" maxlength="36" placeholder="Title">
+                                            <label for="title">Título imágen 1</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="titleRotor3" name="titleRotor3" maxlength="36" placeholder="Title">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color"name="colorPretitleRotor3" class="form-control input-in-text form-control-rounded" value="{{ $web->colorPretitleRotor3 ?? '#333' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontTitleRotor3" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -162,13 +654,83 @@
                                 </div>
                                 <div class="form-group p-2" id="buttonFields3" style="background: #e8e8e8;border-radius: 4px;">
                                     <div class="row">
-                                        <div class="col-md-4 pr-0">
+                                        <div class="col-md-5 pr-0">
                                             <label for="btntext">Texto del botón</label>
-                                            <input type="text" class="form-control mb-2" id="btnTextRotor3" name="btnTextRotor3" maxlength="22" placeholder="Texto del botón">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="btnTextRotor3" name="btnTextRotor3" maxlength="22" placeholder="Texto del botón">
+                                                <div class="input-group-append" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="colorBtnTextRotor3" class="form-control input-in-text form-control-rounded" value="{{ $web->colorBtnTextRotor3 ?? '#FFFFFF' }}" autocomplete="off">
+                                                    </span>
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <select name="fontBtnTextRotor3" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                            <option value="Arial">Arial</option>
+                                                            <option value="Helvetica">Helvetica</option>
+                                                            <option value="Times New Roman">Times New Roman</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Courier New">Courier New</option>
+                                                            <option value="Verdana">Verdana</option>
+                                                            <option value="Tahoma">Tahoma</option>
+                                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                                            <option value="Arial Black">Arial Black</option>
+                                                            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                                            <option value="Palatino Linotype">Palatino Linotype</option>
+                                                            <option value="Book Antiqua">Book Antiqua</option>
+                                                            <option value="Palatino">Palatino</option>
+                                                            <option value="Century Gothic">Century Gothic</option>
+                                                            <option value="Lucida Console">Lucida Console</option>
+                                                            <option value="Garamond">Garamond</option>
+                                                            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                                                            <option value="Copperplate">Copperplate</option>
+                                                            <option value="Arial Narrow">Arial Narrow</option>
+                                                            <option value="Rockwell">Rockwell</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                            <option value="Baskerville">Baskerville</option>
+                                                            <option value="Cambria">Cambria</option>
+                                                            <option value="Geneva">Geneva</option>
+                                                            <option value="Century Schoolbook">Century Schoolbook</option>
+                                                            <option value="Avant Garde">Avant Garde</option>
+                                                            <option value="Didot">Didot</option>
+                                                            <option value="Futura">Futura</option>
+                                                            <option value="Brush Script MT">Brush Script MT</option>
+                                                            <option value="Helvetica Neue">Helvetica Neue</option>
+                                                            <option value="Cursive">Cursive</option>
+                                                            <option value="Monaco">Monaco</option>
+                                                            <option value="Consolas">Consolas</option>
+                                                            <option value="Courier">Courier</option>
+                                                            <option value="Bookman">Bookman</option>
+                                                            <option value="Cooper Black">Cooper Black</option>
+                                                            <option value="Impact">Impact</option>
+                                                            <option value="Wide Latin">Wide Latin</option>
+                                                            <option value="Century">Century</option>
+                                                            <option value="Trebuchet">Trebuchet</option>
+                                                            <option value="Comic Sans">Comic Sans</option>
+                                                            <option value="Stencil">Stencil</option>
+                                                            <option value="Marker Felt">Marker Felt</option>
+                                                            <option value="Optima">Optima</option>
+                                                            <option value="Gill Sans">Gill Sans</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-2 pr-0">
+                                            <label for="btntext">Color de botón</label>
+                                            <div class="input-group">
+                                                <div class="input-group-append m-auto" style="padding: 0px;">
+                                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                        <input type="color" name="backgroundBtnTextRotor3" class="form-control input-in-text form-control-rounded" value="{{ $web->backgroundBtnTextRotor3 ?? '#DE2423' }}" autocomplete="off">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
                                             <label for="btnurl">URL del botón</label>
-                                            <input type="text" class="form-control" id="btnUrlRotor3" name="btnUrlRotor3" maxlength="255" placeholder="URL del botón, ej: mitienda.com/destacados">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="btnUrlRotor3" name="btnUrlRotor3" maxlength="255" placeholder="ej: mitienda.com/destacados">
+                                            </div>
                                         </div>
                                     </div>    
                                 </div>
@@ -515,6 +1077,13 @@
             } else {
                 $('#buttonFields3').hide();
             }
+        });
+        //aplicamos fuente selecionada a los input text como queda
+        $('.font-select').on('change', function() {
+            console.log('change font')
+            var selectedFont = $(this).val();
+            // Aplicar el estilo de fuente a los elementos <input> con la clase ".pretitle-input"
+            $(this).parent().parent().parent().find('input[type="text"]').css('font-family', selectedFont);
         });
     });
 </script>

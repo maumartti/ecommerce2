@@ -32,6 +32,32 @@ return new class extends Migration
             $table->tinyInteger('useBtnRotor1')->length(1)->default(0);
             $table->tinyInteger('useBtnRotor2')->length(1)->default(0);
             $table->tinyInteger('useBtnRotor3')->length(1)->default(0);
+
+            $table->string('colorPretitleRotor1',8)->nullable();
+            $table->string('fontPretitleRotor1')->nullable();
+            $table->string('colorTitleRotor1',8)->nullable();
+            $table->string('fontTitleRotor1')->nullable();
+            $table->string('colorBtnTextRotor1',8)->nullable();
+            $table->string('fontBtnTextRotor1')->nullable();
+            $table->string('backgroundBtnTextRotor1',8)->nullable();
+
+            $table->string('colorPretitleRotor2',8)->nullable();
+            $table->string('fontPretitleRotor2')->nullable();
+            $table->string('colorTitleRotor2',8)->nullable();
+            $table->string('fontTitleRotor2')->nullable();
+            $table->string('colorBtnTextRotor2',8)->nullable();
+            $table->string('fontBtnTextRotor2')->nullable();
+            $table->string('backgroundBtnTextRotor2',8)->nullable();
+
+            $table->string('colorPretitleRotor3',8)->nullable();
+            $table->string('fontPretitleRotor3')->nullable();
+            $table->string('colorTitleRotor3',8)->nullable();
+            $table->string('fontTitleRotor3')->nullable();
+            $table->string('colorBtnTextRotor3',8)->nullable();
+            $table->string('fontBtnTextRotor3')->nullable();
+            $table->string('backgroundBtnTextRotor3',8)->nullable();
+
+
             $table->timestamps();
         });
     }

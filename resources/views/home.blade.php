@@ -101,20 +101,20 @@
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-									Nueva colección 2023
+								<span class="ltext-101 cl2 respon2" style="font-family:{{ $web->fontPretitleRotor1 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorPretitleRotor1 ?? '#333' }};">
+								{{ $web->pretitleRotor1 ?? 'Nuevos productos 2023' }}
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									DE TEMPORADA
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-family:{{ $web->fontTitleRotor1 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorTitleRotor1 ?? '#333' }};">
+								{{ $web->titleRotor1 ?? 'De temporada' }}
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="/categoria/ofertas" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Ver Ofertas
+								<a href="{{ $web->btnUrlRotor1 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor1 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor1 ?? '#333' }};background: {{$web->backgroundBtnTextRotor1 ?? '#DE2423'}};">
+								{{ $web->btnTextRotor1 ?? 'Ver Ofertas' }}
 								</a>
 							</div>
 						</div>
@@ -126,20 +126,20 @@
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-									Material recién llegado
+								<span class="ltext-101 cl2 respon2" style="font-family:{{ $web->fontPretitleRotor2 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorPretitleRotor2 ?? '#333' }};">
+								{{ $web->pretitleRotor2 ?? 'Nuevos productos 2023' }}
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									USA y EUROPA
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-family:{{ $web->fontTitleRotor2 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorTitleRotor2 ?? '#333' }};">
+								{{ $web->titleRotor2 ?? 'De temporada' }}
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Ver Más
+								<a href="{{ $web->btnUrlRotor2 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor2 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor2 ?? '#333' }};background: {{$web->backgroundBtnTextRotor2 ?? '#DE2423'}};">
+								{{ $web->btnTextRotor2 ?? 'Ver Ofertas' }}
 								</a>
 							</div>
 						</div>
@@ -151,20 +151,20 @@
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-									Buena calidad
+								<span class="ltext-101 cl2 respon2" style="font-family:{{ $web->fontPretitleRotor3 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorPretitleRotor3 ?? '#333' }};">
+								{{ $web->pretitleRotor3 ?? 'Nuevos productos 2023' }}
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									OFERTAS 2023
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-family:{{ $web->fontTitleRotor3 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorTitleRotor3 ?? '#333' }};">
+								{{ $web->titleRotor3 ?? 'De temporada' }}
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Ver más
+								<a href="{{ $web->btnUrlRotor3 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor3 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor3 ?? '#333' }};background: {{$web->backgroundBtnTextRotor3 ?? '#DE2423'}};">
+								{{ $web->btnTextRotor3 ?? 'Ver Ofertas' }}
 								</a>
 							</div>
 						</div>

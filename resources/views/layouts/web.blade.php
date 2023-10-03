@@ -82,6 +82,13 @@
 	.label-featured::before:hover {
   	display:inline-block !important;
 	}
+	.input-in-text{
+		width: 40px; 
+		height: 40px;
+		padding:2px;
+		border-radius: .25rem;
+		border: 1px solid #e1e5eb;
+	}
 </style>
 
 </head>
