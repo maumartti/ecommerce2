@@ -161,15 +161,15 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check mr-4">
-                                        <input type="radio" class="form-check-input" name="useBtnRotor1" value="1" id="conBoton" autocomplete="off" checked>
+                                        <input type="radio" class="form-check-input" name="useBtnRotor1" value="1" id="conBoton" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
                                         <label class="form-check-label" for="conBoton">Con Botón</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="useBtnRotor1" value="0" id="sinBoton" autocomplete="off">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor1" value="0" id="sinBoton" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
                                         <label class="form-check-label" for="sinBoton">Sin Botón</label>
                                     </div>
                                 </div>
-                                <div class="form-group p-2" id="buttonFields" style="background: #e8e8e8;border-radius: 4px;">
+                                <div class="form-group p-2" id="buttonFields" style="@if($web->useBtnRotor1 == 0) display:none; @endif background: #e8e8e8;border-radius: 4px;">
                                     <div class="row">
                                         <div class="col-md-5 pr-0">
                                             <label for="btntext">Texto del botón</label>
@@ -403,15 +403,15 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check mr-4">
-                                        <input type="radio" class="form-check-input" name="useBtnRotor2" value="1" id="conBoton2" autocomplete="off" checked>
+                                        <input type="radio" class="form-check-input" name="useBtnRotor2" value="1" id="conBoton2" autocomplete="off" @if ($web->useBtnRotor2 == 1) checked @endif>
                                         <label class="form-check-label" for="conBoton2">Con Botón</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="useBtnRotor2" value="0" id="sinBoton2" autocomplete="off">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor2" value="0" id="sinBoton2" autocomplete="off" @if ($web->useBtnRotor2 == 0) checked @endif>
                                         <label class="form-check-label" for="sinBoton2">Sin Botón</label>
                                     </div>
                                 </div>
-                                <div class="form-group p-2" id="buttonFields2" style="background: #e8e8e8;border-radius: 4px;">
+                                <div class="form-group p-2" id="buttonFields2" style="@if($web->useBtnRotor2 == 0) display:none; @endif background: #e8e8e8;border-radius: 4px;">
                                     <div class="row">
                                         <div class="col-md-5 pr-0">
                                             <label for="btntext">Texto del botón</label>
@@ -644,15 +644,15 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check mr-4">
-                                        <input type="radio" class="form-check-input" name="useBtnRotor3" value="1" id="conBoton3" autocomplete="off" checked>
+                                        <input type="radio" class="form-check-input" name="useBtnRotor3" value="1" id="conBoton3" autocomplete="off" @if ($web->useBtnRotor3 == 1) checked @endif>
                                         <label class="form-check-label" for="conBoton3">Con Botón</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="useBtnRotor3" value="0" id="sinBoton3" autocomplete="off">
+                                        <input type="radio" class="form-check-input" name="useBtnRotor3" value="0" id="sinBoton3" autocomplete="off" @if ($web->useBtnRotor3 == 0) checked @endif>
                                         <label class="form-check-label" for="sinBoton3">Sin Botón</label>
                                     </div>
                                 </div>
-                                <div class="form-group p-2" id="buttonFields3" style="background: #e8e8e8;border-radius: 4px;">
+                                <div class="form-group p-2" id="buttonFields3" style="@if($web->useBtnRotor3 == 0) display:none; @endif background: #e8e8e8;border-radius: 4px;">
                                     <div class="row">
                                         <div class="col-md-5 pr-0">
                                             <label for="btntext">Texto del botón</label>

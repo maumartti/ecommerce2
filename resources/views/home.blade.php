@@ -113,9 +113,11 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+								@if($web->useBtnRotor1 == 1)
 								<a href="{{ $web->btnUrlRotor1 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor1 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor1 ?? '#333' }};background: {{$web->backgroundBtnTextRotor1 ?? '#DE2423'}};">
 								{{ $web->btnTextRotor1 ?? 'Ver Ofertas' }}
 								</a>
+								@endif
 							</div>
 						</div>
 					</div>
@@ -138,9 +140,11 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+								@if($web->useBtnRotor2 == 1)
 								<a href="{{ $web->btnUrlRotor2 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor2 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor2 ?? '#333' }};background: {{$web->backgroundBtnTextRotor2 ?? '#DE2423'}};">
 								{{ $web->btnTextRotor2 ?? 'Ver Ofertas' }}
 								</a>
+								@endif
 							</div>
 						</div>
 					</div>
@@ -163,9 +167,11 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+								@if($web->useBtnRotor3 == 1)
 								<a href="{{ $web->btnUrlRotor3 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor3 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor3 ?? '#333' }};background: {{$web->backgroundBtnTextRotor3 ?? '#DE2423'}};">
 								{{ $web->btnTextRotor3 ?? 'Ver Ofertas' }}
 								</a>
+								@endif
 							</div>
 						</div>
 					</div>
