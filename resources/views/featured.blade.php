@@ -7,7 +7,7 @@
 
 @section('content')
 	<!-- Product -->
-	<section class="bg0 p-t-73 p-b-60 m-t-83">
+	<section class="bg0 p-t-73 p-b-60 m-t-40">
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">

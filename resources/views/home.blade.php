@@ -256,13 +256,13 @@
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Filter
+						 Filtros
 					</div>
 
 					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						Search
+						Buscar
 					</div>
 				</div>
 				
@@ -280,86 +280,75 @@
 				<!-- Filter -->
 				<div class="dis-none panel-filter w-full p-t-10">
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
+						<div class="filter-col1 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Sort By
+								Ordenar por
 							</div>
-
 							<ul>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Default
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Popularity
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Average rating
-									</a>
-								</li>
-
-								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										Newness
+										Todos
 									</a>
 								</li>
-
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										Price: Low to High
+										Populares
 									</a>
 								</li>
-
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										Price: High to Low
+										Más vendidos
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Nuevos
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Price: Bajo a Alto
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Price: Alto a bajo
 									</a>
 								</li>
 							</ul>
 						</div>
 
-						<div class="filter-col2 p-r-15 p-b-27">
+						<!-- precio -->
+						<div class="filter-col2 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Price
+								Precio
 							</div>
-
 							<ul>
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All
+										Todos
 									</a>
 								</li>
-
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
 										$0.00 - $50.00
 									</a>
 								</li>
-
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
 										$50.00 - $100.00
 									</a>
 								</li>
-
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
 										$100.00 - $150.00
 									</a>
 								</li>
-
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
 										$150.00 - $200.00
 									</a>
 								</li>
-
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
 										$200.00+
@@ -368,7 +357,47 @@
 							</ul>
 						</div>
 
-						<div class="filter-col3 p-r-15 p-b-27">
+						<!-- kilos -->
+						<div class="filter-col3 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Kilos
+							</div>
+							<ul>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+										Todos
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										15 kilos
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										20 kilos
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										25 kilos
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										40 kilos
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										45 kilos
+									</a>
+								</li>
+							</ul>
+						</div>
+						<!-- color -->
+						<div class="filter-col3 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Color
 							</div>
@@ -435,7 +464,7 @@
 								</li>
 							</ul>
 						</div>
-
+						<!-- tags -->
 						<div class="filter-col4 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Tags
