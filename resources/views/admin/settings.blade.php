@@ -775,7 +775,7 @@
                             @if($web->imageLogo)
                             <img src="/assets/images/{{$web->imageLogo}}" />
                             @endif
-                            <input type="file" name="imageLogo" required/>
+                            <input type="file" name="imageLogo" />
                         </div>
                     </div>
                     <div>
@@ -793,7 +793,7 @@
                                 <input type="file" name="imageBanner1" />
                             </div>
                         </div> -->
-                    <div class="form-group">
+                    <div class="form-group border-bottom" style="height: 185px;">
                         <div class="input-group" style="height: 120px;">
                             <h6>Color institucional</h6>
                             <input type="color" class="form-control form-control-rounded" style="width: 100%; height: 100%;" value="#DE2423" autocomplete="off">
@@ -803,6 +803,63 @@
                             </span>
                             </div>
                         </div>
+                    </div>
+
+                    <h6>Datos de contacto</h6>
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Correo:</label>
+                        <input type="email" name="email" value="{{$web->email}}" class="form-control" maxlength="64" autocomplete="off">
+                    </div>
+                    <!-- Address -->
+                    <div class="form-group">
+                        <label for="address">Dirección:</label>
+                        <textarea name="address" class="form-control" rows="3" maxlength="255" autocomplete="off">{{$web->address}}</textarea>
+                    </div>
+
+                    <!-- Cell Phone -->
+                    <div class="form-group">
+                        <label for="cel">Cel - WhatsApp:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <select name="countryCode" class="form-control" autocomplete="off">
+                                    <option value="+54" {{ $web->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
+                                    <option value="+56" {{ $web->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
+                                    <option value="+57" {{ $web->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
+                                    <option value="+52" {{ $web->countryCode == '+52' ? 'selected' : '' }}>Mexico (+52)</option>
+                                    <option value="+51" {{ $web->countryCode == '+51' ? 'selected' : '' }}>Peru (+51)</option>
+                                    <option value="+507" {{ $web->countryCode == '+507' ? 'selected' : '' }}>Panama (+507)</option>
+                                    <option value="+34" {{ $web->countryCode == '+34' ? 'selected' : '' }}>España (+34)</option>
+                                    <option value="+598" {{ $web->countryCode == '+598' ? 'selected' : '' }}>Uruguay (+598)</option>
+                                    <option value="+1" {{ $web->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
+                                </select>
+                            </div>
+                            <input type="text" id="cel" name="cel" value="{{ $web->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <!-- Facebook -->
+                    <div class="form-group">
+                        <label for="facebook">Facebook:</label>
+                        <input type="text" name="facebook" value="{{$web->facebook}}" class="form-control" maxlength="255" autocomplete="off">
+                    </div>
+
+                    <!-- Instagram -->
+                    <div class="form-group">
+                        <label for="instagram">Instagram:</label>
+                        <input type="text" name="instagram" value="{{$web->instagram}}" class="form-control" maxlength="255" autocomplete="off">
+                    </div>
+
+                    <!-- Google -->
+                    <div class="form-group">
+                        <label for="google">Google:</label>
+                        <input type="text" name="google" value="{{$web->google}}" class="form-control" maxlength="255" autocomplete="off">
+                    </div>
+
+                    <!-- TikTok -->
+                    <div class="form-group">
+                        <label for="tiktok">TikTok:</label>
+                        <input type="text" name="tiktok" value="{{$web->tiktok}}" class="form-control" maxlength="255" autocomplete="off">
                     </div>
 
                     <div class="py-5 px-0 col-12">
@@ -1056,6 +1113,13 @@
 
 <script>
     $(document).ready(function() {
+        //solo numeros
+        $('#cel').on('input', function() {
+            // Remove non-numeric characters using jQuery
+            $(this).val(function(index, value) {
+                return value.replace(/\D/g, '');
+            });
+        });
         // Listen for changes on the radio buttons
         $('input[name="useBtnRotor1"]').change(function() {
             if ($(this).val() === "1") {
@@ -1086,6 +1150,7 @@
             $(this).parent().parent().parent().find('input[type="text"]').css('font-family', selectedFont);
         });
     });
+    
 </script>
 
 

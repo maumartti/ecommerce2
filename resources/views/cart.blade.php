@@ -41,7 +41,7 @@
 										</div>
 									</td>
 									<td class="column-2">{{ $item['name'] }}</td>
-									<td class="column-3">{{ number_format($item['price'], 2) }}</td>
+									<td class="column-3">{{ str_replace(',', '.', number_format($item['price'], 2, ',', '.')) }} </td>
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -55,7 +55,7 @@
 											</div>
 										</div>
 									</td>
-									<td class="column-5">{{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+									<td class="column-5">{{ str_replace(',', '.', number_format($item['price'] * $item['quantity'], 2, ',', '.')) }}</td>
 								</tr>
 								@endforeach
 
@@ -94,7 +94,7 @@
 
 							<div class="size-209">
 								<span class="mtext-110 cl2">
-								{{ session()->has('totalPrice') ? number_format(session('totalPrice'), 2) : 0 }}
+								{{ number_format(session()->has('totalPrice') ? session('totalPrice') : 0, 0, '.', ',') }}
 								</span>
 							</div>
 						</div>
@@ -152,7 +152,7 @@
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-								{{ session()->has('totalPrice') ? number_format(session('totalPrice'), 2) : 0 }}
+								{{ number_format(session()->has('totalPrice') ? session('totalPrice') : 0, 0, '.', ',') }}
 								</span>
 							</div>
 						</div>

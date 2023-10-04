@@ -96,7 +96,7 @@
 						</h4>
 
 						<span class="mtext-106 cl2">
-							${{number_format($product->price, 2)}}
+							${{ str_replace(',', '.', number_format(session('totalPrice', 0), 2, ',', '.')) }}
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
@@ -799,7 +799,7 @@ $(document).ready(function () {
 
 				$("#modal-btn-cart").attr('data-product-id', product.id);
 				$("#modal-name").text(product.name);
-				var price = parseFloat(product.price).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+				var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
 				$("#modal-price").text('$'+price);
 				$("#modal-description").text(product.description);
 				$("#modal-stock").text('Stock: '+product.stock);

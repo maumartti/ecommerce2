@@ -258,7 +258,7 @@
 										{{$product->name}}
 										</a>
 										<span class="stext-105 cl3">
-											<strong>${{number_format($product->price, 2)}}</strong>
+											<strong>${{ str_replace(',', '.', number_format($product->price, 2, ',', '.')) }}</strong>
 										</span>
 									</div>
 									<div class="block2-txt-child2 flex-r p-t-3">
@@ -478,7 +478,7 @@ $(document).ready(function () {
 
 				$("#modal-btn-cart").attr('data-product-id', product.id);
 				$("#modal-name").text(product.name);
-				var price = parseFloat(product.price).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+				var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
 				$("#modal-price").text('$'+price);
 				$("#modal-description").text(product.description);
 				$("#modal-stock").text('Stock: '+product.stock);

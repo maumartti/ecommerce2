@@ -337,7 +337,7 @@
 												{{ $item['name'] }}
 										</a>
 										<span class="header-cart-item-info">
-												{{ $item['quantity'] }} x ${{ number_format($item['price'], 2) }}
+												{{ $item['quantity'] }} x ${{ str_replace(',', '.', number_format($item['price'], 2, ',', '.')) }}
 												<a product-id="{{ $item['id'] }}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
 													<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
 												</a>
@@ -351,7 +351,7 @@
 			</ul>
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: ${{ number_format(session('totalPrice', 0), 2) }}
+						Total: ${{ str_replace(',', '.', number_format(session('totalPrice', 0), 2, ',', '.')) }}
 					</div>
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
@@ -767,13 +767,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									swal(nameProduct, "Agregado al carrito !", "success");
 									//cambiamos el count de cart
 									$('.js-show-cart').attr('data-notify',data.totalCart);
-									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
         					$('.header-cart-total').text('Total: '+totalPriceFormatted);
 									// Agrega el nuevo elemento al carrito usando jQuery
 									var cartItem = data.cart; // Último elemento del carrito
 									//console.log('cartItem',cartItem)
 									if(cartItem){
-										var price = parseFloat(cartItem.price).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+										var price = parseFloat(cartItem.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
 										var cartItemHtml = `
 											<li product-id="${cartItem.id}" class="header-cart-item flex-w flex-t m-b-20">
 													<div class="header-cart-item-img">
@@ -828,7 +828,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									//swal(nameProduct, "Agregado al carrito !", "success");
 									btnQuit.parents('.header-cart-item').remove();
         					$('.js-show-cart').attr('data-notify',data.totalCart);
-									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2});
+									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
         					$('.header-cart-total').text('Total: '+totalPriceFormatted);
 							} else {
 									// Maneja el caso de error si es necesario

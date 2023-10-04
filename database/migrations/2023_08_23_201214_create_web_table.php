@@ -57,7 +57,14 @@ return new class extends Migration
             $table->string('fontBtnTextRotor3')->nullable();
             $table->string('backgroundBtnTextRotor3',8)->nullable();
 
-
+            $table->string('address',128)->nullable();
+            $table->string('countryCode',20)->nullable();
+            $table->string('cel',20)->nullable();
+            $table->string('email',128)->nullable();
+            $table->string('facebook',128)->nullable();
+            $table->string('instagram',128)->nullable();
+            $table->string('google',128)->nullable();
+            $table->string('tiktok',128)->nullable();
             $table->timestamps();
         });
     }
