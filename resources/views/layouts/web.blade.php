@@ -76,6 +76,7 @@
   height: 70px;
   border-radius: 100%;
   }
+	/** -end wp- **/
 	.slick3-dots li{
 		margin-bottom:14px !important;
 	}

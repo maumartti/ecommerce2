@@ -33,6 +33,9 @@
         border-radius: .25rem;
         border: 1px solid #e1e5eb;
       }
+      input[type="checkbox"], input[type="radio"] {
+        top:-2px !important;
+      }
     </style>
     @yield('head')
   </head>

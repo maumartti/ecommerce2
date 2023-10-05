@@ -162,11 +162,11 @@
                                     <div class="form-group">
                                         <div class="form-check mr-4">
                                             <input type="radio" class="form-check-input" name="useBtnRotor1" value="1" id="conBoton" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
-                                            <label class="form-check-label" for="conBoton">Con Botón</label>
+                                            <label class="form-check-label" for="conBoton">Usar filtro</label>
                                         </div>
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" name="useBtnRotor1" value="0" id="sinBoton" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
-                                            <label class="form-check-label" for="sinBoton">Sin Botón</label>
+                                            <label class="form-check-label" for="sinBoton">No usar</label>
                                         </div>
                                     </div>
                                     <div class="form-group p-2" id="buttonFields" style="@if($web->useBtnRotor1 == 0) display:none; @endif background: #e8e8e8;border-radius: 4px;">
@@ -885,126 +885,126 @@
                             <div class="form-group">
                                 <div class="form-check mr-4">
                                     <input type="radio" class="form-check-input" name="useFilterPrecios" value="1" id="conPrecios" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
-                                    <label class="form-check-label" for="conPrecios">Con precios</label>
+                                    <label class="form-check-label" for="conPrecios">Usar filtro</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="useFilterPrecios" value="0" id="sinPrecios" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
-                                    <label class="form-check-label" for="sinPrecios">Sin Precios</label>
+                                    <label class="form-check-label" for="sinPrecios">No usar</label>
                                 </div>
                             </div>
                             <div class="form-group p-2" id="seccionFilterPrecios" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color1" name="colores[]" value="Rojo">
-                                    <label class="form-check-label" for="color1">$0 - $50</label>
+                                    <input type="checkbox" class="form-check-input" id="precio1" name="prices[]" value="$0 - $50">
+                                    <label class="form-check-label" for="precio1">$0 - $50</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$50 - $100</label>
+                                    <input type="checkbox" class="form-check-input" id="precio2" name="prices[]" value="$50 - $100">
+                                    <label class="form-check-label" for="precio2">$50 - $100</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$100 - $200</label>
+                                    <input type="checkbox" class="form-check-input" id="precio3" name="prices[]" value="$100 - $200">
+                                    <label class="form-check-label" for="precio3">$100 - $200</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$100 - $200</label>
+                                    <input type="checkbox" class="form-check-input" id="precio4" name="prices[]" value="$100 - $200">
+                                    <label class="form-check-label" for="precio4">$100 - $200</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$200 - $400</label>
+                                    <input type="checkbox" class="form-check-input" id="precio5" name="prices[]" value="$200 - $400">
+                                    <label class="form-check-label" for="precio5">$200 - $400</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$400 - $500</label>
+                                    <input type="checkbox" class="form-check-input" id="precio6" name="prices[]" value="$400 - $500">
+                                    <label class="form-check-label" for="precio6">$400 - $500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$500 - $750</label>
+                                    <input type="checkbox" class="form-check-input" id="precio7" name="prices[]" value="$500 - $750">
+                                    <label class="form-check-label" for="precio7">$500 - $750</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$750 - $1.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio8" name="prices[]" value="$750 - $1.000">
+                                    <label class="form-check-label" for="precio8">$750 - $1.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$1.000 - $1.500</label>
+                                    <input type="checkbox" class="form-check-input" id="precio9" name="prices[]" value="$1.000 - $1.500">
+                                    <label class="form-check-label" for="precio9">$1.000 - $1.500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$1.500 - $2.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio10" name="prices[]" value="$1.500 - $2.000">
+                                    <label class="form-check-label" for="precio10">$1.500 - $2.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$2.000 - $4.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio11" name="prices[]" value="$2.000 - $4.000">
+                                    <label class="form-check-label" for="precio11">$2.000 - $4.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$4.000 - $5.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio12" name="prices[]" value="$4.000 - $5.000">
+                                    <label class="form-check-label" for="precio12">$4.000 - $5.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$5.000 - $7.500</label>
+                                    <input type="checkbox" class="form-check-input" id="precio13" name="prices[]" value="$5.000 - $7.500">
+                                    <label class="form-check-label" for="precio13">$5.000 - $7.500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$7.500 - $10.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio14" name="prices[]" value="$7.500 - $10.000">
+                                    <label class="form-check-label" for="precio14">$7.500 - $10.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$10.000 - $15.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio15" name="prices[]" value="$10.000 - $15.000">
+                                    <label class="form-check-label" for="precio15">$10.000 - $15.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$15.000 - $20.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio16" name="prices[]" value="$15.000 - $20.000">
+                                    <label class="form-check-label" for="precio16">$15.000 - $20.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$20.000 - $50.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio17" name="prices[]" value="$20.000 - $50.000">
+                                    <label class="form-check-label" for="precio17">$20.000 - $50.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$50.000 - $75.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio18" name="prices[]" value="$50.000 - $75.000">
+                                    <label class="form-check-label" for="precio18">$50.000 - $75.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$75.000 - $100.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio19" name="prices[]" value="$75.000 - $100.000">
+                                    <label class="form-check-label" for="precio19">$75.000 - $100.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$100.000 - $150.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio20" name="prices[]" value="$100.000 - $150.000">
+                                    <label class="form-check-label" for="precio20">$100.000 - $150.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$150.000 - $300.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio21" name="prices[]" value="$150.000 - $300.000">
+                                    <label class="form-check-label" for="precio21">$150.000 - $300.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$300.000 - $500.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio22" name="prices[]" value="$300.000 - $500.000">
+                                    <label class="form-check-label" for="precio22">$300.000 - $500.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$500.000 - $750.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio23" name="prices[]" value="$500.000 - $750.000">
+                                    <label class="form-check-label" for="precio23">$500.000 - $750.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$750.000 - $1.000.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio24" name="prices[]" value="$750.000 - $1.000.000">
+                                    <label class="form-check-label" for="precio24">$750.000 - $1.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$1.000.000 - $1.400.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio25" name="prices[]" value="$1.000.000 - $1.400.000">
+                                    <label class="form-check-label" for="precio25">$1.000.000 - $1.400.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$1.500.000 - $2.000.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio26" name="prices[]" value="$1.500.000 - $2.000.000">
+                                    <label class="form-check-label" for="precio26">$1.500.000 - $2.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$2.000.000 - $5.000.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio27" name="prices[]" value="$2.000.000 - $5.000.000">
+                                    <label class="form-check-label" for="precio27">$2.000.000 - $5.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">$5.000.000 - $10.000.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio28" name="prices[]" value="$5.000.000 - $10.000.000">
+                                    <label class="form-check-label" for="precio28">$5.000.000 - $10.000.000</label>
                                 </div>
     
     
@@ -1015,94 +1015,94 @@
                             <div class="form-group">
                                 <div class="form-check mr-4">
                                     <input type="radio" class="form-check-input" name="useFilterKilos" value="1" id="conKilos" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
-                                    <label class="form-check-label" for="conKilos">Con kilos</label>
+                                    <label class="form-check-label" for="conKilos">Usar filtro</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="useFilterKilos" value="0" id="sinKilos" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
-                                    <label class="form-check-label" for="sinKilos">Sin kilos</label>
+                                    <label class="form-check-label" for="sinKilos">No usar</label>
                                 </div>
                             </div>
                             <div class="form-group p-2" id="seccionFilterKilos" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color1" name="colores[]" value="Rojo">
-                                    <label class="form-check-label" for="color1">5 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo1" name="kilos[]" value="5 kilos">
+                                    <label class="form-check-label" for="kilo1">5 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">10 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo2" name="kilos[]" value="10 kilos">
+                                    <label class="form-check-label" for="kilo1">10 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">15 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo3" name="kilos[]" value="15 kilos">
+                                    <label class="form-check-label" for="kilo3">15 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">20 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo4" name="kilos[]" value="20 kilos">
+                                    <label class="form-check-label" for="kilo4">20 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">25 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo5" name="kilos[]" value="25 kilos">
+                                    <label class="form-check-label" for="kilo5">25 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">30 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo6" name="kilos[]" value="30 kilos">
+                                    <label class="form-check-label" for="kilo6">30 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">35 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo7" name="kilos[]" value="35 kilos">
+                                    <label class="form-check-label" for="kilo7">35 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">40 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo8" name="kilos[]" value="40 kilos">
+                                    <label class="form-check-label" for="kilo8">40 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">45 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo9" name="kilos[]" value="45 kilos">
+                                    <label class="form-check-label" for="kilo19">45 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">50 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo10" name="kilos[]" value="50 kilos">
+                                    <label class="form-check-label" for="kilo10">50 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">55 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo11" name="kilos[]" value="55 kilos">
+                                    <label class="form-check-label" for="kilo11">55 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">60 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo12" name="kilos[]" value="60 kilos">
+                                    <label class="form-check-label" for="kilo1">60 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">65 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo13" name="kilos[]" value="65 kilos">
+                                    <label class="form-check-label" for="kilo13">65 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">70 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo14" name="kilos[]" value="70 kilos">
+                                    <label class="form-check-label" for="kilo14">70 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">75 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo15" name="kilos[]" value="75 kilos">
+                                    <label class="form-check-label" for="kilo15">75 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">80 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo16" name="kilos[]" value="80 kilos">
+                                    <label class="form-check-label" for="kilo16">80 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">85 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo17" name="kilos[]" value="85 kilos">
+                                    <label class="form-check-label" for="kilo17">85 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">90 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo18" name="kilos[]" value="90 kilos">
+                                    <label class="form-check-label" for="kilo18">90 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">95 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo19" name="kilos[]" value="95 kilos">
+                                    <label class="form-check-label" for="kilo19">95 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">100 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo19" name="kilos[]" value="100 kilos">
+                                    <label class="form-check-label" for="kilo19">100 kilos</label>
                                 </div>
                             </div>
                         </div>
@@ -1111,95 +1111,140 @@
                             <div class="form-group">
                                 <div class="form-check mr-4">
                                     <input type="radio" class="form-check-input" name="useFilterColor" value="1" id="conColor" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
-                                    <label class="form-check-label" for="conColor">Con colores</label>
+                                    <label class="form-check-label" for="conColor">Usar filtro</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="useFilterColor" value="0" id="sinColor" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
-                                    <label class="form-check-label" for="sinColor">Sin Colores</label>
+                                    <label class="form-check-label" for="sinColor">No usar</label>
                                 </div>
                             </div>
                             <div class="form-group p-2" id="seccionFilterColor" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color1" name="colores[]" value="Rojo">
+                                    <input type="checkbox" class="form-check-input" id="color1" name="colors[]" value="Negro">
                                     <label class="form-check-label" for="color1">Negro</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
+                                    <input type="checkbox" class="form-check-input" id="color2" name="colors[]" value="Azul">
                                     <label class="form-check-label" for="color2">Azul</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Gris</label>
+                                    <input type="checkbox" class="form-check-input" id="color3" name="colors[]" value="Gris">
+                                    <label class="form-check-label" for="color3">Gris</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Verde</label>
+                                    <input type="checkbox" class="form-check-input" id="color4" name="colors[]" value="Verde">
+                                    <label class="form-check-label" for="color4">Verde</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Rojo</label>
+                                    <input type="checkbox" class="form-check-input" id="color5" name="colors[]" value="Rojo">
+                                    <label class="form-check-label" for="color5">Rojo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Blanco</label>
+                                    <input type="checkbox" class="form-check-input" id="color6" name="colors[]" value="Blanco">
+                                    <label class="form-check-label" for="color6">Blanco</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Amarillo</label>
+                                    <input type="checkbox" class="form-check-input" id="color7" name="colors[]" value="Amarillo">
+                                    <label class="form-check-label" for="color7">Amarillo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Naranja</label>
+                                    <input type="checkbox" class="form-check-input" id="color8" name="colors[]" value="Naranja">
+                                    <label class="form-check-label" for="color8">Naranja</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Rosa</label>
+                                    <input type="checkbox" class="form-check-input" id="color9" name="colors[]" value="Rosa">
+                                    <label class="form-check-label" for="color9">Rosa</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Marrón</label>
+                                    <input type="checkbox" class="form-check-input" id="color10" name="colors[]" value="Marrón">
+                                    <label class="form-check-label" for="color10">Marrón</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Celeste</label>
+                                    <input type="checkbox" class="form-check-input" id="color11" name="colors[]" value="Celeste">
+                                    <label class="form-check-label" for="color11">Celeste</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Dorado</label>
+                                    <input type="checkbox" class="form-check-input" id="color12" name="colors[]" value="Dorado">
+                                    <label class="form-check-label" for="color12">Dorado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Plateado</label>
+                                    <input type="checkbox" class="form-check-input" id="color13" name="colors[]" value="Plateado">
+                                    <label class="form-check-label" for="color13">Plateado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Lila</label>
+                                    <input type="checkbox" class="form-check-input" id="color14" name="colors[]" value="Lila">
+                                    <label class="form-check-label" for="color14">Lila</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Violeta</label>
+                                    <input type="checkbox" class="form-check-input" id="color15" name="colors[]" value="Violeta">
+                                    <label class="form-check-label" for="color15">Violeta</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Turquesa</label>
+                                    <input type="checkbox" class="form-check-input" id="color16" name="colors[]" value="Turquesa">
+                                    <label class="form-check-label" for="color16">Turquesa</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Aguamarina</label>
+                                    <input type="checkbox" class="form-check-input" id="color17" name="colors[]" value="Aguamarina">
+                                    <label class="form-check-label" for="color17">Aguamarina</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Crema</label>
+                                    <input type="checkbox" class="form-check-input" id="color18" name="colors[]" value="Crema">
+                                    <label class="form-check-label" for="color18">Crema</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Fucsia</label>
+                                    <input type="checkbox" class="form-check-input" id="color19" name="colors[]" value="Fucsia">
+                                    <label class="form-check-label" for="color19">Fucsia</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colores[]" value="Azul">
-                                    <label class="form-check-label" for="color2">Oliva</label>
+                                    <input type="checkbox" class="form-check-input" id="color20" name="colors[]" value="Oliva">
+                                    <label class="form-check-label" for="color20">Oliva</label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 pb-4 border-bottom">
+                            <h6>Filtro Talles:</h6>
+                            <div class="form-group">
+                                <div class="form-check mr-4">
+                                    <input type="radio" class="form-check-input" name="useFilterTalle" value="1" id="conTalle" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
+                                    <label class="form-check-label" for="conTalle">Usar filtro</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="useFilterTalle" value="0" id="sinTalle" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
+                                    <label class="form-check-label" for="sinTalle">No usar</label>
+                                </div>
+                            </div>
+                            <div class="form-group p-2" id="seccionFilterTalle" style="background: #eee;border-radius: 4px;">
+                                <!-- Checkbox para cada color -->
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="xs" name="sizes[]" value="XS">
+                                    <label class="form-check-label" for="xs">XS</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="s" name="sizes[]" value="S">
+                                    <label class="form-check-label" for="s">S</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="m" name="sizes[]" value="M">
+                                    <label class="form-check-label" for="m">M</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="l" name="sizes[]" value="L">
+                                    <label class="form-check-label" for="l">L</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="xl" name="sizes[]" value="XL">
+                                    <label class="form-check-label" for="xl">XL</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="xxl" name="sizes[]" value="XXL">
+                                    <label class="form-check-label" for="xxl">XXL</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="xxxl" name="sizes[]" value="XXXL">
+                                    <label class="form-check-label" for="xxxl">XXXL</label>
+                                </div>
+
                             </div>
                         </div>
                         <div class="pt-4 pb-4">
@@ -1207,11 +1252,11 @@
                             <div class="form-group">
                                 <div class="form-check mr-4">
                                     <input type="radio" class="form-check-input" name="useFilterTags" value="1" id="conTags" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
-                                    <label class="form-check-label" for="conTags">Con tags</label>
+                                    <label class="form-check-label" for="conTags">Usar filtro</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="useFilterTags" value="0" id="sinTags" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
-                                    <label class="form-check-label" for="sinTags">Sin tags</label>
+                                    <label class="form-check-label" for="sinTags">No usar</label>
                                 </div>
                             </div>
                             <div class="form-group p-2" id="seccionFilterTags" style="background: #eee;border-radius: 4px;">
@@ -1529,6 +1574,13 @@
                 $('#seccionFilterTags').show();
             } else {
                 $('#seccionFilterTags').hide();
+            }
+        });
+        $('input[name="useFilterTalle"]').change(function() {
+            if ($(this).val() === "1") {
+                $('#seccionFilterTalle').show();
+            } else {
+                $('#seccionFilterTalle').hide();
             }
         });
         //aplicamos fuente selecionada a los input text como queda
