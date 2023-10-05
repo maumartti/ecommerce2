@@ -17,6 +17,13 @@ return new class extends Migration
             $table->string('imageRotor1')->nullable();
             $table->string('imageRotor2')->nullable();
             $table->string('imageRotor3')->nullable();
+
+            $table->string('filtersColors')->nullable();
+            $table->string('filtersKilos')->nullable();
+            $table->string('filtersSize')->nullable();
+            $table->string('filtersPrices')->nullable();
+            $table->string('filtersTags')->nullable();
+
             $table->string('pretitleRotor1',36)->nullable();
             $table->string('titleRotor1',36)->nullable();
             $table->string('btnTextRotor1',22)->nullable();

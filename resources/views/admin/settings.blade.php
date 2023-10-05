@@ -1030,7 +1030,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="kilo2" name="kilos[]" value="10 kilos">
-                                    <label class="form-check-label" for="kilo1">10 kilos</label>
+                                    <label class="form-check-label" for="kilo2">10 kilos</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="kilo3" name="kilos[]" value="15 kilos">
@@ -1058,7 +1058,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="kilo9" name="kilos[]" value="45 kilos">
-                                    <label class="form-check-label" for="kilo19">45 kilos</label>
+                                    <label class="form-check-label" for="kilo9">45 kilos</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="kilo10" name="kilos[]" value="50 kilos">
@@ -1070,7 +1070,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="kilo12" name="kilos[]" value="60 kilos">
-                                    <label class="form-check-label" for="kilo1">60 kilos</label>
+                                    <label class="form-check-label" for="kilo12">60 kilos</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="kilo13" name="kilos[]" value="65 kilos">
@@ -1101,8 +1101,8 @@
                                     <label class="form-check-label" for="kilo19">95 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo19" name="kilos[]" value="100 kilos">
-                                    <label class="form-check-label" for="kilo19">100 kilos</label>
+                                    <input type="checkbox" class="form-check-input" id="kilo20" name="kilos[]" value="100 kilos">
+                                    <label class="form-check-label" for="kilo20">100 kilos</label>
                                 </div>
                             </div>
                         </div>
@@ -1262,8 +1262,8 @@
                             <div class="form-group p-2" id="seccionFilterTags" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="color1" name="colores[]" value="Rojo">
-                                    <label class="form-check-label" for="color1">ccxcxcxx</label>
+                                    <input type="checkbox" class="form-check-input" id="tag1" name="tags[]" value="xxxx">
+                                    <label class="form-check-label" for="tag1">ccxcxcxx</label>
                                 </div>
 
                             </div>

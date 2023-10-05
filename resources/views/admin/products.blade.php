@@ -298,6 +298,71 @@
                                     <input type="text" name="stock" class="form-control" id="stock" maxlength="5" placeholder="Cantidad disponible" pattern="[0-9]+" required>
                                 </div>
                                 <div class="form-group">
+                                    <label  for="kilos">Kilos:</label>
+                                    <select name="kilos" id="kilos" class="form-control" autocomplete="off" >
+                                        <option value="" selected>Sin kilos</option>
+                                        <option value="5">5 kilos</option>
+                                        <option value="10">10 kilos</option>
+                                        <option value="15">15 kilos</option>
+                                        <option value="20">20 kilos</option>
+                                        <option value="25">25 kilos</option>
+                                        <option value="30">30 kilos</option>
+                                        <option value="35">35 kilos</option>
+                                        <option value="40">40 kilos</option>
+                                        <option value="45">45 kilos</option>
+                                        <option value="50">50 kilos</option>
+                                        <option value="55">55 kilos</option>
+                                        <option value="60">60 kilos</option>
+                                        <option value="65">65 kilos</option>
+                                        <option value="70">70 kilos</option>
+                                        <option value="75">75 kilos</option>
+                                        <option value="80">80 kilos</option>
+                                        <option value="85">85 kilos</option>
+                                        <option value="90">90 kilos</option>
+                                        <option value="95">95 kilos</option>
+                                        <option value="100">100 kilos</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label  for="color">Color:</label>
+                                    <select name="color" id="color" class="form-control" autocomplete="off" >
+                                        <option value="" selected>Sin color</option>
+                                        <option value="Negro">Negro</option>
+                                        <option value="Azul">Azul</option>
+                                        <option value="Gris">Gris</option>
+                                        <option value="Verde">Verde</option>
+                                        <option value="Rojo">Rojo</option>
+                                        <option value="Blanco">Blanco</option>
+                                        <option value="Amarillo">Amarillo</option>
+                                        <option value="Naranja">Naranja</option>
+                                        <option value="Rosa">Rosa</option>
+                                        <option value="Marrón">Marrón</option>
+                                        <option value="Celeste">Celeste</option>
+                                        <option value="Dorado">Dorado</option>
+                                        <option value="Plateado">Plateado</option>
+                                        <option value="Lila">Lila</option>
+                                        <option value="Violeta">Violeta</option>
+                                        <option value="Turquesa">Turquesa</option>
+                                        <option value="Aguamarina">Aguamarina</option>
+                                        <option value="Crema">Crema</option>
+                                        <option value="Fucsia">Fucsia</option>
+                                        <option value="Oliva">Oliva</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label  for="size">Talle:</label>
+                                    <select name="size" id="size" class="form-control" autocomplete="off" >
+                                        <option value="" selected>Sin talle</option>
+                                        <option value="XS">XS</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
+                                        <option value="XXL">XXL</option>
+                                        <option value="XXXL">XXXL</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="descripcion">Descripción:</label>
                                     <textarea name="description" class="form-control" id="descripcion" maxlength="255" rows="4" placeholder="Descripción"></textarea>
                                 </div>

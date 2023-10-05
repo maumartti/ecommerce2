@@ -59,6 +59,9 @@ class ProductsController extends Controller
             'stock' => 'required',
             'description' => 'string|max:255',
             'descount' => 'nullable|string',
+            'kilos' => 'nullable|string',
+            'color' => 'nullable|string',
+            'size' => 'nullable|string',
             'promo' => 'string'
         ]);
 
