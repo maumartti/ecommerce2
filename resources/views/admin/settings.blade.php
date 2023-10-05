@@ -880,7 +880,7 @@
                     <form action="{{ route('saveData') }}" method="POST" class="quick-post-form php-email-form">
                         <!-- <h6 class="pt-3 pb-4">Configuración de Filtros</h6> -->
                             <!-- Colores -->
-                        <div class="pt-2 pb-4 border-bottom">
+                        <div class="pt-2  pb-4 border-bottom">
                             <h6>Filtro Precios:</h6>
                             <div class="form-group">
                                 <div class="form-check mr-4">
