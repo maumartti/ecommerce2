@@ -895,115 +895,115 @@
                             <div class="form-group p-2" id="seccionFilterPrecios" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio1" name="prices[]" value="$0 - $50">
+                                    <input type="checkbox" class="form-check-input" id="precio1" name="filtersPrices[]" value="$0 - $50">
                                     <label class="form-check-label" for="precio1">$0 - $50</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio2" name="prices[]" value="$50 - $100">
+                                    <input type="checkbox" class="form-check-input" id="precio2" name="filtersPrices[]" value="$50 - $100">
                                     <label class="form-check-label" for="precio2">$50 - $100</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio3" name="prices[]" value="$100 - $200">
+                                    <input type="checkbox" class="form-check-input" id="precio3" name="filtersPrices[]" value="$100 - $200">
                                     <label class="form-check-label" for="precio3">$100 - $200</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio4" name="prices[]" value="$100 - $200">
+                                    <input type="checkbox" class="form-check-input" id="precio4" name="filtersPrices[]" value="$100 - $200">
                                     <label class="form-check-label" for="precio4">$100 - $200</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio5" name="prices[]" value="$200 - $400">
+                                    <input type="checkbox" class="form-check-input" id="precio5" name="filtersPrices[]" value="$200 - $400">
                                     <label class="form-check-label" for="precio5">$200 - $400</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio6" name="prices[]" value="$400 - $500">
+                                    <input type="checkbox" class="form-check-input" id="precio6" name="filtersPrices[]" value="$400 - $500">
                                     <label class="form-check-label" for="precio6">$400 - $500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio7" name="prices[]" value="$500 - $750">
+                                    <input type="checkbox" class="form-check-input" id="precio7" name="filtersPrices[]" value="$500 - $750">
                                     <label class="form-check-label" for="precio7">$500 - $750</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio8" name="prices[]" value="$750 - $1.000">
+                                    <input type="checkbox" class="form-check-input" id="precio8" name="filtersPrices[]" value="$750 - $1.000">
                                     <label class="form-check-label" for="precio8">$750 - $1.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio9" name="prices[]" value="$1.000 - $1.500">
+                                    <input type="checkbox" class="form-check-input" id="precio9" name="filtersPrices[]" value="$1.000 - $1.500">
                                     <label class="form-check-label" for="precio9">$1.000 - $1.500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio10" name="prices[]" value="$1.500 - $2.000">
+                                    <input type="checkbox" class="form-check-input" id="precio10" name="filtersPrices[]" value="$1.500 - $2.000">
                                     <label class="form-check-label" for="precio10">$1.500 - $2.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio11" name="prices[]" value="$2.000 - $4.000">
+                                    <input type="checkbox" class="form-check-input" id="precio11" name="filtersPrices[]" value="$2.000 - $4.000">
                                     <label class="form-check-label" for="precio11">$2.000 - $4.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio12" name="prices[]" value="$4.000 - $5.000">
+                                    <input type="checkbox" class="form-check-input" id="precio12" name="filtersPrices[]" value="$4.000 - $5.000">
                                     <label class="form-check-label" for="precio12">$4.000 - $5.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio13" name="prices[]" value="$5.000 - $7.500">
+                                    <input type="checkbox" class="form-check-input" id="precio13" name="filtersPrices[]" value="$5.000 - $7.500">
                                     <label class="form-check-label" for="precio13">$5.000 - $7.500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio14" name="prices[]" value="$7.500 - $10.000">
+                                    <input type="checkbox" class="form-check-input" id="precio14" name="filtersPrices[]" value="$7.500 - $10.000">
                                     <label class="form-check-label" for="precio14">$7.500 - $10.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio15" name="prices[]" value="$10.000 - $15.000">
+                                    <input type="checkbox" class="form-check-input" id="precio15" name="filtersPrices[]" value="$10.000 - $15.000">
                                     <label class="form-check-label" for="precio15">$10.000 - $15.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio16" name="prices[]" value="$15.000 - $20.000">
+                                    <input type="checkbox" class="form-check-input" id="precio16" name="filtersPrices[]" value="$15.000 - $20.000">
                                     <label class="form-check-label" for="precio16">$15.000 - $20.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio17" name="prices[]" value="$20.000 - $50.000">
+                                    <input type="checkbox" class="form-check-input" id="precio17" name="filtersPrices[]" value="$20.000 - $50.000">
                                     <label class="form-check-label" for="precio17">$20.000 - $50.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio18" name="prices[]" value="$50.000 - $75.000">
+                                    <input type="checkbox" class="form-check-input" id="precio18" name="filtersPrices[]" value="$50.000 - $75.000">
                                     <label class="form-check-label" for="precio18">$50.000 - $75.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio19" name="prices[]" value="$75.000 - $100.000">
+                                    <input type="checkbox" class="form-check-input" id="precio19" name="filtersPrices[]" value="$75.000 - $100.000">
                                     <label class="form-check-label" for="precio19">$75.000 - $100.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio20" name="prices[]" value="$100.000 - $150.000">
+                                    <input type="checkbox" class="form-check-input" id="precio20" name="filtersPrices[]" value="$100.000 - $150.000">
                                     <label class="form-check-label" for="precio20">$100.000 - $150.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio21" name="prices[]" value="$150.000 - $300.000">
+                                    <input type="checkbox" class="form-check-input" id="precio21" name="filtersPrices[]" value="$150.000 - $300.000">
                                     <label class="form-check-label" for="precio21">$150.000 - $300.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio22" name="prices[]" value="$300.000 - $500.000">
+                                    <input type="checkbox" class="form-check-input" id="precio22" name="filtersPrices[]" value="$300.000 - $500.000">
                                     <label class="form-check-label" for="precio22">$300.000 - $500.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio23" name="prices[]" value="$500.000 - $750.000">
+                                    <input type="checkbox" class="form-check-input" id="precio23" name="filtersPrices[]" value="$500.000 - $750.000">
                                     <label class="form-check-label" for="precio23">$500.000 - $750.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio24" name="prices[]" value="$750.000 - $1.000.000">
+                                    <input type="checkbox" class="form-check-input" id="precio24" name="filtersPrices[]" value="$750.000 - $1.000.000">
                                     <label class="form-check-label" for="precio24">$750.000 - $1.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio25" name="prices[]" value="$1.000.000 - $1.400.000">
+                                    <input type="checkbox" class="form-check-input" id="precio25" name="filtersPrices[]" value="$1.000.000 - $1.400.000">
                                     <label class="form-check-label" for="precio25">$1.000.000 - $1.400.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio26" name="prices[]" value="$1.500.000 - $2.000.000">
+                                    <input type="checkbox" class="form-check-input" id="precio26" name="filtersPrices[]" value="$1.500.000 - $2.000.000">
                                     <label class="form-check-label" for="precio26">$1.500.000 - $2.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio27" name="prices[]" value="$2.000.000 - $5.000.000">
+                                    <input type="checkbox" class="form-check-input" id="precio27" name="filtersPrices[]" value="$2.000.000 - $5.000.000">
                                     <label class="form-check-label" for="precio27">$2.000.000 - $5.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio28" name="prices[]" value="$5.000.000 - $10.000.000">
+                                    <input type="checkbox" class="form-check-input" id="precio28" name="filtersPrices[]" value="$5.000.000 - $10.000.000">
                                     <label class="form-check-label" for="precio28">$5.000.000 - $10.000.000</label>
                                 </div>
     
@@ -1025,83 +1025,83 @@
                             <div class="form-group p-2" id="seccionFilterKilos" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo1" name="kilos[]" value="5 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo1" name="filtersKilos[]" value="5 kilos">
                                     <label class="form-check-label" for="kilo1">5 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo2" name="kilos[]" value="10 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo2" name="filtersKilos[]" value="10 kilos">
                                     <label class="form-check-label" for="kilo2">10 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo3" name="kilos[]" value="15 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo3" name="filtersKilos[]" value="15 kilos">
                                     <label class="form-check-label" for="kilo3">15 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo4" name="kilos[]" value="20 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo4" name="filtersKilos[]" value="20 kilos">
                                     <label class="form-check-label" for="kilo4">20 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo5" name="kilos[]" value="25 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo5" name="filtersKilos[]" value="25 kilos">
                                     <label class="form-check-label" for="kilo5">25 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo6" name="kilos[]" value="30 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo6" name="filtersKilos[]" value="30 kilos">
                                     <label class="form-check-label" for="kilo6">30 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo7" name="kilos[]" value="35 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo7" name="filtersKilos[]" value="35 kilos">
                                     <label class="form-check-label" for="kilo7">35 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo8" name="kilos[]" value="40 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo8" name="filtersKilos[]" value="40 kilos">
                                     <label class="form-check-label" for="kilo8">40 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo9" name="kilos[]" value="45 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo9" name="filtersKilos[]" value="45 kilos">
                                     <label class="form-check-label" for="kilo9">45 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo10" name="kilos[]" value="50 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo10" name="filtersKilos[]" value="50 kilos">
                                     <label class="form-check-label" for="kilo10">50 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo11" name="kilos[]" value="55 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo11" name="filtersKilos[]" value="55 kilos">
                                     <label class="form-check-label" for="kilo11">55 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo12" name="kilos[]" value="60 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo12" name="filtersKilos[]" value="60 kilos">
                                     <label class="form-check-label" for="kilo12">60 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo13" name="kilos[]" value="65 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo13" name="filtersKilos[]" value="65 kilos">
                                     <label class="form-check-label" for="kilo13">65 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo14" name="kilos[]" value="70 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo14" name="filtersKilos[]" value="70 kilos">
                                     <label class="form-check-label" for="kilo14">70 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo15" name="kilos[]" value="75 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo15" name="filtersKilos[]" value="75 kilos">
                                     <label class="form-check-label" for="kilo15">75 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo16" name="kilos[]" value="80 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo16" name="filtersKilos[]" value="80 kilos">
                                     <label class="form-check-label" for="kilo16">80 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo17" name="kilos[]" value="85 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo17" name="filtersKilos[]" value="85 kilos">
                                     <label class="form-check-label" for="kilo17">85 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo18" name="kilos[]" value="90 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo18" name="filtersKilos[]" value="90 kilos">
                                     <label class="form-check-label" for="kilo18">90 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo19" name="kilos[]" value="95 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo19" name="filtersKilos[]" value="95 kilos">
                                     <label class="form-check-label" for="kilo19">95 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo20" name="kilos[]" value="100 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo20" name="filtersKilos[]" value="100 kilos">
                                     <label class="form-check-label" for="kilo20">100 kilos</label>
                                 </div>
                             </div>
@@ -1121,83 +1121,83 @@
                             <div class="form-group p-2" id="seccionFilterColor" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color1" name="colors[]" value="Negro">
+                                    <input type="checkbox" class="form-check-input" id="color1" name="filtersColors[]" value="Negro">
                                     <label class="form-check-label" for="color1">Negro</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="colors[]" value="Azul">
+                                    <input type="checkbox" class="form-check-input" id="color2" name="filtersColors[]" value="Azul">
                                     <label class="form-check-label" for="color2">Azul</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color3" name="colors[]" value="Gris">
+                                    <input type="checkbox" class="form-check-input" id="color3" name="filtersColors[]" value="Gris">
                                     <label class="form-check-label" for="color3">Gris</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color4" name="colors[]" value="Verde">
+                                    <input type="checkbox" class="form-check-input" id="color4" name="filtersColors[]" value="Verde">
                                     <label class="form-check-label" for="color4">Verde</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color5" name="colors[]" value="Rojo">
+                                    <input type="checkbox" class="form-check-input" id="color5" name="filtersColors[]" value="Rojo">
                                     <label class="form-check-label" for="color5">Rojo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color6" name="colors[]" value="Blanco">
+                                    <input type="checkbox" class="form-check-input" id="color6" name="filtersColors[]" value="Blanco">
                                     <label class="form-check-label" for="color6">Blanco</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color7" name="colors[]" value="Amarillo">
+                                    <input type="checkbox" class="form-check-input" id="color7" name="filtersColors[]" value="Amarillo">
                                     <label class="form-check-label" for="color7">Amarillo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color8" name="colors[]" value="Naranja">
+                                    <input type="checkbox" class="form-check-input" id="color8" name="filtersColors[]" value="Naranja">
                                     <label class="form-check-label" for="color8">Naranja</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color9" name="colors[]" value="Rosa">
+                                    <input type="checkbox" class="form-check-input" id="color9" name="filtersColors[]" value="Rosa">
                                     <label class="form-check-label" for="color9">Rosa</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color10" name="colors[]" value="Marrón">
+                                    <input type="checkbox" class="form-check-input" id="color10" name="filtersColors[]" value="Marrón">
                                     <label class="form-check-label" for="color10">Marrón</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color11" name="colors[]" value="Celeste">
+                                    <input type="checkbox" class="form-check-input" id="color11" name="filtersColors[]" value="Celeste">
                                     <label class="form-check-label" for="color11">Celeste</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color12" name="colors[]" value="Dorado">
+                                    <input type="checkbox" class="form-check-input" id="color12" name="filtersColors[]" value="Dorado">
                                     <label class="form-check-label" for="color12">Dorado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color13" name="colors[]" value="Plateado">
+                                    <input type="checkbox" class="form-check-input" id="color13" name="filtersColors[]" value="Plateado">
                                     <label class="form-check-label" for="color13">Plateado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color14" name="colors[]" value="Lila">
+                                    <input type="checkbox" class="form-check-input" id="color14" name="filtersColors[]" value="Lila">
                                     <label class="form-check-label" for="color14">Lila</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color15" name="colors[]" value="Violeta">
+                                    <input type="checkbox" class="form-check-input" id="color15" name="filtersColors[]" value="Violeta">
                                     <label class="form-check-label" for="color15">Violeta</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color16" name="colors[]" value="Turquesa">
+                                    <input type="checkbox" class="form-check-input" id="color16" name="filtersColors[]" value="Turquesa">
                                     <label class="form-check-label" for="color16">Turquesa</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color17" name="colors[]" value="Aguamarina">
+                                    <input type="checkbox" class="form-check-input" id="color17" name="filtersColors[]" value="Aguamarina">
                                     <label class="form-check-label" for="color17">Aguamarina</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color18" name="colors[]" value="Crema">
+                                    <input type="checkbox" class="form-check-input" id="color18" name="filtersColors[]" value="Crema">
                                     <label class="form-check-label" for="color18">Crema</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color19" name="colors[]" value="Fucsia">
+                                    <input type="checkbox" class="form-check-input" id="color19" name="filtersColors[]" value="Fucsia">
                                     <label class="form-check-label" for="color19">Fucsia</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color20" name="colors[]" value="Oliva">
+                                    <input type="checkbox" class="form-check-input" id="color20" name="filtersColors[]" value="Oliva">
                                     <label class="form-check-label" for="color20">Oliva</label>
                                 </div>
                             </div>
@@ -1217,31 +1217,31 @@
                             <div class="form-group p-2" id="seccionFilterTalle" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="xs" name="sizes[]" value="XS">
+                                    <input type="checkbox" class="form-check-input" id="xs" name="filtersSizes[]" value="XS">
                                     <label class="form-check-label" for="xs">XS</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="s" name="sizes[]" value="S">
+                                    <input type="checkbox" class="form-check-input" id="s" name="filtersSizes[]" value="S">
                                     <label class="form-check-label" for="s">S</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="m" name="sizes[]" value="M">
+                                    <input type="checkbox" class="form-check-input" id="m" name="filtersSizes[]" value="M">
                                     <label class="form-check-label" for="m">M</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="l" name="sizes[]" value="L">
+                                    <input type="checkbox" class="form-check-input" id="l" name="filtersSizes[]" value="L">
                                     <label class="form-check-label" for="l">L</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="xl" name="sizes[]" value="XL">
+                                    <input type="checkbox" class="form-check-input" id="xl" name="filtersSizes[]" value="XL">
                                     <label class="form-check-label" for="xl">XL</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="xxl" name="sizes[]" value="XXL">
+                                    <input type="checkbox" class="form-check-input" id="xxl" name="filtersSizes[]" value="XXL">
                                     <label class="form-check-label" for="xxl">XXL</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="xxxl" name="sizes[]" value="XXXL">
+                                    <input type="checkbox" class="form-check-input" id="xxxl" name="filtersSizes[]" value="XXXL">
                                     <label class="form-check-label" for="xxxl">XXXL</label>
                                 </div>
 

@@ -66,6 +66,7 @@ class HomeController extends Controller
 
 
     public function saveData(Request $request) {
+        dd($request->all());
         try {
             $data = $request->all();
             $tools = new Tools;
