@@ -884,11 +884,11 @@
                             <h6>Filtro Precios:</h6>
                             <div class="form-group">
                                 <div class="form-check mr-4">
-                                    <input type="radio" class="form-check-input" name="useFilterPrecios" value="1" id="conPrecios" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
+                                    <input type="radio" class="form-check-input" name="useFilterPrices" value="1" id="conPrecios" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
                                     <label class="form-check-label" for="conPrecios">Usar filtro</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" name="useFilterPrecios" value="0" id="sinPrecios" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
+                                    <input type="radio" class="form-check-input" name="useFilterPrices" value="0" id="sinPrecios" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
                                     <label class="form-check-label" for="sinPrecios">No usar</label>
                                 </div>
                             </div>
@@ -1110,11 +1110,11 @@
                             <h6>Filtro Colores:</h6>
                             <div class="form-group">
                                 <div class="form-check mr-4">
-                                    <input type="radio" class="form-check-input" name="useFilterColor" value="1" id="conColor" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
+                                    <input type="radio" class="form-check-input" name="useFilterColors" value="1" id="conColor" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
                                     <label class="form-check-label" for="conColor">Usar filtro</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" name="useFilterColor" value="0" id="sinColor" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
+                                    <input type="radio" class="form-check-input" name="useFilterColors" value="0" id="sinColor" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
                                     <label class="form-check-label" for="sinColor">No usar</label>
                                 </div>
                             </div>
@@ -1206,11 +1206,11 @@
                             <h6>Filtro Talles:</h6>
                             <div class="form-group">
                                 <div class="form-check mr-4">
-                                    <input type="radio" class="form-check-input" name="useFilterTalle" value="1" id="conTalle" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
+                                    <input type="radio" class="form-check-input" name="useFilterSizes" value="1" id="conTalle" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
                                     <label class="form-check-label" for="conTalle">Usar filtro</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" name="useFilterTalle" value="0" id="sinTalle" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
+                                    <input type="radio" class="form-check-input" name="useFilterSizes" value="0" id="sinTalle" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
                                     <label class="form-check-label" for="sinTalle">No usar</label>
                                 </div>
                             </div>
@@ -1262,7 +1262,7 @@
                             <div class="form-group p-2" id="seccionFilterTags" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="tag1" name="tags[]" value="xxxx">
+                                    <input type="checkbox" class="form-check-input" id="tag1" name="filtersTags[]" value="xxxx">
                                     <label class="form-check-label" for="tag1">ccxcxcxx</label>
                                 </div>
 
@@ -1548,14 +1548,14 @@
                 $('#buttonFields3').hide();
             }
         });
-        $('input[name="useFilterColor"]').change(function() {
+        $('input[name="useFilterColors"]').change(function() {
             if ($(this).val() === "1") {
                 $('#seccionFilterColor').show();
             } else {
                 $('#seccionFilterColor').hide();
             }
         });
-        $('input[name="useFilterPrecios"]').change(function() {
+        $('input[name="useFilterPrices"]').change(function() {
             if ($(this).val() === "1") {
                 $('#seccionFilterPrecios').show();
             } else {
@@ -1576,7 +1576,7 @@
                 $('#seccionFilterTags').hide();
             }
         });
-        $('input[name="useFilterTalle"]').change(function() {
+        $('input[name="useFilterSizes"]').change(function() {
             if ($(this).val() === "1") {
                 $('#seccionFilterTalle').show();
             } else {

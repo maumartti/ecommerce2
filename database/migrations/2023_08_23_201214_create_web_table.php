@@ -23,6 +23,11 @@ return new class extends Migration
             $table->string('filtersSize')->nullable();
             $table->string('filtersPrices')->nullable();
             $table->string('filtersTags')->nullable();
+            table->tinyInteger('useFilterColors')->length(1)->default(0);
+            table->tinyInteger('useFilterKilos')->length(1)->default(0);
+            table->tinyInteger('useFilterPrices')->length(1)->default(0);
+            table->tinyInteger('useFilterSizes')->length(1)->default(0);
+            table->tinyInteger('useFilterTags')->length(1)->default(0);
 
             $table->string('pretitleRotor1',36)->nullable();
             $table->string('titleRotor1',36)->nullable();

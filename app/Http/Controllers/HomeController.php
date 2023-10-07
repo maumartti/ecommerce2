@@ -66,7 +66,7 @@ class HomeController extends Controller
 
 
     public function saveData(Request $request) {
-        dd($request->all());
+        //dd($request->all());
         try {
             $data = $request->all();
             $tools = new Tools;
@@ -127,7 +127,7 @@ class HomeController extends Controller
     
             return response()->json(['status' => 'success'], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'An error occurred while saving data'], 500);
+            return response()->json(['error' => 'An error occurred while saving data:' . $e], 500);
         }
     }
 
