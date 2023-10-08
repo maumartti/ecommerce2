@@ -162,11 +162,11 @@
                                     <div class="form-group">
                                         <div class="form-check mr-4">
                                             <input type="radio" class="form-check-input" name="useBtnRotor1" value="1" id="conBoton" autocomplete="off" @if ($web->useBtnRotor1 == 1) checked @endif>
-                                            <label class="form-check-label" for="conBoton">Usar filtro</label>
+                                            <label class="form-check-label" for="conBoton">Con botón</label>
                                         </div>
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" name="useBtnRotor1" value="0" id="sinBoton" autocomplete="off" @if ($web->useBtnRotor1 == 0) checked @endif>
-                                            <label class="form-check-label" for="sinBoton">No usar</label>
+                                            <label class="form-check-label" for="sinBoton">Sin botón</label>
                                         </div>
                                     </div>
                                     <div class="form-group p-2" id="buttonFields" style="@if($web->useBtnRotor1 == 0) display:none; @endif background: #e8e8e8;border-radius: 4px;">

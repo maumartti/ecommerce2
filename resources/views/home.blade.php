@@ -319,6 +319,10 @@
 						</div>
 
 						<!-- precio -->
+						@if($web->useFilterPrices == 1)
+						@php
+								$priceRanges = json_decode($web->filtersPrices);
+						@endphp
 						<div class="filter-col2 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Precio
@@ -329,35 +333,25 @@
 										Todos
 									</a>
 								</li>
+								@if(!empty($priceRanges) && is_array($priceRanges))
+								@foreach($priceRanges as $priceRange)
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$0.00 - $50.00
-									</a>
+										<a href="#" class="filter-link stext-106 trans-04">
+												{{ $priceRange }}
+										</a>
 								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$50.00 - $100.00
-									</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$100.00 - $150.00
-									</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$150.00 - $200.00
-									</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$200.00+
-									</a>
-								</li>
+								@endforeach
+								@endif
+
 							</ul>
 						</div>
+						@endif
 
 						<!-- kilos -->
+						@if($web->useFilterPrices == 1)
+						@php
+								$kilosRanges = json_decode($web->filtersKilos);
+						@endphp
 						<div class="filter-col3 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Kilos
@@ -368,102 +362,69 @@
 										Todos
 									</a>
 								</li>
+								@if(!empty($kilosRanges) && is_array($kilosRanges))
+								@foreach($kilosRanges as $kiloRange)
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										15 kilos
-									</a>
+										<a href="#" class="filter-link stext-106 trans-04">
+												{{ $kiloRange }}
+										</a>
 								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										20 kilos
-									</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										25 kilos
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										40 kilos
-									</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										45 kilos
-									</a>
-								</li>
+								@endforeach
+								@endif
 							</ul>
 						</div>
+						@endif
+
+
+
+
 						<!-- color -->
+						@if($web->useFilterColors == 1)
+						@php
+								$colorsRanges = json_decode($web->filtersColors);
+								$colors = [
+								'Negro' => '#000000',
+								'Blanco' => '#FFFFFF',
+								'Rojo' => '#FF0000',
+								'Verde' => '#00FF00',
+								'Azul' => '#0000FF',
+								'Amarillo' => '#FFFF00',
+								'Naranja' => '#FFA500',
+								'Rosado' => '#FFC0CB',
+								'Violeta' => '#800080',
+								'Gris' => '#808080',
+								'Marrón' => '#A52A2A',
+								'Cyan' => '#00FFFF',
+								'Magenta' => '#FF00FF',
+								'Lima' => '#00FF00',
+								'Oro' => '#FFD700',
+								'Plata' => '#C0C0C0',
+								'Oliva' => '#808000',
+								'Teal' => '#008080',
+								'Verde-amarillo' => '#ADFF2F',
+								'Lavanda' => '#E6E6FA',
+							];
+						@endphp
 						<div class="filter-col3 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Color
 							</div>
-
 							<ul>
+							@if(!empty($colorsRanges) && is_array($colorsRanges))
+								@foreach($colorsRanges as $color)
 								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
+									<span class="fs-15 lh-12 m-r-6" style="color: {{ isset($colors[$color]) ? $colors[$color] : 'silver' }}">
 										<i class="zmdi zmdi-circle"></i>
 									</span>
-
 									<a href="#" class="filter-link stext-106 trans-04">
-										Black
+										{{ $color }}
 									</a>
 								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										Blue
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Grey
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Green
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Red
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										White
-									</a>
-								</li>
+								@endforeach
+							@endif
 							</ul>
 						</div>
+						@endif
 						<!-- tags -->
 						<div class="filter-col4 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
