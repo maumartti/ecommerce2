@@ -317,7 +317,6 @@
 								</li>
 							</ul>
 						</div>
-
 						<!-- precio -->
 						@if($web->useFilterPrices == 1)
 						@php
@@ -346,7 +345,33 @@
 							</ul>
 						</div>
 						@endif
-
+						<!-- Talles -->
+						@if($web->useFilterSizes == 1)
+						@php
+								$sizesRanges = json_decode($web->filtersSizes);
+						@endphp
+						<div class="filter-col3 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Talles
+							</div>
+							<ul>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+										Todos
+									</a>
+								</li>
+								@if(!empty($sizesRanges) && is_array($sizesRanges))
+								@foreach($sizesRanges as $sizeRange)
+								<li class="p-b-6">
+										<a href="#" class="filter-link stext-106 trans-04">
+												{{ $sizeRange }}
+										</a>
+								</li>
+								@endforeach
+								@endif
+							</ul>
+						</div>
+						@endif
 						<!-- kilos -->
 						@if($web->useFilterPrices == 1)
 						@php
@@ -374,35 +399,31 @@
 							</ul>
 						</div>
 						@endif
-
-
-
-
 						<!-- color -->
 						@if($web->useFilterColors == 1)
 						@php
 								$colorsRanges = json_decode($web->filtersColors);
 								$colors = [
 								'Negro' => '#000000',
+								'Azul' => '#0000FF',
+								'Gris' => '#808080',
 								'Blanco' => '#FFFFFF',
 								'Rojo' => '#FF0000',
 								'Verde' => '#00FF00',
-								'Azul' => '#0000FF',
 								'Amarillo' => '#FFFF00',
 								'Naranja' => '#FFA500',
-								'Rosado' => '#FFC0CB',
-								'Violeta' => '#800080',
-								'Gris' => '#808080',
+								'Rosa' => '#FFC0CB',
 								'Marrón' => '#A52A2A',
-								'Cyan' => '#00FFFF',
-								'Magenta' => '#FF00FF',
-								'Lima' => '#00FF00',
-								'Oro' => '#FFD700',
-								'Plata' => '#C0C0C0',
+								'Celeste' => '#00aae4',
+								'Dorado' => '#FFD700',
+								'Plateado' => '#C0C0C0',
+								'Lila' => '#C8A2C8',
+								'Violeta' => '#800080',
+								'Turquesa' => '#5dc1b9',
+								'Aguamarina' => '#008080',
+								'Crema' => '#FFFDD0',
+								'Fucsia' => '#e30052',
 								'Oliva' => '#808000',
-								'Teal' => '#008080',
-								'Verde-amarillo' => '#ADFF2F',
-								'Lavanda' => '#E6E6FA',
 							];
 						@endphp
 						<div class="filter-col3 p-b-27">
@@ -453,7 +474,7 @@
 								</a>
 							</div>
 						</div>
-					</div>
+						</div>
 				</div>
 			</div>
 

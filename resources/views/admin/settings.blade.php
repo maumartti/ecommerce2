@@ -894,120 +894,118 @@
                             </div>
                             <div class="form-group p-2" id="seccionFilterPrecios" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
+                                @php
+                                    $selectedPrices = json_decode($web->filtersPrices); // Convierte la cadena JSON en un array
+                                @endphp
+                                
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio1" name="filtersPrices[]" value="$0 - $50">
+                                    <input type="checkbox" class="form-check-input" id="precio1" name="filtersPrices[]" value="$0 - $50" {{ in_array("$0 - $50", $selectedPrices) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="precio1">$0 - $50</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio2" name="filtersPrices[]" value="$50 - $100">
+                                    <input type="checkbox" class="form-check-input" id="precio2" name="filtersPrices[]" value="$50 - $100" {{ in_array("$50 - $100", $selectedPrices) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="precio2">$50 - $100</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio3" name="filtersPrices[]" value="$100 - $200">
+                                    <input type="checkbox" class="form-check-input" id="precio3" name="filtersPrices[]" value="$100 - $200" {{ in_array("$100 - $200", $selectedPrices) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="precio3">$100 - $200</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio4" name="filtersPrices[]" value="$100 - $200">
-                                    <label class="form-check-label" for="precio4">$100 - $200</label>
+                                    <input type="checkbox" class="form-check-input" id="precio4" name="filtersPrices[]" value="$200 - $400" {{ in_array("$200 - $400", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio4">$200 - $400</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio5" name="filtersPrices[]" value="$200 - $400">
-                                    <label class="form-check-label" for="precio5">$200 - $400</label>
+                                    <input type="checkbox" class="form-check-input" id="precio5" name="filtersPrices[]" value="$400 - $500" {{ in_array("$400 - $500", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio5">$400 - $500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio6" name="filtersPrices[]" value="$400 - $500">
-                                    <label class="form-check-label" for="precio6">$400 - $500</label>
+                                    <input type="checkbox" class="form-check-input" id="precio6" name="filtersPrices[]" value="$500 - $750" {{ in_array("$500 - $750", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio6">$500 - $750</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio7" name="filtersPrices[]" value="$500 - $750">
-                                    <label class="form-check-label" for="precio7">$500 - $750</label>
+                                    <input type="checkbox" class="form-check-input" id="precio7" name="filtersPrices[]" value="$750 - $1.000" {{ in_array("$750 - $1.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio7">$750 - $1.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio8" name="filtersPrices[]" value="$750 - $1.000">
-                                    <label class="form-check-label" for="precio8">$750 - $1.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio8" name="filtersPrices[]" value="$1.000 - $1.500" {{ in_array("$1.000 - $1.500", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio8">$1.000 - $1.500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio9" name="filtersPrices[]" value="$1.000 - $1.500">
-                                    <label class="form-check-label" for="precio9">$1.000 - $1.500</label>
+                                    <input type="checkbox" class="form-check-input" id="precio9" name="filtersPrices[]" value="$1.500 - $2.000" {{ in_array("$1.500 - $2.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio9">$1.500 - $2.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio10" name="filtersPrices[]" value="$1.500 - $2.000">
-                                    <label class="form-check-label" for="precio10">$1.500 - $2.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio10" name="filtersPrices[]" value="$2.000 - $4.000" {{ in_array("$2.000 - $4.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio10">$2.000 - $4.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio11" name="filtersPrices[]" value="$2.000 - $4.000">
-                                    <label class="form-check-label" for="precio11">$2.000 - $4.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio11" name="filtersPrices[]" value="$4.000 - $5.000" {{ in_array("$4.000 - $5.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio11">$4.000 - $5.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio12" name="filtersPrices[]" value="$4.000 - $5.000">
-                                    <label class="form-check-label" for="precio12">$4.000 - $5.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio12" name="filtersPrices[]" value="$5.000 - $7.500" {{ in_array("$5.000 - $7.500", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio12">$5.000 - $7.500</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio13" name="filtersPrices[]" value="$5.000 - $7.500">
-                                    <label class="form-check-label" for="precio13">$5.000 - $7.500</label>
+                                    <input type="checkbox" class="form-check-input" id="precio13" name="filtersPrices[]" value="$7.500 - $10.000" {{ in_array("$7.500 - $10.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio13">$7.500 - $10.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio14" name="filtersPrices[]" value="$7.500 - $10.000">
-                                    <label class="form-check-label" for="precio14">$7.500 - $10.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio14" name="filtersPrices[]" value="$10.000 - $15.000" {{ in_array("$10.000 - $15.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio14">$10.000 - $15.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio15" name="filtersPrices[]" value="$10.000 - $15.000">
-                                    <label class="form-check-label" for="precio15">$10.000 - $15.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio15" name="filtersPrices[]" value="$15.000 - $20.000" {{ in_array("$15.000 - $20.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio15">$15.000 - $20.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio16" name="filtersPrices[]" value="$15.000 - $20.000">
-                                    <label class="form-check-label" for="precio16">$15.000 - $20.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio16" name="filtersPrices[]" value="$20.000 - $50.000" {{ in_array("$20.000 - $50.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio16">$20.000 - $50.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio17" name="filtersPrices[]" value="$20.000 - $50.000">
-                                    <label class="form-check-label" for="precio17">$20.000 - $50.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio17" name="filtersPrices[]" value="$50.000 - $75.000" {{ in_array("$50.000 - $75.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio17">$50.000 - $75.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio18" name="filtersPrices[]" value="$50.000 - $75.000">
-                                    <label class="form-check-label" for="precio18">$50.000 - $75.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio18" name="filtersPrices[]" value="$75.000 - $100.000" {{ in_array("$75.000 - $100.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio18">$75.000 - $100.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio19" name="filtersPrices[]" value="$75.000 - $100.000">
-                                    <label class="form-check-label" for="precio19">$75.000 - $100.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio19" name="filtersPrices[]" value="$100.000 - $150.000" {{ in_array("$100.000 - $150.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio19">$100.000 - $150.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio20" name="filtersPrices[]" value="$100.000 - $150.000">
-                                    <label class="form-check-label" for="precio20">$100.000 - $150.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio20" name="filtersPrices[]" value="$150.000 - $300.000" {{ in_array("$150.000 - $300.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio20">$150.000 - $300.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio21" name="filtersPrices[]" value="$150.000 - $300.000">
-                                    <label class="form-check-label" for="precio21">$150.000 - $300.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio21" name="filtersPrices[]" value="$300.000 - $500.000" {{ in_array("$300.000 - $500.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio21">$300.000 - $500.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio22" name="filtersPrices[]" value="$300.000 - $500.000">
-                                    <label class="form-check-label" for="precio22">$300.000 - $500.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio22" name="filtersPrices[]" value="$500.000 - $750.000" {{ in_array("$500.000 - $750.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio22">$500.000 - $750.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio23" name="filtersPrices[]" value="$500.000 - $750.000">
-                                    <label class="form-check-label" for="precio23">$500.000 - $750.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio23" name="filtersPrices[]" value="$750.000 - $1.000.000" {{ in_array("$750.000 - $1.000.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio23">$750.000 - $1.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio24" name="filtersPrices[]" value="$750.000 - $1.000.000">
-                                    <label class="form-check-label" for="precio24">$750.000 - $1.000.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio24" name="filtersPrices[]" value="$1.000.000 - $1.400.000" {{ in_array("$1.000.000 - $1.400.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio24">$1.000.000 - $1.400.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio25" name="filtersPrices[]" value="$1.000.000 - $1.400.000">
-                                    <label class="form-check-label" for="precio25">$1.000.000 - $1.400.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio25" name="filtersPrices[]" value="$1.500.000 - $2.000.000" {{ in_array("$1.500.000 - $2.000.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio25">$1.500.000 - $2.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio26" name="filtersPrices[]" value="$1.500.000 - $2.000.000">
-                                    <label class="form-check-label" for="precio26">$1.500.000 - $2.000.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio26" name="filtersPrices[]" value="$2.000.000 - $5.000.000" {{ in_array("$2.000.000 - $5.000.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio26">$2.000.000 - $5.000.000</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio27" name="filtersPrices[]" value="$2.000.000 - $5.000.000">
-                                    <label class="form-check-label" for="precio27">$2.000.000 - $5.000.000</label>
+                                    <input type="checkbox" class="form-check-input" id="precio27" name="filtersPrices[]" value="$5.000.000 - $10.000.000" {{ in_array("$5.000.000 - $10.000.000", $selectedPrices) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="precio27">$5.000.000 - $10.000.000</label>
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="precio28" name="filtersPrices[]" value="$5.000.000 - $10.000.000">
-                                    <label class="form-check-label" for="precio28">$5.000.000 - $10.000.000</label>
-                                </div>
-    
-    
                             </div>
                         </div>
                         <div class="pt-4 pb-4 border-bottom">
@@ -1024,84 +1022,88 @@
                             </div>
                             <div class="form-group p-2" id="seccionFilterKilos" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
+                                @php
+                                    $selectedKilos = json_decode($web->filtersKilos); // Convierte la cadena JSON en un array
+                                @endphp
+                                
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo1" name="filtersKilos[]" value="5 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo1" name="filtersKilos[]" value="5 kilos" {{ in_array("5 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo1">5 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo2" name="filtersKilos[]" value="10 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo2" name="filtersKilos[]" value="10 kilos" {{ in_array("10 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo2">10 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo3" name="filtersKilos[]" value="15 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo3" name="filtersKilos[]" value="15 kilos" {{ in_array("15 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo3">15 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo4" name="filtersKilos[]" value="20 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo4" name="filtersKilos[]" value="20 kilos" {{ in_array("20 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo4">20 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo5" name="filtersKilos[]" value="25 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo5" name="filtersKilos[]" value="25 kilos" {{ in_array("25 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo5">25 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo6" name="filtersKilos[]" value="30 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo6" name="filtersKilos[]" value="30 kilos" {{ in_array("30 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo6">30 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo7" name="filtersKilos[]" value="35 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo7" name="filtersKilos[]" value="35 kilos" {{ in_array("35 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo7">35 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo8" name="filtersKilos[]" value="40 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo8" name="filtersKilos[]" value="40 kilos" {{ in_array("40 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo8">40 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo9" name="filtersKilos[]" value="45 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo9" name="filtersKilos[]" value="45 kilos" {{ in_array("45 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo9">45 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo10" name="filtersKilos[]" value="50 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo10" name="filtersKilos[]" value="50 kilos" {{ in_array("50 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo10">50 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo11" name="filtersKilos[]" value="55 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo11" name="filtersKilos[]" value="55 kilos" {{ in_array("55 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo11">55 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo12" name="filtersKilos[]" value="60 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo12" name="filtersKilos[]" value="60 kilos" {{ in_array("60 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo12">60 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo13" name="filtersKilos[]" value="65 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo13" name="filtersKilos[]" value="65 kilos" {{ in_array("65 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo13">65 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo14" name="filtersKilos[]" value="70 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo14" name="filtersKilos[]" value="70 kilos" {{ in_array("70 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo14">70 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo15" name="filtersKilos[]" value="75 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo15" name="filtersKilos[]" value="75 kilos" {{ in_array("75 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo15">75 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo16" name="filtersKilos[]" value="80 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo16" name="filtersKilos[]" value="80 kilos" {{ in_array("80 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo16">80 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo17" name="filtersKilos[]" value="85 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo17" name="filtersKilos[]" value="85 kilos" {{ in_array("85 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo17">85 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo18" name="filtersKilos[]" value="90 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo18" name="filtersKilos[]" value="90 kilos" {{ in_array("90 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo18">90 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo19" name="filtersKilos[]" value="95 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo19" name="filtersKilos[]" value="95 kilos" {{ in_array("95 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo19">95 kilos</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="kilo20" name="filtersKilos[]" value="100 kilos">
+                                    <input type="checkbox" class="form-check-input" id="kilo20" name="filtersKilos[]" value="100 kilos" {{ in_array("100 kilos", $selectedKilos) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kilo20">100 kilos</label>
                                 </div>
                             </div>
@@ -1120,87 +1122,92 @@
                             </div>
                             <div class="form-group p-2" id="seccionFilterColor" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
+                                @php
+                                    $selectedColors = json_decode($web->filtersColors); // Convierte la cadena JSON en un array
+                                @endphp
+                                
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color1" name="filtersColors[]" value="Negro">
+                                    <input type="checkbox" class="form-check-input" id="color1" name="filtersColors[]" value="Negro" {{ in_array("Negro", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color1">Negro</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color2" name="filtersColors[]" value="Azul">
+                                    <input type="checkbox" class="form-check-input" id="color2" name="filtersColors[]" value="Azul" {{ in_array("Azul", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color2">Azul</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color3" name="filtersColors[]" value="Gris">
+                                    <input type="checkbox" class="form-check-input" id="color3" name="filtersColors[]" value="Gris" {{ in_array("Gris", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color3">Gris</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color4" name="filtersColors[]" value="Verde">
+                                    <input type="checkbox" class="form-check-input" id="color4" name="filtersColors[]" value="Verde" {{ in_array("Verde", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color4">Verde</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color5" name="filtersColors[]" value="Rojo">
+                                    <input type="checkbox" class="form-check-input" id="color5" name="filtersColors[]" value="Rojo" {{ in_array("Rojo", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color5">Rojo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color6" name="filtersColors[]" value="Blanco">
+                                    <input type="checkbox" class="form-check-input" id="color6" name="filtersColors[]" value="Blanco" {{ in_array("Blanco", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color6">Blanco</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color7" name="filtersColors[]" value="Amarillo">
+                                    <input type="checkbox" class="form-check-input" id="color7" name="filtersColors[]" value="Amarillo" {{ in_array("Amarillo", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color7">Amarillo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color8" name="filtersColors[]" value="Naranja">
+                                    <input type="checkbox" class="form-check-input" id="color8" name="filtersColors[]" value="Naranja" {{ in_array("Naranja", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color8">Naranja</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color9" name="filtersColors[]" value="Rosa">
+                                    <input type="checkbox" class="form-check-input" id="color9" name="filtersColors[]" value="Rosa" {{ in_array("Rosa", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color9">Rosa</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color10" name="filtersColors[]" value="Marrón">
+                                    <input type="checkbox" class="form-check-input" id="color10" name="filtersColors[]" value="Marrón" {{ in_array("Marrón", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color10">Marrón</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color11" name="filtersColors[]" value="Celeste">
+                                    <input type="checkbox" class="form-check-input" id="color11" name="filtersColors[]" value="Celeste" {{ in_array("Celeste", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color11">Celeste</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color12" name="filtersColors[]" value="Dorado">
+                                    <input type="checkbox" class="form-check-input" id="color12" name="filtersColors[]" value="Dorado" {{ in_array("Dorado", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color12">Dorado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color13" name="filtersColors[]" value="Plateado">
+                                    <input type="checkbox" class="form-check-input" id="color13" name="filtersColors[]" value="Plateado" {{ in_array("Plateado", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color13">Plateado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color14" name="filtersColors[]" value="Lila">
+                                    <input type="checkbox" class="form-check-input" id="color14" name="filtersColors[]" value="Lila" {{ in_array("Lila", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color14">Lila</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color15" name="filtersColors[]" value="Violeta">
+                                    <input type="checkbox" class="form-check-input" id="color15" name="filtersColors[]" value="Violeta" {{ in_array("Violeta", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color15">Violeta</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color16" name="filtersColors[]" value="Turquesa">
+                                    <input type="checkbox" class="form-check-input" id="color16" name="filtersColors[]" value="Turquesa" {{ in_array("Turquesa", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color16">Turquesa</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color17" name="filtersColors[]" value="Aguamarina">
+                                    <input type="checkbox" class="form-check-input" id="color17" name="filtersColors[]" value="Aguamarina" {{ in_array("Aguamarina", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color17">Aguamarina</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color18" name="filtersColors[]" value="Crema">
+                                    <input type="checkbox" class="form-check-input" id="color18" name="filtersColors[]" value="Crema" {{ in_array("Crema", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color18">Crema</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color19" name="filtersColors[]" value="Fucsia">
+                                    <input type="checkbox" class="form-check-input" id="color19" name="filtersColors[]" value="Fucsia" {{ in_array("Fucsia", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color19">Fucsia</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="color20" name="filtersColors[]" value="Oliva">
+                                    <input type="checkbox" class="form-check-input" id="color20" name="filtersColors[]" value="Oliva" {{ in_array("Oliva", $selectedColors) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="color20">Oliva</label>
                                 </div>
                             </div>
+
                         </div>
                         <div class="pt-4 pb-4 border-bottom">
                             <h6>Filtro Talles:</h6>
@@ -1215,36 +1222,39 @@
                                 </div>
                             </div>
                             <div class="form-group p-2" id="seccionFilterTalle" style="background: #eee;border-radius: 4px;">
-                                <!-- Checkbox para cada color -->
+                                <!-- Checkbox para cada tamaño -->
+                                @php
+                                    $selectedSizes = json_decode($web->filtersSizes); // Convierte la cadena JSON en un array
+                                @endphp
+                                
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="xs" name="filtersSizes[]" value="XS">
+                                    <input type="checkbox" class="form-check-input" id="xs" name="filtersSizes[]" value="XS" {{ in_array("XS", $selectedSizes) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="xs">XS</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="s" name="filtersSizes[]" value="S">
+                                    <input type="checkbox" class="form-check-input" id="s" name="filtersSizes[]" value="S" {{ in_array("S", $selectedSizes) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="s">S</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="m" name="filtersSizes[]" value="M">
+                                    <input type="checkbox" class="form-check-input" id="m" name="filtersSizes[]" value="M" {{ in_array("M", $selectedSizes) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="m">M</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="l" name="filtersSizes[]" value="L">
+                                    <input type="checkbox" class="form-check-input" id="l" name="filtersSizes[]" value="L" {{ in_array("L", $selectedSizes) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="l">L</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="xl" name="filtersSizes[]" value="XL">
+                                    <input type="checkbox" class="form-check-input" id="xl" name="filtersSizes[]" value="XL" {{ in_array("XL", $selectedSizes) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="xl">XL</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="xxl" name="filtersSizes[]" value="XXL">
+                                    <input type="checkbox" class="form-check-input" id="xxl" name="filtersSizes[]" value="XXL" {{ in_array("XXL", $selectedSizes) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="xxl">XXL</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="xxxl" name="filtersSizes[]" value="XXXL">
+                                    <input type="checkbox" class="form-check-input" id="xxxl" name="filtersSizes[]" value="XXXL" {{ in_array("XXXL", $selectedSizes) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="xxxl">XXXL</label>
                                 </div>
-
                             </div>
                         </div>
                         <div class="pt-4 pb-4">
@@ -1261,6 +1271,14 @@
                             </div>
                             <div class="form-group p-2" id="seccionFilterTags" style="background: #eee;border-radius: 4px;">
                                 <!-- Checkbox para cada color -->
+                                <div class="input-group mb-4">
+                                    <input type="text" class="form-control" id="btnAddTag" name="btnAddTag" value="" placeholder="nombre del tag..." maxlength="22">
+                                    <div class="input-group-append" style="padding: 0px;">
+                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                            <button class="btn btn-primary">Agregar Tag</button>
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="tag1" name="filtersTags[]" value="xxxx">
                                     <label class="form-check-label" for="tag1">ccxcxcxx</label>
