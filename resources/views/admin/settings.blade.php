@@ -1275,7 +1275,8 @@
                                     <input type="text" class="form-control" id="btnAddTag" name="btnAddTag" value="" placeholder="nombre del tag..." maxlength="22">
                                     <div class="input-group-append" style="padding: 0px;">
                                         <span class="input-group-text p-0" style="border-radius: 4px;">
-                                            <button class="btn btn-primary">Agregar Tag</button>
+                                            <!-- Agregar un botón con un identificador para agregar tags -->
+                                            <button type="button" class="btn btn-primary" id="agregarTagBtn">Agregar Tag</button>
                                         </span>
                                     </div>
                                 </div>
@@ -1283,7 +1284,6 @@
                                     <input type="checkbox" class="form-check-input" id="tag1" name="filtersTags[]" value="xxxx">
                                     <label class="form-check-label" for="tag1">ccxcxcxx</label>
                                 </div>
-
                             </div>
                         </div>
                         <div class="py-2 px-0 col-12">
@@ -1534,7 +1534,23 @@
         return ( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) ? false : true ;
     });
 </script>
-
+<script>
+    // Espera a que el documento esté listo
+    $(document).ready(function () {
+        $("#agregarTagBtn").click(function () {
+            var nuevoTagName = $("#btnAddTag").val();
+            // Crea un nuevo elemento de checkbox y etiqueta
+            if(nuevoTagName !=''){
+                var nuevoTag = '<div class="form-check mt-1">' +
+                    '<input type="checkbox" class="form-check-input" id="nuevoTag" name="filtersTags[]" value="' + nuevoTagName + '">' +
+                    '<label class="form-check-label" for="nuevoTag">' + nuevoTagName + '</label>' +
+                    '</div>';
+                $("#seccionFilterTags").append(nuevoTag);
+            }
+            $("#btnAddTag").val("");
+        });
+    });
+</script>
 <script>
     $(document).ready(function() {
         //solo numeros
