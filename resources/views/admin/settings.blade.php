@@ -1280,10 +1280,19 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="tag1" name="filtersTags[]" value="xxxx">
-                                    <label class="form-check-label" for="tag1">ccxcxcxx</label>
-                                </div>
+                                @if($web->filtersTags )
+                                    @php
+                                        $tagsRanges = json_decode($web->filtersTags);
+                                    @endphp
+                                    @if(!empty($tagsRanges) && is_array($tagsRanges))
+                                    @foreach($tagsRanges as $tag)
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="{{$tag}}" name="filtersTags[]" value="{{$tag}}">
+                                        <label class="form-check-label" for="{{$tag}}">{{$tag}}</label>
+                                    </div>
+                                    @endforeach
+                                    @endif
+								@endif
                             </div>
                         </div>
                         <div class="py-2 px-0 col-12">

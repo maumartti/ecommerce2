@@ -123,6 +123,8 @@ class HomeController extends Controller
                 $data['imageRotor3'] = $web->imageRotor3;
             }
 
+            unset($data['btnAddTag']);//borramos si existe
+            
             $web->update($data);
     
             return response()->json(['status' => 'success'], 200);
@@ -137,4 +139,7 @@ class HomeController extends Controller
         return view('admin.settings')->with('web',$web);
     }
     
+    // public function addTag(Request $request){
+
+    // }
 }
