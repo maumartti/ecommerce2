@@ -179,6 +179,9 @@
             id: function(element) {
                 return $(element).attr('data-id');
             },
+            sales: function(element) {
+                return $(element).attr('data-sales');
+            },
             price: function(element) {
                 return parseInt($(element).attr('data-price'));
             }
@@ -200,7 +203,17 @@
             $grid.isotope({ filter: filterValue });
         } else if (filterValue === '.id') {
             // Aplicar el filtro para productos por id
-            $grid.isotope({ sortBy: 'id', sortAscending: false });
+        } else if (filterValue.startsWith('price-range-')) {
+            // Extraer el rango de precios del atributo data-filter
+            var priceRange = filterValue.replace('price-range-', '');
+            $grid.isotope({ filter: function () {
+                var productPrice = parseFloat($(this).attr('data-price').replace(',', '').replace('$', ''));
+                return isWithinPriceRange(productPrice, priceRange);
+                console.log(aaa)
+            } });
+        } else if (filterValue === '.sales') {
+            // Filtro de ventas
+            $grid.isotope({ sortBy: 'sales', sortAscending: false });
         } else if (filterValue === '.populares' || filterValue === '.new') {
             // Aplicar el filtro para productos populares
             $grid.isotope({ filter: filterValue });
@@ -213,7 +226,14 @@
             $grid.isotope({ sortBy: 'price', sortAscending: false });
         }
     });
-    
+    // Función para verificar si un precio está dentro del rango especificado
+    function isWithinPriceRange(price, priceRange) {
+        var rangeParts = priceRange.split('-');
+        var minPrice = parseFloat(rangeParts[0].replace('.', '').replace('$', ''));
+        var maxPrice = parseFloat(rangeParts[1].replace('.', '').replace('$', ''));
+
+        return price >= minPrice && price <= maxPrice;
+    }
     
     /*==================================================================
     [ Filter / Search product ]*/

@@ -16,7 +16,7 @@
 									</a>
 								</li>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
+									<a href="#" class="filter-link stext-106 trans-04" data-filter=".sales">
 										Más vendidos
 									</a>
 								</li>
@@ -48,16 +48,17 @@
 							</div>
 							<ul>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active" data-filter="*">
 										Todos
 									</a>
 								</li>
 								@if(!empty($priceRanges) && is_array($priceRanges))
 								@foreach($priceRanges as $priceRange)
+								@php
+									$cleanedPriceRange = str_replace(['$', ' '], '', $priceRange);
+								@endphp
 								<li class="p-b-6">
-										<a href="#" class="filter-link stext-106 trans-04">
-												{{ $priceRange }}
-										</a>
+										<a href="#" class="filter-link stext-106 trans-04" data-filter="price-range-{{ $cleanedPriceRange }}">{{ $priceRange }}</a>
 								</li>
 								@endforeach
 								@endif
