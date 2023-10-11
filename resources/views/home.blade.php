@@ -284,8 +284,8 @@
       @if (isset($products))
         @if ($products)
           @foreach ($products as $product)
-          	@if ($loop->iteration <= 8)
-						<div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}}">
+          	
+						<div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}} @if ($product->promo == 1) populares @endif @if ($product->new == 1) new @endif" data-id="{{$product->id}}" data-price="{{$product->price}}">
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
@@ -312,9 +312,7 @@
 								</div>
 							</div>
 						</div>
-          	@else
-            	@break
-          	@endif
+          	
           @endforeach
       	@endif
       @endif

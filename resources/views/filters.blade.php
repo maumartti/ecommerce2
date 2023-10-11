@@ -6,12 +6,12 @@
 							</div>
 							<ul>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active" data-filter=".id">
 										Todos
 									</a>
 								</li>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
+									<a href="#" class="filter-link stext-106 trans-04" data-filter=".populares">
 										Populares
 									</a>
 								</li>
@@ -21,17 +21,17 @@
 									</a>
 								</li>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
+									<a href="#" class="filter-link stext-106 trans-04" data-filter=".new">
 										Nuevos
 									</a>
 								</li>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
+									<a href="#" class="filter-link stext-106 trans-04" data-filter=".price-asc">
 										Price: Bajo a Alto
 									</a>
 								</li>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
+									<a href="#" class="filter-link stext-106 trans-04" data-filter=".price-desc">
 										Price: Alto a bajo
 									</a>
 								</li>

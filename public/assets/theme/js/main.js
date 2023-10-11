@@ -167,6 +167,54 @@
         });
     });
 
+
+    /*==================================================================*/
+    //--- EMPIEZA FILTROS DE ORDEN PRODUCTSOS ------
+
+
+    var $grid = $topeContainer.isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'fitRows',
+        getSortData: {
+            id: function(element) {
+                return $(element).attr('data-id');
+            },
+            price: function(element) {
+                return parseInt($(element).attr('data-price'));
+            }
+        }
+    });
+    // Manejar clic en el enlace de filtro
+    $('.filter-link').on('click', function (e) {
+        e.preventDefault();
+
+        // Obtener el valor del atributo data-filter del enlace
+        var filterValue = $(this).attr('data-filter');
+        
+        $('.filter-link').removeClass('filter-link-active');
+        $(this).addClass('filter-link-active');
+        $grid.isotope({ filter: '*' });//mostrar todos primero
+
+        if (filterValue === '*') {
+            // Mostrar todos los productos
+            $grid.isotope({ filter: filterValue });
+        } else if (filterValue === '.id') {
+            // Aplicar el filtro para productos por id
+            $grid.isotope({ sortBy: 'id', sortAscending: false });
+        } else if (filterValue === '.populares' || filterValue === '.new') {
+            // Aplicar el filtro para productos populares
+            $grid.isotope({ filter: filterValue });
+            // Asegúrate de tener una lógica adecuada para este filtro
+        } else if (filterValue === '.price-asc') {
+            // Ordenar por precio ascendente
+            $grid.isotope({ sortBy: 'price', sortAscending: true });
+        } else if (filterValue === '.price-desc') {
+            // Ordenar por precio descendente
+            $grid.isotope({ sortBy: 'price', sortAscending: false });
+        }
+    });
+    
+    
     /*==================================================================
     [ Filter / Search product ]*/
     $('.js-show-filter').on('click',function(){
