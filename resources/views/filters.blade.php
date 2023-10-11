@@ -77,14 +77,14 @@
 							</div>
 							<ul>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active" data-filter="*">
 										Todos
 									</a>
 								</li>
 								@if(!empty($sizesRanges) && is_array($sizesRanges))
 								@foreach($sizesRanges as $sizeRange)
 								<li class="p-b-6">
-										<a href="#" class="filter-link stext-106 trans-04">
+										<a href="#" class="filter-link stext-106 trans-04" data-filter="size-{{ $sizeRange }}">
 												{{ $sizeRange }}
 										</a>
 								</li>
@@ -104,14 +104,18 @@
 							</div>
 							<ul>
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active" data-filter="*">
 										Todos
 									</a>
 								</li>
 								@if(!empty($kilosRanges) && is_array($kilosRanges))
 								@foreach($kilosRanges as $kiloRange)
+								@php
+									$parts = explode(' ', $kiloRange);
+									$kilosNumber = $parts[0]; 
+								@endphp		
 								<li class="p-b-6">
-										<a href="#" class="filter-link stext-106 trans-04">
+										<a href="#" class="filter-link stext-106 trans-04" data-filter="kilos-{{ $kilosNumber }}">
 												{{ $kiloRange }}
 										</a>
 								</li>
@@ -158,7 +162,7 @@
 									<span class="fs-15 lh-12 m-r-6" style="color: {{ isset($colors[$color]) ? $colors[$color] : 'silver' }}">
 										<i class="zmdi zmdi-circle"></i>
 									</span>
-									<a href="#" class="filter-link stext-106 trans-04">
+									<a href="#" class="filter-link stext-106 trans-04" data-filter="color-{{ $color }}">
 										{{ $color }}
 									</a>
 								</li>

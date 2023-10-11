@@ -224,6 +224,18 @@
         } else if (filterValue === '.price-desc') {
             // Ordenar por precio descendente
             $grid.isotope({ sortBy: 'price', sortAscending: false });
+        } else if (filterValue.startsWith('size-')) {
+            // Filtro por tamaño
+            var sizeFilter = filterValue.replace('size-', '');
+            $grid.isotope({ filter: '.size-' + sizeFilter });
+        } else if (filterValue.startsWith('kilos-')) {
+            // Filtro por kilos
+            var kilosFilter = filterValue.replace('kilos-', '');
+            $grid.isotope({ filter: '.kilos-' + kilosFilter });
+        } else if (filterValue.startsWith('color-')) {
+            // Filtro por color
+            var colorFilter = filterValue.replace('color-', '');
+            $grid.isotope({ filter: '.color-' + colorFilter });
         }
     });
     // Función para verificar si un precio está dentro del rango especificado
