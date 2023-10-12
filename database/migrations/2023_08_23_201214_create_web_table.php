@@ -17,17 +17,19 @@ return new class extends Migration
             $table->string('imageRotor1')->nullable();
             $table->string('imageRotor2')->nullable();
             $table->string('imageRotor3')->nullable();
+            $table->string('imageRotor4')->nullable();
+            $table->string('imageRotor5')->nullable();
 
             $table->string('filtersColors')->nullable();
             $table->string('filtersKilos')->nullable();
             $table->string('filtersSize')->nullable();
             $table->string('filtersPrices')->nullable();
             $table->string('filtersTags')->nullable();
-            table->tinyInteger('useFilterColors')->length(1)->default(0);
-            table->tinyInteger('useFilterKilos')->length(1)->default(0);
-            table->tinyInteger('useFilterPrices')->length(1)->default(0);
-            table->tinyInteger('useFilterSizes')->length(1)->default(0);
-            table->tinyInteger('useFilterTags')->length(1)->default(0);
+            $table->tinyInteger('useFilterColors')->length(1)->default(0);
+            $table->tinyInteger('useFilterKilos')->length(1)->default(0);
+            $table->tinyInteger('useFilterPrices')->length(1)->default(0);
+            $table->tinyInteger('useFilterSizes')->length(1)->default(0);
+            $table->tinyInteger('useFilterTags')->length(1)->default(0);
 
             $table->string('pretitleRotor1',36)->nullable();
             $table->string('titleRotor1',36)->nullable();
@@ -41,9 +43,19 @@ return new class extends Migration
             $table->string('titleRotor3',36)->nullable();
             $table->string('btnTextRotor3',22)->nullable();
             $table->string('btnUrlRotor3')->nullable();
+            $table->string('pretitleRotor4',36)->nullable();
+            $table->string('titleRotor4',36)->nullable();
+            $table->string('btnTextRotor4',22)->nullable();
+            $table->string('btnUrlRotor4')->nullable();
+            $table->string('pretitleRotor5',36)->nullable();
+            $table->string('titleRotor5',36)->nullable();
+            $table->string('btnTextRotor5',22)->nullable();
+            $table->string('btnUrlRotor5')->nullable();
             $table->tinyInteger('useBtnRotor1')->length(1)->default(0);
             $table->tinyInteger('useBtnRotor2')->length(1)->default(0);
             $table->tinyInteger('useBtnRotor3')->length(1)->default(0);
+            $table->tinyInteger('useBtnRotor4')->length(1)->default(0);
+            $table->tinyInteger('useBtnRotor5')->length(1)->default(0);
 
             $table->string('colorPretitleRotor1',8)->nullable();
             $table->string('fontPretitleRotor1')->nullable();
@@ -68,6 +80,22 @@ return new class extends Migration
             $table->string('colorBtnTextRotor3',8)->nullable();
             $table->string('fontBtnTextRotor3')->nullable();
             $table->string('backgroundBtnTextRotor3',8)->nullable();
+
+            $table->string('colorPretitleRotor4',8)->nullable();
+            $table->string('fontPretitleRotor4')->nullable();
+            $table->string('colorTitleRotor4',8)->nullable();
+            $table->string('fontTitleRotor4')->nullable();
+            $table->string('colorBtnTextRotor4',8)->nullable();
+            $table->string('fontBtnTextRotor4')->nullable();
+            $table->string('backgroundBtnTextRotor4',8)->nullable();
+
+            $table->string('colorPretitleRotor5',8)->nullable();
+            $table->string('fontPretitleRotor5')->nullable();
+            $table->string('colorTitleRotor5',8)->nullable();
+            $table->string('fontTitleRotor5')->nullable();
+            $table->string('colorBtnTextRotor5',8)->nullable();
+            $table->string('fontBtnTextRotor5')->nullable();
+            $table->string('backgroundBtnTextRotor5',8)->nullable();
 
             $table->string('address',128)->nullable();
             $table->string('countryCode',20)->nullable();

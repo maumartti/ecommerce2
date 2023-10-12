@@ -102,13 +102,13 @@
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
 								<span class="ltext-101 cl2 respon2" style="font-family:{{ $web->fontPretitleRotor1 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorPretitleRotor1 ?? '#333' }};">
-								{{ $web->pretitleRotor1 ?? 'Nuevos productos 2023' }}
+								{{ $web->pretitleRotor1 ?? '' }}
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-family:{{ $web->fontTitleRotor1 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorTitleRotor1 ?? '#333' }};">
-								{{ $web->titleRotor1 ?? 'De temporada' }}
+								{{ $web->titleRotor1 ?? '' }}
 								</h2>
 							</div>
 								
@@ -129,13 +129,13 @@
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
 								<span class="ltext-101 cl2 respon2" style="font-family:{{ $web->fontPretitleRotor2 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorPretitleRotor2 ?? '#333' }};">
-								{{ $web->pretitleRotor2 ?? 'Nuevos productos 2023' }}
+								{{ $web->pretitleRotor2 ?? '' }}
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-family:{{ $web->fontTitleRotor2 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorTitleRotor2 ?? '#333' }};">
-								{{ $web->titleRotor2 ?? 'De temporada' }}
+								{{ $web->titleRotor2 ?? '' }}
 								</h2>
 							</div>
 								
@@ -156,13 +156,13 @@
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
 								<span class="ltext-101 cl2 respon2" style="font-family:{{ $web->fontPretitleRotor3 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorPretitleRotor3 ?? '#333' }};">
-								{{ $web->pretitleRotor3 ?? 'Nuevos productos 2023' }}
+								{{ $web->pretitleRotor3 ?? '' }}
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-family:{{ $web->fontTitleRotor3 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorTitleRotor3 ?? '#333' }};">
-								{{ $web->titleRotor3 ?? 'De temporada' }}
+								{{ $web->titleRotor3 ?? '' }}
 								</h2>
 							</div>
 								
@@ -170,6 +170,60 @@
 								@if($web->useBtnRotor3 == 1)
 								<a href="{{ $web->btnUrlRotor3 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor3 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor3 ?? '#333' }};background: {{$web->backgroundBtnTextRotor3 ?? '#DE2423'}};">
 								{{ $web->btnTextRotor3 ?? 'Ver Ofertas' }}
+								</a>
+								@endif
+							</div>
+						</div>
+					</div>
+				</div>
+        @endif
+        @if($web->imageRotor4)
+				<div class="item-slick1" style="background-image: url(/assets/images/{{$web->imageRotor4}});">
+					<div class="container h-full">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
+								<span class="ltext-101 cl2 respon2" style="font-family:{{ $web->fontPretitleRotor4 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorPretitleRotor4 ?? '#333' }};">
+								{{ $web->pretitleRotor4 ?? '' }}
+								</span>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-family:{{ $web->fontTitleRotor4 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorTitleRotor4 ?? '#333' }};">
+								{{ $web->titleRotor4 ?? '' }}
+								</h2>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+								@if($web->useBtnRotor4 == 1)
+								<a href="{{ $web->btnUrlRotor4 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor4 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor4 ?? '#333' }};background: {{$web->backgroundBtnTextRotor4 ?? '#DE2423'}};">
+								{{ $web->btnTextRotor4 ?? 'Ver Ofertas' }}
+								</a>
+								@endif
+							</div>
+						</div>
+					</div>
+				</div>
+        @endif
+        @if($web->imageRotor5)
+				<div class="item-slick1" style="background-image: url(/assets/images/{{$web->imageRotor5}});">
+					<div class="container h-full">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
+								<span class="ltext-101 cl2 respon2" style="font-family:{{ $web->fontPretitleRotor5 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorPretitleRotor5 ?? '#333' }};">
+								{{ $web->pretitleRotor5 ?? '' }}
+								</span>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-family:{{ $web->fontTitleRotor5 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorTitleRotor5 ?? '#333' }};">
+								{{ $web->titleRotor5 ?? '' }}
+								</h2>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+								@if($web->useBtnRotor5 == 1)
+								<a href="{{ $web->btnUrlRotor5 ?? '/categoria/ofertas' }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="font-family:{{ $web->fontBtnTextRotor5 ?? 'Poppins-Regular' }}, sans-serif;color:{{ $web->colorBtnTextRotor5 ?? '#333' }};background: {{$web->backgroundBtnTextRotor5 ?? '#DE2423'}};">
+								{{ $web->btnTextRotor5 ?? 'Ver Ofertas' }}
 								</a>
 								@endif
 							</div>

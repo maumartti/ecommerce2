@@ -495,6 +495,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="alert alert-info col-12" role="alert">
+                                <i class="material-icons">info</i> Dejar sin imagen en caso de no querer utilizar esta sección.
+                            </div>
                             <div class="slim col-12 mt-1"
                                 data-button-edit-title="Editar"
                                 data-button-remove-title="Borrar"
@@ -736,6 +739,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="alert alert-info col-12" role="alert">
+                                <i class="material-icons">info</i> Dejar sin imagen en caso de no querer utilizar esta sección.
+                            </div>
                             <div class="slim col-12 mt-1"
                                 data-button-edit-title="Editar"
                                 data-button-remove-title="Borrar"
@@ -745,6 +751,494 @@
                                 <input type="file" id="imageRotor3" name="imageRotor3"/>
                                 @if($web->imageRotor3)
                                 <img src="/assets/images/{{$web->imageRotor3}}" />
+                                @endif
+                            </div>
+                            <!-- cuarto slider -->
+                            <div class="col-12 p-0 mt-4">
+                                <hr>
+                                <h4>Rotor 4</h4>  
+                                <div class="form-container">
+                                    <div class="row">
+                                        <div class="col-md-6 pr-0">
+                                            <div class="form-group">
+                                                <label for="pretitle">Pre-título imagen 1</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="pretitleRotor4" name="pretitleRotor4" value="{{$web->pretitleRotor4}}" maxlength="36" placeholder="Pre-title">
+                                                    <div class="input-group-append" style="padding: 0px;">
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <input type="color" name="colorTitleRotor3" class="form-control input-in-text form-control-rounded" value="{{ $web->colorTitleRotor3 ?? '#333' }}" autocomplete="off">
+                                                        </span>
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <select name="fontPretitleRotor4" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                                <option value="Arial" {{ $web->fontPretitleRotor4 == 'Arial' ? 'selected' : '' }}>Arial</option>
+                                                                <option value="Helvetica" {{ $web->fontPretitleRotor4 == 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                                                <option value="Times New Roman" {{ $web->fontPretitleRotor4 == 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                                                <option value="Georgia" {{ $web->fontPretitleRotor4 == 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                                                <option value="Courier New" {{ $web->fontPretitleRotor4 == 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                                                <option value="Verdana" {{ $web->fontPretitleRotor4 == 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                                                <option value="Tahoma" {{ $web->fontPretitleRotor4 == 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                                                <option value="Trebuchet MS" {{ $web->fontPretitleRotor4 == 'Trebuchet MS' ? 'selected' : '' }}>Trebuchet MS</option>
+                                                                <option value="Impact" {{ $web->fontPretitleRotor4 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Comic Sans MS" {{ $web->fontPretitleRotor4 == 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                                                                <option value="Arial Black" {{ $web->fontPretitleRotor4 == 'Arial Black' ? 'selected' : '' }}>Arial Black</option>
+                                                                <option value="Lucida Sans Unicode" {{ $web->fontPretitleRotor4 == 'Lucida Sans Unicode' ? 'selected' : '' }}>Lucida Sans Unicode</option>
+                                                                <option value="Palatino Linotype" {{ $web->fontPretitleRotor4 == 'Palatino Linotype' ? 'selected' : '' }}>Palatino Linotype</option>
+                                                                <option value="Book Antiqua" {{ $web->fontPretitleRotor4 == 'Book Antiqua' ? 'selected' : '' }}>Book Antiqua</option>
+                                                                <option value="Palatino" {{ $web->fontPretitleRotor4 == 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                                                <option value="Century Gothic" {{ $web->fontPretitleRotor4 == 'Century Gothic' ? 'selected' : '' }}>Century Gothic</option>
+                                                                <option value="Lucida Console" {{ $web->fontPretitleRotor4 == 'Lucida Console' ? 'selected' : '' }}>Lucida Console</option>
+                                                                <option value="Garamond" {{ $web->fontPretitleRotor4 == 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                                                <option value="Franklin Gothic Medium" {{ $web->fontPretitleRotor4 == 'Franklin Gothic Medium' ? 'selected' : '' }}>Franklin Gothic Medium</option>
+                                                                <option value="Copperplate" {{ $web->fontPretitleRotor4 == 'Copperplate' ? 'selected' : '' }}>Copperplate</option>
+                                                                <option value="Arial Narrow" {{ $web->fontPretitleRotor4 == 'Arial Narrow' ? 'selected' : '' }}>Arial Narrow</option>
+                                                                <option value="Rockwell" {{ $web->fontPretitleRotor4 == 'Rockwell' ? 'selected' : '' }}>Rockwell</option>
+                                                                <option value="Gill Sans" {{ $web->fontPretitleRotor4 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>
+                                                                <option value="Baskerville" {{ $web->fontPretitleRotor4 == 'Baskerville' ? 'selected' : '' }}>Baskerville</option>
+                                                                <option value="Cambria" {{ $web->fontPretitleRotor4 == 'Cambria' ? 'selected' : '' }}>Cambria</option>
+                                                                <option value="Geneva" {{ $web->fontPretitleRotor4 == 'Geneva' ? 'selected' : '' }}>Geneva</option>
+                                                                <option value="Century Schoolbook" {{ $web->fontPretitleRotor4 == 'Century Schoolbook' ? 'selected' : '' }}>Century Schoolbook</option>
+                                                                <option value="Avant Garde" {{ $web->fontPretitleRotor4 == 'Avant Garde' ? 'selected' : '' }}>Avant Garde</option>
+                                                                <option value="Didot" {{ $web->fontPretitleRotor4 == 'Didot' ? 'selected' : '' }}>Didot</option>
+                                                                <option value="Futura" {{ $web->fontPretitleRotor4 == 'Futura' ? 'selected' : '' }}>Futura</option>
+                                                                <option value="Brush Script MT" {{ $web->fontPretitleRotor4 == 'Brush Script MT' ? 'selected' : '' }}>Brush Script MT</option>
+                                                                <option value="Helvetica Neue" {{ $web->fontPretitleRotor4 == 'Helvetica Neue' ? 'selected' : '' }}>Helvetica Neue</option>
+                                                                <option value="Cursive" {{ $web->fontPretitleRotor4 == 'Cursive' ? 'selected' : '' }}>Cursive</option>
+                                                                <option value="Monaco" {{ $web->fontPretitleRotor4 == 'Monaco' ? 'selected' : '' }}>Monaco</option>
+                                                                <option value="Consolas" {{ $web->fontPretitleRotor4 == 'Consolas' ? 'selected' : '' }}>Consolas</option>
+                                                                <option value="Courier" {{ $web->fontPretitleRotor4 == 'Courier' ? 'selected' : '' }}>Courier</option>
+                                                                <option value="Bookman" {{ $web->fontPretitleRotor4 == 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                                                <option value="Cooper Black" {{ $web->fontPretitleRotor4 == 'Cooper Black' ? 'selected' : '' }}>Cooper Black</option>
+                                                                <option value="Impact" {{ $web->fontPretitleRotor4 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Wide Latin" {{ $web->fontPretitleRotor4 == 'Wide Latin' ? 'selected' : '' }}>Wide Latin</option>
+                                                                <option value="Century" {{ $web->fontPretitleRotor4 == 'Century' ? 'selected' : '' }}>Century</option>
+                                                                <option value="Trebuchet" {{ $web->fontPretitleRotor4 == 'Trebuchet' ? 'selected' : '' }}>Trebuchet</option>
+                                                                <option value="Comic Sans" {{ $web->fontPretitleRotor4 == 'Comic Sans' ? 'selected' : '' }}>Comic Sans</option>
+                                                                <option value="Stencil" {{ $web->fontPretitleRotor4 == 'Stencil' ? 'selected' : '' }}>Stencil</option>
+                                                                <option value="Marker Felt" {{ $web->fontPretitleRotor4 == 'Marker Felt' ? 'selected' : '' }}>Marker Felt</option>
+                                                                <option value="Optima" {{ $web->fontPretitleRotor4 == 'Optima' ? 'selected' : '' }}>Optima</option>
+                                                                <option value="Gill Sans" {{ $web->fontPretitleRotor4 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>y
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="title">Título imágen 1</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="titleRotor4" name="titleRotor4" value="{{$web->titleRotor4}}" maxlength="36" placeholder="Title">
+                                                    <div class="input-group-append" style="padding: 0px;">
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <input type="color"name="colorPretitleRotor4" class="form-control input-in-text form-control-rounded" value="{{ $web->colorPretitleRotor4 ?? '#333' }}" autocomplete="off">
+                                                        </span>
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <select name="fontTitleRotor4" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                                <option value="Arial" {{ $web->fontTitleRotor4 == 'Arial' ? 'selected' : '' }}>Arial</option>
+                                                                <option value="Helvetica" {{ $web->fontTitleRotor4 == 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                                                <option value="Times New Roman" {{ $web->fontTitleRotor4 == 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                                                <option value="Georgia" {{ $web->fontTitleRotor4 == 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                                                <option value="Courier New" {{ $web->fontTitleRotor4 == 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                                                <option value="Verdana" {{ $web->fontTitleRotor4 == 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                                                <option value="Tahoma" {{ $web->fontTitleRotor4 == 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                                                <option value="Trebuchet MS" {{ $web->fontTitleRotor4 == 'Trebuchet MS' ? 'selected' : '' }}>Trebuchet MS</option>
+                                                                <option value="Impact" {{ $web->fontTitleRotor4 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Comic Sans MS" {{ $web->fontTitleRotor4 == 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                                                                <option value="Arial Black" {{ $web->fontTitleRotor4 == 'Arial Black' ? 'selected' : '' }}>Arial Black</option>
+                                                                <option value="Lucida Sans Unicode" {{ $web->fontTitleRotor4 == 'Lucida Sans Unicode' ? 'selected' : '' }}>Lucida Sans Unicode</option>
+                                                                <option value="Palatino Linotype" {{ $web->fontTitleRotor4 == 'Palatino Linotype' ? 'selected' : '' }}>Palatino Linotype</option>
+                                                                <option value="Book Antiqua" {{ $web->fontTitleRotor4 == 'Book Antiqua' ? 'selected' : '' }}>Book Antiqua</option>
+                                                                <option value="Palatino" {{ $web->fontTitleRotor4 == 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                                                <option value="Century Gothic" {{ $web->fontTitleRotor4 == 'Century Gothic' ? 'selected' : '' }}>Century Gothic</option>
+                                                                <option value="Lucida Console" {{ $web->fontTitleRotor4 == 'Lucida Console' ? 'selected' : '' }}>Lucida Console</option>
+                                                                <option value="Garamond" {{ $web->fontTitleRotor4 == 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                                                <option value="Franklin Gothic Medium" {{ $web->fontTitleRotor4 == 'Franklin Gothic Medium' ? 'selected' : '' }}>Franklin Gothic Medium</option>
+                                                                <option value="Copperplate" {{ $web->fontTitleRotor4 == 'Copperplate' ? 'selected' : '' }}>Copperplate</option>
+                                                                <option value="Arial Narrow" {{ $web->fontTitleRotor4 == 'Arial Narrow' ? 'selected' : '' }}>Arial Narrow</option>
+                                                                <option value="Rockwell" {{ $web->fontTitleRotor4 == 'Rockwell' ? 'selected' : '' }}>Rockwell</option>
+                                                                <option value="Gill Sans" {{ $web->fontTitleRotor4 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>
+                                                                <option value="Baskerville" {{ $web->fontTitleRotor4 == 'Baskerville' ? 'selected' : '' }}>Baskerville</option>
+                                                                <option value="Cambria" {{ $web->fontTitleRotor4 == 'Cambria' ? 'selected' : '' }}>Cambria</option>
+                                                                <option value="Geneva" {{ $web->fontTitleRotor4 == 'Geneva' ? 'selected' : '' }}>Geneva</option>
+                                                                <option value="Century Schoolbook" {{ $web->fontTitleRotor4 == 'Century Schoolbook' ? 'selected' : '' }}>Century Schoolbook</option>
+                                                                <option value="Avant Garde" {{ $web->fontTitleRotor4 == 'Avant Garde' ? 'selected' : '' }}>Avant Garde</option>
+                                                                <option value="Didot" {{ $web->fontTitleRotor4 == 'Didot' ? 'selected' : '' }}>Didot</option>
+                                                                <option value="Futura" {{ $web->fontTitleRotor4 == 'Futura' ? 'selected' : '' }}>Futura</option>
+                                                                <option value="Brush Script MT" {{ $web->fontTitleRotor4 == 'Brush Script MT' ? 'selected' : '' }}>Brush Script MT</option>
+                                                                <option value="Helvetica Neue" {{ $web->fontTitleRotor4 == 'Helvetica Neue' ? 'selected' : '' }}>Helvetica Neue</option>
+                                                                <option value="Cursive" {{ $web->fontTitleRotor4 == 'Cursive' ? 'selected' : '' }}>Cursive</option>
+                                                                <option value="Monaco" {{ $web->fontTitleRotor4 == 'Monaco' ? 'selected' : '' }}>Monaco</option>
+                                                                <option value="Consolas" {{ $web->fontTitleRotor4 == 'Consolas' ? 'selected' : '' }}>Consolas</option>
+                                                                <option value="Courier" {{ $web->fontTitleRotor4 == 'Courier' ? 'selected' : '' }}>Courier</option>
+                                                                <option value="Bookman" {{ $web->fontTitleRotor4 == 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                                                <option value="Cooper Black" {{ $web->fontTitleRotor4 == 'Cooper Black' ? 'selected' : '' }}>Cooper Black</option>
+                                                                <option value="Impact" {{ $web->fontTitleRotor4 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Wide Latin" {{ $web->fontTitleRotor4 == 'Wide Latin' ? 'selected' : '' }}>Wide Latin</option>
+                                                                <option value="Century" {{ $web->fontTitleRotor4 == 'Century' ? 'selected' : '' }}>Century</option>
+                                                                <option value="Trebuchet" {{ $web->fontTitleRotor4 == 'Trebuchet' ? 'selected' : '' }}>Trebuchet</option>
+                                                                <option value="Comic Sans" {{ $web->fontTitleRotor4 == 'Comic Sans' ? 'selected' : '' }}>Comic Sans</option>
+                                                                <option value="Stencil" {{ $web->fontTitleRotor4 == 'Stencil' ? 'selected' : '' }}>Stencil</option>
+                                                                <option value="Marker Felt" {{ $web->fontTitleRotor4 == 'Marker Felt' ? 'selected' : '' }}>Marker Felt</option>
+                                                                <option value="Optima" {{ $web->fontTitleRotor4 == 'Optima' ? 'selected' : '' }}>Optima</option>
+                                                                <option value="Gill Sans" {{ $web->fontTitleRotor4 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>y
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check mr-4">
+                                            <input type="radio" class="form-check-input" name="useBtnRotor4" value="1" id="conBoton4" autocomplete="off" @if ($web->useBtnRotor4 == 1) checked @endif>
+                                            <label class="form-check-label" for="conBoton4">Con Botón</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="useBtnRotor4" value="0" id="sinBoton4" autocomplete="off" @if ($web->useBtnRotor4 == 0) checked @endif>
+                                            <label class="form-check-label" for="sinBoton4">Sin Botón</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group p-2" id="buttonFields4" style="@if($web->useBtnRotor4 == 0) display:none; @endif background: #e8e8e8;border-radius: 4px;">
+                                        <div class="row">
+                                            <div class="col-md-5 pr-0">
+                                                <label for="btntext">Texto del botón</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="btnTextRotor4" name="btnTextRotor4" value="{{$web->btnTextRotor4}}" maxlength="22" placeholder="Texto del botón">
+                                                    <div class="input-group-append" style="padding: 0px;">
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <input type="color" name="colorBtnTextRotor4" class="form-control input-in-text form-control-rounded" value="{{ $web->colorBtnTextRotor4 ?? '#FFFFFF' }}" autocomplete="off">
+                                                        </span>
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <select name="fontBtnTextRotor4" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                                <option value="Arial" {{ $web->fontBtnTextRotor4 == 'Arial' ? 'selected' : '' }}>Arial</option>
+                                                                <option value="Helvetica" {{ $web->fontBtnTextRotor4 == 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                                                <option value="Times New Roman" {{ $web->fontBtnTextRotor4 == 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                                                <option value="Georgia" {{ $web->fontBtnTextRotor4 == 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                                                <option value="Courier New" {{ $web->fontBtnTextRotor4 == 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                                                <option value="Verdana" {{ $web->fontBtnTextRotor4 == 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                                                <option value="Tahoma" {{ $web->fontBtnTextRotor4 == 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                                                <option value="Trebuchet MS" {{ $web->fontBtnTextRotor4 == 'Trebuchet MS' ? 'selected' : '' }}>Trebuchet MS</option>
+                                                                <option value="Impact" {{ $web->fontBtnTextRotor4 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Comic Sans MS" {{ $web->fontBtnTextRotor4 == 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                                                                <option value="Arial Black" {{ $web->fontBtnTextRotor4 == 'Arial Black' ? 'selected' : '' }}>Arial Black</option>
+                                                                <option value="Lucida Sans Unicode" {{ $web->fontBtnTextRotor4 == 'Lucida Sans Unicode' ? 'selected' : '' }}>Lucida Sans Unicode</option>
+                                                                <option value="Palatino Linotype" {{ $web->fontBtnTextRotor4 == 'Palatino Linotype' ? 'selected' : '' }}>Palatino Linotype</option>
+                                                                <option value="Book Antiqua" {{ $web->fontBtnTextRotor4 == 'Book Antiqua' ? 'selected' : '' }}>Book Antiqua</option>
+                                                                <option value="Palatino" {{ $web->fontBtnTextRotor4 == 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                                                <option value="Century Gothic" {{ $web->fontBtnTextRotor4 == 'Century Gothic' ? 'selected' : '' }}>Century Gothic</option>
+                                                                <option value="Lucida Console" {{ $web->fontBtnTextRotor4 == 'Lucida Console' ? 'selected' : '' }}>Lucida Console</option>
+                                                                <option value="Garamond" {{ $web->fontBtnTextRotor4 == 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                                                <option value="Franklin Gothic Medium" {{ $web->fontBtnTextRotor4 == 'Franklin Gothic Medium' ? 'selected' : '' }}>Franklin Gothic Medium</option>
+                                                                <option value="Copperplate" {{ $web->fontBtnTextRotor4 == 'Copperplate' ? 'selected' : '' }}>Copperplate</option>
+                                                                <option value="Arial Narrow" {{ $web->fontBtnTextRotor4 == 'Arial Narrow' ? 'selected' : '' }}>Arial Narrow</option>
+                                                                <option value="Rockwell" {{ $web->fontBtnTextRotor4 == 'Rockwell' ? 'selected' : '' }}>Rockwell</option>
+                                                                <option value="Gill Sans" {{ $web->fontBtnTextRotor4 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>
+                                                                <option value="Baskerville" {{ $web->fontBtnTextRotor4 == 'Baskerville' ? 'selected' : '' }}>Baskerville</option>
+                                                                <option value="Cambria" {{ $web->fontBtnTextRotor4 == 'Cambria' ? 'selected' : '' }}>Cambria</option>
+                                                                <option value="Geneva" {{ $web->fontBtnTextRotor4 == 'Geneva' ? 'selected' : '' }}>Geneva</option>
+                                                                <option value="Century Schoolbook" {{ $web->fontBtnTextRotor4 == 'Century Schoolbook' ? 'selected' : '' }}>Century Schoolbook</option>
+                                                                <option value="Avant Garde" {{ $web->fontBtnTextRotor4 == 'Avant Garde' ? 'selected' : '' }}>Avant Garde</option>
+                                                                <option value="Didot" {{ $web->fontBtnTextRotor4 == 'Didot' ? 'selected' : '' }}>Didot</option>
+                                                                <option value="Futura" {{ $web->fontBtnTextRotor4 == 'Futura' ? 'selected' : '' }}>Futura</option>
+                                                                <option value="Brush Script MT" {{ $web->fontBtnTextRotor4 == 'Brush Script MT' ? 'selected' : '' }}>Brush Script MT</option>
+                                                                <option value="Helvetica Neue" {{ $web->fontBtnTextRotor4 == 'Helvetica Neue' ? 'selected' : '' }}>Helvetica Neue</option>
+                                                                <option value="Cursive" {{ $web->fontBtnTextRotor4 == 'Cursive' ? 'selected' : '' }}>Cursive</option>
+                                                                <option value="Monaco" {{ $web->fontBtnTextRotor4 == 'Monaco' ? 'selected' : '' }}>Monaco</option>
+                                                                <option value="Consolas" {{ $web->fontBtnTextRotor4 == 'Consolas' ? 'selected' : '' }}>Consolas</option>
+                                                                <option value="Courier" {{ $web->fontBtnTextRotor4 == 'Courier' ? 'selected' : '' }}>Courier</option>
+                                                                <option value="Bookman" {{ $web->fontBtnTextRotor4 == 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                                                <option value="Cooper Black" {{ $web->fontBtnTextRotor4 == 'Cooper Black' ? 'selected' : '' }}>Cooper Black</option>
+                                                                <option value="Impact" {{ $web->fontBtnTextRotor4 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Wide Latin" {{ $web->fontBtnTextRotor4 == 'Wide Latin' ? 'selected' : '' }}>Wide Latin</option>
+                                                                <option value="Century" {{ $web->fontBtnTextRotor4 == 'Century' ? 'selected' : '' }}>Century</option>
+                                                                <option value="Trebuchet" {{ $web->fontBtnTextRotor4 == 'Trebuchet' ? 'selected' : '' }}>Trebuchet</option>
+                                                                <option value="Comic Sans" {{ $web->fontBtnTextRotor4 == 'Comic Sans' ? 'selected' : '' }}>Comic Sans</option>
+                                                                <option value="Stencil" {{ $web->fontBtnTextRotor4 == 'Stencil' ? 'selected' : '' }}>Stencil</option>
+                                                                <option value="Marker Felt" {{ $web->fontBtnTextRotor4 == 'Marker Felt' ? 'selected' : '' }}>Marker Felt</option>
+                                                                <option value="Optima" {{ $web->fontBtnTextRotor4 == 'Optima' ? 'selected' : '' }}>Optima</option>
+                                                                <option value="Gill Sans" {{ $web->fontBtnTextRotor4 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>y
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 pr-0">
+                                                <label for="btntext">Color de botón</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-append m-auto" style="padding: 0px;">
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <input type="color" name="backgroundBtnTextRotor4" class="form-control input-in-text form-control-rounded" value="{{ $web->backgroundBtnTextRotor4 ?? '#DE2423' }}" autocomplete="off">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label for="btnurl">URL del botón</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="btnUrlRotor3" name="btnUrlRotor3" value="{{$web->btnUrlRotor3}}" maxlength="255" placeholder="ej: mitienda.com/destacados">
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-info col-12" role="alert">
+                                <i class="material-icons">info</i> Dejar sin imagen en caso de no querer utilizar esta sección.
+                            </div>
+                            <div class="slim col-12 mt-1"
+                                data-button-edit-title="Editar"
+                                data-button-remove-title="Borrar"
+                                data-ratio="19:9"
+                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
+                                data-size="1920,930">
+                                <input type="file" id="imageRotor4" name="imageRotor4"/>
+                                @if($web->imageRotor4)
+                                <img src="/assets/images/{{$web->imageRotor4}}" />
+                                @endif
+                            </div>
+                            <!-- quinto slider -->
+                            <div class="col-12 p-0 mt-4">
+                                <hr>
+                                <h4>Rotor 5</h4>  
+                                <div class="form-container">
+                                    <div class="row">
+                                        <div class="col-md-6 pr-0">
+                                            <div class="form-group">
+                                                <label for="pretitle">Pre-título imagen 1</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="pretitleRotor5" name="pretitleRotor5" value="{{$web->pretitleRotor5}}" maxlength="36" placeholder="Pre-title">
+                                                    <div class="input-group-append" style="padding: 0px;">
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <input type="color" name="colorTitleRotor5" class="form-control input-in-text form-control-rounded" value="{{ $web->colorTitleRotor5 ?? '#333' }}" autocomplete="off">
+                                                        </span>
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <select name="fontPretitleRotor5" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                                <option value="Arial" {{ $web->fontPretitleRotor5 == 'Arial' ? 'selected' : '' }}>Arial</option>
+                                                                <option value="Helvetica" {{ $web->fontPretitleRotor5 == 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                                                <option value="Times New Roman" {{ $web->fontPretitleRotor5 == 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                                                <option value="Georgia" {{ $web->fontPretitleRotor5 == 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                                                <option value="Courier New" {{ $web->fontPretitleRotor5 == 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                                                <option value="Verdana" {{ $web->fontPretitleRotor5 == 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                                                <option value="Tahoma" {{ $web->fontPretitleRotor5 == 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                                                <option value="Trebuchet MS" {{ $web->fontPretitleRotor5 == 'Trebuchet MS' ? 'selected' : '' }}>Trebuchet MS</option>
+                                                                <option value="Impact" {{ $web->fontPretitleRotor5 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Comic Sans MS" {{ $web->fontPretitleRotor5 == 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                                                                <option value="Arial Black" {{ $web->fontPretitleRotor5 == 'Arial Black' ? 'selected' : '' }}>Arial Black</option>
+                                                                <option value="Lucida Sans Unicode" {{ $web->fontPretitleRotor5 == 'Lucida Sans Unicode' ? 'selected' : '' }}>Lucida Sans Unicode</option>
+                                                                <option value="Palatino Linotype" {{ $web->fontPretitleRotor5 == 'Palatino Linotype' ? 'selected' : '' }}>Palatino Linotype</option>
+                                                                <option value="Book Antiqua" {{ $web->fontPretitleRotor5 == 'Book Antiqua' ? 'selected' : '' }}>Book Antiqua</option>
+                                                                <option value="Palatino" {{ $web->fontPretitleRotor5 == 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                                                <option value="Century Gothic" {{ $web->fontPretitleRotor5 == 'Century Gothic' ? 'selected' : '' }}>Century Gothic</option>
+                                                                <option value="Lucida Console" {{ $web->fontPretitleRotor5 == 'Lucida Console' ? 'selected' : '' }}>Lucida Console</option>
+                                                                <option value="Garamond" {{ $web->fontPretitleRotor5 == 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                                                <option value="Franklin Gothic Medium" {{ $web->fontPretitleRotor5 == 'Franklin Gothic Medium' ? 'selected' : '' }}>Franklin Gothic Medium</option>
+                                                                <option value="Copperplate" {{ $web->fontPretitleRotor5 == 'Copperplate' ? 'selected' : '' }}>Copperplate</option>
+                                                                <option value="Arial Narrow" {{ $web->fontPretitleRotor5 == 'Arial Narrow' ? 'selected' : '' }}>Arial Narrow</option>
+                                                                <option value="Rockwell" {{ $web->fontPretitleRotor5 == 'Rockwell' ? 'selected' : '' }}>Rockwell</option>
+                                                                <option value="Gill Sans" {{ $web->fontPretitleRotor5 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>
+                                                                <option value="Baskerville" {{ $web->fontPretitleRotor5 == 'Baskerville' ? 'selected' : '' }}>Baskerville</option>
+                                                                <option value="Cambria" {{ $web->fontPretitleRotor5 == 'Cambria' ? 'selected' : '' }}>Cambria</option>
+                                                                <option value="Geneva" {{ $web->fontPretitleRotor5 == 'Geneva' ? 'selected' : '' }}>Geneva</option>
+                                                                <option value="Century Schoolbook" {{ $web->fontPretitleRotor5 == 'Century Schoolbook' ? 'selected' : '' }}>Century Schoolbook</option>
+                                                                <option value="Avant Garde" {{ $web->fontPretitleRotor5 == 'Avant Garde' ? 'selected' : '' }}>Avant Garde</option>
+                                                                <option value="Didot" {{ $web->fontPretitleRotor5 == 'Didot' ? 'selected' : '' }}>Didot</option>
+                                                                <option value="Futura" {{ $web->fontPretitleRotor5 == 'Futura' ? 'selected' : '' }}>Futura</option>
+                                                                <option value="Brush Script MT" {{ $web->fontPretitleRotor5 == 'Brush Script MT' ? 'selected' : '' }}>Brush Script MT</option>
+                                                                <option value="Helvetica Neue" {{ $web->fontPretitleRotor5 == 'Helvetica Neue' ? 'selected' : '' }}>Helvetica Neue</option>
+                                                                <option value="Cursive" {{ $web->fontPretitleRotor5 == 'Cursive' ? 'selected' : '' }}>Cursive</option>
+                                                                <option value="Monaco" {{ $web->fontPretitleRotor5 == 'Monaco' ? 'selected' : '' }}>Monaco</option>
+                                                                <option value="Consolas" {{ $web->fontPretitleRotor5 == 'Consolas' ? 'selected' : '' }}>Consolas</option>
+                                                                <option value="Courier" {{ $web->fontPretitleRotor5 == 'Courier' ? 'selected' : '' }}>Courier</option>
+                                                                <option value="Bookman" {{ $web->fontPretitleRotor5 == 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                                                <option value="Cooper Black" {{ $web->fontPretitleRotor5 == 'Cooper Black' ? 'selected' : '' }}>Cooper Black</option>
+                                                                <option value="Impact" {{ $web->fontPretitleRotor5 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Wide Latin" {{ $web->fontPretitleRotor5 == 'Wide Latin' ? 'selected' : '' }}>Wide Latin</option>
+                                                                <option value="Century" {{ $web->fontPretitleRotor5 == 'Century' ? 'selected' : '' }}>Century</option>
+                                                                <option value="Trebuchet" {{ $web->fontPretitleRotor5 == 'Trebuchet' ? 'selected' : '' }}>Trebuchet</option>
+                                                                <option value="Comic Sans" {{ $web->fontPretitleRotor5 == 'Comic Sans' ? 'selected' : '' }}>Comic Sans</option>
+                                                                <option value="Stencil" {{ $web->fontPretitleRotor5 == 'Stencil' ? 'selected' : '' }}>Stencil</option>
+                                                                <option value="Marker Felt" {{ $web->fontPretitleRotor5 == 'Marker Felt' ? 'selected' : '' }}>Marker Felt</option>
+                                                                <option value="Optima" {{ $web->fontPretitleRotor5 == 'Optima' ? 'selected' : '' }}>Optima</option>
+                                                                <option value="Gill Sans" {{ $web->fontPretitleRotor5 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>y
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="title">Título imágen 1</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="titleRotor5" name="titleRotor5" value="{{$web->titleRotor5}}" maxlength="36" placeholder="Title">
+                                                    <div class="input-group-append" style="padding: 0px;">
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <input type="color"name="colorPretitleRotor5" class="form-control input-in-text form-control-rounded" value="{{ $web->colorPretitleRotor5 ?? '#333' }}" autocomplete="off">
+                                                        </span>
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <select name="fontTitleRotor5" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                                <option value="Arial" {{ $web->fontTitleRotor5 == 'Arial' ? 'selected' : '' }}>Arial</option>
+                                                                <option value="Helvetica" {{ $web->fontTitleRotor5 == 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                                                <option value="Times New Roman" {{ $web->fontTitleRotor5 == 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                                                <option value="Georgia" {{ $web->fontTitleRotor5 == 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                                                <option value="Courier New" {{ $web->fontTitleRotor5 == 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                                                <option value="Verdana" {{ $web->fontTitleRotor5 == 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                                                <option value="Tahoma" {{ $web->fontTitleRotor5 == 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                                                <option value="Trebuchet MS" {{ $web->fontTitleRotor5 == 'Trebuchet MS' ? 'selected' : '' }}>Trebuchet MS</option>
+                                                                <option value="Impact" {{ $web->fontTitleRotor5 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Comic Sans MS" {{ $web->fontTitleRotor5 == 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                                                                <option value="Arial Black" {{ $web->fontTitleRotor5 == 'Arial Black' ? 'selected' : '' }}>Arial Black</option>
+                                                                <option value="Lucida Sans Unicode" {{ $web->fontTitleRotor5 == 'Lucida Sans Unicode' ? 'selected' : '' }}>Lucida Sans Unicode</option>
+                                                                <option value="Palatino Linotype" {{ $web->fontTitleRotor5 == 'Palatino Linotype' ? 'selected' : '' }}>Palatino Linotype</option>
+                                                                <option value="Book Antiqua" {{ $web->fontTitleRotor5 == 'Book Antiqua' ? 'selected' : '' }}>Book Antiqua</option>
+                                                                <option value="Palatino" {{ $web->fontTitleRotor5 == 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                                                <option value="Century Gothic" {{ $web->fontTitleRotor5 == 'Century Gothic' ? 'selected' : '' }}>Century Gothic</option>
+                                                                <option value="Lucida Console" {{ $web->fontTitleRotor5 == 'Lucida Console' ? 'selected' : '' }}>Lucida Console</option>
+                                                                <option value="Garamond" {{ $web->fontTitleRotor5 == 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                                                <option value="Franklin Gothic Medium" {{ $web->fontTitleRotor5 == 'Franklin Gothic Medium' ? 'selected' : '' }}>Franklin Gothic Medium</option>
+                                                                <option value="Copperplate" {{ $web->fontTitleRotor5 == 'Copperplate' ? 'selected' : '' }}>Copperplate</option>
+                                                                <option value="Arial Narrow" {{ $web->fontTitleRotor5 == 'Arial Narrow' ? 'selected' : '' }}>Arial Narrow</option>
+                                                                <option value="Rockwell" {{ $web->fontTitleRotor5 == 'Rockwell' ? 'selected' : '' }}>Rockwell</option>
+                                                                <option value="Gill Sans" {{ $web->fontTitleRotor5 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>
+                                                                <option value="Baskerville" {{ $web->fontTitleRotor5 == 'Baskerville' ? 'selected' : '' }}>Baskerville</option>
+                                                                <option value="Cambria" {{ $web->fontTitleRotor5 == 'Cambria' ? 'selected' : '' }}>Cambria</option>
+                                                                <option value="Geneva" {{ $web->fontTitleRotor5 == 'Geneva' ? 'selected' : '' }}>Geneva</option>
+                                                                <option value="Century Schoolbook" {{ $web->fontTitleRotor5 == 'Century Schoolbook' ? 'selected' : '' }}>Century Schoolbook</option>
+                                                                <option value="Avant Garde" {{ $web->fontTitleRotor5 == 'Avant Garde' ? 'selected' : '' }}>Avant Garde</option>
+                                                                <option value="Didot" {{ $web->fontTitleRotor5 == 'Didot' ? 'selected' : '' }}>Didot</option>
+                                                                <option value="Futura" {{ $web->fontTitleRotor5 == 'Futura' ? 'selected' : '' }}>Futura</option>
+                                                                <option value="Brush Script MT" {{ $web->fontTitleRotor5 == 'Brush Script MT' ? 'selected' : '' }}>Brush Script MT</option>
+                                                                <option value="Helvetica Neue" {{ $web->fontTitleRotor5 == 'Helvetica Neue' ? 'selected' : '' }}>Helvetica Neue</option>
+                                                                <option value="Cursive" {{ $web->fontTitleRotor5 == 'Cursive' ? 'selected' : '' }}>Cursive</option>
+                                                                <option value="Monaco" {{ $web->fontTitleRotor5 == 'Monaco' ? 'selected' : '' }}>Monaco</option>
+                                                                <option value="Consolas" {{ $web->fontTitleRotor5 == 'Consolas' ? 'selected' : '' }}>Consolas</option>
+                                                                <option value="Courier" {{ $web->fontTitleRotor5 == 'Courier' ? 'selected' : '' }}>Courier</option>
+                                                                <option value="Bookman" {{ $web->fontTitleRotor5 == 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                                                <option value="Cooper Black" {{ $web->fontTitleRotor5 == 'Cooper Black' ? 'selected' : '' }}>Cooper Black</option>
+                                                                <option value="Impact" {{ $web->fontTitleRotor5 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Wide Latin" {{ $web->fontTitleRotor5 == 'Wide Latin' ? 'selected' : '' }}>Wide Latin</option>
+                                                                <option value="Century" {{ $web->fontTitleRotor5 == 'Century' ? 'selected' : '' }}>Century</option>
+                                                                <option value="Trebuchet" {{ $web->fontTitleRotor5 == 'Trebuchet' ? 'selected' : '' }}>Trebuchet</option>
+                                                                <option value="Comic Sans" {{ $web->fontTitleRotor5 == 'Comic Sans' ? 'selected' : '' }}>Comic Sans</option>
+                                                                <option value="Stencil" {{ $web->fontTitleRotor5 == 'Stencil' ? 'selected' : '' }}>Stencil</option>
+                                                                <option value="Marker Felt" {{ $web->fontTitleRotor5 == 'Marker Felt' ? 'selected' : '' }}>Marker Felt</option>
+                                                                <option value="Optima" {{ $web->fontTitleRotor5 == 'Optima' ? 'selected' : '' }}>Optima</option>
+                                                                <option value="Gill Sans" {{ $web->fontTitleRotor5 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>y
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check mr-4">
+                                            <input type="radio" class="form-check-input" name="useBtnRotor5" value="1" id="conBoton5" autocomplete="off" @if ($web->useBtnRotor5 == 1) checked @endif>
+                                            <label class="form-check-label" for="conBoton5">Con Botón</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="useBtnRotor5" value="0" id="sinBoton5" autocomplete="off" @if ($web->useBtnRotor5 == 0) checked @endif>
+                                            <label class="form-check-label" for="sinBoton5">Sin Botón</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group p-2" id="buttonFields5" style="@if($web->useBtnRotor5 == 0) display:none; @endif background: #e8e8e8;border-radius: 4px;">
+                                        <div class="row">
+                                            <div class="col-md-5 pr-0">
+                                                <label for="btntext">Texto del botón</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="btnTextRotor5" name="btnTextRotor5" value="{{$web->btnTextRotor5}}" maxlength="22" placeholder="Texto del botón">
+                                                    <div class="input-group-append" style="padding: 0px;">
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <input type="color" name="colorBtnTextRotor5" class="form-control input-in-text form-control-rounded" value="{{ $web->colorBtnTextRotor5 ?? '#FFFFFF' }}" autocomplete="off">
+                                                        </span>
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <select name="fontBtnTextRotor5" class="form-control form-control-rounded font-select"  style="max-width:90px;">
+                                                                <option value="Arial" {{ $web->fontBtnTextRotor5 == 'Arial' ? 'selected' : '' }}>Arial</option>
+                                                                <option value="Helvetica" {{ $web->fontBtnTextRotor5 == 'Helvetica' ? 'selected' : '' }}>Helvetica</option>
+                                                                <option value="Times New Roman" {{ $web->fontBtnTextRotor5 == 'Times New Roman' ? 'selected' : '' }}>Times New Roman</option>
+                                                                <option value="Georgia" {{ $web->fontBtnTextRotor5 == 'Georgia' ? 'selected' : '' }}>Georgia</option>
+                                                                <option value="Courier New" {{ $web->fontBtnTextRotor5 == 'Courier New' ? 'selected' : '' }}>Courier New</option>
+                                                                <option value="Verdana" {{ $web->fontBtnTextRotor5 == 'Verdana' ? 'selected' : '' }}>Verdana</option>
+                                                                <option value="Tahoma" {{ $web->fontBtnTextRotor5 == 'Tahoma' ? 'selected' : '' }}>Tahoma</option>
+                                                                <option value="Trebuchet MS" {{ $web->fontBtnTextRotor5 == 'Trebuchet MS' ? 'selected' : '' }}>Trebuchet MS</option>
+                                                                <option value="Impact" {{ $web->fontBtnTextRotor5 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Comic Sans MS" {{ $web->fontBtnTextRotor5 == 'Comic Sans MS' ? 'selected' : '' }}>Comic Sans MS</option>
+                                                                <option value="Arial Black" {{ $web->fontBtnTextRotor5 == 'Arial Black' ? 'selected' : '' }}>Arial Black</option>
+                                                                <option value="Lucida Sans Unicode" {{ $web->fontBtnTextRotor5 == 'Lucida Sans Unicode' ? 'selected' : '' }}>Lucida Sans Unicode</option>
+                                                                <option value="Palatino Linotype" {{ $web->fontBtnTextRotor5 == 'Palatino Linotype' ? 'selected' : '' }}>Palatino Linotype</option>
+                                                                <option value="Book Antiqua" {{ $web->fontBtnTextRotor5 == 'Book Antiqua' ? 'selected' : '' }}>Book Antiqua</option>
+                                                                <option value="Palatino" {{ $web->fontBtnTextRotor5 == 'Palatino' ? 'selected' : '' }}>Palatino</option>
+                                                                <option value="Century Gothic" {{ $web->fontBtnTextRotor5 == 'Century Gothic' ? 'selected' : '' }}>Century Gothic</option>
+                                                                <option value="Lucida Console" {{ $web->fontBtnTextRotor5 == 'Lucida Console' ? 'selected' : '' }}>Lucida Console</option>
+                                                                <option value="Garamond" {{ $web->fontBtnTextRotor5 == 'Garamond' ? 'selected' : '' }}>Garamond</option>
+                                                                <option value="Franklin Gothic Medium" {{ $web->fontBtnTextRotor5 == 'Franklin Gothic Medium' ? 'selected' : '' }}>Franklin Gothic Medium</option>
+                                                                <option value="Copperplate" {{ $web->fontBtnTextRotor5 == 'Copperplate' ? 'selected' : '' }}>Copperplate</option>
+                                                                <option value="Arial Narrow" {{ $web->fontBtnTextRotor5 == 'Arial Narrow' ? 'selected' : '' }}>Arial Narrow</option>
+                                                                <option value="Rockwell" {{ $web->fontBtnTextRotor5 == 'Rockwell' ? 'selected' : '' }}>Rockwell</option>
+                                                                <option value="Gill Sans" {{ $web->fontBtnTextRotor5 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>
+                                                                <option value="Baskerville" {{ $web->fontBtnTextRotor5 == 'Baskerville' ? 'selected' : '' }}>Baskerville</option>
+                                                                <option value="Cambria" {{ $web->fontBtnTextRotor5 == 'Cambria' ? 'selected' : '' }}>Cambria</option>
+                                                                <option value="Geneva" {{ $web->fontBtnTextRotor5 == 'Geneva' ? 'selected' : '' }}>Geneva</option>
+                                                                <option value="Century Schoolbook" {{ $web->fontBtnTextRotor5 == 'Century Schoolbook' ? 'selected' : '' }}>Century Schoolbook</option>
+                                                                <option value="Avant Garde" {{ $web->fontBtnTextRotor5 == 'Avant Garde' ? 'selected' : '' }}>Avant Garde</option>
+                                                                <option value="Didot" {{ $web->fontBtnTextRotor5 == 'Didot' ? 'selected' : '' }}>Didot</option>
+                                                                <option value="Futura" {{ $web->fontBtnTextRotor5 == 'Futura' ? 'selected' : '' }}>Futura</option>
+                                                                <option value="Brush Script MT" {{ $web->fontBtnTextRotor5 == 'Brush Script MT' ? 'selected' : '' }}>Brush Script MT</option>
+                                                                <option value="Helvetica Neue" {{ $web->fontBtnTextRotor5 == 'Helvetica Neue' ? 'selected' : '' }}>Helvetica Neue</option>
+                                                                <option value="Cursive" {{ $web->fontBtnTextRotor5 == 'Cursive' ? 'selected' : '' }}>Cursive</option>
+                                                                <option value="Monaco" {{ $web->fontBtnTextRotor5 == 'Monaco' ? 'selected' : '' }}>Monaco</option>
+                                                                <option value="Consolas" {{ $web->fontBtnTextRotor5 == 'Consolas' ? 'selected' : '' }}>Consolas</option>
+                                                                <option value="Courier" {{ $web->fontBtnTextRotor5 == 'Courier' ? 'selected' : '' }}>Courier</option>
+                                                                <option value="Bookman" {{ $web->fontBtnTextRotor5 == 'Bookman' ? 'selected' : '' }}>Bookman</option>
+                                                                <option value="Cooper Black" {{ $web->fontBtnTextRotor5 == 'Cooper Black' ? 'selected' : '' }}>Cooper Black</option>
+                                                                <option value="Impact" {{ $web->fontBtnTextRotor5 == 'Impact' ? 'selected' : '' }}>Impact</option>
+                                                                <option value="Wide Latin" {{ $web->fontBtnTextRotor5 == 'Wide Latin' ? 'selected' : '' }}>Wide Latin</option>
+                                                                <option value="Century" {{ $web->fontBtnTextRotor5 == 'Century' ? 'selected' : '' }}>Century</option>
+                                                                <option value="Trebuchet" {{ $web->fontBtnTextRotor5 == 'Trebuchet' ? 'selected' : '' }}>Trebuchet</option>
+                                                                <option value="Comic Sans" {{ $web->fontBtnTextRotor5 == 'Comic Sans' ? 'selected' : '' }}>Comic Sans</option>
+                                                                <option value="Stencil" {{ $web->fontBtnTextRotor5 == 'Stencil' ? 'selected' : '' }}>Stencil</option>
+                                                                <option value="Marker Felt" {{ $web->fontBtnTextRotor5 == 'Marker Felt' ? 'selected' : '' }}>Marker Felt</option>
+                                                                <option value="Optima" {{ $web->fontBtnTextRotor5 == 'Optima' ? 'selected' : '' }}>Optima</option>
+                                                                <option value="Gill Sans" {{ $web->fontBtnTextRotor5 == 'Gill Sans' ? 'selected' : '' }}>Gill Sans</option>y
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 pr-0">
+                                                <label for="btntext">Color de botón</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-append m-auto" style="padding: 0px;">
+                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                            <input type="color" name="backgroundBtnTextRotor5" class="form-control input-in-text form-control-rounded" value="{{ $web->backgroundBtnTextRotor5 ?? '#DE2423' }}" autocomplete="off">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label for="btnurl">URL del botón</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="btnUrlRotor5" name="btnUrlRotor5" value="{{$web->btnUrlRotor5}}" maxlength="255" placeholder="ej: mitienda.com/destacados">
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-info col-12" role="alert">
+                                <i class="material-icons">info</i> Dejar sin imagen en caso de no querer utilizar esta sección.
+                            </div>
+                            <div class="slim col-12 mt-1"
+                                data-button-edit-title="Editar"
+                                data-button-remove-title="Borrar"
+                                data-ratio="19:9"
+                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
+                                data-size="1920,930">
+                                <input type="file" id="imageRotor5" name="imageRotor5"/>
+                                @if($web->imageRotor5)
+                                <img src="/assets/images/{{$web->imageRotor5}}" />
                                 @endif
                             </div>
                         </div>
@@ -1589,6 +2083,20 @@
                 $('#buttonFields3').show();
             } else {
                 $('#buttonFields3').hide();
+            }
+        });
+        $('input[name="useBtnRotor4"]').change(function() {
+            if ($(this).val() === "1") {
+                $('#buttonFields4').show();
+            } else {
+                $('#buttonFields4').hide();
+            }
+        });
+        $('input[name="useBtnRotor5"]').change(function() {
+            if ($(this).val() === "1") {
+                $('#buttonFields5').show();
+            } else {
+                $('#buttonFields5').hide();
             }
         });
         $('input[name="useFilterColors"]').change(function() {

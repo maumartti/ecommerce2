@@ -122,6 +122,30 @@ class HomeController extends Controller
             }else{
                 $data['imageRotor3'] = $web->imageRotor3;
             }
+            //img 4
+            if(isset($data['imageRotor4'])){
+                if ($data['imageRotor4'] !== '' && $data['imageRotor4'] !== null && Tools::isValidJson($request->imageRotor4)) {
+                    $data['imageRotor4'] = $tools->saveImage64('/assets/images/', $request->imageRotor4);
+                } elseif($data['imageRotor4'] == 'empty'){
+                    $data['imageRotor4'] = null;   
+                }else{
+                    $data['imageRotor4'] = $web->imageRotor4;
+                }
+            }else{
+                $data['imageRotor4'] = $web->imageRotor4;
+            }
+            //img 5
+            if(isset($data['imageRotor5'])){
+                if ($data['imageRotor5'] !== '' && $data['imageRotor5'] !== null && Tools::isValidJson($request->imageRotor5)) {
+                    $data['imageRotor5'] = $tools->saveImage64('/assets/images/', $request->imageRotor5);
+                } elseif($data['imageRotor5'] == 'empty'){
+                    $data['imageRotor5'] = null;   
+                }else{
+                    $data['imageRotor5'] = $web->imageRotor5;
+                }
+            }else{
+                $data['imageRotor5'] = $web->imageRotor5;
+            }
 
             unset($data['btnAddTag']);//borramos si existe
             
