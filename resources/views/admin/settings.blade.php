@@ -976,7 +976,7 @@
                                             <div class="col-md-5">
                                                 <label for="btnurl">URL del botón</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="btnUrlRotor3" name="btnUrlRotor3" value="{{$web->btnUrlRotor3}}" maxlength="255" placeholder="ej: mitienda.com/destacados">
+                                                    <input type="text" class="form-control" id="btnUrlRotor4" name="btnUrlRotor4" value="{{$web->btnUrlRotor4}}" maxlength="255" placeholder="ej: mitienda.com/destacados">
                                                 </div>
                                             </div>
                                         </div>    

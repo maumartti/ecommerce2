@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('kilos',20)->nullable();
             $table->string('color',20)->nullable();
             $table->string('size',10)->nullable();
+            $table->string('tags',255)->nullable();
             $table->integer('stock')->length(11)->default(0);
             $table->integer('likes')->length(11)->default(0);
             $table->integer('views')->length(11)->default(0);

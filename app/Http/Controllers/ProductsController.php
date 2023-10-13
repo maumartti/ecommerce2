@@ -62,6 +62,7 @@ class ProductsController extends Controller
             'kilos' => 'nullable|string',
             'color' => 'nullable|string',
             'size' => 'nullable|string',
+            'tags' => 'nullable|array',
             'promo' => 'string'
         ]);
 
@@ -75,6 +76,8 @@ class ProductsController extends Controller
             $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
             $validatedData['code'] = strtoupper(Str::random(6));//AT5F1P
             //dd($validatedData);
+            unset($validatedData['btnAddTag']);//borramos si existe
+            $validatedData['tags'] = json_encode($request->input('tags'));//tags array
             $category = Product::create($validatedData);
             $products = Product::with('category', 'subcategory')->get();
             return response()->json(['status' => 'success', 'products' => $products], 200);
