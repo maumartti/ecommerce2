@@ -236,6 +236,10 @@
             // Filtro por color
             var colorFilter = filterValue.replace('color-', '');
             $grid.isotope({ filter: '.color-' + colorFilter });
+        } else if (filterValue.startsWith('tag-')) {
+            // Filtro por color
+            var tagFilter = filterValue.replace('tag-', '');
+            $grid.isotope({ filter: '.tag-' + tagFilter });
         }
     });
     // Función para verificar si un precio está dentro del rango especificado

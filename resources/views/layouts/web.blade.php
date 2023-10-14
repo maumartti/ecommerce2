@@ -338,7 +338,7 @@
 												{{ $item['name'] }}
 										</a>
 										<span class="header-cart-item-info">
-												{{ $item['quantity'] }} x ${{ str_replace(',', '.', number_format($item['price'], 2, ',', '.')) }}
+												{{ $item['quantity'] }} x ${{ str_replace(',', '.', number_format($item['price'], 0, ',', '.')) }}
 												<a product-id="{{ $item['id'] }}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
 													<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
 												</a>
@@ -352,7 +352,7 @@
 			</ul>
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: ${{ str_replace(',', '.', number_format(session('totalPrice', 0), 2, ',', '.')) }}
+						Total: ${{ str_replace(',', '.', number_format(session('totalPrice', 0), 0, ',', '.')) }}
 					</div>
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
@@ -716,6 +716,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="/assets/theme/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 	<script src="/assets/theme/vendor/sweetalert/sweetalert.min.js"></script>
+
 	<script>
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
@@ -765,7 +766,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 							if (data.status == 'success') {
 									// El producto se agregó exitosamente al carrito
 									//$.toastr.success('Agregado con éxito');
-									swal(nameProduct, "Agregado al carrito !", "success");
+									swal({
+											title: nameProduct,
+											text: "Agregado al carrito !",
+											icon: "success",
+											buttons: ['Ir al carrito', 'Seguir comprando']
+									}).then((value) => {
+										if (value === null) {
+												console.log('redirect carrito')
+												window.location.href = '/carrito';
+										}
+									});
+
 									//cambiamos el count de cart
 									$('.js-show-cart').attr('data-notify',data.totalCart);
 									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});

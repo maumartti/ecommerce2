@@ -134,6 +134,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link " href="/admin/shipping">
+                  <i class="material-icons">local_shipping</i>
+                  <span>Envíos</span>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link " href="tables.html">
                   <i class="material-icons">table_chart</i>
                   <span>Usuarios</span>

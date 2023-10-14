@@ -39,5 +39,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('categoriesReOrder', [App\Http\Controllers\CategoryController::class, 'reOrder']);
     Route::resource('subcategories', App\Http\Controllers\SubCategoryController::class);
     Route::resource('products', App\Http\Controllers\ProductsController::class);
+    Route::resource('shipping', App\Http\Controllers\ShippingController::class);
 });
 

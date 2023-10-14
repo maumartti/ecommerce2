@@ -96,7 +96,7 @@
 						</h4>
 
 						<span class="mtext-106 cl2">
-							${{ str_replace(',', '.', number_format(session('totalPrice', 0), 2, ',', '.')) }}
+							${{ str_replace(',', '.', number_format(session('totalPrice', 0), 0, ',', '.')) }}
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
@@ -456,7 +456,7 @@
 									</a>
 
 									<span class="stext-105 cl3">
-										$75.00
+										$7.00
 									</span>
 								</div>
 
@@ -488,7 +488,7 @@
 									</a>
 
 									<span class="stext-105 cl3">
-										$34.75
+										$340
 									</span>
 								</div>
 

@@ -258,7 +258,7 @@
 										{{$product->name}}
 										</a>
 										<span class="stext-105 cl3">
-											<strong>${{ str_replace(',', '.', number_format($product->price, 2, ',', '.')) }}</strong>
+											<strong>${{ str_replace(',', '.', number_format($product->price, 0, ',', '.')) }}</strong>
 										</span>
 									</div>
 									<div class="block2-txt-child2 flex-r p-t-3">

@@ -183,7 +183,7 @@
 							<div class="flex-w p-t-4 m-r--5">
 								@if(!empty($tagsRanges) && is_array($tagsRanges))
 									@foreach($tagsRanges as $tag)
-									<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									<a href="#" class="filter-link flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" data-filter="tag-{{ $tag }}">
 										{{$tag}}
 									</a>
 									@endforeach
