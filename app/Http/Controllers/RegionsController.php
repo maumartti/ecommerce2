@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
-use App\Models\Region;
-use App\Models\ShippingCompany;
 
 
-class ShippingController extends Controller
+class RegionsController extends Controller
 {
     public function __construct()
     {
@@ -22,9 +20,7 @@ class ShippingController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $regions = Region::with('companies')->get();
-        $companies = ShippingCompany::all();
-        return view('admin.shipping')->with('web',$web)->with('regions',$regions)->with('companies',$companies);   
+        return view('admin.home')->with('web',$web);   
     }
 
     /**

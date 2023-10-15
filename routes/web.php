@@ -40,5 +40,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('subcategories', App\Http\Controllers\SubCategoryController::class);
     Route::resource('products', App\Http\Controllers\ProductsController::class);
     Route::resource('shipping', App\Http\Controllers\ShippingController::class);
+    Route::resource('shipping_companies', App\Http\Controllers\ShippingCompaniesController::class);
+    Route::resource('regions', App\Http\Controllers\RegionsController::class);
 });
 

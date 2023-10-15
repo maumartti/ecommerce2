@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
-use App\Models\Region;
 use App\Models\ShippingCompany;
 
 
-class ShippingController extends Controller
+class ShippingCompaniesController extends Controller
 {
     public function __construct()
     {
@@ -22,9 +21,7 @@ class ShippingController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $regions = Region::with('companies')->get();
-        $companies = ShippingCompany::all();
-        return view('admin.shipping')->with('web',$web)->with('regions',$regions)->with('companies',$companies);   
+        return view('admin.home')->with('web',$web);   
     }
 
     /**
@@ -40,7 +37,21 @@ class ShippingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:36',
+            'image' => 'required',
+        ]);
+
+        try {
+            $tools = new Tools;
+            if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($validatedData['image'])) {
+                $validatedData['image'] = $tools->saveImage64('/assets/images/companies/', $validatedData['image']);
+            }
+            $company = ShippingCompany::create($validatedData);
+            return response()->json(['status' => 'success', 'company' => $company], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al crear la compania: ' . $e->getMessage()], 500);
+        }
     }
 
     /**

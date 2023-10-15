@@ -31,7 +31,10 @@
 												<a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Envíos</a>
 										</li>
 										<li class="nav-item" role="presentation">
-												<a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Empresas / Región</a>
+												<a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Regiones</a>
+										</li>
+										<li class="nav-item" role="presentation">
+												<a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Empresas</a>
 										</li>
 								</ul>
 								<div class="tab-content" id="myTabsContent">
@@ -79,33 +82,38 @@
 										<div class="tab-pane fade" id="subcategories" role="tabpanel" aria-labelledby="subcategories-tab">
 												<div class="row border-bottom py-2 bg-light">
 														<div class="col-12 col-sm-12">
-																<table id="subcategories-table" class="table mb-0">
-																		<!-- Encabezados de la tabla de Subcategorías -->
+																<table id="products-table" class="table mb-0">
+																		<!-- Encabezados de la tabla de Categorías -->
 																		<thead class="bg-light">
 																				<tr>
-																						<th scope="col" class="border-0">#</th>
-																						<th scope="col" class="border-0">Nombre</th>
-																						<th scope="col" class="border-0">Categoría Padre</th>
+																						<!-- <th scope="col" class="border-0">#</th> -->
+																						<th scope="col" class="border-0">Región</th>
+																						<th scope="col" class="border-0">Empresa</th>
+																						<th scope="col" class="border-0">Logo</th>
+																						<!-- <th scope="col" class="border-0 text-center">Ver</th> -->
 																						<th scope="col" class="border-0 text-center">Editar</th>
 																						<th scope="col" class="border-0 text-center">Borrar</th>
 																				</tr>
 																		</thead>
 																		<tbody>
-																				@if(isset($categories))
-																						@if($subcategories)
-																						@foreach ($subcategories as $index => $item)
+																				@if(isset($products))
+																				@if($products)
+																						@foreach ($products as $index => $item)
 																						@php
 																								$key = $index + 1;
 																						@endphp
-																						<tr id="subcategories-{{$item->id}}">
-																								<td>{{$key}}</td>
+																						<tr>
+																								<!-- <td>{{$key}}</td> -->
+																								<td><img src="/assets/images/products/{{$item->image1}}" style="width:65px;"></td>
 																								<td>{{$item->name}}</td>
-																								<td>{{$item->category ? $item->category->name : ''}}</td>
-																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-category_id="{{$item->category ? $item->category->id : ''}}">Editar <i class="material-icons">edit</i></button></td>
-																								<td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="subcategoría" data-url="subcategories">Borrar <i class="material-icons">delete</i></button></td>
+																								<td>${{$item->price}}</td>
+																								<td>{{$item->category ? $item->category->name : '----'}}</td>
+																								<td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td>
+																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' data-subcategories='@json($subcategories)'>Editar <i class="material-icons">edit</i></button></td>
+																								<td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
 																						</tr>
 																						@endforeach
-																						@endif
+																				@endif
 																				@endif
 																		</tbody>
 																</table>
@@ -130,7 +138,7 @@
                 <div class="card-body py-0">
                     <div class="row">
                         <div class="col-12 border-bottom">
-                            <form action="categories" method="POST" class="php-email-form">
+                            <form action="shipping_companies" method="POST" class="php-email-form">
                                 <div class="form-group pt-3">
                                     <label>Nombre de la empresa:</label>
                                     <input type="text" name="name" class="form-control" placeholder="nombre">
@@ -149,26 +157,33 @@
                                     <button type="submit" class="btn btn-accent btn-block">Agregar</button>
                                 </div>
                             </form>
-                            <div class="pt-5" >
+                            <div class="pt-4" >
                                 <div class="card-header border-bottom px-0 ">
-                                    <h6 class="m-0">Asociar: Empresa / Región</h6>
+                                    <label class="m-0">Asociar: Empresa / Región</label>
                                 </div>
                                 <form action="subcategories" method="POST" class="php-email-form">
                                     <div class="form-group pt-3">
-                                        <label for="categoria">Selecciona categoría:</label>
+                                        <label for="categoria">Selecciona región:</label>
                                         <select name="category_id" id="categorias" class="form-control">
-                                            @if(isset($subcategories))
-                                                @if($subcategories)
-                                                @foreach ($categories as $index => $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @if(isset($regions))
+                                                @if($regions)
+                                                @foreach ($regions as $index => $region)
+                                                <option value="{{$region->id}}">{{$region->name}}</option>
                                                 @endforeach
                                                 @endif
                                             @endif
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nombreSubcategoria">Nombre de la sub-categoría:</label>
-                                        <input type="text" name="name" class="form-control" id="nombreSubcategoria" placeholder="nombre">
+                                        <label for="nombreSubcategoria">Lista de empresas:</label>
+                                        @if($companies)
+                                            @foreach($companies as $company)
+                                            <div class="form-check pb-2">
+                                                <input type="checkbox" class="form-check-input" id="{{$company->id}}" name="tags[]" value="{{$company->id}}" style="top: 6px !important;">
+                                                <label class="form-check-label" for="{{$company->id}}"><img src="/assets/images/companies/{{$company->image}}" style="width: 100px;" /> {{$company->name}}</label>
+                                            </div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-accent btn-block">Agregar</button>

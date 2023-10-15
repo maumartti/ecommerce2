@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('shipping_companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name',36);
+            $table->string('image',20);
             $table->timestamps();
         });
     }
