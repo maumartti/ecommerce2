@@ -31,10 +31,10 @@
 												<a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Envíos</a>
 										</li>
 										<li class="nav-item" role="presentation">
-												<a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Regiones</a>
+												<a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Región / Empresa</a>
 										</li>
 										<li class="nav-item" role="presentation">
-												<a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Empresas</a>
+												<a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Empresas de transporte</a>
 										</li>
 								</ul>
 								<div class="tab-content" id="myTabsContent">
@@ -65,7 +65,7 @@
 																								<td>{{$item->id}}</td>
 																								<td>{{$item->name}}</td>
 																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-image="{{$item->image}}">Editar <i class="material-icons">edit</i></button></td>
-																								<td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
+																								<td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="envio" data-url="shipping">Borrar <i class="material-icons">delete</i></button></td>
 																						</tr>
 																						@endforeach
 																				@endif
@@ -78,7 +78,7 @@
 														</div>
 												</div>
 										</div>
-										<!-- Pestaña de Subcategorías -->
+										<!-- Pestaña de Region / empresa -->
 										<div class="tab-pane fade" id="subcategories" role="tabpanel" aria-labelledby="subcategories-tab">
 												<div class="row border-bottom py-2 bg-light">
 														<div class="col-12 col-sm-12">
@@ -91,26 +91,66 @@
 																						<th scope="col" class="border-0">Empresa</th>
 																						<th scope="col" class="border-0">Logo</th>
 																						<!-- <th scope="col" class="border-0 text-center">Ver</th> -->
+																						<!-- <th scope="col" class="border-0 text-center">Editar</th> -->
+																						<th scope="col" class="border-0 text-center">Borrar</th>
+																				</tr>
+																		</thead>
+																		<tbody>
+																				@if(isset($regions))
+																				@if($regions)
+                                                                                    @foreach ($regions as $index => $item)
+																				        @if($item->companies)
+                                                                                        @foreach ($item->companies as $company)
+																						<tr>
+																								<td>{{$item->name}}</td>
+																								<td>{{$company->name}}</td>
+																								<td><img src="/assets/images/companies/{{$company->image}}" style="width:65px;"></td>
+																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
+																								<td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-surname='{{$company->name}}' data-type="(región / empresa)" data-url="region_company" >Borrar <i class="material-icons">delete</i></button></td>
+																						</tr>
+                                                                                        @endforeach
+                                                                                        @endif
+																					@endforeach
+																				@endif
+																				@endif
+																		</tbody>
+																</table>
+														</div>
+														<div class="col-12 col-sm-12 d-flex mb-2 mb-sm-0">
+																<!-- <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button> -->
+														</div>
+												</div>
+										</div>
+										<!-- Pestaña de empresas transporte -->
+										<div class="tab-pane fade" id="empresas" role="tabpanel" aria-labelledby="empresas-tab">
+												<div class="row border-bottom py-2 bg-light">
+														<div class="col-12 col-sm-12">
+																<table id="products-table" class="table mb-0">
+																		<!-- Encabezados de la tabla de Categorías -->
+																		<thead class="bg-light">
+																				<tr>
+																						<!-- <th scope="col" class="border-0">#</th> -->
+																						<th scope="col" class="border-0">Nombre</th>
+																						<th scope="col" class="border-0">Logo</th>
+																						<!-- <th scope="col" class="border-0 text-center">Ver</th> -->
 																						<th scope="col" class="border-0 text-center">Editar</th>
 																						<th scope="col" class="border-0 text-center">Borrar</th>
 																				</tr>
 																		</thead>
 																		<tbody>
-																				@if(isset($products))
-																				@if($products)
-																						@foreach ($products as $index => $item)
+																				@if(isset($companies))
+																				@if($companies)
+																						@foreach ($companies as $index => $item)
 																						@php
 																								$key = $index + 1;
 																						@endphp
 																						<tr>
 																								<!-- <td>{{$key}}</td> -->
-																								<td><img src="/assets/images/products/{{$item->image1}}" style="width:65px;"></td>
 																								<td>{{$item->name}}</td>
-																								<td>${{$item->price}}</td>
-																								<td>{{$item->category ? $item->category->name : '----'}}</td>
-																								<td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td>
-																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' data-subcategories='@json($subcategories)'>Editar <i class="material-icons">edit</i></button></td>
-																								<td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
+																								<td><img src="/assets/images/companies/{{$item->image}}" style="width:65px;"></td>
+																								<!-- <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td> -->
+																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
+																								<td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="empresa" data-url="shipping_companies" >Borrar <i class="material-icons">delete</i></button></td>
 																						</tr>
 																						@endforeach
 																				@endif
@@ -161,10 +201,10 @@
                                 <div class="card-header border-bottom px-0 ">
                                     <label class="m-0">Asociar: Empresa / Región</label>
                                 </div>
-                                <form action="subcategories" method="POST" class="php-email-form">
+                                <form action="region_company" method="POST" class="php-email-form">
                                     <div class="form-group pt-3">
                                         <label for="categoria">Selecciona región:</label>
-                                        <select name="category_id" id="categorias" class="form-control">
+                                        <select name="region_id" id="categorias" class="form-control">
                                             @if(isset($regions))
                                                 @if($regions)
                                                 @foreach ($regions as $index => $region)
@@ -179,7 +219,7 @@
                                         @if($companies)
                                             @foreach($companies as $company)
                                             <div class="form-check pb-2">
-                                                <input type="checkbox" class="form-check-input" id="{{$company->id}}" name="tags[]" value="{{$company->id}}" style="top: 6px !important;">
+                                                <input type="checkbox" class="form-check-input" id="{{$company->id}}" name="company_id[]" value="{{$company->id}}" style="top: 6px !important;">
                                                 <label class="form-check-label" for="{{$company->id}}"><img src="/assets/images/companies/{{$company->image}}" style="width: 100px;" /> {{$company->name}}</label>
                                             </div>
                                             @endforeach
@@ -285,6 +325,7 @@
                         <div class="form-group">
                             <label>Nombre de la <span class="type"></span>:</label>
                             <h4 id="name"></h4>
+                            <h4 id="surname"></h4>
                             <img id="image" src="" class="w-100">
                         </div>
                         <div class="form-group">
@@ -313,7 +354,7 @@
 <script>
 $(document).ready(function(){
 
-		$('#products-table').DataTable({
+	$('#products-table').DataTable({
         "pageLength": 50 // Configura el número de elementos por página
     });
 

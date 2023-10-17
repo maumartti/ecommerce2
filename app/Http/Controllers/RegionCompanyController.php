@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
 use App\Models\ShippingCompany;
+use App\Models\Region;
+use App\Models\RegionCompany;
 
-class ShippingCompaniesController extends Controller
+
+class RegionCompanyController extends Controller
 {
     public function __construct()
     {
@@ -37,17 +40,19 @@ class ShippingCompaniesController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:36',
-            'image' => 'required',
+            'region_id' => 'required',
+            'company_id' => 'required|array',
         ]);
 
         try {
-            $tools = new Tools;
-            if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($validatedData['image'])) {
-                $validatedData['image'] = $tools->saveImage64('/assets/images/companies/', $validatedData['image']);
+            $region_id = $validatedData['region_id'];
+            $company_ids = $validatedData['company_id'];
+            $region = Region::find($region_id);
+            if ($region) {
+                $region->companies()->attach($company_ids);
             }
-            $company = ShippingCompany::create($validatedData);
-            return response()->json(['status' => 'success', 'company' => $company], 200);
+            $regionCompanies = RegionCompany::all();
+            return response()->json(['status' => 'success', 'regionCompanies' => $regionCompanies], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear la compania: ' . $e->getMessage()], 500);
         }
@@ -84,18 +89,17 @@ class ShippingCompaniesController extends Controller
     {
         try {
             // Encuentra por su ID
-            $company = ShippingCompany::find($id);
+            $regionCompany = RegionCompany::find($id);
             // Verifica si existe
-            if (!$company) {
-                return response()->json(['status' => 'error', 'message' => 'Empresa no encontrada'], 404);
+            if (!$regionCompany) {
+                return response()->json(['status' => 'error', 'message' => 'Región-Empresa no encontrada'], 404);
             }
             // Elimina
-            $company->delete();
-            $this->logActivity('Envíos','Eliminación de empresa transportista', $company->name);
-            $companies = ShippingCompany::with('category', 'subcategory')->get();
-            return response()->json(['status' => 'success', 'companies' => $companies], 200);
+            $regionCompany->delete();
+            $regionCompanies = RegionCompany::all();
+            return response()->json(['status' => 'success', 'regionCompanies' => $regionCompanies], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => 'Error al eliminar la Empresa: ' . $e->getMessage()], 500);
+            return response()->json(['status' => 'error', 'message' => 'Error al eliminar la Región-Empresa: ' . $e->getMessage()], 500);
         }
     }
 }

@@ -58,9 +58,11 @@
     console.log('open modal delete')
     var itemData = $(this).data('item');
     var type = $(this).data('type');
+    var surname = $(this).data('surname');
     var url = $(this).data('url');
     $('#ModalDeleteOne .type').text(type);
     $('#ModalDeleteOne #name').html('<i class="material-icons">arrow_forward</i> '+itemData.name);
+    if(surname && surname!=''){ $('#ModalDeleteOne #surname').html('<i class="material-icons">arrow_forward</i> '+surname); }else{ $('#ModalDeleteOne #surname').html(''); }
     $('#ModalDeleteOne .delete-button').attr('id', itemData.id);
     $('#ModalDeleteOne .delete-button').attr('data-url', url);
     if (type === 'categoría') {

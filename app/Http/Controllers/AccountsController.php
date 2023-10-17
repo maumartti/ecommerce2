@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
-use App\Models\Region;
-use App\Models\ShippingCompany;
+use App\Models\User;
 
-class ShippingController extends Controller
+
+class AccountsController extends Controller
 {
     public function __construct()
     {
@@ -21,10 +21,8 @@ class ShippingController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $regions = Region::with('companies')->get();
-        //dd( $regions);
-        $companies = ShippingCompany::all();
-        return view('admin.shipping')->with('web',$web)->with('regions',$regions)->with('companies',$companies);   
+        $users = User::all();
+        return view('admin.accounts')->with('web',$web)->with('users',$users);   
     }
 
     /**

@@ -42,5 +42,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('shipping', App\Http\Controllers\ShippingController::class);
     Route::resource('shipping_companies', App\Http\Controllers\ShippingCompaniesController::class);
     Route::resource('regions', App\Http\Controllers\RegionsController::class);
+    Route::resource('region_company', App\Http\Controllers\RegionCompanyController::class);
+    Route::resource('activity', App\Http\Controllers\ActivityController::class);
+    Route::resource('accounts', App\Http\Controllers\AccountsController::class);
+    Route::resource('payments', App\Http\Controllers\PaymentController::class);
+    Route::resource('purchases', App\Http\Controllers\PurchaseController::class);
+    Route::resource('profile', App\Http\Controllers\UserController::class);
 });
 

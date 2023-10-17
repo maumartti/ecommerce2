@@ -41,7 +41,7 @@
   </head>
   <body class="h-100">
     <div class="color-switcher animated">
-      <h5>Settings</h5>
+      <h5>Guía</h5>
       <!-- <ul class="accent-colors">
         <li class="accent-primary active" data-color="primary">
           <i class="material-icons">check</i>
@@ -63,10 +63,10 @@
         </li>
       </ul> -->
       <div class="actions mb-4">
-        <a class="mb-2 btn btn-sm btn-primary w-100 d-table mx-auto extra-action" href="https://designrevision.com/downloads/shards-dashboard-lite/">
-          <i class="material-icons">cloud</i> Download</a>
+        <!-- <a class="mb-2 btn btn-sm btn-primary w-100 d-table mx-auto extra-action" href="https://designrevision.com/downloads/shards-dashboard-lite/">
+          <i class="material-icons">cloud</i> Download</a> -->
         <a class="mb-2 btn btn-sm btn-white w-100 d-table mx-auto extra-action" href="https://designrevision.com/docs/shards-dashboard-lite">
-          <i class="material-icons">book</i> Documentation</a>
+          <i class="material-icons">description</i> Documentación</a>
       </div>
       <div class="close">
         <i class="material-icons">close</i>
@@ -122,13 +122,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="add-new-post.html">
+                <a class="nav-link " href="/admin/purchases">
                   <i class="material-icons">note_add</i>
                   <span>Compras</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="form-components.html">
+                <a class="nav-link " href="/admin/payments">
                   <i class="material-icons">view_module</i>
                   <span>Pagos</span>
                 </a>
@@ -140,21 +140,27 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="tables.html">
+                <a class="nav-link " href="/admin/accounts">
                   <i class="material-icons">table_chart</i>
                   <span>Usuarios</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="user-profile-lite.html">
-                  <i class="material-icons">person</i>
-                  <span>Mi Perfil</span>
+                <a class="nav-link " href="/admin/activity">
+                  <i class="material-icons">app_registration</i>
+                  <span>Registro de Actividades</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="/admin/settings">
                   <i class="material-icons">settings</i>
                   <span>Generales</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/profile">
+                  <i class="material-icons">person</i>
+                  <span>Mi Perfil</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -220,10 +226,10 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="/assets/images/avatars/1.jpg" alt="User Avatar">
-                    <span class="d-none d-md-inline-block">Sierra Brooks</span>
+                    <span class="d-none d-md-inline-block">{{auth()->user()->name}}</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
+                    <a class="dropdown-item" href="/admin/profile">
                       <i class="material-icons">&#xE7FD;</i> Profile</a>
                     <a class="dropdown-item" href="components-blog-posts.html">
                       <i class="material-icons">vertical_split</i> Blog Posts</a>
