@@ -96,7 +96,7 @@
                                             <option value="categoria1">Categoría 1</option>
                                             <option value="categoria2">Categoría 2</option>
                                             <option value="categoria3">Categoría 3</option>
-                                            <!-- Agrega más opciones de categoría según tus necesidades -->
+                                    
                                         </select>
                                     </div>
                                     <div class="form-group mb-3">
