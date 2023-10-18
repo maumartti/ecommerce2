@@ -3,7 +3,7 @@
 
 @section('content')
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: url('/assets/theme/images/bg-01.jpg');">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: @if($web->imageContact) url('/assets/images/{{$web->imageContact}}'); @else url('/assets/theme/images/bg-01.jpg'); @endif">
 		<h2 class="ltext-105 cl0 txt-center">
 			Contacto
 		</h2>
