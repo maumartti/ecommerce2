@@ -48,5 +48,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('payments', App\Http\Controllers\PaymentController::class);
     Route::resource('purchases', App\Http\Controllers\PurchaseController::class);
     Route::resource('profile', App\Http\Controllers\UserController::class);
+    Route::resource('blog', App\Http\Controllers\BlogController::class);
 });
 

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
-use App\Models\Purchase;
+use App\Models\Blog;
 
 
-class PurchaseController extends Controller
+class BlogController extends Controller
 {
     public function __construct()
     {
@@ -21,8 +21,8 @@ class PurchaseController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $purchases = Purchase::all();
-        return view('admin.purchases')->with('web',$web)->with('purchases',$purchases);   
+        $blogs = Blog::all();
+        return view('admin.blogs')->with('web',$web)->with('blogs',$blogs);   
     }
 
     /**

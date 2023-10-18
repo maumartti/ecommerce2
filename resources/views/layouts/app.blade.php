@@ -231,10 +231,12 @@
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item" href="/admin/profile">
                       <i class="material-icons">&#xE7FD;</i> Profile</a>
-                    <a class="dropdown-item" href="components-blog-posts.html">
+                    <a class="dropdown-item" href="/admin/blog">
                       <i class="material-icons">vertical_split</i> Blog Posts</a>
-                    <a class="dropdown-item" href="add-new-post.html">
-                      <i class="material-icons">note_add</i> Add New Post</a>
+                    <a class="dropdown-item" href="/admin/about">
+                      <i class="material-icons">badge</i> Nosotros</a>
+                    <a class="dropdown-item" href="/admin/messages">
+                      <i class="material-icons">chat</i> Mensajes</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{ route('logout') }}" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
