@@ -146,6 +146,18 @@ class HomeController extends Controller
             }else{
                 $data['imageRotor5'] = $web->imageRotor5;
             }
+            //img pagina contacto
+            if(isset($data['imageContact'])){
+                if ($data['imageContact'] !== '' && $data['imageContact'] !== null && Tools::isValidJson($request->imageContact)) {
+                    $data['imageContact'] = $tools->saveImage64('/assets/images/', $request->imageContact);
+                } elseif($data['imageContact'] == 'empty'){
+                    $data['imageContact'] = null;   
+                }else{
+                    $data['imageContact'] = $web->imageContact;
+                }
+            }else{
+                $data['imageContact'] = $web->imageContact;
+            }
 
             unset($data['btnAddTag']);//borramos si existe
             

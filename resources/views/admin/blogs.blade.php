@@ -29,10 +29,10 @@
                 <div class="container pt-3">
                     <ul class="nav nav-tabs" id="myTabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Artículos</a>
+                                <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Lista de Artículos</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Nuevo Blog</a>
+                                <a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Agregar Blog</a>
                             </li>
                             <!-- <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Empresas de transporte</a>
@@ -47,13 +47,13 @@
                                         <!-- Encabezados de la tabla de Categorías -->
                                         <thead class="bg-light">
                                             <tr>
-                                                <!-- <th scope="col" class="border-0">#</th> -->
-                                                <th scope="col" class="border-0">Región</th>
-                                                <th scope="col" class="border-0">Empresa</th>
-                                                <th scope="col" class="border-0">Logo</th>
+                                                <th scope="col" class="border-0">Imágen</th>
+                                                <th scope="col" class="border-0">Título</th>
+                                                <th scope="col" class="border-0">Categoría</th>
+                                                <!-- <th scope="col" class="border-0">Link</th> -->
                                                 <!-- <th scope="col" class="border-0 text-center">Ver</th> -->
                                                 <!-- <th scope="col" class="border-0 text-center">Editar</th> -->
-                                                <th scope="col" class="border-0 text-center">Borrar</th>
+                                                <th scope="col" class="border-0 text-center">Ver</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -86,6 +86,17 @@
                             <!-- Pestaña Nuevo Blog -->
                             <div class="card-body pl-0">
                                 <form class="add-new-post">
+                                    <div class="form-group">
+                                        <div class="slim"
+                                            data-button-edit-title="Editar"
+                                            data-button-remove-title="Borrar"
+                                            data-ratio="12:6"
+                                            data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                                            data-size="1200,600"
+                                            style="background:#e6e6e6">
+                                            <input type="file" name="image" required/>
+                                        </div>
+                                    </div>
                                     <input name="title" class="form-control form-control-lg mb-3" type="text" placeholder="Título del post" maxlength="100">
                                     <textarea name="cita" class="form-control form-control-lg mb-3" placeholder="Cita del post, maximo 160 caractéres" maxlength="160"></textarea>
                                     <div name="text" id="editor-container" class="add-new-post__editor mb-1"></div>
@@ -108,7 +119,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <input name="tags" class="form-control form-control-lg mb-3" type="text" placeholder="tag1, tag2" maxlength="255">
+                                        <label for="tags">Tags:</label>
+                                        <input id="tags" class="form-control form-control-lg mb-3" type="text" placeholder="Escribe un TAG y presiona ENTER" maxlength="255">
+                                        <div id="tag-list"></div>
+                                        <input type="hidden" name="tags" id="tags-hidden">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-accent btn-block">Agregar post</button>
@@ -190,8 +204,55 @@ $(document).ready(function(){
     // });
 
 });
+</script>
 
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script>
+$(document).ready(function() {
+    // Array para almacenar las etiquetas
+    var tags = [];
 
+    // Referencia al campo de entrada de etiquetas
+    var tagsInput = $("#tags");
+
+    // Elemento donde se mostrarán las etiquetas
+    var tagList = $("#tag-list");
+
+    // Referencia al campo de entrada oculto para las etiquetas
+    var tagsHiddenInput = $("#tags-hidden");
+
+    // Manejar el evento al presionar Enter en el campo de entrada de etiquetas
+    tagsInput.keydown(function(event) {
+        if (event.keyCode === 13) { // 13 es el código de tecla Enter
+            event.preventDefault(); // Evitar que el formulario se envíe al presionar Enter
+            var tagText = tagsInput.val().trim();
+            if (tagText !== "") {
+                // Agregar la etiqueta al array
+                tags.push(tagText);
+                // Crear un elemento de etiqueta visible
+                var tagElement = $("<span class='tag pr-2 mr-1' style='border: 1px solid silver;padding: 4px;border-radius: 6px;'>" + tagText + " <a class='remove-tag text-danger' style='cursor:pointer;'>&times;</a></span>");
+                // Agregar la etiqueta al elemento de lista de etiquetas
+                tagList.append(tagElement);
+                // Limpiar el campo de entrada
+                tagsInput.val("");
+                // Actualizar el campo de entrada oculto con las etiquetas
+                tagsHiddenInput.val(tags.join(','));
+            }
+        }
+    });
+
+    // Manejar el evento de eliminación de etiquetas
+    tagList.on("click", ".remove-tag", function() {
+        var tagText = $(this).parent().text().trim();
+        var index = tags.indexOf(tagText);
+        if (index > -1) {
+            tags.splice(index, 1);
+            // Actualizar el campo de entrada oculto con las etiquetas
+            tagsHiddenInput.val(tags.join(','));
+        }
+        $(this).parent().remove();
+    });
+});
 </script>
 
 @endsection

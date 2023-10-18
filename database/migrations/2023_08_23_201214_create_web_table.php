@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('web', function (Blueprint $table) {
             $table->id();
-            $table->string('imageLogo')->nullable();
-            $table->string('imageRotor1')->nullable();
-            $table->string('imageRotor2')->nullable();
-            $table->string('imageRotor3')->nullable();
-            $table->string('imageRotor4')->nullable();
-            $table->string('imageRotor5')->nullable();
+            $table->string('imageLogo',20)->nullable();
+            $table->string('imageRotor1',20)->nullable();
+            $table->string('imageRotor2',20)->nullable();
+            $table->string('imageRotor3',20)->nullable();
+            $table->string('imageRotor4',20)->nullable();
+            $table->string('imageRotor5',20)->nullable();
 
             $table->string('filtersColors')->nullable();
             $table->string('filtersKilos')->nullable();
@@ -105,6 +105,8 @@ return new class extends Migration
             $table->string('instagram',128)->nullable();
             $table->string('google',128)->nullable();
             $table->string('tiktok',128)->nullable();
+
+            $table->string('imageContact',20)->nullable();
             $table->timestamps();
         });
     }
