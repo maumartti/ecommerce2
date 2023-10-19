@@ -32,6 +32,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
     Route::post('saveData', [App\Http\Controllers\HomeController::class, 'saveData'])->name('saveData');
+    Route::post('saveDataAbout', [App\Http\Controllers\HomeController::class, 'saveDataAbout'])->name('saveDataAbout');
     //Route::post('addTag', [App\Http\Controllers\HomeController::class, 'addTag'])->name('addTag');
 
     Route::resource('categories', App\Http\Controllers\CategoryController::class);

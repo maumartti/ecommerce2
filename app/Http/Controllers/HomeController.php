@@ -168,6 +168,58 @@ class HomeController extends Controller
             return response()->json(['error' => 'An error occurred while saving data:' . $e], 500);
         }
     }
+    public function saveDataAbout(Request $request) {
+        try {
+            $data = $request->all();
+            $tools = new Tools;
+
+            $web = Web::find(1);
+            //return $data;
+            // Guardar la imagen pagina about 
+            if(isset($data['imageAbout'])){
+                if ($data['imageAbout'] !== '' && $data['imageAbout'] !== null && Tools::isValidJson($request->imageAbout)) {
+                    $data['imageAbout'] = $tools->saveImage64('/assets/images/', $request->imageAbout);
+                } elseif($data['imageAbout'] == 'empty'){
+                    $data['imageAbout'] = null;   
+                }else{
+                    $data['imageAbout'] = $web->imageAbout;
+                }
+            }else{
+                $data['imageAbout'] = $web->imageAbout;
+            }    
+            // Imagenes about 1
+            if(isset($data['aboutImageText1'])){
+                if ($data['aboutImageText1'] !== '' && $data['aboutImageText1'] !== null && Tools::isValidJson($request->aboutImageText1)) {
+                        $data['aboutImageText1'] = $tools->saveImage64('/assets/images/', $request->aboutImageText1);
+                } elseif($data['aboutImageText1'] == 'empty'){
+                    $data['aboutImageText1'] = null;   
+                }else{
+                    $data['aboutImageText1'] = $web->aboutImageText1;
+                }
+            }else{
+                $data['aboutImageText1'] = $web->aboutImageText1;
+            }
+            //image about 2
+            if(isset($data['aboutImageText2'])){
+                if ($data['aboutImageText2'] !== '' && $data['aboutImageText2'] !== null && Tools::isValidJson($request->aboutImageText2)) {
+                    $data['aboutImageText2'] = $tools->saveImage64('/assets/images/', $request->aboutImageText2);
+                } elseif($data['aboutImageText2'] == 'empty'){
+                    $data['aboutImageText2'] = null;   
+                }else{
+                    $data['aboutImageText2'] = $web->aboutImageText2;
+                }
+            }else{
+                $data['aboutImageText2'] = $web->aboutImageText2;
+            }
+            //dd($data);
+            unset($data['btnAddTag']);//borramos si existe
+            $web->update($data);
+    
+            return response()->json(['status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An error occurred while saving data:' . $e], 500);
+        }
+    }
 
     public function settings(Request $request){
         $web = Web::find(1);

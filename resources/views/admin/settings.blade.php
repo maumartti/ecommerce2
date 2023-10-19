@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('head')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.css"> 
+@endsection
 
 @section('content')
 
@@ -1247,11 +1250,118 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- SOBRE NOSOTROS -->
+        <div class="page-header row no-gutters py-4">
+            <div class="col-12 text-center text-sm-left mb-0">
+            <span class="text-uppercase page-subtitle">Dashboard</span>
+            <h3 class="page-title">Página Sobre Nosotros</h3>
+            </div>
+        </div>
+        <div class="card card-small">
+            <div class="card-header border-bottom">
+            <h6 class="m-0">Info de sobre nosotros</h6>
+            </div>
+            <div class="card-body p-0">
+                <div class="card-body d-flex flex-column">
+                    <form action="{{ route('saveDataAbout') }}" method="POST" id="FormSaveDataAbout" class="quick-post-form php-email-form">
+                        <div class="form-group mb-0">
+                            <label>Título página sobre nosotros</label>
+                            <input name="aboutTitle" value="{{$web->aboutTitle}}" class="form-control form-control-lg mb-3" type="text" placeholder="Título Sobre nosotros" maxlength="100">
+                        </div>
+                        <div class="border-bottom pb-5">
+                            <label>Imágen página Sobre nosotros</label>
+                            <div class="py-5" style="background:#eee;">
+                                <div class="slim"
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="19:3"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
+                                    data-size="1920,240">
+                                    @if($web->imageAbout)
+                                    <img src="/assets/images/{{$web->imageAbout}}" />
+                                    @endif
+                                    <input type="file" name="imageAbout" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- primer texto -->
+                        <div class="row pt-5 border-bottom pb-5">
+                            <div class="col-8 pb-4">
+                                <div class="form-group mb-0 mt-5">
+                                    <label>Título Texto 1</label>
+                                    <input name="aboutTitleText1" value="{{$web->aboutTitleText1}}" class="form-control form-control-lg mb-3" type="text" placeholder="Título Primer texto" maxlength="100">
+                                </div>
+                            </div>
+                            <div class="col-4 pb-4">
+                                <label>Imágen Texto 1</label>
+                                <div class="slim"
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="2:2"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
+                                    data-size="370,370">
+                                    @if($web->aboutImageText1)
+                                    <img src="/assets/images/{{$web->aboutImageText1}}" />
+                                    @endif
+                                    <input type="file" name="aboutImageText1" />
+                                </div>
+                            </div>
+                            <div class="form-group mb-0 mt-0 mx-3 w-100">
+                                <textarea name="aboutText1" id="xeditor-container" class="add-new-post__editor mb-1 w-100" placeholder="texto aquí..."  style="height: 200px;">{{$web->aboutImageText1}}</textarea>
+                            </div>
+                        </div>
+                        <!-- segundo texto -->
+                        <div class="row pt-4">
+                            <div class="col-8 pb-4">
+                                <div class="form-group mb-0 mt-5">
+                                    <label>Título Texto 2</label>
+                                    <input name="aboutTitleText2" value="{{$web->aboutTitleText2}}" class="form-control form-control-lg mb-3" type="text" placeholder="Título Segundo texto" maxlength="100">
+                                </div>
+                            </div>
+                            <div class="col-4 pb-4">
+                                <label>Imágen Texto 2</label>
+                                <div class="slim"
+                                    data-button-edit-title="Editar"
+                                    data-button-remove-title="Borrar"
+                                    data-ratio="2:2"
+                                    data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
+                                    data-size="370,370">
+                                    @if($web->aboutImageText2)
+                                    <img src="/assets/images/{{$web->aboutImageText2}}" />
+                                    @endif
+                                    <input type="file" name="aboutImageText2" />
+                                </div>
+                            </div>
+                            <div class="form-group mb-0 mt-0 mx-3 w-100">
+                                <textarea name="aboutText2" id="xeditor-container2" class="add-new-post__editor mb-1 w-100" placeholder="texto aquí..." style="height: 200px;">{{$web->aboutImageText2}}</textarea>
+                            </div>
+                        </div>                
+                        <div class="">
+                            <button type="submit" class="btn btn-block btn-accent">Guardar Data</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+        <!-- End sobre nosotros -->
+
+
+    </div>
         <!-- End Users Stats -->
-        <!-- Users By Device Stats -->
+        <!-- End Users Stats -->
+
+
+
+
+
+
+        <!--LATERAL DERECHO -->
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card card-small">
                 <div class="card-header border-bottom">
@@ -1830,165 +1940,10 @@
         </div>
         <!-- End New Draft Component -->
         <!-- Discussions Component -->
-        <div class="col-lg-7 col-md-12 col-sm-12 mb-4">
-        <div class="card card-small blog-comments">
-            <div class="card-header border-bottom">
-            <h6 class="m-0">Discussions</h6>
-            </div>
-            <div class="card-body p-0">
-            <div class="blog-comments__item d-flex p-3">
-                <div class="blog-comments__avatar mr-3">
-                <img src="images/avatars/1.jpg" alt="User avatar" /> </div>
-                <div class="blog-comments__content">
-                <div class="blog-comments__meta text-muted">
-                    <a class="text-secondary" href="#">James Johnson</a> on
-                    <a class="text-secondary" href="#">Hello World!</a>
-                    <span class="text-muted">– 3 days ago</span>
-                </div>
-                <p class="m-0 my-1 mb-2 text-muted">Well, the way they make shows is, they make one show ...</p>
-                <div class="blog-comments__actions">
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-white">
-                        <span class="text-success">
-                        <i class="material-icons">check</i>
-                        </span> Approve </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-danger">
-                        <i class="material-icons">clear</i>
-                        </span> Reject </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-light">
-                        <i class="material-icons">more_vert</i>
-                        </span> Edit </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="blog-comments__item d-flex p-3">
-                <div class="blog-comments__avatar mr-3">
-                <img src="images/avatars/2.jpg" alt="User avatar" /> </div>
-                <div class="blog-comments__content">
-                <div class="blog-comments__meta text-muted">
-                    <a class="text-secondary" href="#">James Johnson</a> on
-                    <a class="text-secondary" href="#">Hello World!</a>
-                    <span class="text-muted">– 4 days ago</span>
-                </div>
-                <p class="m-0 my-1 mb-2 text-muted">After the avalanche, it took us a week to climb out. Now...</p>
-                <div class="blog-comments__actions">
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-white">
-                        <span class="text-success">
-                        <i class="material-icons">check</i>
-                        </span> Approve </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-danger">
-                        <i class="material-icons">clear</i>
-                        </span> Reject </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-light">
-                        <i class="material-icons">more_vert</i>
-                        </span> Edit </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="blog-comments__item d-flex p-3">
-                <div class="blog-comments__avatar mr-3">
-                <img src="images/avatars/3.jpg" alt="User avatar" /> </div>
-                <div class="blog-comments__content">
-                <div class="blog-comments__meta text-muted">
-                    <a class="text-secondary" href="#">James Johnson</a> on
-                    <a class="text-secondary" href="#">Hello World!</a>
-                    <span class="text-muted">– 5 days ago</span>
-                </div>
-                <p class="m-0 my-1 mb-2 text-muted">My money's in that office, right? If she start giving me...</p>
-                <div class="blog-comments__actions">
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-white">
-                        <span class="text-success">
-                        <i class="material-icons">check</i>
-                        </span> Approve </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-danger">
-                        <i class="material-icons">clear</i>
-                        </span> Reject </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-light">
-                        <i class="material-icons">more_vert</i>
-                        </span> Edit </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="blog-comments__item d-flex p-3">
-                <div class="blog-comments__avatar mr-3">
-                <img src="images/avatars/3.jpg" alt="User avatar" /> </div>
-                <div class="blog-comments__content">
-                <div class="blog-comments__meta text-muted">
-                    <a class="text-secondary" href="#">James Johnson</a> on
-                    <a class="text-secondary" href="#">Hello World!</a>
-                    <span class="text-muted">– 5 days ago</span>
-                </div>
-                <p class="m-0 my-1 mb-2 text-muted">My money's in that office, right? If she start giving me...</p>
-                <div class="blog-comments__actions">
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-white">
-                        <span class="text-success">
-                        <i class="material-icons">check</i>
-                        </span> Approve </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-danger">
-                        <i class="material-icons">clear</i>
-                        </span> Reject </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-light">
-                        <i class="material-icons">more_vert</i>
-                        </span> Edit </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="blog-comments__item d-flex p-3">
-                <div class="blog-comments__avatar mr-3">
-                <img src="images/avatars/3.jpg" alt="User avatar" /> </div>
-                <div class="blog-comments__content">
-                <div class="blog-comments__meta text-muted">
-                    <a class="text-secondary" href="#">James Johnson</a> on
-                    <a class="text-secondary" href="#">Hello World!</a>
-                    <span class="text-muted">– 5 days ago</span>
-                </div>
-                <p class="m-0 my-1 mb-2 text-muted">My money's in that office, right? If she start giving me...</p>
-                <div class="blog-comments__actions">
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-white">
-                        <span class="text-success">
-                        <i class="material-icons">check</i>
-                        </span> Approve </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-danger">
-                        <i class="material-icons">clear</i>
-                        </span> Reject </button>
-                    <button type="button" class="btn btn-white">
-                        <span class="text-light">
-                        <i class="material-icons">more_vert</i>
-                        </span> Edit </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="card-footer border-top">
-            <div class="row">
-                <div class="col text-center view-report">
-                <button type="submit" class="btn btn-white">View All Comments</button>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
+        
         <!-- End Discussions Component -->
         <!-- Top Referrals Component -->
-        <div class="col-lg-3 col-md-12 col-sm-12 mb-4">
+        <!-- <div class="col-lg-3 col-md-12 col-sm-12 mb-4">
         <div class="card card-small">
             <div class="card-header border-bottom">
             <h6 class="m-0">Top Referrals</h6>
@@ -2030,7 +1985,7 @@
             </ul>
             </div>
         </div>
-        </div>
+        </div> -->
         <!-- End Top Referrals Component -->
     </div>
 </div>
@@ -2038,6 +1993,8 @@
 @endsection
 
 @section('script')	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
+<script src="/assets/js/app/app-blog-new-post.1.1.0.js"></script>
 <script>
     $(document).ready(function(){
         //si borramos imagen exsistente para saber que exsistia y ya no

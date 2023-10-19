@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('web', function (Blueprint $table) {
             $table->id();
-            $table->string('imageLogo',20)->nullable();
-            $table->string('imageRotor1',20)->nullable();
-            $table->string('imageRotor2',20)->nullable();
-            $table->string('imageRotor3',20)->nullable();
-            $table->string('imageRotor4',20)->nullable();
-            $table->string('imageRotor5',20)->nullable();
+            $table->string('imageLogo',22)->nullable();
+            $table->string('imageRotor1',22)->nullable();
+            $table->string('imageRotor2',22)->nullable();
+            $table->string('imageRotor3',22)->nullable();
+            $table->string('imageRotor4',22)->nullable();
+            $table->string('imageRotor5',22)->nullable();
 
             $table->string('filtersColors')->nullable();
             $table->string('filtersKilos')->nullable();
@@ -107,6 +107,16 @@ return new class extends Migration
             $table->string('tiktok',128)->nullable();
 
             $table->string('imageContact',20)->nullable();
+
+            $table->string('imageAbout',22)->nullable();
+            $table->string('aboutTitle',64)->nullable();
+            $table->string('aboutTitleText1',100)->nullable();
+            $table->string('aboutImageText1',22)->nullable();
+            $table->text('aboutText1')->nullable();
+            $table->string('aboutTitleText2',100)->nullable();
+            $table->string('aboutImageText2',22)->nullable();
+            $table->text('aboutText2')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -154,7 +154,7 @@
               <li class="nav-item">
                 <a class="nav-link " href="/admin/settings">
                   <i class="material-icons">settings</i>
-                  <span>Generales</span>
+                  <span>Generales Web</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -233,8 +233,8 @@
                       <i class="material-icons">&#xE7FD;</i> Profile</a>
                     <a class="dropdown-item" href="/admin/blog">
                       <i class="material-icons">vertical_split</i> Blog Posts</a>
-                    <a class="dropdown-item" href="/admin/about">
-                      <i class="material-icons">badge</i> Nosotros</a>
+                    <!-- <a class="dropdown-item" href="/admin/about">
+                      <i class="material-icons">badge</i> Nosotros</a> -->
                     <a class="dropdown-item" href="/admin/messages">
                       <i class="material-icons">chat</i> Mensajes</a>
                     <div class="dropdown-divider"></div>
