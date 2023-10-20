@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
 use App\Models\Blog;
 use App\Models\CategoryBlog;
 
-class BlogController extends Controller
+class BlogCategoryController extends Controller
 {
     public function __construct()
     {
@@ -39,26 +39,17 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:100',
+        ]);
         try {
-            $validatedData = $request->validate([
-                'image' => 'json|required',
-                'title' => 'required|string|max:100',
-                'cita' => 'string|max:160',
-                'text' => 'string|required',
-                'tags' => 'string|max:255|nullable',
-                'category' => 'required',
-                'active' => 'required',
-            ]);
             $tools = new Tools;
-            if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($validatedData['image'])) {
-                $validatedData['image'] = $tools->saveImage64('/assets/images/blogs/', $validatedData['image']);
-            }   
-            $validatedData['user_id'] = Auth::user()->id;
-            $blog = Blog::create($validatedData);
-    
-            return response()->json(['status' => 'success'], 200);
+            $validatedData["url"] = $tools->generateUrl($validatedData["name"]);
+            $categoryBlog = CategoryBlog::create($validatedData);
+            $categoriesBlog = CategoryBlog::all();
+            return response()->json(['status' => 'success', 'categoriesBlog' => $categoriesBlog], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'An error occurred while saving data:' . $e], 500);
+            return response()->json(['error' => 'Error al crear la categoríaBlog: ' . $e->getMessage()], 500);
         }
     }
 

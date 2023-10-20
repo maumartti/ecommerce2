@@ -85,7 +85,7 @@
                         <div class="tab-pane fade" id="subcategories" role="tabpanel" aria-labelledby="subcategories-tab">
                             <!-- Pestaña Nuevo Blog -->
                             <div class="card-body pl-0">
-                                <form class="add-new-post">
+                                <form action="blog" method="POST" id="FormSaveDataAbout" class="quick-post-form php-email-form" >
                                     <div class="form-group">
                                         <div class="slim"
                                             data-button-edit-title="Editar"
@@ -99,20 +99,20 @@
                                     </div>
                                     <input name="title" class="form-control form-control-lg mb-3" type="text" placeholder="Título del post" maxlength="100">
                                     <textarea name="cita" class="form-control form-control-lg mb-3" placeholder="Cita del post, maximo 160 caractéres" maxlength="160"></textarea>
-                                    <div name="text" id="editor-container" class="add-new-post__editor mb-1"></div>
+                                    <!-- <div name="text" id="editor-container" class="add-new-post__editor mb-1"></div> -->
+                                    <textarea name="text" id="editor-container" class="add-new-post__editor mb-3" placeholder="Texto del post..."></textarea>
                                     <div class="form-group mb-3">
                                         <label for="categoria">Categoría:</label>
-                                        <select name="categoria" id="categoria" class="form-control">
+                                        <select name="category" id="categorias-blog" class="form-control" required>
                                             <option value="" selected>Seleccionar una...</option>
-                                            <option value="categoria1">Categoría 1</option>
-                                            <option value="categoria2">Categoría 2</option>
-                                            <option value="categoria3">Categoría 3</option>
-                                    
+                                            @foreach ($categoriesBlog as $cat)
+                                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="estado-publicacion">Estado de Publicación:</label>
-                                        <select name="active" id="estado-publicacion" class="form-control">
+                                        <select name="active" id="estado-publicacion" class="form-control" required>
                                             <option value="" selected>Seleccionar una...</option>
                                             <option value="1">Publicar Ahora</option>
                                             <option value="0">Guardar sin Publicar</option>
@@ -145,40 +145,33 @@
                 </div>
                 <div class="card-body py-0">
                     <div class="row">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item px-3 pb-2">
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category1" checked>
-                          <label class="custom-control-label" for="category1">Uncategorized</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category2" checked>
-                          <label class="custom-control-label" for="category2">Design</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category3">
-                          <label class="custom-control-label" for="category3">Development</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category4">
-                          <label class="custom-control-label" for="category4">Writing</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category5">
-                          <label class="custom-control-label" for="category5">Books</label>
-                        </div>
-                      </li>
-                      <li class="list-group-item d-flex px-3">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="New category" aria-label="Add new category" aria-describedby="basic-addon2">
-                          <div class="input-group-append">
-                            <button class="btn btn-white px-2" type="button">
-                              <i class="material-icons">add</i>
-                            </button>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex px-3">
+                                <form action="blog_category" method="POST" id="FormSaveDataAbout" class="quick-post-form php-email-form">
+                                    <div class="input-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Nueva categoría" aria-label="Add new category" aria-describedby="basic-addon2" required>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary px-2" type="submit">
+                                            Agregar Categoría <i class="material-icons">add</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>    
+                            </li>
+                            <li id="list-ategory-blog" class="list-group-item px-3 pb-2">
+                                <!-- <div class="custom-control custom-checkbox mb-1">
+                                    <input type="checkbox" class="custom-control-input" id="category1" disabled checked>
+                                    <label class="custom-control-label" for="category1">Uncategorized</label>
+                                </div> -->
+                                @foreach ($categoriesBlog as $cat)
+                                <div class="form-control mb-1">
+                                    <label class="" for="category1">{{$cat->name}}</label>
+                                    <button type="button" class="btn btn-danger float-right" data-item='{{$cat->name}}' data-type="category-blog" >Borrar <i class="material-icons">delete</i></button>
+                                </div>
+                                @endforeach
+                            </li>
+                        </ul>
+                    </form>
                     </div>
                 </div>
             </div>

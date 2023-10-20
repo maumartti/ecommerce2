@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title',100);
             $table->string('cita',160);
             $table->text('text');
-            $table->string('tags');
+            $table->string('tags')->nullable();;
             $table->integer('category')->length(11);
             $table->tinyInteger('active')->length(1)->default(1);
             $table->unsignedInteger('user_id');

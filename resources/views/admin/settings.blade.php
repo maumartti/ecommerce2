@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.css"> 
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.css">  -->
 @endsection
 
 @section('content')
@@ -1313,7 +1313,7 @@
                                 </div>
                             </div>
                             <div class="form-group mb-0 mt-0 mx-3 w-100">
-                                <textarea name="aboutText1" id="xeditor-container" class="add-new-post__editor mb-1 w-100" placeholder="texto aquí..."  style="height: 200px;">{{$web->aboutImageText1}}</textarea>
+                                <textarea name="aboutText1" id="xeditor-container" class="add-new-post__editor mb-1 w-100" placeholder="texto aquí..."  style="height: 200px;">{{$web->aboutText1}}</textarea>
                             </div>
                         </div>
                         <!-- segundo texto -->
@@ -1339,7 +1339,7 @@
                                 </div>
                             </div>
                             <div class="form-group mb-0 mt-0 mx-3 w-100">
-                                <textarea name="aboutText2" id="xeditor-container2" class="add-new-post__editor mb-1 w-100" placeholder="texto aquí..." style="height: 200px;">{{$web->aboutImageText2}}</textarea>
+                                <textarea name="aboutText2" id="xeditor-container2" class="add-new-post__editor mb-1 w-100" placeholder="texto aquí..." style="height: 200px;">{{$web->aboutText2}}</textarea>
                             </div>
                         </div>                
                         <div class="">
@@ -1993,8 +1993,8 @@
 @endsection
 
 @section('script')	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
-<script src="/assets/js/app/app-blog-new-post.1.1.0.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
+<script src="/assets/js/app/app-blog-new-post.1.1.0.js"></script> -->
 <script>
     $(document).ready(function(){
         //si borramos imagen exsistente para saber que exsistia y ya no

@@ -33,6 +33,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
     Route::post('saveData', [App\Http\Controllers\HomeController::class, 'saveData'])->name('saveData');
     Route::post('saveDataAbout', [App\Http\Controllers\HomeController::class, 'saveDataAbout'])->name('saveDataAbout');
+    //Route::post('saveDataBlog', [App\Http\Controllers\BlogController::class, 'saveDataBlog'])->name('saveDataBlog');
     //Route::post('addTag', [App\Http\Controllers\HomeController::class, 'addTag'])->name('addTag');
 
     Route::resource('categories', App\Http\Controllers\CategoryController::class);
@@ -50,5 +51,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('purchases', App\Http\Controllers\PurchaseController::class);
     Route::resource('profile', App\Http\Controllers\UserController::class);
     Route::resource('blog', App\Http\Controllers\BlogController::class);
+    Route::resource('blog_category', App\Http\Controllers\BlogCategoryController::class);
 });
 

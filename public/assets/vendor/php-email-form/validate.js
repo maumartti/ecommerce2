@@ -187,6 +187,13 @@
             addProductsRow(itemsTable, item, index, data.subcategoriesAll);
           });
           updateCategorySelect()//actualiza select categorias
+        }else if(data.categoriesBlog){
+          const itemsTable = document.querySelector('#list-ategory-blog');
+          itemsTable.innerHTML = '';//clear list
+          document.getElementById('categorias-blog').innerHTML = '';//clear select
+          data.categoriesBlog.forEach((item, index) => {
+            addCategoryBlogRow(itemsTable, item, index);
+          });
         }
 
       } else {
@@ -276,6 +283,7 @@ function addProductsRow(table, item, index, subcategories) {
   count.textContent = index + 1;
 }
 
+
 //Actualiza SELECT Categorias
 function updateCategorySelect() {
   const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -306,6 +314,25 @@ function updateCategorySelect() {
       console.error('Error al cargar las categorías: ', error);
   });
 }
+
+
+// Actualiza listra categoria-Blogs
+function addCategoryBlogRow(table, item, index) {
+  table.innerHTML += `
+    <div class="form-control mb-1">
+      <label class="" for="category1">${item.name}</label>
+      <button type="button" class="btn btn-danger float-right" data-item='${item}' data-type="category-blog" >Borrar <i class="material-icons">delete</i></button>
+    </div>`;
+    // Actualizar el contenido del select con las categorías
+    const categoriasSelect = document.getElementById('categorias-blog');
+    if(item){
+        const option = document.createElement('option');
+        option.value = item.id;
+        option.textContent = item.name;
+        categoriasSelect.appendChild(option);
+    }
+}
+
 
 
 
