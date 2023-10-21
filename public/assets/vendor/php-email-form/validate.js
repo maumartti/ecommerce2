@@ -57,6 +57,7 @@
   $(document).on('click', '.delete-modal-button', function () {
     console.log('open modal delete')
     var itemData = $(this).data('item');
+    if(itemData.title){ itemData.name = itemData.title }//si tiene titulo es el nombre
     var type = $(this).data('type');
     var surname = $(this).data('surname');
     var url = $(this).data('url');

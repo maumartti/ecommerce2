@@ -67,7 +67,7 @@
                                                         <td>@if($item->category) {{$item->category->name}} @endif</td>
                                                         <td class="text-center"><a type="button" class="btn btn-info edit-button" href="/blog/{{$item->url}}"  target="_blank" >Ver <i class="material-icons">open_in_new</i></a></td>
                                                         <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
-                                                        <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="(región / empresa)" data-url="region_company" >Borrar <i class="material-icons">delete</i></button></td>
+                                                        <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="blog" data-url="blogs" >Borrar <i class="material-icons">delete</i></button></td>
                                                     </tr>
                                                 @endforeach
                                             @endif
@@ -104,8 +104,8 @@
                                         <label for="categoria">Categoría:</label>
                                         <select name="category_blog_id" id="categorias-blog" class="form-control" required>
                                             <option value="" selected>Seleccionar una...</option>
-                                            @foreach ($categoriesBlog as $cat)
-                                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                            @foreach ($categoriesBlog as $item)
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -136,7 +136,9 @@
         </div>
         </div>
         <!-- End Users Stats -->
-        <!-- Users By Device Stats -->
+
+
+        <!-- LATERAL -->
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card card-small h-100">
                 <div class="card-header border-bottom">
@@ -162,10 +164,10 @@
                                     <input type="checkbox" class="custom-control-input" id="category1" disabled checked>
                                     <label class="custom-control-label" for="category1">Uncategorized</label>
                                 </div> -->
-                                @foreach ($categoriesBlog as $cat)
+                                @foreach ($categoriesBlog as $item)
                                 <div class="form-control mb-1">
-                                    <label class="" for="category1">{{$cat->name}}</label>
-                                    <button type="button" class="btn btn-danger float-right" data-item='{{$cat->name}}' data-type="category-blog" >Borrar <i class="material-icons">delete</i></button>
+                                    <label class="" for="category1">{{$item->name}}</label>
+                                    <button type="button" class="btn btn-danger delete-modal-button float-right"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría-blog" data-url="categoria" >Borrar <i class="material-icons">delete</i></button>
                                 </div>
                                 @endforeach
                             </li>
@@ -175,7 +177,32 @@
                 </div>
             </div>
         </div>
-
+        <!-- Modal Borrar Categoria-blog-->
+        <div class="modal fade" id="ModalDeleteOne">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar <span class="type"></span></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nombre <span class="type"></span>:</label>
+                            <h4 id="name"></h4>
+                            <img id="image" src="" class="w-100">
+                        </div>
+                        <div class="form-group">
+                            <h5 class="text-danger">¿Está seguro de que desea borrar : <span class="type"></span>?</h5>
+                            <h5 class="text-danger deletesub" style="display:none;"><i class="material-icons">warning</i> Atención!! <br> Se eliminarán todas las sub-categorías hijas!</h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger delete-button" id="#" data-url="#">Confirmar y Borrar <i class="material-icons">delete</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
