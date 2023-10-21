@@ -158,6 +158,18 @@ class HomeController extends Controller
             }else{
                 $data['imageContact'] = $web->imageContact;
             }
+            //img pagina blog
+            if(isset($data['imageBlog'])){
+                if ($data['imageBlog'] !== '' && $data['imageBlog'] !== null && Tools::isValidJson($request->imageBlog)) {
+                    $data['imageBlog'] = $tools->saveImage64('/assets/images/', $request->imageBlog);
+                } elseif($data['imageBlog'] == 'empty'){
+                    $data['imageBlog'] = null;   
+                }else{
+                    $data['imageBlog'] = $web->imageBlog;
+                }
+            }else{
+                $data['imageBlog'] = $web->imageBlog;
+            }
 
             unset($data['btnAddTag']);//borramos si existe
             

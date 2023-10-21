@@ -106,7 +106,8 @@ return new class extends Migration
             $table->string('google',128)->nullable();
             $table->string('tiktok',128)->nullable();
 
-            $table->string('imageContact',20)->nullable();
+            $table->string('imageContact',22)->nullable();
+            $table->string('imageblog',22)->nullable();
 
             $table->string('imageAbout',22)->nullable();
             $table->string('aboutTitle',64)->nullable();

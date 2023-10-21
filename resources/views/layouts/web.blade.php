@@ -90,6 +90,19 @@
 		border-radius: .25rem;
 		border: 1px solid #e1e5eb;
 	}
+
+
+	/* botones del modal agregado al carrito, seguir comprando */
+	.swal-button-container {
+		width: 47%; /* Each button occupies half of the width */
+		text-align: center; /* Center the button text */
+	}
+
+	/* Adjust padding/margin as needed */
+	.swal-button {
+		width: 100%;
+	}
+
 </style>
 
 </head>

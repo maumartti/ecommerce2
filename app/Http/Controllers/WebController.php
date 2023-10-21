@@ -9,6 +9,8 @@ use App\Models\ProfileInstagram;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Product;
+use App\Models\Blog;
+use App\Models\CategoryBlog;
 
 use Dymantic\InstagramFeed\InstagramFeed;
 use Dymantic\InstagramFeed\Profile;
@@ -60,7 +62,7 @@ class WebController extends Controller
         $subcategories = SubCategory::with('category')->get();
         return view('about')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
-    public function blog()
+    public function blog($url = null)
     {
         $web = Web::find(1);
         $products = Product::all();
@@ -71,7 +73,29 @@ class WebController extends Controller
         $productsPromo = Product::whereNotNull('promo')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
-        return view('blog')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+        $blogs = Blog::with('user')->with('category')->get();
+        $categoriesBlog = CategoryBlog::all();
+        if($url){
+            $blog = Blog::where('url',$url)->first();
+            return view('blog')->with('web',$web)->with('blog',$blog)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+        }else{
+            return view('blogs')->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+        }
+    }
+    public function blogCategory()
+    {
+        $web = Web::find(1);
+        $products = Product::all();
+        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
+        $productsDescount = Product::whereNotNull('descount')->get();
+        $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
+        $productsViews = Product::whereNotNull('views')->get();
+        $productsPromo = Product::whereNotNull('promo')->get();
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        $subcategories = SubCategory::with('category')->get();
+        $blogs = Blog::with('user')->with('category')->get();
+        $categoriesBlog = CategoryBlog::all();
+        return view('blog')->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
     public function item(Request $request, $urlCat){
         $web = Web::find(1);

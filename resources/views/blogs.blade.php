@@ -2,130 +2,139 @@
 
 
 @section('content')
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: @if($web->imageblog) url('/assets/images/{{$web->imageblog}}'); @else url('/assets/theme/images/bg-02.jpg'); @endif">
+		<h2 class="ltext-105 cl0 txt-center">
+			Blog
+		</h2>
+	</section>	
 
-	<!-- breadcrumb -->
-	<div class="container p-t-92">
-		<div class="bread-crumb flex-w p-r-15 p-t-20 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<a href="blog.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Blog
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<span class="stext-109 cl4">
-				{{$blog->title}}
-			</span>
-		</div>
-	</div>
 
 	<!-- Content page -->
-	<section class="bg0 p-t-32 p-b-20">
+	<section class="bg0 p-t-62 p-b-60">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-lg-9 p-b-80">
 					<div class="p-r-45 p-r-0-lg">
-						<!--  -->
-						<div class="wrap-pic-w how-pos5-parent">
-							<img src="/assets/images/blogs/{{$blog->image}}" alt="IMG-BLOG">
 
-							<div class="flex-col-c-m size-123 bg9 how-pos5">
-								<span class="ltext-107 cl2 txt-center">
-									22
-								</span>
+						<!-- item blog -->
+						@if (isset($blogs))
+        			@if ($blogs)
+          			@foreach ($blogs as $blog)
+								<div class="p-b-63">
+									<a href="/blog/{{$blog->url}}" class="hov-img0 how-pos5-parent">
+										<img src="/assets/images/blogs/{{$blog->image}}" alt="imágen de : {{$blog->title}}">
+										<div class="flex-col-c-m size-123 bg9 how-pos5">
+											<span class="ltext-107 cl2 txt-center">
+											{{ $blog->created_at->format('d') }}
+											</span>
+											<span class="stext-109 cl3 txt-center">
+											{{ $blog->created_at->format('M Y') }}
+											</span>
+										</div>
+									</a>
+									<div class="p-t-32">
+										<h4 class="p-b-15">
+											<a href="/blog/{{$blog->url}}" class="ltext-108 cl2 hov-cl1 trans-04">
+											{{$blog->title}}
+											</a>
+										</h4>
+										<p class="stext-117 cl6">
+										{{$blog->cita}}
+										</p>
+										<div class="flex-w flex-sb-m p-t-18">
+											<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+												<span>
+													<span class="cl4">By</span> {{$blog->user->name}}  
+													<span class="cl12 m-l-4 m-r-6">|</span>
+												</span>
+												<span>
+													@if($blog->category)
+													<a href="/blog/categoria/{{$blog->category->url}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+														{{$blog->category->name}}
+													</a>
+													@endif	
+													<!-- <span class="cl12 m-l-4 m-r-6">|</span> -->
+												</span>
+												<!-- <span>
+													8 Comments
+												</span> -->
+											</span>
+											<a href="/blog/{{$blog->url}}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+												Continuar leyendo
+												<i class="fa fa-long-arrow-right m-l-9"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								@endforeach
+							@endif
+						@endif		
 
-								<span class="stext-109 cl3 txt-center">
-									Jan 2018
-								</span>
+						<!-- item blog -->
+						<!-- <div class="p-b-63">
+							<a href="#" class="hov-img0 how-pos5-parent">
+								<img src="/assets/theme/images/blog-05.jpg" alt="IMG-BLOG">
+
+								<div class="flex-col-c-m size-123 bg9 how-pos5">
+									<span class="ltext-107 cl2 txt-center">
+										18
+									</span>
+
+									<span class="stext-109 cl3 txt-center">
+										Jan 2018
+									</span>
+								</div>
+							</a>
+
+							<div class="p-t-32">
+								<h4 class="p-b-15">
+									<a href="#" class="ltext-108 cl2 hov-cl1 trans-04">
+										The Great Big List of Men’s Gifts for the Holidays 
+									</a>
+								</h4>
+
+								<p class="stext-117 cl6">
+									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
+								</p>
+
+								<div class="flex-w flex-sb-m p-t-18">
+									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+										<span>
+											<span class="cl4">By</span> Admin  
+											<span class="cl12 m-l-4 m-r-6">|</span>
+										</span>
+
+										<span>
+											StreetStyle, Fashion, Couple  
+											<span class="cl12 m-l-4 m-r-6">|</span>
+										</span>
+
+										<span>
+											8 Comments
+										</span>
+									</span>
+
+									<a href="#" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+										Continue Reading
+
+										<i class="fa fa-long-arrow-right m-l-9"></i>
+									</a>
+								</div>
 							</div>
-						</div>
-
-						<div class="p-t-32">
-							<span class="flex-w flex-m stext-111 cl2 p-b-19">
-								<span>
-									<span class="cl4">By</span> Admin  
-									<span class="cl12 m-l-4 m-r-6">|</span>
-								</span>
-
-								<span>
-								{{ $blog->created_at->format('d') }} {{ $blog->created_at->format('M Y') }}
-									<span class="cl12 m-l-4 m-r-6">|</span>
-								</span>
-
-								<span>
-								{{$blog->category->name}}
-									<span class="cl12 m-l-4 m-r-6">|</span>
-								</span>
-
-								<!-- <span>
-									8 Comments
-								</span> -->
-							</span>
-
-							<h4 class="ltext-109 cl2 p-b-28">
-								{{$blog->title}}
-							</h4>
-
-							<p class="stext-117 cl6 p-b-26">
-							{!! $blog->text !!}
-							</p>
-
-							<!-- <p class="stext-117 cl6 p-b-26">
-								Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet suscipit in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit. Sed tempor magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel placerat orci, a venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh arcu. Vivamus sagittis accumsan felis, quis vulputate
-							</p> -->
-						</div>
-
-						<div class="flex-w flex-t p-t-16">
-							<span class="size-216 stext-116 cl8 p-t-4">
-								Tags
-							</span>
-
-							<div class="flex-w size-217">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts
-								</a>
-							</div>
-						</div>
-
-						<!--  -->
-						<!-- <div class="p-t-40">
-							<h5 class="mtext-113 cl2 p-b-12">
-								Leave a Comment
-							</h5>
-
-							<p class="stext-107 cl6 p-b-40">
-								Your email address will not be published. Required fields are marked *
-							</p>
-
-							<form>
-								<div class="bor19 m-b-20">
-									<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="cmt" placeholder="Comment..."></textarea>
-								</div>
-
-								<div class="bor19 size-218 m-b-20">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="name" placeholder="Name *">
-								</div>
-
-								<div class="bor19 size-218 m-b-20">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="email" placeholder="Email *">
-								</div>
-
-								<div class="bor19 size-218 m-b-30">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="web" placeholder="Website">
-								</div>
-
-								<button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
-									Post Comment
-								</button>
-							</form>
 						</div> -->
+
+
+						<!-- Pagination -->
+						<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
+								1
+							</a>
+
+							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
+								2
+							</a>
+						</div>
 					</div>
 				</div>
 
@@ -145,34 +154,14 @@
 							</h4>
 
 							<ul>
+								@foreach ($categoriesBlog as $cat)
 								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Fashion
+									<a href="/blog/categoria/{{$cat->url}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										{{$cat->name}}
 									</a>
 								</li>
+								@endforeach
 
-								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Beauty
-									</a>
-								</li>
-
-								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Street Style
-									</a>
-								</li>
-
-								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Life Style
-									</a>
-								</li>
-
-								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										DIY & Crafts
-									</a>
 								</li>
 							</ul>
 						</div>
@@ -185,7 +174,7 @@
 							<ul>
 								<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="images/product-min-01.jpg" alt="PRODUCT">
+										<img src="/assets/theme/images/product-min-01.jpg" alt="PRODUCT">
 									</a>
 
 									<div class="size-215 flex-col-t p-t-8">
@@ -201,7 +190,7 @@
 
 								<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="images/product-min-02.jpg" alt="PRODUCT">
+										<img src="/assets/theme/images/product-min-02.jpg" alt="PRODUCT">
 									</a>
 
 									<div class="size-215 flex-col-t p-t-8">
@@ -217,7 +206,7 @@
 
 								<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="images/product-min-03.jpg" alt="PRODUCT">
+										<img src="/assets/theme/images/product-min-03.jpg" alt="PRODUCT">
 									</a>
 
 									<div class="size-215 flex-col-t p-t-8">

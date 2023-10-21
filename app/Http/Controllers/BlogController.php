@@ -21,7 +21,7 @@ class BlogController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $blogs = Blog::all();
+        $blogs = Blog::with('user')->with('category')->get();
         $categoriesBlog = CategoryBlog::all();
         return view('admin.blogs')->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog);   
     }
@@ -46,7 +46,7 @@ class BlogController extends Controller
                 'cita' => 'string|max:160',
                 'text' => 'string|required',
                 'tags' => 'string|max:255|nullable',
-                'category' => 'required',
+                'category_blog_id' => 'nullable',
                 'active' => 'required',
             ]);
             $tools = new Tools;
@@ -54,6 +54,7 @@ class BlogController extends Controller
                 $validatedData['image'] = $tools->saveImage64('/assets/images/blogs/', $validatedData['image']);
             }   
             $validatedData['user_id'] = Auth::user()->id;
+            $validatedData["url"] = $tools->generateUrl($validatedData["title"]);
             $blog = Blog::create($validatedData);
     
             return response()->json(['status' => 'success'], 200);

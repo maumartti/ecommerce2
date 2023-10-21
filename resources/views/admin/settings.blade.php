@@ -1485,6 +1485,22 @@
                             </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <h6>Imágen página Blog</h6>
+                            <div class="py-5" style="background:#eee;">
+                            <div class="slim"
+                                data-button-edit-title="Editar"
+                                data-button-remove-title="Borrar"
+                                data-ratio="19:3"
+                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
+                                data-size="1920,240">
+                                @if($web->imageBlog)
+                                <img src="/assets/images/{{$web->imageBlog}}" />
+                                @endif
+                                <input type="file" name="imageBlog" />
+                            </div>
+                            </div>
+                        </div>
 
                         <div class="pt-2 px-0 col-12">
                             <button type="submit" class="btn btn-accent btn-block">Guardar</button>

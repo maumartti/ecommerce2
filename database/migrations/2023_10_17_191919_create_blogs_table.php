@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('image',20);
             $table->string('title',100);
+            $table->string('url');
             $table->string('cita',160);
             $table->text('text');
-            $table->string('tags')->nullable();;
-            $table->integer('category')->length(11);
+            $table->string('tags')->nullable();
+            $table->integer('category_blog_id')->length(11)->nullable();
             $table->tinyInteger('active')->length(1)->default(1);
             $table->unsignedInteger('user_id');
             $table->timestamps();

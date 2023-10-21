@@ -52,28 +52,26 @@
                                                 <th scope="col" class="border-0">Categoría</th>
                                                 <!-- <th scope="col" class="border-0">Link</th> -->
                                                 <!-- <th scope="col" class="border-0 text-center">Ver</th> -->
-                                                <!-- <th scope="col" class="border-0 text-center">Editar</th> -->
                                                 <th scope="col" class="border-0 text-center">Ver</th>
+                                                <th scope="col" class="border-0 text-center">Editar</th>
+                                                <th scope="col" class="border-0 text-center">Borrar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                @if(isset($regions))
-                                                @if($regions)
-                                                    @foreach ($regions as $index => $item)
-                                                        @if($item->companies)
-                                                        @foreach ($item->companies as $company)
-                                                        <tr>
-                                                                <td>{{$item->name}}</td>
-                                                                <td>{{$company->name}}</td>
-                                                                <td><img src="/assets/images/companies/{{$company->image}}" style="width:65px;"></td>
-                                                                <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
-                                                                <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-surname='{{$company->name}}' data-type="(región / empresa)" data-url="region_company" >Borrar <i class="material-icons">delete</i></button></td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                                @endif
+                                            @if(isset($blogs))
+                                            @if($blogs)
+                                                @foreach ($blogs as $index => $item)
+                                                    <tr>
+                                                        <td><img src="/assets/images/blogs/{{$item->image}}" style="width:65px;"></td>
+                                                        <td>{{$item->title}}</td>
+                                                        <td>@if($item->category) {{$item->category->name}} @endif</td>
+                                                        <td class="text-center"><a type="button" class="btn btn-info edit-button" href="/blog/{{$item->url}}"  target="_blank" >Ver <i class="material-icons">open_in_new</i></a></td>
+                                                        <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
+                                                        <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="(región / empresa)" data-url="region_company" >Borrar <i class="material-icons">delete</i></button></td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -99,11 +97,12 @@
                                     </div>
                                     <input name="title" class="form-control form-control-lg mb-3" type="text" placeholder="Título del post" maxlength="100">
                                     <textarea name="cita" class="form-control form-control-lg mb-3" placeholder="Cita del post, maximo 160 caractéres" maxlength="160"></textarea>
-                                    <!-- <div name="text" id="editor-container" class="add-new-post__editor mb-1"></div> -->
-                                    <textarea name="text" id="editor-container" class="add-new-post__editor mb-3" placeholder="Texto del post..."></textarea>
+                                    <div id="editor-container" class="add-new-post__editor mb-1"></div>
+                                    <textarea name="text" th:field="*{content}" class="form-control" style="display:none" id="hiddenTextarea"></textarea>
+                                    <!-- <textarea name="text" id="editor-container" class="add-new-post__editor mb-3" placeholder="Texto del post..."></textarea> -->
                                     <div class="form-group mb-3">
                                         <label for="categoria">Categoría:</label>
-                                        <select name="category" id="categorias-blog" class="form-control" required>
+                                        <select name="category_blog_id" id="categorias-blog" class="form-control" required>
                                             <option value="" selected>Seleccionar una...</option>
                                             @foreach ($categoriesBlog as $cat)
                                             <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -244,6 +243,12 @@ $(document).ready(function() {
             tagsHiddenInput.val(tags.join(','));
         }
         $(this).parent().remove();
+    });
+
+    $("form").on("submit", function() {
+      $(".ql-clipboard").remove(); // because automatically generated
+      $(".ql-tooltip").remove(); // because automatically generated
+      $("#hiddenTextarea").val($("#editor-container").html());
     });
 });
 </script>
