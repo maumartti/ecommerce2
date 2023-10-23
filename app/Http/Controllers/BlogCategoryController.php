@@ -82,6 +82,19 @@ class BlogCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // Encuentra la categoría por su ID
+            $category = CategoryBlog::find($id);
+            // Verifica si la categoría existe
+            if (!$category) {
+                return response()->json(['status' => 'error', 'message' => 'Categoría no encontrada'], 404);
+            }
+            // Elimina la categoría
+            $category->delete();
+            $categoriesBlog = CategoryBlog::all();
+            return response()->json(['status' => 'success', 'categoriesBlog' => $categoriesBlog], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error al eliminar la categoría: ' . $e->getMessage()], 500);
+        }
     }
 }

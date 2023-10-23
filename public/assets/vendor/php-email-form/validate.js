@@ -145,7 +145,7 @@
   function php_email_form_submit(thisForm, action, formData) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     fetch(action, {
-      method: 'POST',
+      method: "POST",
       body: formData,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',

@@ -152,15 +152,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="/admin/settings">
-                  <i class="material-icons">settings</i>
-                  <span>Generales Web</span>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link " href="/admin/profile">
                   <i class="material-icons">person</i>
                   <span>Mi Perfil</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/settings">
+                  <i class="material-icons">settings</i>
+                  <span>Generales Web</span>
                 </a>
               </li>
               <li class="nav-item">

@@ -84,7 +84,41 @@ class BlogController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $blog = Blog::find($id);
+            if (!$blog) {
+                return response()->json(['status' => 'error', 'message' => 'Blog no encontrado'], 404);
+            }
+            $validatedData = $request->validate([
+                'image' => 'json|required',
+                'title' => 'required|string|max:100',
+                'cita' => 'string|max:160',
+                'text' => 'string|required',
+                'tags' => 'string|max:255|nullable',
+                'category_blog_id' => 'nullable',
+                'active' => 'required',
+            ]);
+            $tools = new Tools;
+            // Guardar la imagen Portada
+            if(isset($validatedData['image'])){
+                if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($request->image)) {
+                    $validatedData['image'] = $tools->saveImage64('/assets/images/blogs/', $request->image);
+                } elseif($validatedData['image'] == 'empty'){
+                    $validatedData['image'] = null;   
+                }else{
+                    $validatedData['image'] = $blog->image;
+                }
+            }else{
+                $validatedData['image'] = $blog->image;
+            }    
+            $validatedData['url'] = $tools->generateUrl($validatedData['title'], false);
+            $blog->update($validatedData);
+
+            $blogs = Blog::all();
+            return response()->json(['status' => 'success', 'blogs' => $blogs], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error al actualizar el blog: ' . $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -92,6 +126,19 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // Encuentra la categoría por su ID
+            $blog = Blog::find($id);
+            // Verifica si la categoría existe
+            if (!$blog) {
+                return response()->json(['status' => 'error', 'message' => 'blog no encontrado'], 404);
+            }
+            // Elimina la categoría
+            $blog->delete();
+            $blogs = Blog::all();
+            return response()->json(['status' => 'success', 'blogs' => $blogs], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error al eliminar el blog: ' . $e->getMessage()], 500);
+        }
     }
 }

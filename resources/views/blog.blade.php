@@ -57,7 +57,7 @@
 
 								<span>
 								{{$blog->category->name}}
-									<span class="cl12 m-l-4 m-r-6">|</span>
+									<!-- <span class="cl12 m-l-4 m-r-6">|</span> -->
 								</span>
 
 								<!-- <span>
