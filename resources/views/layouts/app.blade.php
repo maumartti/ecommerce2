@@ -121,24 +121,24 @@
                   <span>Productos</span>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link " href="/admin/purchases">
                   <i class="material-icons">note_add</i>
                   <span>Compras</span>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link " href="/admin/payments">
                   <i class="material-icons">view_module</i>
-                  <span>Pagos</span>
+                  <span>Ventas</span>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link " href="/admin/shipping">
                   <i class="material-icons">local_shipping</i>
                   <span>Envíos</span>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link " href="/admin/accounts">
                   <i class="material-icons">table_chart</i>
@@ -155,6 +155,24 @@
                 <a class="nav-link " href="/admin/profile">
                   <i class="material-icons">person</i>
                   <span>Mi Perfil</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/blog">
+                  <i class="material-icons">vertical_split</i>
+                  <span>Blog</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/blog">
+                  <i class="material-icons">chat</i>
+                  <span>Mensajes</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/blog">
+                  <i class="material-icons">card_membership</i>
+                  <span>Suscriptores</span>
                 </a>
               </li>
               <li class="nav-item">

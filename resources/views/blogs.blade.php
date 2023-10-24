@@ -318,7 +318,6 @@
 							<h4 class="mtext-112 cl2 p-b-27">
 								Tags
 							</h4>
-
 							<div class="flex-w m-r--5">
 								@if($tagsAll)
 								@foreach ($tagsAll as $tag)

@@ -126,6 +126,14 @@
             });
             updateCategorySelect()//actualiza select categorias
           }
+          if(data.blogs){
+            const itemsTable = document.querySelector('#blogs-table');
+            clearTable(itemsTable);
+            data.blogs.forEach((item, index) => {
+              addBlogsRow(itemsTable, item, index);
+            });
+            //updateCategorySelect()//actualiza select categorias
+          }
           //toast y quita elemento de tabla 
           $.toastr.success('Eliminado con éxito');
           //$(`[id="${url}-${itemId}"]`).closest('tr').remove();
@@ -283,7 +291,22 @@ function addProductsRow(table, item, index, subcategories) {
   const count = document.getElementById('count-product');
   count.textContent = index + 1;
 }
-
+// Actualiza tabla blogs
+function addBlogsRow(table, item, index) {
+  const tbody = table.querySelector('tbody');
+  const row = document.createElement('tr');
+  row.innerHTML = `
+      <td><img src="/assets/images/blogs/${item.image}" style="width:65px;"></td>
+      <td>${item.title}</td>
+      <td>${item.category ? item.category.name : '----'}</td>
+      <td class="text-center"><a type="button" class="btn btn-info show-button" href="/blog/${item.url}"  target="_blank" >Ver <i class="material-icons">open_in_new</i></a></td>
+      <td class="text-center"><type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>
+      <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(item)}' data-type="blog" data-url="blog">Borrar <i class="material-icons">delete</i></button></td>`;
+  tbody.appendChild(row);
+  // Actualizar count"
+  //const count = document.getElementById('count-product');
+  //count.textContent = index + 1;
+}
 
 //Actualiza SELECT Categorias
 function updateCategorySelect() {

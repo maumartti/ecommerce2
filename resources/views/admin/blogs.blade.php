@@ -43,7 +43,7 @@
                         <div class="tab-pane fade show active" id="categories" role="tabpanel" aria-labelledby="categories-tab">
                             <div class="row border-bottom py-2 bg-light">
                                 <div class="col-12 col-sm-12">
-                                    <table id="products-table" class="table mb-0">
+                                    <table id="blogs-table" class="table mb-0">
                                         <!-- Encabezados de la tabla de Categorías -->
                                         <thead class="bg-light">
                                             <tr>
@@ -141,7 +141,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card card-small h-100">
                 <div class="card-header border-bottom">
-                <h6 class="m-0">Categorías</h6>
+                <h6 class="m-0">Categorías de blog</h6>
                 </div>
                 <div class="card-body py-0">
                     <div class="row">

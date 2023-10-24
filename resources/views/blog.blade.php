@@ -83,16 +83,20 @@
 						</div>
 
 						<div class="flex-w flex-t p-t-16">
+							@if($blog->tags)
 							<span class="size-216 stext-116 cl8 p-t-4">
 								Tags
 							</span>
+							@endif
 
 							<div class="flex-w size-217">
+							@if($blog->tags)
 							@foreach (explode(',', $blog->tags) as $tag)
 									<a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 											{{ trim($tag) }}
 									</a>
 							@endforeach
+							@endif
 
 							</div>
 						</div>
