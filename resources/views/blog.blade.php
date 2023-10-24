@@ -6,12 +6,12 @@
 	<!-- breadcrumb -->
 	<div class="container p-t-92">
 		<div class="bread-crumb flex-w p-r-15 p-t-20 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="blog.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/blog" class="stext-109 cl8 hov-cl1 trans-04">
 				Blog
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
@@ -56,7 +56,11 @@
 								</span>
 
 								<span>
-								{{$blog->category->name}}
+									@if($blog->category)
+										<a href="/blog/categoria/{{$blog->category->url}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+											{{$blog->category->name}}
+										</a>
+									@endif
 									<!-- <span class="cl12 m-l-4 m-r-6">|</span> -->
 								</span>
 
@@ -65,7 +69,7 @@
 								</span> -->
 							</span>
 
-							<h4 class="ltext-109 cl2 p-b-28">
+							<h4 class="ltext-109 cl2 p-b-10">
 								{{$blog->title}}
 							</h4>
 
@@ -84,13 +88,12 @@
 							</span>
 
 							<div class="flex-w size-217">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle
-								</a>
+							@foreach (explode(',', $blog->tags) as $tag)
+									<a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+											{{ trim($tag) }}
+									</a>
+							@endforeach
 
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts
-								</a>
 							</div>
 						</div>
 
@@ -130,106 +133,53 @@
 				</div>
 
 				<div class="col-md-4 col-lg-3 p-b-80">
-					<div class="side-menu">
-						<div class="bor17 of-hidden pos-relative">
+					<div class="side-menu" >
+						<!-- <div class="bor17 of-hidden pos-relative">
 							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
 
 							<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
 								<i class="zmdi zmdi-search"></i>
 							</button>
-						</div>
+						</div> -->
 
-						<div class="p-t-55">
+						<div class="p-t-0">
 							<h4 class="mtext-112 cl2 p-b-33">
-								Categories
+								Categorías
 							</h4>
 
 							<ul>
+							@foreach ($categoriesBlog as $cat)
 								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Fashion
+									<a href="/blog/categoria/{{$cat->url}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										{{$cat->name}}
 									</a>
 								</li>
-
-								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Beauty
-									</a>
-								</li>
-
-								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Street Style
-									</a>
-								</li>
-
-								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Life Style
-									</a>
-								</li>
-
-								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										DIY & Crafts
-									</a>
-								</li>
+								@endforeach
 							</ul>
 						</div>
 
 						<div class="p-t-65">
 							<h4 class="mtext-112 cl2 p-b-33">
-								Featured Products
+								Productos Destacados
 							</h4>
-
 							<ul>
+								@if($productsPromo)
+								@foreach ($productsPromo as $item)
 								<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="images/product-min-01.jpg" alt="PRODUCT">
+										<img src="/assets/images/products/{{$item->image1}}" alt="PRODUCT" style="width: 90px;">
 									</a>
-
 									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-											White Shirt With Pleat Detail Back
+										<a href="/item/{{$item->url}}" class="stext-116 cl8 hov-cl1 trans-04">
+											{{$item->name}}
 										</a>
-
 										<span class="stext-116 cl6 p-t-20">
-											$19.00
+										${{ str_replace(',', '.', number_format($item->price, 0, '.', ',')) }}
 										</span>
 									</div>
 								</li>
-
-								<li class="flex-w flex-t p-b-30">
-									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="images/product-min-02.jpg" alt="PRODUCT">
-									</a>
-
-									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="stext-116 cl6 p-t-20">
-											$39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="flex-w flex-t p-b-30">
-									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="images/product-min-03.jpg" alt="PRODUCT">
-									</a>
-
-									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="stext-116 cl6 p-t-20">
-											$17.00
-										</span>
-									</div>
-								</li>
+								@endforeach
+								@endif
 							</ul>
 						</div>
 
@@ -343,25 +293,13 @@
 							</h4>
 
 							<div class="flex-w m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion
+								@if($tagsAll)
+								@foreach ($tagsAll as $tag)
+								<a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									{{$tag}}
 								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts
-								</a>
+								@endforeach
+								@endif
 							</div>
 						</div>
 					</div>

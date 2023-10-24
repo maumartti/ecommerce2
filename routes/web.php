@@ -21,6 +21,7 @@ Route::get('/contacto', [App\Http\Controllers\WebController::class, 'contact'])-
 Route::get('/nosotros', [App\Http\Controllers\WebController::class, 'about'])->name('about');
 Route::get('/blog/{url?}', [App\Http\Controllers\WebController::class, 'blog'])->name('blog');
 Route::get('/blog/categoria/{url?}', [App\Http\Controllers\WebController::class, 'blogCategory'])->name('blogCategory');
+Route::get('/blog/tag/{url?}', [App\Http\Controllers\WebController::class, 'blogTag'])->name('blogTag');
 Route::get('/carrito', [App\Http\Controllers\WebController::class, 'cart'])->name('cart');
 Route::get('/destacados', [App\Http\Controllers\WebController::class, 'featured'])->name('featured');
 Route::post('/add-to-cart/{productId}', [App\Http\Controllers\WebController::class, 'addToCart'])->name('addToCart');

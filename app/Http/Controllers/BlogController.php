@@ -21,9 +21,18 @@ class BlogController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $blogs = Blog::with('user')->with('category')->get();
         $categoriesBlog = CategoryBlog::all();
-        return view('admin.blogs')->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog);   
+        $blogs = Blog::with('user')->with('category')->get();
+
+        //todos los tags en array
+        $tagsAll = [];
+        foreach ($blogs as $blog) {
+            $tags = explode(',', $blog->tags);
+            $tagsAll = array_merge($tagsAll, $tags);
+        }
+        $tagsAll = array_unique(array_map('trim', $tagsAll));// Elimina duplicados y espacios en blanco
+        //-end-allTags
+        return view('admin.blogs')->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('tagsAll',$tagsAll);   
     }
 
     /**

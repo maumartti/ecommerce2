@@ -2,12 +2,31 @@
 
 
 @section('content')
-	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: @if($web->imageblog) url('/assets/images/{{$web->imageblog}}'); @else url('/assets/theme/images/bg-02.jpg'); @endif">
-		<h2 class="ltext-105 cl0 txt-center">
-			Blog
-		</h2>
-	</section>	
+@php
+    $url = request()->url(); // Obtener la URL actual
+@endphp
+<!-- Title page -->
+@if (strpos($url, 'categoria') !== false)
+<section class="bg-img1 txt-center p-lr-15 p-b-20 p-t-35 m-t-83" >
+	<h2 class="ltext-105 txt-center cl2">
+	@if($category) Categoría: {{$category->name}} @endif
+	</h2>
+</section>	
+@elseif (strpos($url, 'tag') !== false)
+<section class="bg-img1 txt-center p-lr-15 p-b-20 p-t-35 m-t-83" >
+	<h2 class="ltext-105 txt-center cl2">
+	@if($url)
+    Tag: {{ last(explode('/', str_replace('-', ' ', $url) )) }}
+  @endif
+	</h2>
+</section>
+@else
+<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: @if($web->imageblog) url('/assets/images/{{$web->imageblog}}'); @else url('/assets/theme/images/bg-02.jpg'); @endif">
+	<h2 class="ltext-105 cl0 txt-center">
+	Blog
+	</h2>
+</section>	
+@endif
 
 
 	<!-- Content page -->
@@ -126,7 +145,7 @@
 
 
 						<!-- Pagination -->
-						<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+						<!-- <div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
 							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
 								1
 							</a>
@@ -134,23 +153,23 @@
 							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
 								2
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
 				<div class="col-md-4 col-lg-3 p-b-80">
 					<div class="side-menu">
-						<div class="bor17 of-hidden pos-relative">
+						<!-- <div class="bor17 of-hidden pos-relative">
 							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
 
 							<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
 								<i class="zmdi zmdi-search"></i>
 							</button>
-						</div>
+						</div> -->
 
-						<div class="p-t-55">
+						<div class="p-t-0">
 							<h4 class="mtext-112 cl2 p-b-33">
-								Categories
+								Categorías
 							</h4>
 
 							<ul>
@@ -168,57 +187,26 @@
 
 						<div class="p-t-65">
 							<h4 class="mtext-112 cl2 p-b-33">
-								Featured Products
+								Productos Destacados
 							</h4>
-
 							<ul>
+								@if($productsPromo)
+								@foreach ($productsPromo as $item)
 								<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="/assets/theme/images/product-min-01.jpg" alt="PRODUCT">
+										<img src="/assets/images/products/{{$item->image1}}" alt="PRODUCT" style="width: 90px;">
 									</a>
-
 									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-											White Shirt With Pleat Detail Back
+										<a href="/item/{{$item->url}}" class="stext-116 cl8 hov-cl1 trans-04">
+											{{$item->name}}
 										</a>
-
 										<span class="stext-116 cl6 p-t-20">
-											$19.00
+										${{ str_replace(',', '.', number_format($item->price, 0, '.', ',')) }}
 										</span>
 									</div>
 								</li>
-
-								<li class="flex-w flex-t p-b-30">
-									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="/assets/theme/images/product-min-02.jpg" alt="PRODUCT">
-									</a>
-
-									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="stext-116 cl6 p-t-20">
-											$39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="flex-w flex-t p-b-30">
-									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="/assets/theme/images/product-min-03.jpg" alt="PRODUCT">
-									</a>
-
-									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="stext-116 cl6 p-t-20">
-											$17.00
-										</span>
-									</div>
-								</li>
+								@endforeach
+								@endif
 							</ul>
 						</div>
 
@@ -332,25 +320,13 @@
 							</h4>
 
 							<div class="flex-w m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion
+								@if($tagsAll)
+								@foreach ($tagsAll as $tag)
+								<a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									{{$tag}}
 								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts
-								</a>
+								@endforeach
+								@endif
 							</div>
 						</div>
 					</div>

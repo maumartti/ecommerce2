@@ -95,13 +95,13 @@
                                             <input type="file" name="image" required/>
                                         </div>
                                     </div>
-                                    <input name="title" class="form-control form-control-lg mb-3" type="text" placeholder="Título del post" maxlength="100">
-                                    <textarea name="cita" class="form-control form-control-lg mb-3" placeholder="Cita del post, maximo 160 caractéres" maxlength="160"></textarea>
-                                    <textarea name="text" class="form-control textedit"></textarea>
+                                    <input name="title" class="form-control form-control-lg mb-3" type="text" placeholder="Título del post" maxlength="100" autocomplete="off">
+                                    <textarea name="cita" class="form-control form-control-lg mb-3" placeholder="Cita del post, maximo 160 caractéres" maxlength="160" autocomplete="off"></textarea>
+                                    <textarea name="text" class="form-control textedit" autocomplete="off"></textarea>
                                     <!-- <textarea name="text" id="editor-container" class="add-new-post__editor mb-3" placeholder="Texto del post..."></textarea> -->
                                     <div class="form-group mb-3">
                                         <label for="categoria">Categoría:</label>
-                                        <select name="category_blog_id" id="categorias-blog" class="form-control" required>
+                                        <select name="category_blog_id" id="categorias-blog" class="form-control" autocomplete="off" required>
                                             <option value="" selected>Seleccionar una...</option>
                                             @foreach ($categoriesBlog as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="estado-publicacion">Estado de Publicación:</label>
-                                        <select name="active" id="estado-publicacion" class="form-control" required>
+                                        <select name="active" id="estado-publicacion" class="form-control" autocomplete="off" required>
                                             <option value="" selected>Seleccionar una...</option>
                                             <option value="1">Publicar Ahora</option>
                                             <option value="0">Guardar sin Publicar</option>
@@ -120,7 +120,7 @@
                                         <label for="tags">Tags:</label>
                                         <input type="text" class="tags-add form-control form-control-lg mb-3" placeholder="Escribe un TAG y presiona ENTER" maxlength="255" autocomplete="off">
                                         <div class="tag-list"></div>
-                                        <input type="hidden" name="tags" class="tags-hidden">
+                                        <input type="hidden" name="tags" class="tags-hidden" autocomplete="off">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-accent btn-block">Agregar post</button>

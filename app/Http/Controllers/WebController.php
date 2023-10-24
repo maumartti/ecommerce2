@@ -73,19 +73,28 @@ class WebController extends Controller
         $productsPromo = Product::whereNotNull('promo')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
-        $blogs = Blog::with('user')->with('category')->get();
         $categoriesBlog = CategoryBlog::all();
+        $blogs = Blog::with('user')->with('category')->get();
+        //todos los tags en array
+        $tagsAll = [];
+        foreach ($blogs as $blog) {
+            $tags = explode(',', $blog->tags);
+            $tagsAll = array_merge($tagsAll, $tags);
+        }
+        $tagsAll = array_unique(array_map('trim', $tagsAll));// Elimina duplicados y espacios en blanco
+        //--
         if($url){
             $blog = Blog::where('url',$url)->first();
-            return view('blog')->with('web',$web)->with('blog',$blog)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+            return view('blog')->with('tagsAll',$tagsAll)->with('web',$web)->with('blog',$blog)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
         }else{
-            return view('blogs')->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+            return view('blogs')->with('tagsAll',$tagsAll)->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
         }
     }
-    public function blogCategory()
+    public function blogCategory($url)
     {
         $web = Web::find(1);
         $products = Product::all();
+        $category = CategoryBlog::where('url',$url)->first();
         $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
         $productsDescount = Product::whereNotNull('descount')->get();
         $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
@@ -93,9 +102,46 @@ class WebController extends Controller
         $productsPromo = Product::whereNotNull('promo')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
-        $blogs = Blog::with('user')->with('category')->get();
         $categoriesBlog = CategoryBlog::all();
-        return view('blog')->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+        $blogs = Blog::with('user')->with('category')->get();
+        //todos los tags en array
+        $tagsAll = [];
+        foreach ($blogs as $blog) {
+            $tags = explode(',', $blog->tags);
+            $tagsAll = array_merge($tagsAll, $tags);
+        }
+        $tagsAll = array_unique(array_map('trim', $tagsAll));// Elimina duplicados y espacios en blanco
+        //--
+        return view('blogs')->with('category',$category)->with('tagsAll',$tagsAll)->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+    }
+    public function blogTag($url)
+    {
+        $web = Web::find(1);
+        $products = Product::all();
+        //$category = CategoryBlog::where('url',$url)->first();
+        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->get();
+        $productsDescount = Product::whereNotNull('descount')->get();
+        $productsLikes = Product::orderBy('likes', 'desc')->with('category')->get();
+        $productsViews = Product::whereNotNull('views')->get();
+        $productsPromo = Product::whereNotNull('promo')->get();
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        $subcategories = SubCategory::with('category')->get();
+        $categoriesBlog = CategoryBlog::all();
+        $url = str_replace('-', ' ', $url);
+        $blogs = Blog::with('user')->with('category')->where('tags', 'LIKE', '%' . $url . '%')->get();
+        //todos los tags en array
+        $tagsAll = Blog::distinct()
+        ->pluck('tags')
+        ->map(function ($tags) {
+            return explode(',', $tags);
+        })
+        ->flatten()
+        ->unique()
+        ->map('trim')
+        ->values()
+        ->all();
+        //--
+        return view('blogs')->with('tagsAll',$tagsAll)->with('web',$web)->with('blogs',$blogs)->with('categoriesBlog',$categoriesBlog)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
     public function item(Request $request, $urlCat){
         $web = Web::find(1);
