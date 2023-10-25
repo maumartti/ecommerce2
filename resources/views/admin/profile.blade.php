@@ -76,15 +76,16 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="feFirstName">Nombre</label>
-                        <input type="text" name="name" class="form-control" id="feFirstName" placeholder="Nombre" value="{{auth()->user()->name}}" required> </div>
+                        <input type="text" name="name" class="form-control" id="feFirstName" placeholder="Nombre" value="{{auth()->user()->name}}" autocomplete="off" required> </div>
                         <div class="form-group col-md-6">
                         <label for="feLastName">Empresa</label>
-                        <input type="text" name="company" class="form-control" id="feLastName" placeholder="Empresa" value="{{auth()->user()->company}}"> </div>
+                        <input type="text" name="company" class="form-control" id="feLastName" placeholder="Empresa" value="{{auth()->user()->company}}" autocomplete="off"> 
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="feEmailAddress">Email</label>
-                        <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" required> </div>
+                        <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" autocomplete="off" required> </div>
                         <div class="form-group col-md-6">
                         <!-- Cell Phone -->
                             <label for="cel">Cel - WhatsApp:</label>
@@ -108,25 +109,25 @@
                     </div>
                     <div class="form-group">
                         <label for="feInputAddress">Dirección</label>
-                        <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" required> </div>
+                        <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" autocomplete="off" required> </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="feInputCity">Ciudad</label>
-                        <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" required> </div>
+                        <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" autocomplete="off" required> </div>
                         <div class="form-group col-md-4">
                         <label for="feInputState">Región</label>
-                        <select id="feInputState" name="region_id" class="form-control" required>
+                        <select id="feInputState" name="region_id" class="form-control" autocomplete="off" required>
                             <option value="" selected>Selecciona uno...</option>
                             @if($regions)
-                            @foreach ($regions as $region)
-                            <option value="{{$region->id}}">{{$region->name}}</option>
-                            @endforeach
+                                @foreach ($regions as $region)
+                                    <option value="{{$region->id}}" @if(auth()->user()->region_id == $region->id) selected="true" @endif>{{$region->name}}</option>
+                                @endforeach
                             @endif
                         </select>
                         </div>
                         <div class="form-group col-md-2">
                         <label for="inputZip">Zip</label>
-                        <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" required> </div>
+                        <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" autocomplete="off" required> </div>
                     </div>
                     <!-- <div class="form-row">
                         <div class="form-group col-md-12">
@@ -159,6 +160,15 @@ $(document).ready(function(){
 	// $('#first-table').DataTable({
     //     "pageLength": 100 // Configura el número de elementos por página
     // });
+
+    //si borramos imagen exsistente para saber que exsistia y ya no
+    $('.slim-btn-remove').click(function(){
+        var secondParent = $(this).parent().parent();
+        var hiddenInput = secondParent.find('input[type="hidden"]');
+        if (hiddenInput.length > 0) {
+            hiddenInput.val("empty");//en el input hidden le ponemos = empty
+        }
+    });
 
 });
 

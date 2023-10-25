@@ -72,9 +72,9 @@
         <i class="material-icons">close</i>
       </div>
     </div>
-    <div class="color-switcher-toggle animated pulse infinite">
+    <!-- <div class="color-switcher-toggle animated pulse infinite">
       <i class="material-icons">settings</i>
-    </div>
+    </div> -->
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->

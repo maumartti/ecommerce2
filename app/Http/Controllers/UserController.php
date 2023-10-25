@@ -72,7 +72,7 @@ class UserController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required|string|max:36',
                 'email' => 'string|max:255|required|email',
-                'image' => 'json|nullable',
+                'image' => 'nullable',
                 'company' => 'string|nullable',
                 'address' => 'string|required',
                 'city' => 'string|required',
