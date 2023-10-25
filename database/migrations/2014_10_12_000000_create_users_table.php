@@ -15,9 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->string('name');
+            $table->string('company',20)->nullable();
+            $table->string('address',255)->nullable();
+            $table->string('city',64)->nullable();
+            $table->string('zip',12)->nullable();
+            $table->string('countryCode',20)->nullable();
+            $table->string('cel',20)->nullable();
             $table->string('image',20)->nullable();
             $table->string('email')->unique();
-            $table->string('status')->length(1)->default(1);
+            $table->tinyInteger('active')->length(1)->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

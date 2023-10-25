@@ -28,6 +28,8 @@ Route::post('/add-to-cart/{productId}', [App\Http\Controllers\WebController::cla
 Route::get('/quit-to-cart/{productId}', [App\Http\Controllers\WebController::class, 'quitToCart'])->name('quitToCart');
 Route::post('/clear-cart', [App\Http\Controllers\WebController::class, 'clearCart'])->name('clearCart');
 Route::post('/actualizar-carrito/{productId}', [App\Http\Controllers\WebController::class, 'actualizarCarrito'])->name('actualizarCarrito');
+Route::post('/message', [App\Http\Controllers\MessageController::class, 'store']);
+Route::post('/subscriber', [App\Http\Controllers\SubscriberController::class, 'store']);
 Auth::routes();
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -49,10 +51,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('region_company', App\Http\Controllers\RegionCompanyController::class);
     Route::resource('activity', App\Http\Controllers\ActivityController::class);
     Route::resource('accounts', App\Http\Controllers\AccountsController::class);
+    Route::resource('user', App\Http\Controllers\UserController::class);
     Route::resource('payments', App\Http\Controllers\PaymentController::class);
     Route::resource('purchases', App\Http\Controllers\PurchaseController::class);
     Route::resource('profile', App\Http\Controllers\UserController::class);
     Route::resource('blog', App\Http\Controllers\BlogController::class);
     Route::resource('blog_category', App\Http\Controllers\BlogCategoryController::class);
+    Route::resource('message', App\Http\Controllers\MessageController::class);
+    Route::resource('subscriber', App\Http\Controllers\SubscriberController::class);
 });
 

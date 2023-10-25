@@ -22,25 +22,26 @@
             <div class="card-header border-bottom text-center">
             <div class="mb-3 mx-auto">
                 <img class="rounded-circle" src="/assets/images/avatars/1.jpg" alt="User Avatar" width="110"> </div>
-            <h4 class="mb-0">Sierra Brooks</h4>
-            <span class="text-muted d-block mb-2">Project Manager</span>
+            <h4 class="mb-0">Marcos</h4>
+            <!-- <span class="text-muted d-block mb-2">Empresa</span> -->
             <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">
-                <i class="material-icons mr-1">person_add</i>Follow</button>
+                <i class="material-icons mr-1">person_add</i>Usuario</button>
             </div>
             <ul class="list-group list-group-flush">
             <li class="list-group-item px-4">
                 <div class="progress-wrapper">
-                <strong class="text-muted d-block mb-2">Workload</strong>
+                <strong class="text-muted d-block mb-2">Total gastado</strong>
                 <div class="progress progress-sm">
-                    <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100" style="width: 74%;">
-                    <span class="progress-value">74%</span>
+                    <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                    <strong class="progress-value">$ 0</strong>
                     </div>
                 </div>
                 </div>
             </li>
             <li class="list-group-item p-4">
-                <strong class="text-muted d-block mb-2">Description</strong>
-                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
+                <strong class="text-muted d-block mb-2">Compras totales: 0</strong>
+                <strong class="text-muted d-block mb-2">Compras año: 0</strong>
+                <strong class="text-muted d-block mb-2">Compras mes: 0</strong>
             </li>
             </ul>
         </div>
@@ -48,54 +49,76 @@
         <div class="col-lg-8">
         <div class="card card-small mb-4">
             <div class="card-header border-bottom">
-            <h6 class="m-0">Account Details</h6>
+            <h6 class="m-0">Detalles de cuenta</h6>
             </div>
             <ul class="list-group list-group-flush">
             <li class="list-group-item p-3">
                 <div class="row">
                 <div class="col">
-                    <form>
+                    <form action="user/{{ auth()->user()->id }}" method="POST" class="php-email-form" >
+                     @method('PUT')
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                        <label for="feFirstName">First Name</label>
-                        <input type="text" class="form-control" id="feFirstName" placeholder="First Name" value="Sierra"> </div>
+                        <label for="feFirstName">Nombre</label>
+                        <input type="text" name="name" class="form-control" id="feFirstName" placeholder="Nombre" value="{{auth()->user()->name}}"> </div>
                         <div class="form-group col-md-6">
-                        <label for="feLastName">Last Name</label>
-                        <input type="text" class="form-control" id="feLastName" placeholder="Last Name" value="Brooks"> </div>
+                        <label for="feLastName">Empresa</label>
+                        <input type="text" name="company" class="form-control" id="feLastName" placeholder="Empresa" value="{{auth()->user()->company}}"> </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="feEmailAddress">Email</label>
-                        <input type="email" class="form-control" id="feEmailAddress" placeholder="Email" value="sierra@example.com"> </div>
+                        <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}"> </div>
                         <div class="form-group col-md-6">
-                        <label for="fePassword">Password</label>
-                        <input type="password" class="form-control" id="fePassword" placeholder="Password"> </div>
+                        <!-- Cell Phone -->
+                            <label for="cel">Cel - WhatsApp:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <select name="countryCode" class="form-control" autocomplete="off">
+                                        <option value="+54" {{ auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
+                                        <option value="+56" {{ auth()->user()->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
+                                        <option value="+57" {{ auth()->user()->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
+                                        <option value="+52" {{ auth()->user()->countryCode == '+52' ? 'selected' : '' }}>Mexico (+52)</option>
+                                        <option value="+51" {{ auth()->user()->countryCode == '+51' ? 'selected' : '' }}>Peru (+51)</option>
+                                        <option value="+507" {{ auth()->user()->countryCode == '+507' ? 'selected' : '' }}>Panama (+507)</option>
+                                        <option value="+34" {{ auth()->user()->countryCode == '+34' ? 'selected' : '' }}>España (+34)</option>
+                                        <option value="+598" {{ auth()->user()->countryCode == '+598' ? 'selected' : '' }}>Uruguay (+598)</option>
+                                        <option value="+1" {{ auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
+                                    </select>
+                                </div>
+                                <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="feInputAddress">Address</label>
-                        <input type="text" class="form-control" id="feInputAddress" placeholder="1234 Main St"> </div>
+                        <label for="feInputAddress">Dirección</label>
+                        <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St"> </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                        <label for="feInputCity">City</label>
-                        <input type="text" class="form-control" id="feInputCity"> </div>
+                        <label for="feInputCity">Ciudad</label>
+                        <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}"> </div>
                         <div class="form-group col-md-4">
-                        <label for="feInputState">State</label>
-                        <select id="feInputState" class="form-control">
-                            <option selected>Choose...</option>
-                            <option>...</option>
+                        <label for="feInputState">Región</label>
+                        <select id="feInputState" name="region_id" class="form-control">
+                            <option selected>Selecciona uno...</option>
+                            @if($regions)
+                            @foreach ($regions as $region)
+                            <option value="{{$region->id}}">{{$region->name}}</option>
+                            @endforeach
+                            @endif
                         </select>
                         </div>
                         <div class="form-group col-md-2">
                         <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip"> </div>
+                        <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}"> </div>
                     </div>
-                    <div class="form-row">
+                    <!-- <div class="form-row">
                         <div class="form-group col-md-12">
                         <label for="feDescription">Description</label>
                         <textarea class="form-control" name="feDescription" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-accent">Update Account</button>
+                    </div> -->
+                    <button type="submit" class="btn btn-accent">Actualizar Cuenta</button>
                     </form>
                 </div>
                 </div>

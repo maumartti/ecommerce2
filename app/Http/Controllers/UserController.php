@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
 use App\Models\User;
+use App\Models\Region;
 
 
 class UserController extends Controller
@@ -22,7 +23,8 @@ class UserController extends Controller
     {
         $web = Web::find(1);
         $user = User::find(1);
-        return view('admin.profile')->with('web',$web)->with('user',$user);   
+        $regions = Region::all();
+        return view('admin.profile')->with('web',$web)->with('user',$user)->with('regions',$regions);   
     }
 
     /**
@@ -62,7 +64,41 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $user = User::find($id);
+            if (!$user) {
+                return response()->json(['status' => 'error', 'message' => 'Usuario no encontrado'], 404);
+            }
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:36',
+                'email' => 'string|max:255|required|email',
+                'image' => 'json|nullable',
+                'company' => 'string|nullable',
+                'address' => 'string|nullable',
+                'city' => 'string|nullable',
+                'zip' => 'string|nullable',
+                'countryCode' => 'required',
+                'cel' => 'string|nullable',
+                'region_id' => 'required',
+            ]);
+            $tools = new Tools;
+            // Guardar la imagen Portada
+            if(isset($validatedData['image'])){
+                if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($request->image)) {
+                    $validatedData['image'] = $tools->saveImage64('/assets/images/users/', $request->image);
+                } elseif($validatedData['image'] == 'empty'){
+                    $validatedData['image'] = null;   
+                }else{
+                    $validatedData['image'] = $user->image;
+                }
+            }else{
+                $validatedData['image'] = $user->image;
+            }   
+            $user->update($validatedData);
+            return response()->json(['status' => 'success', 'user' => $user], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error al actualizar el usuario: ' . $e->getMessage()], 500);
+        }
     }
 
     /**

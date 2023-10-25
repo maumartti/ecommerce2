@@ -56,9 +56,10 @@
   //abre el modal BORRAR
   $(document).on('click', '.delete-modal-button', function () {
     console.log('open modal delete')
+    var type = $(this).data('type');
     var itemData = $(this).data('item');
     if(itemData.title){ itemData.name = itemData.title }//si tiene titulo es el nombre
-    var type = $(this).data('type');
+    if(type == 'subscriptor'){ itemData.name = itemData.email }//si tiene titulo es el nombre
     var surname = $(this).data('surname');
     var url = $(this).data('url');
     $('#ModalDeleteOne .type').text(type);
@@ -134,6 +135,22 @@
             });
             //updateCategorySelect()//actualiza select categorias
           }
+          if(data.subscribers){
+            const itemsTable = document.querySelector('#subscribers-table');
+            clearTable(itemsTable);
+            data.subscribers.forEach((item, index) => {
+              addSubscriberRow(itemsTable, item, index);
+            });
+            //updateCategorySelect()//actualiza select categorias
+          }
+          if(data.users){
+            const itemsTable = document.querySelector('#users-table');
+            clearTable(itemsTable);
+            data.users.forEach((item, index) => {
+              addUsersRow(itemsTable, item, index);
+            });
+            //updateCategorySelect()//actualiza select categorias
+          }
           //toast y quita elemento de tabla 
           $.toastr.success('Eliminado con éxito');
           //$(`[id="${url}-${itemId}"]`).closest('tr').remove();
@@ -203,6 +220,13 @@
           data.categoriesBlog.forEach((item, index) => {
             addCategoryBlogRow(itemsTable, item, index);
           });
+        }else if(data.users){
+          const itemsTable = document.querySelector('#users-table');
+          clearTable(itemsTable);
+          data.users.forEach((item, index) => {
+            addUsersRow(itemsTable, item, index);
+          });
+          //updateCategorySelect()//actualiza select categorias
         }
 
       } else {
@@ -307,6 +331,39 @@ function addBlogsRow(table, item, index) {
   //const count = document.getElementById('count-product');
   //count.textContent = index + 1;
 }
+// Actualiza tabla subscriptores
+function addSubscriberRow(table, item, index) {
+  const tbody = table.querySelector('tbody');
+  const row = document.createElement('tr');
+  const formattedDate = formatCreatedAtDate(item.created_at);
+  row.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${item.email}</td>
+      <td>${formattedDate}</td>
+      <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(item)}' data-type="subscriptor" data-url="subscriber">Borrar <i class="material-icons">delete</i></button></td>`;
+  tbody.appendChild(row);
+  // Actualizar count"
+  const count = document.getElementById('count-product');
+  count.textContent = index + 1;
+}
+// Actualiza tabla subscriptores
+function addUsersRow(table, item, index) {
+  const tbody = table.querySelector('tbody');
+  const row = document.createElement('tr');
+  row.innerHTML = `
+      <td><img class="user-avatar rounded-circle" src="${item.image ? '/assets/images/users/'+item.image : '/assets/images/no-user.png'}" style="width:30px;"></td>
+      <td>${item.name}</td>
+      <td>${item.type}</td>
+      <td>${item.email}</td>
+      <td>${item.active == 1 ? '<span class="text-success"><i class="material-icons">check</i>Activo</span>' : '<span class="text-danger" style="font-size: 12px;"><i class="material-icons">clear</i>InActivo</span>'}
+      <td class="text-center"><type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>
+      <td class="text-center">${item.id != 1 ? '<button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item="'+JSON.stringify(item)+'" data-type="cuenta" data-url="accounts">Borrar <i class="material-icons">delete</i></button>' : ''}</td>`;
+  tbody.appendChild(row);
+  // Actualizar count"
+  //const count = document.getElementById('count-product');
+  //count.textContent = index + 1;
+}
+
 
 //Actualiza SELECT Categorias
 function updateCategorySelect() {
@@ -357,7 +414,16 @@ function addCategoryBlogRow(table, item, index) {
     }
 }
 
-
-
+//formato date time
+function formatCreatedAtDate(inputDate) {
+  const date = new Date(inputDate);
+  date.setUTCHours(date.getUTCHours(), date.getUTCMinutes());
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const year = date.getUTCFullYear();
+  const hours = String(date.getUTCHours()).padStart(2, '0');
+  const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
+}
 
 })();

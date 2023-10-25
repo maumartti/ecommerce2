@@ -164,13 +164,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="/admin/blog">
+                <a class="nav-link " href="/admin/message">
                   <i class="material-icons">chat</i>
                   <span>Mensajes</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="/admin/blog">
+                <a class="nav-link " href="/admin/subscriber">
                   <i class="material-icons">card_membership</i>
                   <span>Suscriptores</span>
                 </a>
