@@ -74,11 +74,11 @@ class UserController extends Controller
                 'email' => 'string|max:255|required|email',
                 'image' => 'json|nullable',
                 'company' => 'string|nullable',
-                'address' => 'string|nullable',
-                'city' => 'string|nullable',
-                'zip' => 'string|nullable',
+                'address' => 'string|required',
+                'city' => 'string|required',
+                'zip' => 'string|required',
                 'countryCode' => 'required',
-                'cel' => 'string|nullable',
+                'cel' => 'string|required',
                 'region_id' => 'required',
             ]);
             $tools = new Tools;

@@ -21,7 +21,24 @@
         <div class="card card-small mb-4 pt-3">
             <div class="card-header border-bottom text-center">
             <div class="mb-3 mx-auto">
-                <img class="rounded-circle" src="/assets/images/avatars/1.jpg" alt="User Avatar" width="110"> </div>
+                <!-- <img class="rounded-circle" src="/assets/images/avatars/1.jpg" alt="User Avatar" width="110">  -->
+                <form action="user/{{ auth()->user()->id }}" method="POST" class="php-email-form" >
+                @method('PUT')
+                <div class="form-group">
+                    <div class="slim rounded-circle" id="slimEdit"
+                        data-button-edit-title="Editar"
+                        data-button-remove-title="Borrar"
+                        data-ratio="2:2"
+                        data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
+                        data-size="110,110"
+                        style="width: 150px;margin: auto;height: 150px;">
+                        <input type="file" name="image"/>
+                        @if(auth()->user()->image)
+                        <img src="/assets/images/users/{{auth()->user()->image}}">
+                        @endif
+                    </div>
+                </div>
+            </div>
             <h4 class="mb-0">Marcos</h4>
             <!-- <span class="text-muted d-block mb-2">Empresa</span> -->
             <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">
@@ -55,12 +72,11 @@
             <li class="list-group-item p-3">
                 <div class="row">
                 <div class="col">
-                    <form action="user/{{ auth()->user()->id }}" method="POST" class="php-email-form" >
-                     @method('PUT')
+                    
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="feFirstName">Nombre</label>
-                        <input type="text" name="name" class="form-control" id="feFirstName" placeholder="Nombre" value="{{auth()->user()->name}}"> </div>
+                        <input type="text" name="name" class="form-control" id="feFirstName" placeholder="Nombre" value="{{auth()->user()->name}}" required> </div>
                         <div class="form-group col-md-6">
                         <label for="feLastName">Empresa</label>
                         <input type="text" name="company" class="form-control" id="feLastName" placeholder="Empresa" value="{{auth()->user()->company}}"> </div>
@@ -68,13 +84,13 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="feEmailAddress">Email</label>
-                        <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}"> </div>
+                        <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" required> </div>
                         <div class="form-group col-md-6">
                         <!-- Cell Phone -->
                             <label for="cel">Cel - WhatsApp:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <select name="countryCode" class="form-control" autocomplete="off">
+                                    <select name="countryCode" class="form-control" autocomplete="off" required>
                                         <option value="+54" {{ auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
                                         <option value="+56" {{ auth()->user()->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
                                         <option value="+57" {{ auth()->user()->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
@@ -86,21 +102,21 @@
                                         <option value="+1" {{ auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
                                     </select>
                                 </div>
-                                <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off">
+                                <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="feInputAddress">Dirección</label>
-                        <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St"> </div>
+                        <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" required> </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="feInputCity">Ciudad</label>
-                        <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}"> </div>
+                        <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" required> </div>
                         <div class="form-group col-md-4">
                         <label for="feInputState">Región</label>
-                        <select id="feInputState" name="region_id" class="form-control">
-                            <option selected>Selecciona uno...</option>
+                        <select id="feInputState" name="region_id" class="form-control" required>
+                            <option value="" selected>Selecciona uno...</option>
                             @if($regions)
                             @foreach ($regions as $region)
                             <option value="{{$region->id}}">{{$region->name}}</option>
@@ -110,7 +126,7 @@
                         </div>
                         <div class="form-group col-md-2">
                         <label for="inputZip">Zip</label>
-                        <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}"> </div>
+                        <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" required> </div>
                     </div>
                     <!-- <div class="form-row">
                         <div class="form-group col-md-12">
