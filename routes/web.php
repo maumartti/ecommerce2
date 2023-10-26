@@ -59,5 +59,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('blog_category', App\Http\Controllers\BlogCategoryController::class);
     Route::resource('message', App\Http\Controllers\MessageController::class);
     Route::resource('subscriber', App\Http\Controllers\SubscriberController::class);
+    Route::resource('user_type', App\Http\Controllers\UserTypeController::class);
 });
 

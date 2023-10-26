@@ -19,9 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'type_id',
         'email',
         'password',
-        'type',
         'active',
         'image',
         'company',
@@ -31,7 +31,6 @@ class User extends Authenticatable
         'countryCode',
         'cel',
         'region_id'
-
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -52,4 +51,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function userType(){
+        return $this->belongsTo(UserType::class, 'type_id');
+    }
 }

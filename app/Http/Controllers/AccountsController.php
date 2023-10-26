@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
 use App\Models\User;
 use App\Models\Region;
+use App\Models\UserType;
 
 class AccountsController extends Controller
 {
@@ -22,7 +23,12 @@ class AccountsController extends Controller
     {
         $web = Web::find(1);
         $users = User::all();
-        return view('admin.accounts')->with('web',$web)->with('users',$users);   
+        $userTypeUsuario = UserType::find(1);
+        $userTypeVendedor = UserType::find(2);
+        $userTypeAdministrador = UserType::find(3);
+        //if(Auth::user()->type_id == 3){// 3 es administrador
+        return view('admin.accounts')->with('web',$web)->with('users',$users)->with('userTypeUsuario',$userTypeUsuario)->with('userTypeVendedor',$userTypeVendedor)->with('userTypeAdministrador',$userTypeAdministrador);   
+        //}    
     }
 
     /**
@@ -89,7 +95,7 @@ class AccountsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**

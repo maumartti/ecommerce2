@@ -84,51 +84,54 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                        <label for="feEmailAddress">Email</label>
-                        <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" autocomplete="off" required> </div>
-                        <div class="form-group col-md-6">
-                        <!-- Cell Phone -->
-                            <label for="cel">Cel - WhatsApp:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <select name="countryCode" class="form-control" autocomplete="off" required>
-                                        <option value="+54" {{ auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
-                                        <option value="+56" {{ auth()->user()->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
-                                        <option value="+57" {{ auth()->user()->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
-                                        <option value="+52" {{ auth()->user()->countryCode == '+52' ? 'selected' : '' }}>Mexico (+52)</option>
-                                        <option value="+51" {{ auth()->user()->countryCode == '+51' ? 'selected' : '' }}>Peru (+51)</option>
-                                        <option value="+507" {{ auth()->user()->countryCode == '+507' ? 'selected' : '' }}>Panama (+507)</option>
-                                        <option value="+34" {{ auth()->user()->countryCode == '+34' ? 'selected' : '' }}>España (+34)</option>
-                                        <option value="+598" {{ auth()->user()->countryCode == '+598' ? 'selected' : '' }}>Uruguay (+598)</option>
-                                        <option value="+1" {{ auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
-                                    </select>
+                            <label for="feEmailAddress">Email</label>
+                            <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" autocomplete="off" required> </div>
+                            <div class="form-group col-md-6">
+                            <!-- Cell Phone -->
+                                <label for="cel">Cel - WhatsApp:</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <select name="countryCode" class="form-control" autocomplete="off" required>
+                                            <option value="+54" {{ auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
+                                            <option value="+56" {{ auth()->user()->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
+                                            <option value="+57" {{ auth()->user()->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
+                                            <option value="+52" {{ auth()->user()->countryCode == '+52' ? 'selected' : '' }}>Mexico (+52)</option>
+                                            <option value="+51" {{ auth()->user()->countryCode == '+51' ? 'selected' : '' }}>Peru (+51)</option>
+                                            <option value="+507" {{ auth()->user()->countryCode == '+507' ? 'selected' : '' }}>Panama (+507)</option>
+                                            <option value="+34" {{ auth()->user()->countryCode == '+34' ? 'selected' : '' }}>España (+34)</option>
+                                            <option value="+598" {{ auth()->user()->countryCode == '+598' ? 'selected' : '' }}>Uruguay (+598)</option>
+                                            <option value="+1" {{ auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
+                                        </select>
+                                    </div>
+                                    <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off" required>
                                 </div>
-                                <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="feInputAddress">Dirección</label>
-                        <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" autocomplete="off" required> </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                        <label for="feInputCity">Ciudad</label>
-                        <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" autocomplete="off" required> </div>
-                        <div class="form-group col-md-4">
-                        <label for="feInputState">Región</label>
-                        <select id="feInputState" name="region_id" class="form-control" autocomplete="off" required>
-                            <option value="" selected>Selecciona uno...</option>
-                            @if($regions)
-                                @foreach ($regions as $region)
-                                    <option value="{{$region->id}}" @if(auth()->user()->region_id == $region->id) selected="true" @endif>{{$region->name}}</option>
-                                @endforeach
-                            @endif
-                        </select>
+                        <div class="form-group">
+                            <label for="feInputAddress">Dirección</label>
+                            <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" autocomplete="off" required>
                         </div>
-                        <div class="form-group col-md-2">
-                        <label for="inputZip">Zip</label>
-                        <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" autocomplete="off" required> </div>
-                    </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="feInputCity">Ciudad</label>
+                                <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" autocomplete="off" required> 
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="feInputState">Región</label>
+                                <select id="feInputState" name="region_id" class="form-control" autocomplete="off" required>
+                                    <option value="" selected>Selecciona uno...</option>
+                                    @if($regions)
+                                        @foreach ($regions as $region)
+                                            <option value="{{$region->id}}" @if(auth()->user()->region_id == $region->id) selected="true" @endif>{{$region->name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" autocomplete="off" required> 
+                            </div>
+                        </div>
                     <!-- <div class="form-row">
                         <div class="form-group col-md-12">
                         <label for="feDescription">Description</label>
