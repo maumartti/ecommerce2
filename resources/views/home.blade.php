@@ -244,8 +244,8 @@
 			<div class="row">
 
 			@if (isset($categories))
-        @if ($categories)
-          @foreach ($categories as $index => $category)
+                @if ($categories)
+                    @foreach ($categories as $index => $category)
 					<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 						<!-- Block1 -->
 						<div class="block1 wrap-pic-w">
@@ -256,12 +256,10 @@
 									<span class="block1-name ltext-102 trans-04 p-b-8">
 									{{$category->name}}
 									</span>
-
 									<!-- <span class="block1-info stext-102 trans-04">
 										Temporada 2023
 									</span> -->
 								</div>
-
 								<div class="block1-txt-child2 p-b-4 trans-05">
 									<div class="block1-link stext-101 cl0 trans-09">
 										Ver productos
@@ -271,8 +269,8 @@
 						</div>
 					</div>
 					@endforeach
-      	@endif
-      @endif
+                @endif
+            @endif
 
 			</div>
 		</div>
@@ -295,17 +293,15 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						Ver Todos
 					</button>
-
-          @if (isset($categories))
-            @if ($categories)
-              @foreach ($categories as $index => $category)
-              <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{$category->id}}">
-                {{$category->name}}
-              </button>
-              @endforeach
-      	    @endif
-          @endif     
-
+                @if (isset($categories))
+                    @if ($categories)
+                    @foreach ($categories as $index => $category)
+                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{$category->id}}">
+                        {{$category->name}}
+                    </button>
+                    @endforeach
+                    @endif
+                @endif     
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -333,45 +329,45 @@
 					</div>	
 				</div>
 
-				<!-- Filter -->
-				@include('filters')
+			    <!-- Filter -->
+			    @include('filters')
 
 			<div class="row isotope-grid">
-      @if (isset($products))
-        @if ($products)
-          @foreach ($products as $product)
-          	
-            <div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}} @if($product->promo == 1) populares @endif @if($product->new == 1) new @endif @if($product->size) size-{{$product->size}} @endif @if($product->kilos) kilos-{{$product->kilos}} @endif @if($product->color) color-{{$product->color}} @endif @if($product->tags) @foreach(json_decode($product->tags) as $tag) tag-{{$tag}} @endforeach @endif" data-id="{{$product->id}}" data-price="{{$product->price}}" data-sales="{{$product->sales}}">
-                <!-- Block2 -->
-                <div class="block2">
-                    <div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
-                        <img src="/assets/images/products/{{$product->image1}}" alt="IMG-PRODUCT">
-                        <a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                            Ver
-                        </a>
-                    </div>
-                    <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l ">
-                            <a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                            {{$product->name}}
-                            </a>
-                            <span class="stext-105 cl3">
-                                <strong>${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</strong>
-                            </span>
+            @if (isset($products))
+                @if ($products)
+                @foreach ($products as $product)
+                    
+                    <div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}} @if($product->promo == 1) populares @endif @if($product->new == 1) new @endif @if($product->size) size-{{$product->size}} @endif @if($product->kilos) kilos-{{$product->kilos}} @endif @if($product->color) color-{{$product->color}} @endif @if($product->tags) @foreach(json_decode($product->tags) as $tag) tag-{{$tag}} @endforeach @endif" data-id="{{$product->id}}" data-price="{{$product->price}}" data-sales="{{$product->sales}}">
+                        <!-- Block2 -->
+                        <div class="block2">
+                            <div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
+                                <img src="/assets/images/products/{{$product->image1}}" alt="IMG-PRODUCT">
+                                <a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                    Ver
+                                </a>
+                            </div>
+                            <div class="block2-txt flex-w flex-t p-t-14">
+                                <div class="block2-txt-child1 flex-col-l ">
+                                    <a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    {{$product->name}}
+                                    </a>
+                                    <span class="stext-105 cl3">
+                                        <strong>${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</strong>
+                                    </span>
+                                </div>
+                                <div class="block2-txt-child2 flex-r p-t-3">
+                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
+                                        <img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
+                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                            <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                <img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-                                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-                            </a>
-                        </div>
                     </div>
-                </div>
-            </div>
-          	
-          @endforeach
-      	@endif
-      @endif
+                    
+                @endforeach
+                @endif
+            @endif
 			</div>
 
 			<!-- Load more -->
@@ -399,34 +395,33 @@
 						<div class="carousel-inner row w-100 mx-auto flex-nowrap" role="listbox">
 								@if (isset($productsPromo) && $productsPromo)
 										@foreach ($productsPromo as $index => $product)
-													<div class="carousel-item pl-1 col-md-3 isotope-item p-0 @if ($loop->first) active @endif">
-														<!-- Contenido del producto -->
-														<div class="block2">
-																<div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
-																		<img src="/assets/images/products/{{ $product->image1 }}" alt="{{ $product->name }}">
-																		<a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-																				Ver
-																		</a>
-																</div>
-																<div class="block2-txt flex-w flex-t p-t-14">
-																		<div class="block2-txt-child1 flex-col-l">
-																				<a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-																						{{ $product->name }}
-																				</a>
-																				<span class="stext-105 cl3">
-																					<strong>${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</strong>
-																				</span>
-																		</div>
-																		<div class="block2-txt-child2 flex-r p-t-3">
-																				<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-																						<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-																						<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-																				</a>
-																		</div>
-																</div>
-														</div>
-												
-													</div>
+                                            <div class="carousel-item pl-1 col-md-3 isotope-item p-0 @if ($loop->first) active @endif">
+                                                <!-- Contenido del producto -->
+                                                <div class="block2">
+                                                        <div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
+                                                                <img src="/assets/images/products/{{ $product->image1 }}" alt="{{ $product->name }}">
+                                                                <a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                                        Ver
+                                                                </a>
+                                                        </div>
+                                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                                                <div class="block2-txt-child1 flex-col-l">
+                                                                        <a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                                                {{ $product->name }}
+                                                                        </a>
+                                                                        <span class="stext-105 cl3">
+                                                                            <strong>${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</strong>
+                                                                        </span>
+                                                                </div>
+                                                                <div class="block2-txt-child2 flex-r p-t-3">
+                                                                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
+                                                                                <img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
+                                                                                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
+                                                                        </a>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                            </div>
 										@endforeach
 								@endif
 						</div>
@@ -601,15 +596,19 @@
                         <span id="modal-price" class="mtext-106 cl2">
                             $0
                         </span>
+
+                        <p id="modal-category" class="stext-102 cl3 p-t-30">
+						 <strong></strong>
+						</p>
 												
-                        <p id="modal-description" class="stext-102 cl3 p-t-23">
+                        <p id="modal-description" class="stext-102 cl3 p-t-15">
 													Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
                         </p>
 
 												<div id="modal-stock" class="mtext-106 cl2 p-t-23">
 														Stock: 0
 												</div>
-                        <div class="p-t-33">
+                        <div class="p-t-23">
                             <!-- <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-203 flex-c-m respon6">
                                     Size
@@ -662,17 +661,17 @@
                                         Agregar al carrito
                                     </button>
                                 </div>
-																<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
+							    <h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
                             </div>	
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
                             <div class="flex-m  p-l-10 m-l-11">
-                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                                <a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
                                     <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
                                 </a>
                             </div>
                         </div>
-                        <div class="p-t-70 p-l-35">
+                        <div class="p-t-40 p-l-35">
                             <div class="text-center pb-2" style="padding-right: 65px;"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
                             <div class="p-l-56">
                                 <!-- Botón de Facebook -->
@@ -733,9 +732,11 @@ $(document).ready(function () {
 
             $("#modal-btn-cart").attr('data-product-id', product.id);
             $("#modal-name").text(product.name);
+            $("#addFavoriteLink").attr('data-item',product.name);
             var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
             $("#modal-price").text('$'+price);
-            $("#modal-description").text(product.description);
+            if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
+            $("#modal-description").text(product.description); 
             $("#modal-stock").text('Stock: '+product.stock);
             $("#modal-cant").attr('max', product.stock);
             $("#modal-cant").val(1);

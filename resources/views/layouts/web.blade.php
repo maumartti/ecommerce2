@@ -124,6 +124,11 @@
 		border-radius: 5px; /* Borde redondeado */
 		color: #333; /* Color del ícono (puedes personalizarlo) */
 		text-decoration: none;
+		transition: color 0.3s, transform 0.3s;
+}
+.social-button:hover{
+	color: #fff;
+	transform: scale(1.14);
 }
 /* Estilo para los íconos de las redes sociales */
 .fa {
@@ -778,23 +783,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			e.preventDefault();
 		});
 
+		//agregar favorito en lista
 		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				var nameProduct = $(this).data('item');
+				swal(nameProduct, "Agregado a Favoritos !", "success");
 
 				$(this).addClass('js-addedwish-b2');
+				$('.swal-button-container').css('width', '100%').css('margin', 'auto');
 				$(this).off('click');
 			});
 		});
-
+		//agregar favorito dentro modal producto
 		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				var nameProduct = $(this).data('item');
+				swal(nameProduct, "Agregado a Favoritos !", "success");
 
 				$(this).addClass('js-addedwish-detail');
+				$('.swal-button-container').css('width', '100%').css('margin', 'auto');
 				$(this).off('click');
 			});
 		});

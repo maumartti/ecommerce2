@@ -1,8 +1,41 @@
 @extends('layouts.web')
 
+@php
+    $category_name = $blog->category ? $blog->category->name : '';
+    $category_url = $blog->category ? $blog->category->url : '';
+@endphp
+
+
+@section('head')
+<title>{{$blog->name}}</title>
+<meta name="description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
+
+<meta property="og:title" content="{{$blog->title}}">
+<meta property="og:description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
+<meta property="og:url" content="https://importadoratatar.cl/blog/{{$blog->url}}">
+<meta property="og:image" content="https://importadoratatar.cl/assets/images/blogs/{{$blog->image}}">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@importadoratatar">
+<meta name="twitter:title" content="{{$blog->title}}">
+<meta name="twitter:description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
+<meta name="twitter:image" content="https://importadoratatar.cl/assets/images/blogs/{{$blog->image}}">
+
+<meta property="og:title" content="{{$blog->title}}">
+<meta property="og:description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
+<meta property="og:url" content="https://importadoratatar.cl/blog/{{$blog->url}}">
+<meta property="og:image" content="https://importadoratatar.cl/assets/images/blogs/{{$blog->image}}">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@nombredeusuario">
+<meta name="twitter:title" content="{{$blog->title}}">
+<meta name="twitter:description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
+<meta name="twitter:image" content="https://importadoratatar.cl/assets/images/blogs/{{$blog->image}}">
+@endsection
 
 @section('content')
-
 	<!-- breadcrumb -->
 	<div class="container p-t-92">
 		<div class="bread-crumb flex-w p-r-15 p-t-20 p-lr-0-lg">
@@ -97,8 +130,33 @@
 									</a>
 							@endforeach
 							@endif
-
 							</div>
+
+							<div class="p-t-30 m-auto">
+								<div class="text-center pb-2"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
+								<div class="">
+										<!-- Botón de Facebook -->
+										<a id="linkFacebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/blog/{{$blog->url}}" class="social-button facebook" target="_blank">
+												<i class="fa fa-facebook"></i>
+										</a>
+										<!-- Botón de WhatsApp -->
+										<a id="linkWhatsapp" href="https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/blog/{{$blog->url}}" class="social-button whatsapp" target="_blank">
+												<i class="fa fa-whatsapp"></i>
+										</a>
+										<!-- Botón de Twitter -->
+										<a id="linkTwitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/blog/{{$blog->url}}" class="social-button twitter" target="_blank">
+												<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="position: relative;top: 4px;">
+														<path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+												</svg>
+										</a>
+										<!-- Botón de Telegram -->
+										<a id="linkTelegram" href="https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/blog/{{$blog->url}}" class="social-button telegram" target="_blank">
+												<i class="fa fa-telegram"></i>
+										</a>
+								</div>
+							</div>
+
+
 						</div>
 
 						<!--  -->
@@ -305,6 +363,8 @@
 								@endforeach
 								@endif
 							</div>
+							
+
 						</div>
 					</div>
 				</div>

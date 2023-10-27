@@ -1,31 +1,59 @@
 @extends('layouts.web')
 
-
-@section('content')
 @php
     $url = request()->url(); // Obtener la URL actual
 @endphp
+
+
+@section('content')
 <!-- Title page -->
 @if (strpos($url, 'categoria') !== false)
-<section class="bg-img1 txt-center p-lr-15 p-b-20 p-t-35 m-t-83" >
-	<h2 class="ltext-105 txt-center cl2">
-	@if($category) Categoría: {{$category->name}} @endif
-	</h2>
-</section>	
+	@section('head')
+		<title>Blog - Categoría: {{$category->name}}</title>
+		<meta name="description" content="Blog con artículos de la categoría: {{$category->name}}">
+		<meta property="og:title" content="Blog - Categoría: {{$category->name}}">
+		<meta property="og:description" content="Blog con artículos de la categoría: {{$category->name}}">
+		<meta property="og:url" content="{{$url}}">
+		<meta property="og:type" content="website">
+	@endsection
+	<section class="bg-img1 txt-center p-lr-15 p-b-20 p-t-35 m-t-83" >
+		<h2 class="ltext-105 txt-center cl2">
+		@if($category) Categoría: {{$category->name}} @endif
+		</h2>
+	</section>	
 @elseif (strpos($url, 'tag') !== false)
-<section class="bg-img1 txt-center p-lr-15 p-b-20 p-t-35 m-t-83" >
-	<h2 class="ltext-105 txt-center cl2">
-	@if($url)
-    Tag: {{ last(explode('/', str_replace('-', ' ', $url) )) }}
-  @endif
-	</h2>
-</section>
+	@php
+		$tag =  last(explode('/', str_replace('-', ' ', $url) ));
+	@endphp
+	@section('head')
+		<title>Blog - tag: {{ $tag }}</title>
+		<meta name="description" content="Blog con artículos referidos al tag: {{ $tag }}">
+		<meta property="og:title" content="Blog - tag: {{ $tag }}">
+		<meta property="og:description" content="Blog con artículos referidos al tag: {{ $tag }}">
+		<meta property="og:url" content="{{$url}}">
+		<meta property="og:type" content="website">
+	@endsection
+	<section class="bg-img1 txt-center p-lr-15 p-b-20 p-t-35 m-t-83" >
+		<h2 class="ltext-105 txt-center cl2">
+		@if($url)
+			Tag: {{ last(explode('/', str_replace('-', ' ', $url) )) }}
+		@endif
+		</h2>
+	</section>
 @else
-<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: @if($web->imageblog) url('/assets/images/{{$web->imageblog}}'); @else url('/assets/theme/images/bg-02.jpg'); @endif">
-	<h2 class="ltext-105 cl0 txt-center">
-	Blog
-	</h2>
-</section>	
+	@section('head')
+		<title>Blog - importadora tatar</title>
+		<meta name="description" content="Blog con artículos relacionados a importadora tatar">
+		<meta property="og:title" content="Blog - importadora tatar">
+		<meta property="og:description" content="Blog con artículos relacionados a importadora tatar">
+		<meta property="og:url" content="https://importadoratatar.cl/blog">
+		<meta property="og:type" content="website">
+	@endsection
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: @if($web->imageblog) url('/assets/images/{{$web->imageblog}}'); @else url('/assets/theme/images/bg-02.jpg'); @endif">
+		<h2 class="ltext-105 cl0 txt-center">
+		Blog
+		</h2>
+	</section>	
 @endif
 
 

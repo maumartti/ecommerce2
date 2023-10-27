@@ -1,12 +1,16 @@
 @extends('layouts.web')
 
+@php
+    $category_name = $product->category ? $product->category->name : '';
+    $category_url = $product->category ? $product->category->url : '';
+@endphp
 
 @section('head')
 <title>{{$product->name}}</title>
-<meta name="description" content="{{$product->name}} - {{$product->category->name}} - precio: ${{$product->price}}">
+<meta name="description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
 
 <meta property="og:title" content="{{$product->name}}">
-<meta property="og:description" content="{{$product->name}} - {{$product->category->name}} - precio: ${{$product->price}}">
+<meta property="og:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
 <meta property="og:url" content="https://importadoratatar.cl/item/{{$product->url}}">
 <meta property="og:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
 <meta property="og:type" content="website">
@@ -14,11 +18,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@importadoratatar">
 <meta name="twitter:title" content="{{$product->name}}">
-<meta name="twitter:description" content="{{$product->name}} - {{$product->category->name}} - precio: ${{$product->price}}">
+<meta name="twitter:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
 <meta name="twitter:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
 
 <meta property="og:title" content="{{$product->name}}">
-<meta property="og:description" content="{{$product->name}} - {{$product->category->name}} - precio: ${{$product->price}}">
+<meta property="og:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
 <meta property="og:url" content="https://importadoratatar.cl/item/{{$product->url}}">
 <meta property="og:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
 <meta property="og:type" content="website">
@@ -26,7 +30,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@nombredeusuario">
 <meta name="twitter:title" content="{{$product->name}}">
-<meta name="twitter:description" content="{{$product->name}} - {{$product->category->name}} - precio: ${{$product->price}}">
+<meta name="twitter:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
 <meta name="twitter:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
 
 @endsection
@@ -40,10 +44,12 @@
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
-			<a href="/categoria/{{$product->category->url}}" class="stext-109 cl8 hov-cl1 trans-04">
-				{{$product->category->name}}
+			@if($category_name !== '')
+			<a href="/categoria/{{$category_url}}" class="stext-109 cl8 hov-cl1 trans-04">
+				{{$category_name}}
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
+			@endif
 			<span class="stext-109 cl4">
 				{{$product->name}}
 			</span>
@@ -116,23 +122,27 @@
 				</div>
 					
 				<div class="col-md-6 col-lg-5 p-b-30">
-					<div class="p-r-50 p-t-5 p-lr-0-lg">
+					<div class="p-r-50 p-t-0 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
 							{{$product->name}}
 						</h4>
-
+						
 						<span class="mtext-106 cl2">
-							${{ str_replace(',', '.', number_format(session('totalPrice', 0), 0, ',', '.')) }}
+							${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}
 						</span>
+						
+						<p class="stext-102 cl3 p-t-30">
+							@if($category_name !== '') Categoría: <strong>{{$category_name}}</strong> @endif
+						</p>
 
-						<p class="stext-102 cl3 p-t-23">
+						<p class="stext-102 cl3 p-t-10">
 							{{$product->description}}
 						</p>
-						<div id="modal-stock" class="mtext-106 cl2 p-t-23">
+						<div id="modal-stock" class="mtext-106 cl2 p-t-30">
 								Stock: 0
 						</div>
 						<!--  -->
-						<div class="p-t-33">           
+						<div class="p-t-20">           
 								<div class="flex-w flex-r-m p-b-10">
 										<div id="modal-cont-cart" class="size-204 flex-w flex-m respon6-next">
 											@if($product->stock > 0)
@@ -157,12 +167,12 @@
 						</div>
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 								<div class="flex-m  p-l-10 m-l-11">
-										<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+										<a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
 												<i class="zmdi zmdi-favorite"></i> Agregar a favoritos
 										</a>
 								</div>
 						</div>
-						<div class="p-t-80 p-l-35">
+						<div class="p-t-50 p-l-35">
 								<div class="text-center pb-2" style="padding-right: 65px;"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
 								<div class="p-l-56">
 										<!-- Botón de Facebook -->
@@ -373,7 +383,7 @@
 				Nombre: <strong>{{$product->name}}</strong>
 			</span>
 			<span class="stext-107 cl6 p-lr-25">
-				Categories: <strong>{{$product->category->name}}</strong>
+				Categories: <strong>{{$category_name}}</strong>
 			</span>
 		</div>
 	</section>
@@ -414,7 +424,7 @@
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
 										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
@@ -446,7 +456,7 @@
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
 										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
@@ -510,7 +520,7 @@
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
 										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
@@ -542,7 +552,7 @@
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
 										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
@@ -574,7 +584,7 @@
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
 										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
@@ -606,7 +616,7 @@
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
 										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
@@ -638,7 +648,7 @@
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
 										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
@@ -736,6 +746,10 @@
                         <span id="modal-price" class="mtext-106 cl2">
                             $0
                         </span>
+
+												<p id="modal-category" class="stext-102 cl3 p-t-30">
+													<strong></strong>
+												</p>
 												
                         <p id="modal-description" class="stext-102 cl3 p-t-23">
 													Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
@@ -802,7 +816,7 @@
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
                             <div class="flex-m  p-l-10 m-l-11">
-                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                                <a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
                                     <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
                                 </a>
                             </div>
@@ -848,8 +862,10 @@ $(document).ready(function () {
 
 				$("#modal-btn-cart").attr('data-product-id', product.id);
 				$("#modal-name").text(product.name);
+				$("#addFavoriteLink").attr('data-item',product.name);
 				var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
 				$("#modal-price").text('$'+price);
+				if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
 				$("#modal-description").text(product.description);
 				$("#modal-stock").text('Stock: '+product.stock);
 				$("#modal-cant").attr('max', product.stock);
