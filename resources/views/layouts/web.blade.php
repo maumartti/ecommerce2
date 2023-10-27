@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home</title>
 	<meta charset="UTF-8">
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -102,9 +101,52 @@
 	.swal-button {
 		width: 100%;
 	}
-
+	.st-cmp-settings{
+		display:none !important;
+	}
 </style>
 
+
+
+<!-- botones share social -->
+<style>
+/* Estilo base para los botones */
+.social-button {
+		width: 40px; /* Ancho del botón */
+		height: 40px; /* Alto del botón */
+		display: inline-block;
+		margin: 5px; /* Espacio entre los botones */
+		text-align: center;
+		line-height: 40px; /* Centra el ícono verticalmente */
+		font-size: 24px; /* Tamaño del ícono */
+		/*border: 1px solid #ccc; /* Borde del botón (puedes personalizarlo) */
+		background-color: #f9f9f9; /* Color de fondo del botón */
+		border-radius: 5px; /* Borde redondeado */
+		color: #333; /* Color del ícono (puedes personalizarlo) */
+		text-decoration: none;
+}
+/* Estilo para los íconos de las redes sociales */
+.fa {
+		font-family: 'FontAwesome'; /* Usamos la fuente FontAwesome para los íconos */
+}
+/* Estilo específico para cada red social */
+.facebook {
+		background-color: #3b5998; /* Color de fondo de Facebook */
+		color: #fff; /* Color del ícono de Facebook */
+}
+.whatsapp {
+		background-color: #25d366; /* Color de fondo de WhatsApp */
+		color: #fff; /* Color del ícono de WhatsApp */
+}
+.twitter {
+		background-color: #000; /* Color de fondo de Twitter */
+		color: #fff; /* Color del ícono de Twitter */
+}
+.telegram {
+		background-color: #0088cc; /* Color de fondo de Telegram */
+		color: #fff; /* Color del ícono de Telegram */
+}
+</style>
 </head>
 <body class="animsition">
 	

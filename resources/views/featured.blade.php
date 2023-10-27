@@ -436,18 +436,29 @@
                                     <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
                                 </a>
                             </div>
-
-                            <!-- <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-                                <i class="fa fa-google-plus"></i>
-                            </a> -->
+                        </div>
+												<div class="p-t-70 p-l-35">
+                            <div class="text-center pb-2" style="padding-right: 65px;"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
+                            <div class="p-l-56">
+                                <!-- Botón de Facebook -->
+                                <a id="linkFacebook" href="https://www.facebook.com/tu-pagina" class="social-button facebook" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <!-- Botón de WhatsApp -->
+                                <a id="linkWhatsapp" href="https://api.whatsapp.com/send?text=Visita%20mi%20p%C3%A1gina:%20https%3A%2F%2Fwww.tu-pagina.com" class="social-button whatsapp" target="_blank">
+                                    <i class="fa fa-whatsapp"></i>
+                                </a>
+                                <!-- Botón de Twitter -->
+                                <a id="linkTwitter" href="https://twitter.com/tu-usuario-o-pagina" class="social-button twitter" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="position: relative;top: 4px;">
+                                        <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                                    </svg>
+                                </a>
+                                <!-- Botón de Telegram -->
+                                <a id="linkTelegram" href="https://t.me/tu-canal" class="social-button telegram" target="_blank">
+                                    <i class="fa fa-telegram"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -474,6 +485,12 @@ $(document).ready(function () {
 				// Ahora puedes acceder a las propiedades del producto en JavaScript
 				console.log('moda product');
 				console.log(product);
+
+				//links share sociales
+				$("#linkFacebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+				$("#linkWhatsapp").attr('href', 'https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+				$("#linkTwitter").attr('href', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+				$("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
 
 
 				$("#modal-btn-cart").attr('data-product-id', product.id);

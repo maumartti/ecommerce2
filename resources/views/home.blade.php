@@ -1,8 +1,10 @@
 @extends('layouts.web')
 
 @section('head')
-<style>
+<title>Importadora Tatar</title>
+<meta name="description" content="Importadora tatar, fardos de ropa Americana y Europea de alta calidad.">
 
+<style>
 @media (min-width: 768px) {
     /* show 4 items */
     .carousel-inner .active,
@@ -670,6 +672,29 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="p-t-70 p-l-35">
+                            <div class="text-center pb-2" style="padding-right: 65px;"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
+                            <div class="p-l-56">
+                                <!-- Botón de Facebook -->
+                                <a id="linkFacebook" href="https://www.facebook.com/tu-pagina" class="social-button facebook" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <!-- Botón de WhatsApp -->
+                                <a id="linkWhatsapp" href="https://api.whatsapp.com/send?text=Visita%20mi%20p%C3%A1gina:%20https%3A%2F%2Fwww.tu-pagina.com" class="social-button whatsapp" target="_blank">
+                                    <i class="fa fa-whatsapp"></i>
+                                </a>
+                                <!-- Botón de Twitter -->
+                                <a id="linkTwitter" href="https://twitter.com/tu-usuario-o-pagina" class="social-button twitter" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="position: relative;top: 4px;">
+                                        <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                                    </svg>
+                                </a>
+                                <!-- Botón de Telegram -->
+                                <a id="linkTelegram" href="https://t.me/tu-canal" class="social-button telegram" target="_blank">
+                                    <i class="fa fa-telegram"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -688,56 +713,63 @@
 //al Abrir modal Prdocuto cargar info
 $(document).ready(function () {
 		$(".js-show-modal1").click(function (e) {
-				e.preventDefault(); // Evita que el enlace redirija
+            e.preventDefault(); // Evita que el enlace redirija
 
-				// Obtén el objeto JSON del atributo data-product y analízalo
-				var productData = $(this).attr("data-product");
-				var product = JSON.parse(productData);
+            // Obtén el objeto JSON del atributo data-product y analízalo
+            var productData = $(this).attr("data-product");
+            var product = JSON.parse(productData);
 
-				// Ahora puedes acceder a las propiedades del producto en JavaScript
-				console.log('moda product');
-				console.log(product);
+            // Ahora puedes acceder a las propiedades del producto en JavaScript
+            console.log('moda product');
+            console.log(product);
+
+            //links share sociales
+            $("#linkFacebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+            $("#linkWhatsapp").attr('href', 'https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+            $("#linkTwitter").attr('href', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+            $("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
 
 
-				$("#modal-btn-cart").attr('data-product-id', product.id);
-				$("#modal-name").text(product.name);
-				var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-				$("#modal-price").text('$'+price);
-				$("#modal-description").text(product.description);
-				$("#modal-stock").text('Stock: '+product.stock);
-				$("#modal-cant").attr('max', product.stock);
-				$("#modal-cant").val(1);
-				$("#modal-cant-sum").attr('data-max', product.stock);
-				if(product.stock == 0){
-					$("#modal-cont-cart").hide();
-					$("#modal-no-stock").show();
-					
-				}else{
-					$("#modal-no-stock").hide();
-					$("#modal-cont-cart").show();
-				}
 
-				// Agrega las imagenes del producto al modal
-				var imagenes = $(".slick3-dots img");
-				imagenes.each(function (index, elemento) {
-						var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
-						if (product[propiedadImagen] !== null) {
-								$(elemento).show();
-								$(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
-								$("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
-								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
-							}else{
-								// $(elemento).remove();
-								// $("#img-modal"+propiedadImagen).remove();
-								// $("#modal-image"+propiedadImagen).remove();
-								$(elemento).attr("src", '/assets/images/no-image2.png');
-								$("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
-								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
-						}
-				});
+            $("#modal-btn-cart").attr('data-product-id', product.id);
+            $("#modal-name").text(product.name);
+            var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
+            $("#modal-price").text('$'+price);
+            $("#modal-description").text(product.description);
+            $("#modal-stock").text('Stock: '+product.stock);
+            $("#modal-cant").attr('max', product.stock);
+            $("#modal-cant").val(1);
+            $("#modal-cant-sum").attr('data-max', product.stock);
+            if(product.stock == 0){
+                $("#modal-cont-cart").hide();
+                $("#modal-no-stock").show();
+                
+            }else{
+                $("#modal-no-stock").hide();
+                $("#modal-cont-cart").show();
+            }
 
-				// Abre el modal
-				$(".wrap-modal1").show();
+            // Agrega las imagenes del producto al modal
+            var imagenes = $(".slick3-dots img");
+            imagenes.each(function (index, elemento) {
+                    var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
+                    if (product[propiedadImagen] !== null) {
+                        $(elemento).show();
+                        $(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+                        $("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+                        $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
+                    }else{
+                        // $(elemento).remove();
+                        // $("#img-modal"+propiedadImagen).remove();
+                        // $("#modal-image"+propiedadImagen).remove();
+                        $(elemento).attr("src", '/assets/images/no-image2.png');
+                        $("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
+                        $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
+                    }
+            });
+
+            // Abre el modal
+            $(".wrap-modal1").show();
 		});
 
 		// Cierra el modal cuando se hace clic en el botón de cerrar

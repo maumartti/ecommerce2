@@ -207,7 +207,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Editar <span class="type"></span></h4>
+                        <h4 class="modal-title">Editar Artículo</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -373,7 +373,7 @@ $(document).ready(function() {
 
     //---------------------------------------
 
-    $("form").on("submit", function() {
+    $("form").on("submit", function() {//textarea editable
       $(".ql-clipboard").remove(); // because automatically generated
       $(".ql-tooltip").remove(); // because automatically generated
       $("#hiddenTextarea").val($("#editor-container").html());

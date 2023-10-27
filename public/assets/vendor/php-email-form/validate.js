@@ -353,7 +353,7 @@ function addUsersRow(table, item, index) {
   row.innerHTML = `
       <td><img class="user-avatar rounded-circle" src="${item.image ? '/assets/images/users/'+item.image : '/assets/images/no-user.png'}" style="width:30px;"></td>
       <td>${item.name}</td>
-      <td>${item.type}</td>
+      <td>${item.user_type.name}</td>
       <td>${item.email}</td>
       <td>${item.active == 1 ? '<span class="text-success"><i class="material-icons">check</i>Activo</span>' : '<span class="text-danger" style="font-size: 12px;"><i class="material-icons">clear</i>InActivo</span>'}
       <td class="text-center"><type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>

@@ -176,9 +176,9 @@ if(isset($users)){
                                                 <div class="slim"
                                                     data-button-edit-title="Editar"
                                                     data-button-remove-title="Borrar"
-                                                    data-ratio="4:4"
+                                                    data-ratio="1:1"
                                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                    data-size="100,100"
+                                                    data-size="120,120"
                                                     style="background:#e6e6e6">
                                                     <input type="file" name="image"/>
                                                 </div>
@@ -1094,11 +1094,12 @@ if(isset($users)){
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Editar <span class="type"></span></h4>
+                        <h4 class="modal-title">Editar Cuenta</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <form action="accounts" method="POST" id="FormSaveDataAbout" class="quick-post-form php-email-form" >
+                        @method('PUT')
                             <div class="form-row">
                                 <div class="col-6">
                                     <label for="name">Nombre:</label>
@@ -1108,17 +1109,17 @@ if(isset($users)){
                                     <label for="email">Correo:</label>
                                     <input name="email" class="form-control mb-3" type="email" placeholder="Correo electrónico" maxlength="100" autocomplete="off" required>
                                     <label for="password">Contraseña:</label>
-                                    <input name="password" class="form-control mb-3" type="password" placeholder="Contraseña" maxlength="12" autocomplete="off" required>
-                                    <input name="password_confirmation" class="form-control mb-3" type="password" placeholder="Repite Contraseña" maxlength="12" autocomplete="off" required>
+                                    <input name="password" class="form-control mb-3" type="password" placeholder="Contraseña" maxlength="12" autocomplete="off" >
+                                    <input name="password_confirmation" class="form-control mb-3" type="password" placeholder="Repite Contraseña" maxlength="12" autocomplete="off">
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <div class="slim"
+                                        <div class="slim" id="slimEdit"
                                             data-button-edit-title="Editar"
                                             data-button-remove-title="Borrar"
-                                            data-ratio="4:4"
+                                            data-ratio="1:1"
                                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                            data-size="100,100"
+                                            data-size="120,120"
                                             style="background:#e6e6e6">
                                             <input type="file" name="image"/>
                                         </div>
@@ -1131,25 +1132,24 @@ if(isset($users)){
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <select name="countryCode" class="form-control" autocomplete="off" required>
-                                                <option value="+54" {{ auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
-                                                <option value="+56" {{ auth()->user()->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
-                                                <option value="+57" {{ auth()->user()->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
-                                                <option value="+52" {{ auth()->user()->countryCode == '+52' ? 'selected' : '' }}>Mexico (+52)</option>
-                                                <option value="+51" {{ auth()->user()->countryCode == '+51' ? 'selected' : '' }}>Peru (+51)</option>
-                                                <option value="+507" {{ auth()->user()->countryCode == '+507' ? 'selected' : '' }}>Panama (+507)</option>
-                                                <option value="+34" {{ auth()->user()->countryCode == '+34' ? 'selected' : '' }}>España (+34)</option>
-                                                <option value="+598" {{ auth()->user()->countryCode == '+598' ? 'selected' : '' }}>Uruguay (+598)</option>
-                                                <option value="+1" {{ auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
+                                                <option value="+54">Argentina (+54)</option>
+                                                <option value="+56">Chile (+56)</option>
+                                                <option value="+57">Colombia (+57)</option>
+                                                <option value="+52">Mexico (+52)</option>
+                                                <option value="+51">Perú (+51)</option>
+                                                <option value="+507">Panama (+507)</option>
+                                                <option value="+34">España (+34)</option>
+                                                <option value="+598">Uruguay (+598)</option>
+                                                <option value="+1">USA (+1)</option>
                                             </select>
                                         </div>
-                                        <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off" required>
+                                        <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group mb-3">
                                         <label for="type">Typo de cuenta:</label>
-                                        <select name="type" id="type_id" class="form-control" autocomplete="off" required>
-                                            <option value="" selected>Seleccionar una...</option>
+                                        <select name="type_id" id="type_id" class="form-control" autocomplete="off" required>
                                             <option value="1">Usuario</option>
                                             <option value="2">Vendedor</option>
                                             <option value="3">Administrador</option>
@@ -1166,12 +1166,16 @@ if(isset($users)){
                                     <label for="state" >Región</label>
                                     <select id="state" name="region_id" class="form-control" autocomplete="off" required>
                                         <option value="" selected>Selecciona uno...</option>
-                                        <option value="1">Usuario</option>
+                                        @if($regions)
+                                            @foreach ($regions as $region)
+                                                <option value="{{$region->id}}" @if(auth()->user()->region_id == $region->id) selected="true" @endif>{{$region->name}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputZip">Zip</label>
-                                    <input type="text" name "zip" class="form-control" id="inputZip" value="" autocomplete="off" required> 
+                                    <input type="text" name="zip" class="form-control" id="inputZip" value="" autocomplete="off" required> 
                                 </div>
                             </div>
 
@@ -1219,7 +1223,56 @@ $(document).ready(function(){
 	// $('#first-table').DataTable({
     //     "pageLength": 100 // Configura el número de elementos por página
     // });
-
+    //Datos al modal Editar Blog
+    $(document).on('click', '.edit-button', function () {
+        var item = $(this).data("item");
+        //console.log('entra click',item)
+        var id = item.id; // Obtener el ID de la categoría
+        var form = $('#ModalEditOne form'); // Obtener el formulario del modal
+        form.attr('action', 'accounts/' + id);
+        $.each(item, function (key, value) {
+            //console.log('ddd',value)
+            if (key == 'name') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value); 
+            }
+            if (key == 'company') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value); 
+            }
+            if (key == 'email') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value);
+            }
+            if (key == 'cel') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value);
+            }
+            if (key == 'city') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value);
+            }
+            if (key == 'zip') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value);
+            }
+            if (key == 'region_id') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value);
+            }
+            if (key == 'address') { // Verificar si el atributo de datos comienza con 'field'
+                form.find('[name="' + key + '"]').val(value);
+            }
+            if (key == 'image') { 
+                if (value) {
+                    $('#slimEdit').slim('load','/assets/images/users/'+value); 
+                }
+            }
+            if (key == 'countryCode') { 
+                form.find('[name="' + key + '"]').val(value);
+            }
+            if (key == 'type_id') { 
+                form.find('[name="' + key + '"]').val(value);
+            }
+            if (key == 'active') { 
+                form.find('[name="' + key + '"]').val(value);
+            }
+        });
+        //form.attr('action', 'blog/' + id);
+    });
 
 
     // Manejar el evento de cambio para todos los checkboxes en el mismo grupo
@@ -1231,6 +1284,14 @@ $(document).ready(function(){
         } else {
             // Habilitar los otros dos checkboxes en el mismo grupo
             $(this).closest('.form-group').find('.form-check-input').not(this).prop('disabled', false);
+        }
+    });
+
+    $('.slim-btn-remove').click(function(){
+        var secondParent = $(this).parent().parent();
+        var hiddenInput = secondParent.find('input[type="hidden"]');
+        if (hiddenInput.length > 0) {
+            hiddenInput.val("empty");//en el input hidden le ponemos = empty
         }
     });
 

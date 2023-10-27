@@ -28,9 +28,9 @@
                     <div class="slim rounded-circle" id="slimEdit"
                         data-button-edit-title="Editar"
                         data-button-remove-title="Borrar"
-                        data-ratio="2:2"
+                        data-ratio="1:1"
                         data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                        data-size="110,110"
+                        data-size="120,120"
                         style="width: 150px;margin: auto;height: 150px;">
                         <input type="file" name="image"/>
                         @if(auth()->user()->image)
@@ -92,11 +92,12 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <select name="countryCode" class="form-control" autocomplete="off" required>
+                                            <option value="" selected>Seleccione uno...</option>
                                             <option value="+54" {{ auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
                                             <option value="+56" {{ auth()->user()->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
                                             <option value="+57" {{ auth()->user()->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
                                             <option value="+52" {{ auth()->user()->countryCode == '+52' ? 'selected' : '' }}>Mexico (+52)</option>
-                                            <option value="+51" {{ auth()->user()->countryCode == '+51' ? 'selected' : '' }}>Peru (+51)</option>
+                                            <option value="+51" {{ auth()->user()->countryCode == '+51' ? 'selected' : '' }}>Perú (+51)</option>
                                             <option value="+507" {{ auth()->user()->countryCode == '+507' ? 'selected' : '' }}>Panama (+507)</option>
                                             <option value="+34" {{ auth()->user()->countryCode == '+34' ? 'selected' : '' }}>España (+34)</option>
                                             <option value="+598" {{ auth()->user()->countryCode == '+598' ? 'selected' : '' }}>Uruguay (+598)</option>
@@ -132,15 +133,9 @@
                                 <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" autocomplete="off" required> 
                             </div>
                         </div>
-                    <!-- <div class="form-row">
-                        <div class="form-group col-md-12">
-                        <label for="feDescription">Description</label>
-                        <textarea class="form-control" name="feDescription" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
-                        </div>
-                    </div> -->
-                    <button type="submit" class="btn btn-accent">Actualizar Cuenta</button>
-                    </form>
-                </div>
+                        <button type="submit" class="btn btn-accent">Actualizar Cuenta</button>
+                        </form>
+                    </div>
                 </div>
             </li>
             </ul>

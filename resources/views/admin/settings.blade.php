@@ -1429,12 +1429,13 @@
                             <label for="cel">Cel - WhatsApp:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <select name="countryCode" class="form-control" autocomplete="off">
+                                    <select name="countryCode" class="form-control" autocomplete="off" required>
+                                        <option value="" selected>Seleccione uno...</option>
                                         <option value="+54" {{ $web->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
                                         <option value="+56" {{ $web->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
                                         <option value="+57" {{ $web->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
                                         <option value="+52" {{ $web->countryCode == '+52' ? 'selected' : '' }}>Mexico (+52)</option>
-                                        <option value="+51" {{ $web->countryCode == '+51' ? 'selected' : '' }}>Peru (+51)</option>
+                                        <option value="+51" {{ $web->countryCode == '+51' ? 'selected' : '' }}>Perú (+51)</option>
                                         <option value="+507" {{ $web->countryCode == '+507' ? 'selected' : '' }}>Panama (+507)</option>
                                         <option value="+34" {{ $web->countryCode == '+34' ? 'selected' : '' }}>España (+34)</option>
                                         <option value="+598" {{ $web->countryCode == '+598' ? 'selected' : '' }}>Uruguay (+598)</option>
