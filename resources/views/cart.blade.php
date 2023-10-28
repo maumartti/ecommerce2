@@ -147,17 +147,20 @@
 									<span class="stext-112 cl8">
 										Empresa de envío <img src="/assets/images/local_shipping.png" style="position: relative;top: -1.4px;width:19px;">
 									</span>
-									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-									<select name="company_id" id="companySelect" class="js-select2" autocomplete="off" required>
-											<option value="">Seleccione una...</option>
+
+									<div class=" bg0 m-b-12 m-t-9" id="companiesContainer">
 											@if(auth()->check() && auth()->user()->region_id)
 													@foreach ($regions->find(auth()->user()->region_id)->companies as $company)
-															<option value="{{ $company->id }}">{{ $company->name }}</option>
+															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+																<label class="form-check-label" for="{{ $company->id }}">
+																		<input type="radio" class="form-check-input" id="{{ $company->id }}" name="company_id" value="{{ $company->id }}" style="top: 6px !important;">
+																		<img src="/assets/images/companies/{{ $company->image }}" style="width: 100px;"> {{ $company->name }}
+																	</label>
+															</div>
 													@endforeach
 											@endif
-									</select>
-										<div class="dropDownSelect2"></div>
 									</div>
+
 									
 									<!-- <div class="flex-w">
 										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
@@ -214,46 +217,37 @@
 		});
 
 	
-	//al cambiar select region cambia el select empresa de envio si tiene esa region
+	//al cambiar select region , carga todos las empresas de envio de la nueva region selecionada
 	$(document).ready(function() {
     $('#regionSelect').on('change', function() {
         var regionId = $(this).val();
-        var $companySelect = $('#companySelect');
-        
-        // Limpiar el select de compañías antes de cargar nuevas opciones
-        $companySelect.empty();
-        
+        var $companyContainer = $('#companiesContainer');
+        // Limpiar el contenedor de compañías antes de cargar nuevas opciones
+        $companyContainer.empty();
         // Verificar si la región seleccionada tiene compañías
         if (regionId) {
             var companies = {!! json_encode($regions->pluck('companies', 'id')) !!};
-            
+
             if (companies[regionId]) {
                 $.each(companies[regionId], function(index, company) {
-                    $companySelect.append($('<option>', {
-                        value: company.id,
-                        text: company.name
-                    }));
+                    // Crear la estructura HTML para cada compañía en el formato deseado
+                    var companyHtml = '<div class="form-check pb-2 bor8 p-l-12 p-t-4">';
+                    companyHtml += '<label class="form-check-label" for="' + company.id + '">';
+                    companyHtml += '<input type="radio" class="form-check-input" id="' + company.id + '" name="company_id" value="' + company.id + '" style="top: 6px !important;">';
+                    companyHtml += '<img src="/assets/images/companies/' + company.image + '" style="width: 100px;"> ' + company.name;
+                    companyHtml += '</label>';
+                    companyHtml += '</div>';
+
+                    // Agregar la estructura HTML de la compañía al contenedor de compañías
+                    $companyContainer.append(companyHtml);
                 });
             }
         }
     });
-    
-    // Cargar automáticamente la compañía seleccionada si auth()->user()->region_id tiene una company asociada
-    // var $companySelect = $('#companySelect');
-    // var regionId = $('#regionSelect').val();
-    
-    // if (regionId) {
-    //     var companies = {!! json_encode($regions->pluck('companies', 'id')) !!};
-    //     var selectedCompany = companies[regionId][0]; // Supongamos que quieres la primera compañía de la lista
-        
-    //     if (selectedCompany) {
-    //         $companySelect.append($('<option>', {
-    //             value: selectedCompany.id,
-    //             text: selectedCompany.name
-    //         }));
-    //     }
-    // }
 });
+
+
+    
 
 	</script>
 @endsection
