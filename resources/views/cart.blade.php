@@ -22,7 +22,7 @@
 	<form class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-7 col-lg-7 m-b-50">
+				<div class="col-sm-7 col-lg-12 m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
@@ -84,7 +84,7 @@
 					</div>
 				</div>
 
-				<div class="col-sm-12 col-lg-5 m-b-50">
+				<div class="col-sm-12 col-lg-12 m-b-50">
 					<div class="bor10 m-l-25 m-r--38 m-lr-0-xl p-t-35 p-b-20 p-lr-40">
 						<h4 class="mtext-109 cl2 p-b-30">
 							Resumen
@@ -104,25 +104,61 @@
 							</div>
 						</div>
 
+
+
+						<!-- seccion datos cliente -->
 						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
 							<div class="size-208 w-full-ssm">
 								<span class="stext-110 cl2">
-									Envío:
+									Datos del cliente:
 								</span>
 							</div>
 
 							<div class="size-209 p-r-0-sm w-full-ssm">
-								<p class="stext-111 cl6 p-t-2">
-									There are no shipping methods available. Please double check your address, or contact us if you need any help.
-								</p>
+								<!-- <p class="stext-111 cl6 p-t-2">
+								Si no hay métodos de envío disponibles. Por favor verifique su dirección o contáctenos si necesita ayuda.
+								</p> -->
 								
 								<div class="p-t-15">
 									<span class="stext-112 cl8">
-										Información de envío
+										Información básica
 									</span>
 
-									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-										<select name="region" id="regionSelect" class="js-select2" autocomplete="off">
+									<div class="bor8 bg0 m-b-12">
+										<input type="text" name="name" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Nombre y apellido" autocomplete="off" required>
+									</div>
+
+									<div class="bor8 bg0 m-b-22">
+										<input type="text" name="rut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="RUT" autocomplete="off">
+									</div>
+
+									<div class="bor8 bg0 m-b-22">
+										<input type="email" name="email" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" autocomplete="off">
+									</div>
+
+									<div class="bor8 bg0 m-b-22">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<select name="countryCode" class="form-control w-100" autocomplete="off" required>
+													<!-- <option value="" selected>Seleccione uno...</option> -->
+													<option value="+56" {{ auth()->check() && auth()->user()->countryCode == '+56' ? 'selected' : 'selected' }}>Chile (+56)</option>
+													<option value="+54" {{ auth()->check() && auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
+													<option value="+57" {{ auth()->check() && auth()->user()->countryCode == '+57' ? 'selected' : '' }}>Colombia (+57)</option>
+													<option value="+52" {{ auth()->check() && auth()->user()->countryCode == '+52' ? 'selected' : '' }}>Mexico (+52)</option>
+													<option value="+51" {{ auth()->check() && auth()->user()->countryCode == '+51' ? 'selected' : '' }}>Perú (+51)</option>
+													<option value="+507" {{ auth()->check() && auth()->user()->countryCode == '+507' ? 'selected' : '' }}>Panama (+507)</option>
+													<option value="+34" {{ auth()->check() && auth()->user()->countryCode == '+34' ? 'selected' : '' }}>España (+34)</option>
+													<option value="+598" {{ auth()->check() && auth()->user()->countryCode == '+598' ? 'selected' : '' }}>Uruguay (+598)</option>
+													<option value="+1" {{ auth()->check() && auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
+												</select>
+											</div>
+											<input type="text" id="cel" name="cel" value="@if(auth()->check() && auth()->user()->cel) {{auth()->user()->cel}} @endif" class="form-control" maxlength="20" pattern="[0-9]*"  placeholder="Teléfono / Cel" autocomplete="off" required>
+										</div>
+									</div>
+
+									<!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+										<select name="region" id="regionSelect" class="js-select2" autocomplete="off" required>
+											<option value="">Selecciona tu región...</option>
 										@if($regions)
 												@foreach ($regions as $region)
 														<option value="{{$region->id}}" @if(auth()->check() && auth()->user()->region_id == $region->id) selected @endif>{{$region->name}}</option>
@@ -137,50 +173,174 @@
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="text" name="postcode" value="@if(auth()->check() && auth()->user()->zip) {{auth()->user()->zip}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Codigo postal / Zip" autocomplete="off">
-									</div>
-
-									<div class="bor8 bg0 m-b-22">
 										<textarea name="address" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" autocomplete="off">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
-									</div>
-
-									<span class="stext-112 cl8">
-										Empresa de envío <img src="/assets/images/local_shipping.png" style="position: relative;top: -1.4px;width:19px;">
-									</span>
-
-									<div class=" bg0 m-b-12 m-t-9" id="companiesContainer">
-											@if(auth()->check() && auth()->user()->region_id)
-													@foreach ($regions->find(auth()->user()->region_id)->companies as $company)
-															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
-																<label class="form-check-label" for="{{ $company->id }}">
-																		<input type="radio" class="form-check-input" id="{{ $company->id }}" name="company_id" value="{{ $company->id }}" style="top: 6px !important;">
-																		<img src="/assets/images/companies/{{ $company->image }}" style="width: 100px;"> {{ $company->name }}
-																	</label>
-															</div>
-													@endforeach
-											@endif
-									</div>
-
-									
-									<!-- <div class="flex-w">
-										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-											Actualizar Costos
-										</div>
 									</div> -->
+
 										
 								</div>
 							</div>
 						</div>
 
+
+
+						<!-- seccion envios -->
+						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+							<div class="size-208 w-full-ssm">
+								<span class="stext-110 cl2">
+									Envío:
+								</span>
+							</div>
+
+							<div class="size-209 p-r-0-sm w-full-ssm">
+								<span class="stext-112 cl8">
+										Como retiras tu compra
+								</span>
+								<div class="bg0 m-b-12 m-t-9" id="">
+									<div class="row">
+										<div class="col-6 pr-0">
+											<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+												<input type="radio" class="form-check-input formaship" id="shipp-1" name="shipping" value="local" style="top: 6px !important;left: 26px;" autocomplete="off">
+												<label class="form-check-label" for="shipp-1">
+													Retiro en local <img src="/assets/images/box.png" style="position: relative;top: -1.4px;width:19px;">
+												</label>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+												<input type="radio" class="form-check-input formaship" id="shipp-2" name="shipping" value="envio" style="top: 6px !important;left: 26px;" autocomplete="off">
+												<label class="form-check-label" for="shipp-2">
+													Qué me lo envíen <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;">
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<div id="contEnvio" style="display: none;">
+									<p class="stext-111 cl6 p-t-10 alert alert-info">
+										Todos los envíos tienen un costo base de <strong>$5000</strong> pesos chilenos
+									</p>
+									
+									<div class="p-t-15">
+										<span class="stext-112 cl8">
+											Información de envío
+										</span>
+
+										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+											<select name="region" id="regionSelect" class="js-select2" autocomplete="off" required>
+												<option value="">Selecciona tu región...</option>
+											@if($regions)
+													@foreach ($regions as $region)
+															<option value="{{$region->id}}" @if(auth()->check() && auth()->user()->region_id == $region->id) selected @endif>{{$region->name}}</option>
+													@endforeach
+											@endif
+											</select>
+											<div class="dropDownSelect2"></div>
+										</div>
+
+										<div class="bor8 bg0 m-b-12">
+											<input type="text" name="city" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" autocomplete="off">
+										</div>
+
+										<div class="bor8 bg0 m-b-22">
+											<input type="text" name="postcode" value="@if(auth()->check() && auth()->user()->zip) {{auth()->user()->zip}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Código postal / Zip" autocomplete="off">
+										</div>
+
+										<div class="bor8 bg0 m-b-22">
+											<textarea name="address" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" autocomplete="off">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
+										</div>
+
+										<span class="stext-112 cl8">
+											Selecciona Empresa de envío <img src="/assets/images/local_shipping.png" style="position: relative;top: -1.4px;width:19px;">
+										</span>
+										<div class=" bg0 m-b-32 m-t-9" id="companiesContainer">
+												@if(auth()->check() && auth()->user()->region_id)
+														@foreach ($regions->find(auth()->user()->region_id)->companies as $company)
+																<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+																	<label class="form-check-label" for="{{ $company->id }}">
+																			<input type="radio" class="form-check-input" id="{{ $company->id }}" name="company_id" value="{{ $company->id }}" style="top: 10px !important;" autocomplete="off">
+																			<img src="/assets/images/companies/{{ $company->image }}" style="width: 100px;"> {{ $company->name }}
+																		</label>
+																</div>
+														@endforeach
+												@endif
+										</div>
+									</div>
+									<!-- <div class="flex-w">
+										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
+											Actualizar Costos
+										</div>
+									</div> -->
+								</div>
+
+
+							</div>
+						</div>
+
+
+					<!-- seccion forma de pago -->
+					<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+							<div class="size-208 w-full-ssm">
+								<span class="stext-110 cl2">
+									Método de pago:
+								</span>
+							</div>
+							<div class="size-209 p-r-0-sm w-full-ssm">
+								<!-- <p class="stext-111 cl6 p-t-2">
+								Si no hay métodos de envío disponibles. Por favor verifique su dirección o contáctenos si necesita ayuda.
+								</p> -->
+								
+								<div class="p-t-15">
+									<span class="stext-112 cl8">
+										Información de pago
+									</span>
+
+									<span class="stext-112 cl8">
+										Selecciona Método de Pago <img src="/assets/images/credit.png" style="position: relative;top: -1.4px;width:19px;">
+									</span>
+									<div class=" bg0 m-b-12 m-t-9" id="">
+										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+											<label class="form-check-label" for="method-1">
+													<input type="radio" class="form-check-input" id="method-1" name="pay_method" value="mercadopago" style="top: 6px !important;" autocomplete="off">
+													<img src="/assets/images/mercadopago.png" class="ml-2" style="width: 100px;">
+												</label>
+										</div>
+										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+											<label class="form-check-label" for="method-2">
+													<input type="radio" class="form-check-input" id="method-2" name="pay_method" value="webpay" style="top: 6px !important;" autocomplete="off">
+													<img src="/assets/images/webpay.png" class="ml-2" style="width: 100px;">
+												</label>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+
+						<!-- seccion total -->
+						<div class="flex-w flex-t p-t-27 p-b-5" id="priceShipping" style="display:none;">
+								<div class="size-208">
+									<span class="mtext-101 cl2">
+										Envío:
+									</span>
+								</div>
+								<div class="size-209 p-t-1">
+									<span class="mtext-110 cl2">
+									$5.000
+									</span>
+								</div>
+						</div>
 						<div class="flex-w flex-t p-t-27 p-b-33">
 							<div class="size-208">
 								<span class="mtext-101 cl2">
 									Total:
 								</span>
 							</div>
-
 							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
+								<span class="mtext-110 cl2" id="totalPriceDisplay">
 								${{ session()->has('totalPrice') ? str_replace(',', '.', number_format(session('totalPrice'), 0, '.', ',')) : '0' }}
 								</span>
 							</div>
@@ -233,7 +393,7 @@
                     // Crear la estructura HTML para cada compañía en el formato deseado
                     var companyHtml = '<div class="form-check pb-2 bor8 p-l-12 p-t-4">';
                     companyHtml += '<label class="form-check-label" for="' + company.id + '">';
-                    companyHtml += '<input type="radio" class="form-check-input" id="' + company.id + '" name="company_id" value="' + company.id + '" style="top: 6px !important;">';
+                    companyHtml += '<input type="radio" class="form-check-input" id="' + company.id + '" name="company_id" value="' + company.id + '" style="top: 10px !important;">';
                     companyHtml += '<img src="/assets/images/companies/' + company.image + '" style="width: 100px;"> ' + company.name;
                     companyHtml += '</label>';
                     companyHtml += '</div>';
@@ -243,11 +403,28 @@
                 });
             }
         }
-    });
+		});
+
+
+		// muestra oculta div envio o retiro local
+		$('.formaship').change(function() {
+			$('#contEnvio, #priceShipping').toggle(this.value === 'envio');
+
+			var currentPrice = $('#totalPriceDisplay').text();
+			var currentPriceValue = parseInt(currentPrice.replace(/[^\d]/g, '')); // Usar parseInt
+
+			if (this.value === 'envio') {
+				var newPriceValue = currentPriceValue + 5000;
+			} else {
+				var newPriceValue = currentPriceValue - 5000; // Restar $5000 si no se selecciona 'envio'
+			}
+
+			var newPriceString = '$' + newPriceValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+			$('#totalPriceDisplay').text(newPriceString);
+		});
+
+
+
 });
-
-
-    
-
-	</script>
+</script>
 @endsection

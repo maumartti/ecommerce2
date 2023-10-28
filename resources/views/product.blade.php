@@ -33,6 +33,13 @@
 <meta name="twitter:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
 <meta name="twitter:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
 
+<style>
+@media (max-width: 576px) {
+  #modal-stock{
+    text-align: center;
+  }
+}
+</style>
 @endsection
 
 @section('content')
@@ -144,9 +151,9 @@
 						<!--  -->
 						<div class="p-t-20">           
 								<div class="flex-w flex-r-m p-b-10">
-										<div id="modal-cont-cart" class="size-204 flex-w flex-m respon6-next">
+										<div id="modal-cont-cart" class="size-204 flex-w flex-m mx-auto">
 											@if($product->stock > 0)
-												<div class="wrap-num-product flex-w m-l-20 m-tb-20">
+												<div class="wrap-num-product flex-w m-l-20 m-tb-20 mx-auto">
 														<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 																<i class="fs-16 zmdi zmdi-minus"></i>
 														</div>
@@ -155,7 +162,7 @@
 																<i class="fs-16 zmdi zmdi-plus"></i>
 														</div>
 													</div>
-												<button id="modal-btn-cart" data-product-id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+												<button id="modal-btn-cart" data-product-id="" class="mx-auto flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 														Agregar al carrito
 												</button>
 											@endif
@@ -165,16 +172,16 @@
 										@endif
 								</div>	
 						</div>
-						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m  p-l-10 m-l-11">
+						<div class="flex-w flex-m p-t-40 text-center">
+								<div class="flex-m m-l-11 m-auto">
 										<a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
 												<i class="zmdi zmdi-favorite"></i> Agregar a favoritos
 										</a>
 								</div>
 						</div>
-						<div class="p-t-50 p-l-35">
-								<div class="text-center pb-2" style="padding-right: 65px;"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
-								<div class="p-l-56">
+						<div class="p-t-50 text-center">
+								<div class="text-center pb-2"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
+								<div class="text-center">
 										<!-- Botón de Facebook -->
 										<a id="linkFacebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/{{$product->url}}" class="social-button facebook" target="_blank">
 												<i class="fa fa-facebook"></i>
