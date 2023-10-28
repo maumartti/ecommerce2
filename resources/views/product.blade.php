@@ -139,7 +139,7 @@
 							{{$product->description}}
 						</p>
 						<div id="modal-stock" class="mtext-106 cl2 p-t-30">
-								Stock: 0
+								Stock: {{$product->stock}}
 						</div>
 						<!--  -->
 						<div class="p-t-20">           
