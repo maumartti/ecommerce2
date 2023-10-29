@@ -77,7 +77,7 @@
 								</div> -->
 							</div>
 
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+							<div onclick="location.reload();" class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 								Actualizar Carrito
 							</div>
 						</div>
@@ -105,7 +105,7 @@
 						</div>
 
 
-
+						@if(!empty(session('cart', [])))
 						<!-- seccion datos cliente -->
 						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
 							<div class="size-208 w-full-ssm">
@@ -180,9 +180,8 @@
 								</div>
 							</div>
 						</div>
-
-
-
+						
+						
 						<!-- seccion envios -->
 						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
 							<div class="size-208 w-full-ssm">
@@ -277,7 +276,7 @@
 
 							</div>
 						</div>
-
+							
 
 					<!-- seccion forma de pago -->
 					<div class="flex-w flex-t bor12 p-t-15 p-b-30">
@@ -292,10 +291,9 @@
 								</p> -->
 								
 								<div class="p-t-15">
-									<span class="stext-112 cl8">
+									<!-- <span class="stext-112 cl8">
 										Información de pago
-									</span>
-
+									</span> -->
 									<span class="stext-112 cl8">
 										Selecciona Método de Pago <img src="/assets/images/credit.png" style="position: relative;top: -1.4px;width:19px;">
 									</span>
@@ -310,6 +308,12 @@
 											<label class="form-check-label" for="method-2">
 													<input type="radio" class="form-check-input" id="method-2" name="pay_method" value="webpay" style="top: 6px !important;" autocomplete="off">
 													<img src="/assets/images/webpay.png" class="ml-2" style="width: 100px;">
+												</label>
+										</div>
+										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+											<label class="form-check-label" for="method-3">
+													<input type="radio" class="form-check-input" id="method-3" name="pay_method" value="banco" style="top: 6px !important;" autocomplete="off">
+													<img src="/assets/images/banco.jpg" class="ml-2" style="width: 125px;">
 												</label>
 										</div>
 									</div>
@@ -346,10 +350,20 @@
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+						<button class="flex-c-m stext-101 cl0 size-116 bg1 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							Completar Pedido
 						</button>
+						@else
+						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+							<div class="size-208 w-full-ssm">
+								<span class="stext-110 cl2">
+									Carrito Vacio
+								</span>
+							</div>
+						</div>
+						@endif
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -406,19 +420,16 @@
 		});
 
 
-		// muestra oculta div envio o retiro local
+		// muestra oculta div envio o retiro local - y suma el precio de envio al total
 		$('.formaship').change(function() {
 			$('#contEnvio, #priceShipping').toggle(this.value === 'envio');
-
 			var currentPrice = $('#totalPriceDisplay').text();
 			var currentPriceValue = parseInt(currentPrice.replace(/[^\d]/g, '')); // Usar parseInt
-
 			if (this.value === 'envio') {
 				var newPriceValue = currentPriceValue + 5000;
 			} else {
 				var newPriceValue = currentPriceValue - 5000; // Restar $5000 si no se selecciona 'envio'
 			}
-
 			var newPriceString = '$' + newPriceValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 			$('#totalPriceDisplay').text(newPriceString);
 		});

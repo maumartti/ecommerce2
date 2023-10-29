@@ -391,50 +391,50 @@
             </h3>
         </div>
         <div class="container-fluid p-0">
-				<div id="productCarousel" class="carousel slide" data-ride="carousel" data-interval="12000">
-						<div class="carousel-inner row w-100 mx-auto flex-nowrap" role="listbox">
-								@if (isset($productsPromo) && $productsPromo)
-										@foreach ($productsPromo as $index => $product)
-                                            <div class="carousel-item pl-1 col-md-3 isotope-item p-0 @if ($loop->first) active @endif">
-                                                <!-- Contenido del producto -->
-                                                <div class="block2">
-                                                        <div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
-                                                                <img src="/assets/images/products/{{ $product->image1 }}" alt="{{ $product->name }}">
-                                                                <a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                                                        Ver
-                                                                </a>
-                                                        </div>
-                                                        <div class="block2-txt flex-w flex-t p-t-14">
-                                                                <div class="block2-txt-child1 flex-col-l">
-                                                                        <a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                                                {{ $product->name }}
-                                                                        </a>
-                                                                        <span class="stext-105 cl3">
-                                                                            <strong>${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</strong>
-                                                                        </span>
-                                                                </div>
-                                                                <div class="block2-txt-child2 flex-r p-t-3">
-                                                                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
-                                                                                <img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-                                                                                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-                                                                        </a>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                            </div>
-										@endforeach
-								@endif
-						</div>
-						<a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev" style="left: -1.5rem;">
-								<i class="zmdi zmdi-caret-left rot" style="font-size: 12rem;color:grey;"></i>
-								<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next text-faded" href="#productCarousel" role="button" data-slide="next" style="right: -1.5rem;">
-								<i class="zmdi zmdi-caret-right rot" style="font-size: 12rem;color:grey;"></i>
-								<span class="sr-only">Next</span>
-						</a>
-					</div>
-			</div>
+            <div id="productCarousel" class="carousel slide" data-ride="carousel" data-interval="12000">
+                <div class="carousel-inner row w-100 mx-auto flex-nowrap" role="listbox">
+                    @if (isset($productsPromo) && $productsPromo)
+                        @foreach ($productsPromo as $index => $product)
+                            <div class="carousel-item pl-1 col-md-3 isotope-item p-0 @if ($loop->first) active @endif">
+                                <!-- Contenido del producto -->
+                                <div class="block2">
+                                    <div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
+                                        <img src="/assets/images/products/{{ $product->image1 }}" alt="{{ $product->name }}">
+                                        <a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                        Ver
+                                        </a>
+                                    </div>
+                                    <div class="block2-txt flex-w flex-t p-t-14">
+                                        <div class="block2-txt-child1 flex-col-l">
+                                            <a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                {{ $product->name }}
+                                            </a>
+                                            <span class="stext-105 cl3">
+                                                <strong>${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</strong>
+                                            </span>
+                                        </div>
+                                        <div class="block2-txt-child2 flex-r p-t-3">
+                                            <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
+                                                <img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
+                                                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+                <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev" style="left: -1.5rem;">
+                    <i class="zmdi zmdi-caret-left rot" style="font-size: 12rem;color:grey;"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next text-faded" href="#productCarousel" role="button" data-slide="next" style="right: -1.5rem;">
+                    <i class="zmdi zmdi-caret-right rot" style="font-size: 12rem;color:grey;"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
     </div>
 	</section>
 
@@ -711,72 +711,72 @@
 <script>
 //al Abrir modal Prdocuto cargar info
 $(document).ready(function () {
-		$(".js-show-modal1").click(function (e) {
-            e.preventDefault(); // Evita que el enlace redirija
+    $(".js-show-modal1").click(function (e) {
+        e.preventDefault(); // Evita que el enlace redirija
 
-            // Obtén el objeto JSON del atributo data-product y analízalo
-            var productData = $(this).attr("data-product");
-            var product = JSON.parse(productData);
+        // Obtén el objeto JSON del atributo data-product y analízalo
+        var productData = $(this).attr("data-product");
+        var product = JSON.parse(productData);
 
-            // Ahora puedes acceder a las propiedades del producto en JavaScript
-            console.log('moda product');
-            console.log(product);
+        // Ahora puedes acceder a las propiedades del producto en JavaScript
+        console.log('moda product');
+        console.log(product);
 
-            //links share sociales
-            $("#linkFacebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
-            $("#linkWhatsapp").attr('href', 'https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
-            $("#linkTwitter").attr('href', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
-            $("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+        //links share sociales
+        $("#linkFacebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+        $("#linkWhatsapp").attr('href', 'https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+        $("#linkTwitter").attr('href', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+        $("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
 
 
 
-            $("#modal-btn-cart").attr('data-product-id', product.id);
-            $("#modal-name").text(product.name);
-            $("#addFavoriteLink").attr('data-item',product.name);
-            var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-            $("#modal-price").text('$'+price);
-            if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
-            $("#modal-description").text(product.description); 
-            $("#modal-stock").text('Stock: '+product.stock);
-            $("#modal-cant").attr('max', product.stock);
-            $("#modal-cant").val(1);
-            $("#modal-cant-sum").attr('data-max', product.stock);
-            if(product.stock == 0){
-                $("#modal-cont-cart").hide();
-                $("#modal-no-stock").show();
-                
-            }else{
-                $("#modal-no-stock").hide();
-                $("#modal-cont-cart").show();
-            }
+        $("#modal-btn-cart").attr('data-product-id', product.id);
+        $("#modal-name").text(product.name);
+        $("#addFavoriteLink").attr('data-item',product.name);
+        var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
+        $("#modal-price").text('$'+price);
+        if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
+        $("#modal-description").text(product.description); 
+        $("#modal-stock").text('Stock: '+product.stock);
+        $("#modal-cant").attr('max', product.stock);
+        $("#modal-cant").val(1);
+        $("#modal-cant-sum").attr('data-max', product.stock);
+        if(product.stock == 0){
+            $("#modal-cont-cart").hide();
+            $("#modal-no-stock").show();
+            
+        }else{
+            $("#modal-no-stock").hide();
+            $("#modal-cont-cart").show();
+        }
 
-            // Agrega las imagenes del producto al modal
-            var imagenes = $(".slick3-dots img");
-            imagenes.each(function (index, elemento) {
-                    var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
-                    if (product[propiedadImagen] !== null) {
-                        $(elemento).show();
-                        $(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
-                        $("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
-                        $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
-                    }else{
-                        // $(elemento).remove();
-                        // $("#img-modal"+propiedadImagen).remove();
-                        // $("#modal-image"+propiedadImagen).remove();
-                        $(elemento).attr("src", '/assets/images/no-image2.png');
-                        $("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
-                        $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
-                    }
-            });
+        // Agrega las imagenes del producto al modal
+        var imagenes = $(".slick3-dots img");
+        imagenes.each(function (index, elemento) {
+                var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
+                if (product[propiedadImagen] !== null) {
+                    $(elemento).show();
+                    $(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+                    $("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+                    $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
+                }else{
+                    // $(elemento).remove();
+                    // $("#img-modal"+propiedadImagen).remove();
+                    // $("#modal-image"+propiedadImagen).remove();
+                    $(elemento).attr("src", '/assets/images/no-image2.png');
+                    $("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
+                    $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
+                }
+        });
 
-            // Abre el modal
-            $(".wrap-modal1").show();
-		});
+        // Abre el modal
+        $(".wrap-modal1").show();
+    });
 
-		// Cierra el modal cuando se hace clic en el botón de cerrar
-		$(".js-hide-modal1").click(function () {
-				$(".wrap-modal1").hide();
-		});
+    // Cierra el modal cuando se hace clic en el botón de cerrar
+    $(".js-hide-modal1").click(function () {
+            $(".wrap-modal1").hide();
+    });
 });
 </script>
 

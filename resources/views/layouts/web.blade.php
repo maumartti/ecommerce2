@@ -104,6 +104,16 @@
 	.st-cmp-settings{
 		display:none !important;
 	}
+	@media (max-width: 768px) {
+	.swal-button-container{
+		margin:0px 3px;
+	}
+  .swal-button {
+		padding:10px 5px;
+    font-size: 14px; /* Tamaño de fuente para dispositivos pequeños */
+  }
+}
+	
 </style>
 
 

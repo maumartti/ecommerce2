@@ -152,9 +152,10 @@ class WebController extends Controller
             $product->save();
         }
         $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('promo', 1)->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
-        return view('product')->with('web',$web)->with('product',$product)->with('productsViews',$productsViews)->with('categories',$categories)->with('subcategories',$subcategories);
+        return view('product')->with('web',$web)->with('product',$product)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('categories',$categories)->with('subcategories',$subcategories);
     }
     public function category(Request $request, $urlCat){
         $web = Web::find(1);

@@ -207,10 +207,8 @@
 				</div>
 			</div>
 
-			<div class="bor10 m-t-50 p-t-43 p-b-40">
-				<!-- Tab01 -->
+			<!-- <div class="bor10 m-t-50 p-t-43 p-b-40">
 				<div class="tab01">
-					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
 							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Descripción</a>
@@ -225,9 +223,7 @@
 						</li>
 					</ul>
 
-					<!-- Tab panes -->
 					<div class="tab-content p-t-43">
-						<!-- - -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
@@ -236,7 +232,6 @@
 							</div>
 						</div>
 
-						<!-- - -->
 						<div class="tab-pane fade" id="information" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
@@ -295,12 +290,10 @@
 							</div>
 						</div>
 
-						<!-- - -->
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<div class="p-b-30 m-lr-15-sm">
-										<!-- Review -->
 										<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
 												<img src="/assets/theme/images/avatar-01.jpg" alt="AVATAR">
@@ -327,7 +320,7 @@
 											</div>
 										</div>
 										
-										<!-- Add review -->
+
 										<form class="w-full">
 											<h5 class="mtext-108 cl2 p-b-7">
 												Add a review
@@ -379,7 +372,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
@@ -401,35 +394,33 @@
 		<div class="container">
 			<div class="p-b-45">
 				<h3 class="ltext-106 cl5 txt-center">
-					Produtos relacionados
+					Produtos destacados
 				</h3>
 			</div>
 
 			<!-- Slide2 -->
 			<div class="wrap-slick2">
 				<div class="slick2">
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+				@if (isset($productsPromo) && $productsPromo)
+					@foreach ($productsPromo as $index => $product)
+					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15  @if ($loop->first) active @endif {{$product->category_id}} @if($product->promo == 1) populares @endif @if($product->new == 1) new @endif @if($product->size) size-{{$product->size}} @endif @if($product->kilos) kilos-{{$product->kilos}} @endif @if($product->color) color-{{$product->color}} @endif @if($product->tags) @foreach(json_decode($product->tags) as $tag) tag-{{$tag}} @endforeach @endif" data-id="{{$product->id}}" data-price="{{$product->price}}" data-sales="{{$product->sales}}">
 						<!-- Block2 -->
 						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="/assets/theme/images/product-01.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
+							<div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New"" >
+								<img src="/assets/images/products/{{ $product->image1 }}" alt="{{ $product->name }}">
+								<a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+									Ver
 								</a>
 							</div>
-
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
+									<a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									{{ $product->name }}
 									</a>
-
 									<span class="stext-105 cl3">
-										$16.64
+									${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}
 									</span>
 								</div>
-
 								<div class="block2-txt-child2 flex-r p-t-3">
 									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
 										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
@@ -439,230 +430,10 @@
 							</div>
 						</div>
 					</div>
+					@endforeach
+				@endif
 
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="/assets/theme/images/product-02.jpg" alt="IMG-PRODUCT">
 
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Herschel supply
-									</a>
-
-									<span class="stext-105 cl3">
-										$35.31
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
-										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="/assets/theme/images/product-03.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Only Check Trouser
-									</a>
-
-									<span class="stext-105 cl3">
-										$25.50
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="/assets/theme/images/product-04.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Classic Trench Coat
-									</a>
-
-									<span class="stext-105 cl3">
-										$7.00
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
-										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="/assets/theme/images/product-05.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Front Pocket Jumper
-									</a>
-
-									<span class="stext-105 cl3">
-										$340
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
-										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="/assets/theme/images/product-06.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Vintage Inspired Classic 
-									</a>
-
-									<span class="stext-105 cl3">
-										$93.20
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
-										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="/assets/theme/images/product-07.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Shirt in Stretch Cotton
-									</a>
-
-									<span class="stext-105 cl3">
-										$52.66
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
-										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="/assets/theme/images/product-08.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Pieces Metallic Printed
-									</a>
-
-									<span class="stext-105 cl3">
-										$18.96
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
-										<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -685,7 +456,7 @@
                 <div class="col-md-6 col-lg-7 p-b-30">
                     <div class="p-l-25 p-r-30 p-lr-0-lg">
                         <div class="wrap-slick3 flex-sb flex-w">
-                            <div class="wrap-slick3-dots"></div>
+                            <div class="wrap-slick3-dots dots-two"></div>
                             <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
                             <div class="slick3 gallery-lb">
                                 <div id="img-modal1" class="item-slick3" data-thumb="/assets/images/no-image2.png" >
@@ -754,18 +525,18 @@
                             $0
                         </span>
 
-												<p id="modal-category" class="stext-102 cl3 p-t-30">
-													<strong></strong>
+                        <p id="modal-category" class="stext-102 cl3 p-t-30">
+												<strong></strong>
 												</p>
 												
-                        <p id="modal-description" class="stext-102 cl3 p-t-23">
+                        <p id="modal-description" class="stext-102 cl3 p-t-15">
 													Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
                         </p>
 
-												<div id="modal-stock" class="mtext-106 cl2 p-t-23">
+												<div id="modal-stock-modal" class="mtext-106 cl2 p-t-23">
 														Stock: 0
 												</div>
-                        <div class="p-t-33">
+                        <div class="p-t-23">
                             <!-- <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-203 flex-c-m respon6">
                                     Size
@@ -818,7 +589,7 @@
                                         Agregar al carrito
                                     </button>
                                 </div>
-																<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
+							    <h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
                             </div>	
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -827,18 +598,29 @@
                                     <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
                                 </a>
                             </div>
-
-                            <!-- <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-                                <i class="fa fa-google-plus"></i>
-                            </a> -->
+                        </div>
+                        <div class="p-t-40 p-l-35">
+                            <div class="text-center pb-2" style="padding-right: 65px;"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
+                            <div class="p-l-56">
+                                <!-- Botón de Facebook -->
+                                <a id="linkFacebook" href="https://www.facebook.com/tu-pagina" class="social-button facebook" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <!-- Botón de WhatsApp -->
+                                <a id="linkWhatsapp" href="https://api.whatsapp.com/send?text=Visita%20mi%20p%C3%A1gina:%20https%3A%2F%2Fwww.tu-pagina.com" class="social-button whatsapp" target="_blank">
+                                    <i class="fa fa-whatsapp"></i>
+                                </a>
+                                <!-- Botón de Twitter -->
+                                <a id="linkTwitter" href="https://twitter.com/tu-usuario-o-pagina" class="social-button twitter" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="position: relative;top: 4px;">
+                                        <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                                    </svg>
+                                </a>
+                                <!-- Botón de Telegram -->
+                                <a id="linkTelegram" href="https://t.me/tu-canal" class="social-button telegram" target="_blank">
+                                    <i class="fa fa-telegram"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -855,48 +637,55 @@
 <script>
 //al Abrir modal Prdocuto cargar info
 $(document).ready(function () {
-		$(".js-show-modal1").click(function (e) {
-				e.preventDefault(); // Evita que el enlace redirija
+	$(".js-show-modal1").click(function (e) {
+		e.preventDefault(); // Evita que el enlace redirija
 
-				// Obtén el objeto JSON del atributo data-product y analízalo
-				var productData = $(this).attr("data-product");
-				var product = JSON.parse(productData);
+		// Obtén el objeto JSON del atributo data-product y analízalo
+		var productData = $(this).attr("data-product");
+		var product = JSON.parse(productData);
 
-				// Ahora puedes acceder a las propiedades del producto en JavaScript
-				console.log('moda product');
-				console.log(product);
+		// Ahora puedes acceder a las propiedades del producto en JavaScript
+		console.log('moda product');
+		console.log(product);
+
+		//links share sociales
+		$("#linkFacebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+		$("#linkWhatsapp").attr('href', 'https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+		$("#linkTwitter").attr('href', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+		$("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
 
 
-				$("#modal-btn-cart").attr('data-product-id', product.id);
-				$("#modal-name").text(product.name);
-				$("#addFavoriteLink").attr('data-item',product.name);
-				var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-				$("#modal-price").text('$'+price);
-				if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
-				$("#modal-description").text(product.description);
-				$("#modal-stock").text('Stock: '+product.stock);
-				$("#modal-cant").attr('max', product.stock);
-				$("#modal-cant").val(1);
-				$("#modal-cant-sum").attr('data-max', product.stock);
-				if(product.stock == 0){
-					$("#modal-cont-cart").hide();
-					$("#modal-no-stock").show();
-					
-				}else{
-					$("#modal-no-stock").hide();
-					$("#modal-cont-cart").show();
-				}
 
-				// Agrega las imagenes del producto al modal
-				var imagenes = $(".slick3-dots img");
-				imagenes.each(function (index, elemento) {
+		$("#modal-btn-cart").attr('data-product-id', product.id);
+		$("#modal-name").text(product.name);
+		$("#addFavoriteLink").attr('data-item',product.name);
+		var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
+		$("#modal-price").text('$'+price);
+		if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
+		$("#modal-description").text(product.description); 
+		$("#modal-stock-modal").text('Stock: '+product.stock);
+		$("#modal-cant").attr('max', product.stock);
+		$("#modal-cant").val(1);
+		$("#modal-cant-sum").attr('data-max', product.stock);
+		if(product.stock == 0){
+				$("#modal-cont-cart").hide();
+				$("#modal-no-stock").show();
+				
+		}else{
+				$("#modal-no-stock").hide();
+				$("#modal-cont-cart").show();
+		}
+
+		// Agrega las imagenes del producto al modal
+		var imagenes = $(".dots-two img");
+		imagenes.each(function (index, elemento) {
 						var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
 						if (product[propiedadImagen] !== null) {
 								$(elemento).show();
 								$(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
 								$("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
 								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
-							}else{
+						}else{
 								// $(elemento).remove();
 								// $("#img-modal"+propiedadImagen).remove();
 								// $("#modal-image"+propiedadImagen).remove();
@@ -904,16 +693,16 @@ $(document).ready(function () {
 								$("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
 								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
 						}
-				});
-
-				// Abre el modal
-				$(".wrap-modal1").show();
 		});
 
-		// Cierra el modal cuando se hace clic en el botón de cerrar
-		$(".js-hide-modal1").click(function () {
-				$(".wrap-modal1").hide();
-		});
+		// Abre el modal
+		$(".wrap-modal1").show();
+	});
+
+	// Cierra el modal cuando se hace clic en el botón de cerrar
+	$(".js-hide-modal1").click(function () {
+			$(".wrap-modal1").hide();
+	});
 });
 </script>
 
