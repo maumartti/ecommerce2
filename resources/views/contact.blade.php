@@ -57,7 +57,7 @@
 							</span>
 
 							<p class="stext-115 cl6 size-213 p-t-18">
-							Av. Obispo Manuel Umaña 299, 9160000 Estación Central, Región Metropolitana, Chile 
+							{{$web->address ? $web->address : 'Av. Alfredo Acuña 922, 9160000 Estación Central, Región Metropolitana, Chile '}}
 							</p>
 						</div>
 					</div>
@@ -73,7 +73,10 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								+1 800 1236879
+								@php
+										$phone = ($web->cel && $web->countryCode) ? $web->countryCode . ' ' . $web->cel : '+56 94362741';
+								@endphp
+    						<a href="tel:{{ preg_replace('/[^0-9]/', '', $phone) }}">{{ $phone }}</a>
 							</p>
 						</div>
 					</div>
@@ -89,7 +92,10 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								contact@example.com
+								@php
+										$email = ($web->email) ? $web->email : 'contact@example.com';
+								@endphp
+								<a href="mailto:{{ $email }}">{{ $email }}</a>
 							</p>
 						</div>
 					</div>

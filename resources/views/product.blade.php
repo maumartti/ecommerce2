@@ -172,36 +172,40 @@
 										@endif
 								</div>	
 						</div>
-						<div class="flex-w flex-m p-t-40 text-center">
-								<div class="flex-m m-l-11 m-auto">
-										<a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
-												<i class="zmdi zmdi-favorite"></i> Agregar a favoritos
-										</a>
-								</div>
-						</div>
-						<div class="p-t-50 text-center">
-								<div class="text-center pb-2"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
-								<div class="text-center">
-										<!-- Botón de Facebook -->
-										<a id="linkFacebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/{{$product->url}}" class="social-button facebook" target="_blank">
-												<i class="fa fa-facebook"></i>
-										</a>
-										<!-- Botón de WhatsApp -->
-										<a id="linkWhatsapp" href="https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/item/{{$product->url}}" class="social-button whatsapp" target="_blank">
-												<i class="fa fa-whatsapp"></i>
-										</a>
-										<!-- Botón de Twitter -->
-										<a id="linkTwitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/{{$product->url}}" class="social-button twitter" target="_blank">
-												<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="position: relative;top: 4px;">
-														<path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
-												</svg>
-										</a>
-										<!-- Botón de Telegram -->
-										<a id="linkTelegram" href="https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/{{$product->url}}" class="social-button telegram" target="_blank">
-												<i class="fa fa-telegram"></i>
-										</a>
-								</div>
-						</div>
+						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+									<div class="flex-m  p-l-10 m-l-11">
+											<a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
+													<i class="zmdi zmdi-favorite"></i> Agregar a favoritos
+											</a>
+									</div>
+							</div>
+							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+									<div class="flex-m  p-l-10 m-l-11">
+											<div class="text-center pb-2" style="padding-right: 65px;"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
+									</div>    
+									<div class="flex-m">
+											<div class="">
+													<!-- Botón de Facebook -->
+													<a id="linkFacebook" href="https://www.facebook.com/tu-pagina" class="social-button facebook" target="_blank">
+															<i class="fa fa-facebook"></i>
+													</a>
+													<!-- Botón de WhatsApp -->
+													<a id="linkWhatsapp" href="https://api.whatsapp.com/send?text=Visita%20mi%20p%C3%A1gina:%20https%3A%2F%2Fwww.tu-pagina.com" class="social-button whatsapp" target="_blank">
+															<i class="fa fa-whatsapp"></i>
+													</a>
+													<!-- Botón de Twitter -->
+													<a id="linkTwitter" href="https://twitter.com/tu-usuario-o-pagina" class="social-button twitter" target="_blank">
+															<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="position: relative;top: 4px;">
+																	<path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+															</svg>
+													</a>
+													<!-- Botón de Telegram -->
+													<a id="linkTelegram" href="https://t.me/tu-canal" class="social-button telegram" target="_blank">
+															<i class="fa fa-telegram"></i>
+													</a>
+											</div>
+									</div>
+							</div>
 					
 					</div>
 				</div>
@@ -589,7 +593,7 @@
                                         Agregar al carrito
                                     </button>
                                 </div>
-							    <h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
+							    							<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
                             </div>	
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -657,7 +661,7 @@ $(document).ready(function () {
 
 
 		$("#modal-btn-cart").attr('data-product-id', product.id);
-		$("#modal-name").text(product.name);
+		$("#modal-name").html('<a class="cl2" href="/item/'+product.url+'" >'+product.name+'</a>');
 		$("#addFavoriteLink").attr('data-item',product.name);
 		var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
 		$("#modal-price").text('$'+price);

@@ -244,7 +244,7 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="/assets/images/avatars/1.jpg" alt="User Avatar">
-                    <span class="d-none d-md-inline-block">{{auth()->user()->name}}</span>
+                    <span class="d-none d-md-inline-block">@if(auth()->check()) {{auth()->user()->name}} @else user @endif</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item" href="/admin/profile">

@@ -221,7 +221,7 @@
 								@if($productsPromo)
 								@foreach ($productsPromo as $item)
 								<li class="flex-w flex-t p-b-30">
-									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
+									<a href="/item/{{$item->url}}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
 										<img src="/assets/images/products/{{$item->image1}}" alt="PRODUCT" style="width: 90px;">
 									</a>
 									<div class="size-215 flex-col-t p-t-8">

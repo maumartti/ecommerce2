@@ -25,7 +25,7 @@
 				<div class="col-sm-7 col-lg-12 m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
-							<table class="table-shopping-cart">
+							<table class="table-shopping-cart header-cart-wrapitem">
 								<tr class="table_head">
 									<th class="column-1">Producto</th>
 									<th class="column-2"></th>
@@ -34,8 +34,9 @@
 									<th class="column-5">Total</th>
 									<th class="column-5">Borrar</th>
 								</tr>
-								@foreach(session('cart', []) as $item)
-								<tr class="table_row">
+								@if(session()->has('cart'))
+								@foreach (session('cart') as $item)
+								<tr product-id="{{$item['id']}}"  class="header-cart-item table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
 											<img src="/assets/images/products/{{ $item['image1'] }}" alt="IMG">
@@ -64,6 +65,7 @@
 									</td>
 								</tr>
 								@endforeach
+								@endif
 
 								
 							</table>
@@ -98,7 +100,7 @@
 							</div>
 
 							<div class="size-209">
-								<span class="mtext-110 cl2">
+								<span class="productId header-cart-subtotal mtext-110 cl2">
 								${{ session()->has('totalPrice') ? str_replace(',', '.', number_format(session('totalPrice'), 0, '.', ',')) : '0' }}
 								</span>
 							</div>
@@ -344,7 +346,7 @@
 								</span>
 							</div>
 							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2" id="totalPriceDisplay">
+								<span class="mtext-110 cl2 header-cart-subtotal" id="totalPriceDisplay">
 								${{ session()->has('totalPrice') ? str_replace(',', '.', number_format(session('totalPrice'), 0, '.', ',')) : '0' }}
 								</span>
 							</div>
@@ -433,7 +435,6 @@
 			var newPriceString = '$' + newPriceValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 			$('#totalPriceDisplay').text(newPriceString);
 		});
-
 
 
 });

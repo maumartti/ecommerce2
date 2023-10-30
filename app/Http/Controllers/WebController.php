@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
@@ -24,8 +25,8 @@ class WebController extends Controller
         $web = Web::find(1);
         $profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
         //$feed = [];
-        $feed = $profile->refreshFeed(4);
-        //$feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
+        //$feed = $profile->refreshFeed(4);
+        $feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
         //dd($feed);
         $products = Product::orderBy('created_at', 'desc')->with('category', 'subcategory')->get();
         $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
@@ -49,6 +50,12 @@ class WebController extends Controller
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         return view('contact')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+    }
+    public function register()
+    {
+        if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
+        $web = Web::find(1);
+        return view('auth.register')->with('web', $web);
     }
     public function about()
     {

@@ -30,6 +30,7 @@ Route::post('/clear-cart', [App\Http\Controllers\WebController::class, 'clearCar
 Route::post('/actualizar-carrito/{productId}', [App\Http\Controllers\WebController::class, 'actualizarCarrito'])->name('actualizarCarrito');
 Route::post('/message', [App\Http\Controllers\MessageController::class, 'store']);
 Route::post('/subscriber', [App\Http\Controllers\SubscriberController::class, 'store']);
+Route::get('/registro', [App\Http\Controllers\WebController::class, 'register'])->name('registro');
 Auth::routes();
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {

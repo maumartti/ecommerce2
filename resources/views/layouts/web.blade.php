@@ -39,16 +39,16 @@
 
 <style>
 	.quit-cart:hover, .hov-tag1:hover, .js-addedwish-detail, .filter-link-active, .filter-link:hover, .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
-		color: {{ $web->color }} !important;
+		color: {{ isset($web) ? $web->color : 'black' }} !important;
   }
 	.block2-btn:hover{
 		color: white !important;
 	}
   .bg1 , .btn-back-to-top, .btn-back-to-top:hover, .icon-header-noti::after, .loader05, .swal-button, .icon-header-noti::after, .btn-back-to-top, .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after, .main-menu-m {
-		background-color: {{ $web->color }} ;
+		background-color: {{ isset($web) ? $web->color : 'black' }} ;
   }
   .hov-btn3:hover, .filter-link-active, .hov-tag1:hover, .filter-link:hover, .show-search:hover::after, .show-filter:hover::after, .loader05{
-    border-color: {{ $web->color }} ;
+    border-color: {{ isset($web) ? $web->color : 'black' }} ;
   }
   /* Add styles for your floating WhatsApp button */
   .floating-whatsapp {
@@ -177,9 +177,11 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						@guest
+						<a href="/registro" class="flex-c-m trans-04 p-lr-25">
 							Registro
 						</a>
+						@endguest
 
 						<a href="/login" class="flex-c-m trans-04 p-lr-25">
 							Admin
@@ -302,9 +304,11 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						@guest
+						<a href="/registro" class="flex-c-m p-lr-10 trans-04">
 							Registro
 						</a>
+						@endguest
 
 						<a href="/login" class="flex-c-m p-lr-10 trans-04">
 							Admin
@@ -426,11 +430,11 @@
 					</div>
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							Ver Carrito
+							Ver Carrito <i class="zmdi zmdi-shopping-cart ml-2"></i>
 						</a>
-						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+						<!-- <a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Completar compra
-						</a>
+						</a> -->
 					</div>
 				</div>
 			</div>
@@ -504,22 +508,22 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-          Av. Obispo Manuel Umaña 299, 9160000 Estación Central, Región Metropolitana, Chile
+          {{$web->address ? $web->address : 'Av. Afredo Acuña, 9160000 Estación Central, Región Metropolitana, Chile '}}
 					</p>
 
 					<div class="p-t-27">
-						<a href="https://www.facebook.com/ImportadoraTatarSpA/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="{{$web->facebook ? $web->facebook : 'https://www.facebook.com'}}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="https://www.instagram.com/importadora_tatar/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="{{$web->instagram ? $web->instagram : 'https://www.instagram.com'}}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-instagram"></i>
 						</a>
 
-						<a href="https://g.co/kgs/cXg3UX" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="{{$web->google ? $web->google : 'https://www.google.com'}}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-google"></i>
 						</a>
-						<a href="https://www.tiktok.com/@importadora_tatar" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="{{$web->tiktok ? $web->tiktok : 'https://www.tiktok.com'}}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="top: 2px;position: relative;" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#b2b2b2}</style><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
 						</a>
 					</div>
@@ -843,9 +847,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											title: nameProduct,
 											text: "Agregado al carrito !",
 											icon: "success",
-											buttons: ['Ir al carrito', 'Seguir comprando']
+											buttons: ['Seguir comprando','Ir al carrito']
 									}).then((value) => {
-										if (value === null) {
+										if (value !== null) {
 												console.log('redirect carrito')
 												window.location.href = '/carrito';
 										}
@@ -912,10 +916,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 							if (data.status == 'success') {
 									//$.toastr.success('Agregado con éxito');
 									//swal(nameProduct, "Agregado al carrito !", "success");
-									btnQuit.parents('.header-cart-item').remove();
+									$(".header-cart-item[product-id='"+productId+"']").remove();
         					$('.js-show-cart').attr('data-notify',data.totalCart);
 									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
         					$('.header-cart-total').text('Total: '+totalPriceFormatted);
+        					$('.header-cart-subtotal').text('$'+totalPriceFormatted);
+									if (totalPriceFormatted == 0 && window.location.pathname === '/carrito') {//recarga la web si es /carrito y preciototal = 0
+        						window.location.reload();
+    							}
 							} else {
 									// Maneja el caso de error si es necesario
 									//$.toastr.error('Error al agregar');
