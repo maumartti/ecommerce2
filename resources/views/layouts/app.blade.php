@@ -103,84 +103,115 @@
           </form> -->
           <div class="nav-wrapper">
             <ul class="nav flex-column">
+              @if(auth()->user()->type_id == 3)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/home">
                   <i class="material-icons">dashboard</i>
                   <span>Resumen</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/admin/categories">
-                  <i class="material-icons">view_comfy_alt</i>
-                  <span>Cateogrías</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/admin/products">
-                  <i class="material-icons">vertical_split</i>
-                  <span>Productos</span>
-                </a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link " href="/admin/purchases">
-                  <i class="material-icons">note_add</i>
-                  <span>Compras</span>
-                </a>
-              </li> -->
-              <li class="nav-item">
-                <a class="nav-link " href="/admin/payments">
-                  <i class="material-icons">view_module</i>
-                  <span>Ventas</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/admin/shipping">
-                  <i class="material-icons">local_shipping</i>
-                  <span>Envíos</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/admin/accounts">
-                  <i class="material-icons">table_chart</i>
-                  <span>Usuarios</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/admin/activity">
-                  <i class="material-icons">app_registration</i>
-                  <span>Registro de Actividades</span>
-                </a>
-              </li>
+              @endif
+              @if(auth()->user()->userType->profile_show == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/profile">
                   <i class="material-icons">person</i>
                   <span>Mi Perfil</span>
                 </a>
               </li>
+              @endif
+              @if(auth()->user()->userType->category_show == 1)
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/categories">
+                  <i class="material-icons">view_comfy_alt</i>
+                  <span>Cateogrías</span>
+                </a>
+              </li>
+              @endif
+              @if(auth()->user()->userType->product_show == 1)
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/products">
+                  <i class="material-icons">vertical_split</i>
+                  <span>Productos</span>
+                </a>
+              </li>
+              @endif
+              @if(auth()->user()->userType->purchases_show == 1)
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/purchases">
+                  <i class="material-icons">note_add</i>
+                  <span>Compras</span>
+                </a>
+              </li>
+              @endif
+              @if(auth()->user()->userType->sales_show == 1)
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/payments">
+                  <i class="material-icons">view_module</i>
+                  <span>Ventas</span>
+                </a>
+              </li>
+              @endif
+              @if(auth()->user()->userType->shipping_show == 1)
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/shipping">
+                  <i class="material-icons">local_shipping</i>
+                  <span>Envíos</span>
+                </a>
+              </li>
+              @endif
+              @if(auth()->user()->userType->user_show  == 1)
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/accounts">
+                  <i class="material-icons">table_chart</i>
+                  <span>Usuarios</span>
+                </a>
+              </li>
+              @endif
+              @if(auth()->user()->userType->activity_show == 1)
+              <li class="nav-item">
+                <a class="nav-link " href="/admin/activity">
+                  <i class="material-icons">app_registration</i>
+                  <span>Registro de Actividades</span>
+                </a>
+              </li>
+              @endif
+              @if(auth()->user()->userType->blog_show  == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/blog">
                   <i class="material-icons">vertical_split</i>
                   <span>Blog</span>
                 </a>
               </li>
+              @endif
+              @if(auth()->user()->userType->message_show  == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/message">
                   <i class="material-icons">chat</i>
                   <span>Mensajes</span>
                 </a>
               </li>
+              @endif
+              @if(auth()->user()->userType->subscriber_show  == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/subscriber">
                   <i class="material-icons">card_membership</i>
                   <span>Suscriptores</span>
                 </a>
               </li>
+              @endif
+              @if(auth()->user()->userType->general_slider_show == 1 ||
+              auth()->user()->userType->general_logo_show  == 1 ||
+              auth()->user()->userType->general_color_show   == 1 ||
+              auth()->user()->userType->general_contact_show   == 1 ||
+              auth()->user()->userType->general_filter_show   == 1 ||
+              auth()->user()->userType->general_about_show  == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/settings">
                   <i class="material-icons">settings</i>
                   <span>Generales Web</span>
                 </a>
               </li>
+              @endif
               <li class="nav-item">
                 <a class="nav-link active" href="/">
                   <i class="material-icons">web</i>
@@ -210,10 +241,11 @@
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="nav-link-icon__wrapper">
                       <i class="material-icons">&#xE7F4;</i>
-                      <span class="badge badge-pill badge-danger">2</span>
+                      <!-- <span class="badge badge-pill badge-danger">2</span> -->
                     </div>
                   </a>
-                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
+                  <!-- nofificaciones de campana -->
+                  <!-- <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="#">
                       <div class="notification__icon-wrapper">
                         <div class="notification__icon">
@@ -239,7 +271,7 @@
                       </div>
                     </a>
                     <a class="dropdown-item notification__all text-center" href="#"> View all Notifications </a>
-                  </div>
+                  </div> -->
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -249,12 +281,16 @@
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item" href="/admin/profile">
                       <i class="material-icons">&#xE7FD;</i> Profile</a>
+                    @if(auth()->user()->userType->blog_show == 1)
                     <a class="dropdown-item" href="/admin/blog">
                       <i class="material-icons">vertical_split</i> Blog Posts</a>
+                    @endif  
                     <!-- <a class="dropdown-item" href="/admin/about">
                       <i class="material-icons">badge</i> Nosotros</a> -->
+                    @if(auth()->user()->userType->message_show == 1)  
                     <a class="dropdown-item" href="/admin/messages">
                       <i class="material-icons">chat</i> Mensajes</a>
+                    @endif  
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{ route('logout') }}" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

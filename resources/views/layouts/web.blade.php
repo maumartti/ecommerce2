@@ -429,8 +429,8 @@
 						Total: ${{ str_replace(',', '.', number_format(session('totalPrice', 0), 0, ',', '.')) }}
 					</div>
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							Ver Carrito <i class="zmdi zmdi-shopping-cart ml-2"></i>
+						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg1 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							Completar pedido <i class="zmdi zmdi-shopping-cart ml-2"></i>
 						</a>
 						<!-- <a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Completar compra
@@ -826,8 +826,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		//funcion agregar al carrito click
 		/*---------------------------------------------*/
 		$('.js-addcart-detail').on('click', function(){
-			console.log('click add cart');
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').find('a').text();
+			console.log('click add cart', nameProduct);
 			var productId = $(this).attr('data-product-id');
 			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
 			var quantity = $('#modal-cant').val(); //

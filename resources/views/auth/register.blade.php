@@ -15,7 +15,8 @@
 				</div>
 		@endif
 			<div class="flex-w flex-tr mt-5">
-				<div class="bor10 p-t-55 m-auto col-md-6 col-sm-12">
+                <div class="bor10 p-t-35 m-auto col-md-6 col-sm-12">
+                    <h4 class="pl-3 pb-5">Regístrate como usuario <svg xmlns="http://www.w3.org/2000/svg" style="position:relative;top:4px;" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/></svg></h4>
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -82,7 +83,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4 pt-4 m-auto">
                                     <button type="submit" class="flex-c-m stext-101 cl0 size-116 bg1 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-                                        Registrarme
+                                    Registrarme
                                     </button>
                                 </div>
                             </div>
