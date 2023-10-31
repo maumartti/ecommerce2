@@ -837,7 +837,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script>
 $(document).ready(function () {
 
-		sessionFavorites = @json(session('favorites'));//GLOBAL VARIABLE session con favoritos
+	 sessionFavorites = @json(session('favorites') ?? []);//GLOBAL VARIABLE session con favoritos
 
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
@@ -890,8 +890,10 @@ $(document).ready(function () {
 											//quite el elemento y aAgrega el nuevo elemento al carrito
 											$('.header-favorite-wrapitem li[product-id="' + favItem.id + '"]').remove();
 											$('.header-favorite-wrapitem').append(favItemHtml);
+											$(".js-addwish-b2[data-product-id='"+productId+"']").addClass('js-addedwish-b2');
 											sessionFavorites = data.sessionFavorites;//session con favoritos actualizada
 											$("#contAddFavoriteModal").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
+											$("#contAddFavorite").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
 										}
 								} else {
 										// Maneja el caso de error si es necesario
@@ -912,8 +914,8 @@ $(document).ready(function () {
 		//quitar item de Favoritos
 		/*---------------------------------------------*/
 		$('.header-favorite-wrapitem').on('click', '.quit-favorite', function() {
-			console.log('click quit favorite');
-			//var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var nameProduct = $('.js-name-detail').find('a').text();
+			console.log('click quit favorite', nameProduct);
 			var btnQuit = $(this);
 			var productId = $(this).attr('product-id');
 			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
@@ -932,6 +934,7 @@ $(document).ready(function () {
         					$('.js-show-favorites').attr('data-notify',data.totalFav);
 									$(".js-addwish-b2[data-product-id='"+productId+"']").removeClass('js-addedwish-b2');
 									sessionFavorites = data.sessionFavorites;//session con favoritos actualizada
+									$("#contAddFavorite").html('<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="'+nameProduct+'" data-product-id="'+productId+'" data-tooltip="Agregar"><i class="zmdi zmdi-favorite"></i> Agregar a favoritos </div>');
 							} else {
 									// Maneja el caso de error si es necesario
 									//$.toastr.error('Error al agregar');

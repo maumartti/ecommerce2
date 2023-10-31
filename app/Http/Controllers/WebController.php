@@ -321,10 +321,11 @@ class WebController extends Controller
 
     public function quitToFavorite(Request $request, $productId) {
         $favorites = session()->get('favorites', []);
-        $productIndex = null;
+        //$product = null;
         foreach ($favorites as $key => $item) {
             if ($item['id'] == $productId) {
                 unset($favorites[$key]);
+                //$product = $favorites[$key];
                 break;
             }
         }

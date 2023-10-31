@@ -131,7 +131,7 @@
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-0 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							{{$product->name}}
+							<a class="cl2" href="#">{{$product->name}}</a>
 						</h4>
 						
 						<span class="mtext-106 cl2">
@@ -173,10 +173,10 @@
 								</div>	
 						</div>
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-									<div class="flex-m  p-l-10 m-l-11">
-											<a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
+									<div id="contAddFavorite" class="flex-m  p-l-10 m-l-11">
+											<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="{{$product->name}}" data-product-id="{{$product->id}}" data-tooltip="Agregar">
 													<i class="zmdi zmdi-favorite"></i> Agregar a favoritos
-											</a>
+											</div>
 									</div>
 							</div>
 							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -597,10 +597,10 @@
                             </div>	
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                            <div class="flex-m  p-l-10 m-l-11">
-                                <a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
+												<div id="contAddFavoriteModal" class="flex-m  p-l-10 m-l-11">
+                                <div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar">
                                     <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
-                                </a>
+                                </div>
                             </div>
                         </div>
                         <div class="p-t-40 p-l-35">
@@ -648,6 +648,17 @@ $(document).ready(function () {
 		var productData = $(this).attr("data-product");
 		var product = JSON.parse(productData);
 
+		//buscamos en la session de favoritos si ya esta agregado el item y cambiamos su link
+		///sessionFavorites con favoritos variable global en -> (web.blade)
+		var isProductInFavorites = Object.values(sessionFavorites).some(item => item.id === product.id);
+		console.log('sessiones-fav',sessionFavorites)
+		if (isProductInFavorites) {
+				$("#contAddFavoriteModal").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
+		} else {
+				// Si no está en la lista, dejarlo como está
+				$("#contAddFavoriteModal").html('<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar"><i class="zmdi zmdi-favorite"></i> Agregar a favoritos </div>');
+		}
+
 		// Ahora puedes acceder a las propiedades del producto en JavaScript
 		console.log('moda product');
 		console.log(product);
@@ -659,10 +670,10 @@ $(document).ready(function () {
 		$("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
 
 
-
 		$("#modal-btn-cart").attr('data-product-id', product.id);
 		$("#modal-name").html('<a class="cl2" href="/item/'+product.url+'" >'+product.name+'</a>');
 		$("#addFavoriteLink").attr('data-item',product.name);
+		$("#addFavoriteLink").attr('data-product-id',product.id);
 		var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
 		$("#modal-price").text('$'+price);
 		if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
@@ -674,7 +685,6 @@ $(document).ready(function () {
 		if(product.stock == 0){
 				$("#modal-cont-cart").hide();
 				$("#modal-no-stock").show();
-				
 		}else{
 				$("#modal-no-stock").hide();
 				$("#modal-cont-cart").show();
@@ -713,28 +723,28 @@ $(document).ready(function () {
 
 
 <script>
-  //codigo de rotor de destacados
-    $(document).ready(function(){
-      $('#carouselExample').on('slide.bs.carousel', function (e) {
-      var $e = $(e.relatedTarget);
-      var idx = $e.index();
-      var itemsPerSlide = 4;
-      var totalItems = $('.carousel-item').length;
+//codigo de rotor de destacados
+$(document).ready(function(){
+	$('#carouselExample').on('slide.bs.carousel', function (e) {
+		var $e = $(e.relatedTarget);
+		var idx = $e.index();
+		var itemsPerSlide = 4;
+		var totalItems = $('.carousel-item').length;
 
-      if (idx >= totalItems-(itemsPerSlide-1)) {
-          var it = itemsPerSlide - (totalItems - idx);
-          for (var i=0; i<it; i++) {
-              // append slides to end
-              if (e.direction=="left") {
-                  $('.carousel-item').eq(i).appendTo('.carousel-inner');
-              }
-              else {
-                  $('.carousel-item').eq(0).appendTo('.carousel-inner');
-              }
-          }
-      }
-      });
-    });
+		if (idx >= totalItems-(itemsPerSlide-1)) {
+				var it = itemsPerSlide - (totalItems - idx);
+				for (var i=0; i<it; i++) {
+						// append slides to end
+						if (e.direction=="left") {
+								$('.carousel-item').eq(i).appendTo('.carousel-inner');
+						}
+						else {
+								$('.carousel-item').eq(0).appendTo('.carousel-inner');
+						}
+				}
+		}
+	});
+});
 </script>
 
 @endsection
