@@ -85,7 +85,7 @@
 										</span>
 									</div>
 									<div class="block2-txt-child2 flex-r p-t-3">
-										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
+										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 {{ session('favorites') && collect(session('favorites'))->contains('id', $product->id) ? 'js-addedwish-b2' : '' }}" data-item="{{$product->name}}" data-product-id="{{$product->id}}">
 											<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
 											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
 										</a>
@@ -254,14 +254,14 @@
                                         Agregar al carrito
                                     </button>
                                 </div>
-																<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
+								<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
                             </div>	
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                            <div class="flex-m  p-l-10 m-l-11">
-                                <a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
+                            <div id="contAddFavoriteModal" class="flex-m  p-l-10 m-l-11">
+                                <div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar">
                                     <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
-                                </a>
+                                </div>
                             </div>
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -306,99 +306,111 @@
 <script>
 //al Abrir modal Prdocuto cargar info
 $(document).ready(function () {
-		$(".js-show-modal1").click(function (e) {
-				e.preventDefault(); // Evita que el enlace redirija
+    $(".js-show-modal1").click(function (e) {
+        e.preventDefault(); // Evita que el enlace redirija
 
-				// Obtén el objeto JSON del atributo data-product y analízalo
-				var productData = $(this).attr("data-product");
-				var product = JSON.parse(productData);
-
-				// Ahora puedes acceder a las propiedades del producto en JavaScript
-				console.log('moda product');
-				console.log(product);
-
-				//links share sociales
-				$("#linkFacebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
-				$("#linkWhatsapp").attr('href', 'https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
-				$("#linkTwitter").attr('href', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
-				$("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+        // Obtén el objeto JSON del atributo data-product y analízalo
+        var productData = $(this).attr("data-product");
+        var product = JSON.parse(productData);
 
 
-				$("#modal-btn-cart").attr('data-product-id', product.id);
-				$("#modal-name").html('<a class="cl2" href="/item/'+product.url+'" >'+product.name+'</a>');
-				$("#addFavoriteLink").attr('data-item',product.name);
-				var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-				$("#modal-price").text('$'+price);
-				if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
-				$("#modal-description").text(product.description);
-				$("#modal-stock").text('Stock: '+product.stock);
-				$("#modal-cant").attr('max', product.stock);
-				$("#modal-cant").val(1);
-				$("#modal-cant-sum").attr('data-max', product.stock);
-				if(product.stock == 0){
-					$("#modal-cont-cart").hide();
-					$("#modal-no-stock").show();
-					
-				}else{
-					$("#modal-no-stock").hide();
-					$("#modal-cont-cart").show();
-				}
+        //buscamos en la session de favoritos si ya esta agregado el item y cambiamos su link
+        ///sessionFavorites con favoritos variable global en -> (web.blade)
+        var isProductInFavorites = Object.values(sessionFavorites).some(item => item.id === product.id);
+        console.log('sessiones-fav',sessionFavorites)
+        if (isProductInFavorites) {
+            $("#contAddFavoriteModal").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
+        } else {
+            // Si no está en la lista, dejarlo como está
+            $("#contAddFavoriteModal").html('<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar"><i class="zmdi zmdi-favorite"></i> Agregar a favoritos </div>');
+        }
+        
+        // Ahora puedes acceder a las propiedades del producto en JavaScript
+        console.log('moda product');
+        console.log(product);
 
-				// Agrega las imagenes del producto al modal
-				var imagenes = $(".slick3-dots img");
-				imagenes.each(function (index, elemento) {
-						var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
-						if (product[propiedadImagen] !== null) {
-								$(elemento).show();
-								$(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
-								$("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
-								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
-							}else{
-								// $(elemento).remove();
-								// $("#img-modal"+propiedadImagen).remove();
-								// $("#modal-image"+propiedadImagen).remove();
-								$(elemento).attr("src", '/assets/images/no-image2.png');
-								$("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
-								$("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
-						}
-				});
+        //links share sociales
+        $("#linkFacebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+        $("#linkWhatsapp").attr('href', 'https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+        $("#linkTwitter").attr('href', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
+        $("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
 
-				// Abre el modal
-				$(".wrap-modal1").show();
-		});
+        $("#modal-btn-cart").attr('data-product-id', product.id);
+        $("#modal-name").html('<a class="cl2" href="/item/'+product.url+'" >'+product.name+'</a>');
+        $("#addFavoriteLink").attr('data-item',product.name);
+        $("#addFavoriteLink").attr('data-product-id',product.id);
+        var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
+        $("#modal-price").text('$'+price);
+        if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
+        $("#modal-description").text(product.description); 
+        $("#modal-stock").text('Stock: '+product.stock);
+        $("#modal-cant").attr('max', product.stock);
+        $("#modal-cant").val(1);
+        $("#modal-cant-sum").attr('data-max', product.stock);
+        if(product.stock == 0){
+            $("#modal-cont-cart").hide();
+            $("#modal-no-stock").show();
+            
+        }else{
+            $("#modal-no-stock").hide();
+            $("#modal-cont-cart").show();
+        }
 
-		// Cierra el modal cuando se hace clic en el botón de cerrar
-		$(".js-hide-modal1").click(function () {
-				$(".wrap-modal1").hide();
-		});
+        // Agrega las imagenes del producto al modal
+        var imagenes = $(".slick3-dots img");
+        imagenes.each(function (index, elemento) {
+            var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
+            if (product[propiedadImagen] !== null) {
+                $(elemento).show();
+                $(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+                $("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+                $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
+            }else{
+                // $(elemento).remove();
+                // $("#img-modal"+propiedadImagen).remove();
+                // $("#modal-image"+propiedadImagen).remove();
+                $(elemento).attr("src", '/assets/images/no-image2.png');
+                $("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
+                $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
+            }
+        });
+
+        // Abre el modal
+        $(".wrap-modal1").show();
+    });
+
+    // Cierra el modal cuando se hace clic en el botón de cerrar
+    $(".js-hide-modal1").click(function () {
+            $(".wrap-modal1").hide();
+    });
 });
 </script>
 
 
 
 <script>
-  //codigo de rotor de destacados
-    $(document).ready(function(){
-      $('#carouselExample').on('slide.bs.carousel', function (e) {
-      var $e = $(e.relatedTarget);
-      var idx = $e.index();
-      var itemsPerSlide = 4;
-      var totalItems = $('.carousel-item').length;
+//codigo de rotor de destacados
+$(document).ready(function(){
+    $('#carouselExample').on('slide.bs.carousel', function (e) {
+        var $e = $(e.relatedTarget);
+        var idx = $e.index();
+        var itemsPerSlide = 4;
+        var totalItems = $('.carousel-item').length;
 
-      if (idx >= totalItems-(itemsPerSlide-1)) {
-          var it = itemsPerSlide - (totalItems - idx);
-          for (var i=0; i<it; i++) {
-              // append slides to end
-              if (e.direction=="left") {
-                  $('.carousel-item').eq(i).appendTo('.carousel-inner');
-              }
-              else {
-                  $('.carousel-item').eq(0).appendTo('.carousel-inner');
-              }
-          }
-      }
-      });
+        if (idx >= totalItems-(itemsPerSlide-1)) {
+            var it = itemsPerSlide - (totalItems - idx);
+            for (var i=0; i<it; i++) {
+                // append slides to end
+                if (e.direction=="left") {
+                    $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                }
+                else {
+                    $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                }
+            }
+        }
     });
+});
 </script>
 
 @endsection

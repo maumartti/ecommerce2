@@ -55,7 +55,8 @@ class WebController extends Controller
     {
         if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
         $web = Web::find(1);
-        return view('auth.register')->with('web', $web);
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        return view('auth.register')->with('web', $web)->with('categories', $categories);
     }
     public function about()
     {
@@ -205,15 +206,16 @@ class WebController extends Controller
         return view('cart')->with('iva',$iva)->with('total',$total)->with('regions',$regions)->with('web',$web)->with('subtotal',$subtotal)->with('categories',$categories)->with('subcategories',$subcategories);
     }
 
+
+
+
     public function addToCart(Request $request, $productId) {
         //session()->forget('cart');
         $product = Product::find($productId);
         if (!$product) {
             return response()->json(['status' => 'error']);
         }
-        // Obtiene o crea el carrito de compras en la sesión
         $cart = session()->get('cart', []);
-        // Busca el producto en el carrito por su ID
         $existingProduct = null;
         foreach ($cart as $key => $item) {
             if ($item['id'] == $product->id) {
@@ -221,13 +223,10 @@ class WebController extends Controller
                 break;
             }
         }
-        // Obtener la cantidad de la solicitud POST, si está presente, de lo contrario, establecer en 1
         $quantity = $request->input('quantity', 1);
-        // Si el producto ya existe en el carrito, aumenta la cantidad en $quantity
         if ($existingProduct !== null) {
             $cart[$existingProduct]['quantity'] += $quantity;
         } else {
-            // Si no existe, agrega el producto al carrito con la cantidad especificada
             $cart[] = [
                 'id' => $product->id,
                 'name' => $product->name,
@@ -238,7 +237,6 @@ class WebController extends Controller
                 'quantity' => $quantity
             ];
         }
-        // Calcula la cantidad total de productos en el carrito
         $totalCart = 0;
         $totalPrice = 0;
         foreach ($cart as $item) {
@@ -256,10 +254,9 @@ class WebController extends Controller
     
 
 
+
     public function quitToCart(Request $request, $productId) {
-        // Obtiene el carrito de compras de la sesión
         $cart = session()->get('cart', []);
-        //buscamos si esta en carrito el item
         $productIndex = null;
         foreach ($cart as $key => $item) {
             if ($item['id'] == $productId) {
@@ -276,7 +273,6 @@ class WebController extends Controller
             }
             session()->put('totalCart', $totalCart);
             session()->put('totalPrice', $totalPrice);
-            // Actualiza la sesión con el carrito modificado
             session()->put('cart', $cart);
         }else{
             session()->put('totalCart', 0);
@@ -286,14 +282,65 @@ class WebController extends Controller
         return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart, 'totalPrice' => $totalPrice], 200);
     }
     
+
+
     
+    public function addToFavorite(Request $request, $productId) {
+        //session()->forget('favorites');
+        $product = Product::find($productId);
+        if (!$product) {
+            return response()->json(['status' => 'error']);
+        }
+        $favorites = session()->get('favorites', []);
+        $existingProduct = null;
+        foreach ($favorites as $key => $item) {
+            if ($item['id'] == $product->id) {
+                $existingProduct = $key;
+                break;
+            }
+        }
+        if ($existingProduct == null) {
+            $favorites[] = [
+                'id' => $product->id,
+                'name' => $product->name,
+                'url' => $product->url,
+                'image1' => $product->image1,
+                'price' => $product->price,
+                'stock' => $product->stock
+            ];
+        }
+        session()->put('favorites', $favorites);
+        $totalFav = count($favorites);
+        $latestCartItem = end($favorites);//ultimo item
+        $sessionFavorites = session()->get('favorites', []);
+        return response()->json(['status' => 'success', 'favorites' => $latestCartItem, 'sessionFavorites' => $sessionFavorites, 'totalFav' => $totalFav], 200);
+    }
+
+
+
+
+    public function quitToFavorite(Request $request, $productId) {
+        $favorites = session()->get('favorites', []);
+        $productIndex = null;
+        foreach ($favorites as $key => $item) {
+            if ($item['id'] == $productId) {
+                unset($favorites[$key]);
+                break;
+            }
+        }
+        session()->put('favorites', $favorites);
+        $totalFav = count($favorites);
+        $sessionFavorites = session()->get('favorites', []);
+        return response()->json(['status' => 'success', 'favorites' => $favorites, 'sessionFavorites' => $sessionFavorites, 'totalFav' => $totalFav], 200);
+    }
     
-    
+
+
+
     public function actualizarCarrito(Request $request, $productId)
     {
         // Obtén el producto del carrito
         $cart = session()->get('cart', []);
-
         foreach ($cart as $key => $item) {
             if ($item['id'] == $productId) {
                 // Actualiza la cantidad del producto con la cantidad proporcionada en la solicitud
@@ -301,10 +348,8 @@ class WebController extends Controller
                 break;
             }
         }
-
         // Actualiza la sesión con el carrito modificado
         session()->put('cart', $cart);
-
         // Calcula la cantidad total de productos en el carrito
         $totalCart = 0;
         $totalPrice = 0;
@@ -314,10 +359,11 @@ class WebController extends Controller
         }
         session()->put('totalCart', $totalCart);
         session()->put('totalPrice', $totalPrice);
-
         // Devuelve una respuesta JSON con los nuevos datos del carrito
         return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart], 200);
     }
+
+
 
     
     public function clearCart(Request $request) {

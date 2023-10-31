@@ -296,6 +296,27 @@
         $('.js-sidebar').removeClass('show-sidebar');
     });
 
+
+    /*==================================================================
+    [ Favorites ]*/
+    $('.js-show-favorites').on('click',function(){
+        $('.js-panel-favorites').addClass('show-header-cart');
+    });
+
+    $('.js-hide-favorites').on('click',function(){
+        $('.js-panel-favorites').removeClass('show-header-cart');
+    });
+
+    /*==================================================================
+    [ Favorites ]*/
+    $('.js-show-sidebar').on('click',function(){
+        $('.js-sidebar').addClass('show-sidebar');
+    });
+
+    $('.js-hide-sidebar').on('click',function(){
+        $('.js-sidebar').removeClass('show-sidebar');
+    });
+
     /*==================================================================
     [ +/- num product ]*/
     $('.btn-num-product-down').on('click', function(){

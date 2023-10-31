@@ -26,6 +26,8 @@ Route::get('/carrito', [App\Http\Controllers\WebController::class, 'cart'])->nam
 Route::get('/destacados', [App\Http\Controllers\WebController::class, 'featured'])->name('featured');
 Route::post('/add-to-cart/{productId}', [App\Http\Controllers\WebController::class, 'addToCart'])->name('addToCart');
 Route::get('/quit-to-cart/{productId}', [App\Http\Controllers\WebController::class, 'quitToCart'])->name('quitToCart');
+Route::post('/add-to-favorite/{productId}', [App\Http\Controllers\WebController::class, 'addToFavorite'])->name('addToFavorite');
+Route::get('/quit-to-favorite/{productId}', [App\Http\Controllers\WebController::class, 'quitToFavorite'])->name('quitToFavorite');
 Route::post('/clear-cart', [App\Http\Controllers\WebController::class, 'clearCart'])->name('clearCart');
 Route::post('/actualizar-carrito/{productId}', [App\Http\Controllers\WebController::class, 'actualizarCarrito'])->name('actualizarCarrito');
 Route::post('/message', [App\Http\Controllers\MessageController::class, 'store']);

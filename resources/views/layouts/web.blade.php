@@ -254,9 +254,9 @@
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+						<div class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-favorites" data-notify="{{ session()->has('favorites') ? count(session('favorites')) : 0 }}">
 							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
+						</div>
 					</div>
 				</nav>
 			</div>	
@@ -279,7 +279,7 @@
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-favorites" data-notify="0">
 					<i class="zmdi zmdi-favorite-outline"></i>
 				</a>
 			</div>
@@ -408,7 +408,7 @@
 										<img src="/assets/images/products/{{ $item['image1'] }}" alt="IMG">
 								</div>
 								<div class="header-cart-item-txt p-t-8">
-										<a href="{{ $item['url'] }}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+										<a href="/item/{{ $item['url'] }}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 												{{ $item['name'] }}
 										</a>
 										<span class="header-cart-item-info">
@@ -437,6 +437,47 @@
 						</a> -->
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Favorites -->
+	<div class="wrap-header-cart js-panel-favorites">
+		<div class="s-full js-hide-favorites"></div>
+
+		<div class="header-cart flex-col-l p-l-30 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Tus Favoritos
+				</span>
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-favorites">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+			<div class="header-favorite-content flex-w js-pscroll">
+				<ul class="header-favorite-wrapitem w-full">
+					@if(session()->has('favorites'))
+						@foreach (session('favorites') as $item)
+						<li product-id="{{$item['id']}}" class="header-cart-item flex-w flex-t m-b-20">
+								<div class="header-cart-item-img">
+										<img src="/assets/images/products/{{ $item['image1'] }}" alt="IMG">
+								</div>
+								<div class="header-cart-item-txt p-t-8">
+										<a href="/item/{{ $item['url'] }}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+												{{ $item['name'] }}
+										</a>
+										<span class="header-cart-item-info">
+												${{ str_replace(',', '.', number_format($item['price'], 0, ',', '.')) }}
+												<a product-id="{{ $item['id'] }}" class="header-cart-item-info float-right quit-favorite" style="cursor:pointer;">
+													<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
+												</a>
+										</span>
+								</div>
+						</li>
+						@endforeach
+					@else
+						<li class="empty-favorites">Aún no tienes favoritos</li>
+					@endif
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -792,36 +833,128 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="/assets/theme/vendor/sweetalert/sweetalert.min.js"></script>
 
+	
 	<script>
+$(document).ready(function () {
+
+		sessionFavorites = @json(session('favorites'));//GLOBAL VARIABLE session con favoritos
+
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
 		});
 
-		//agregar favorito en lista
-		$('.js-addwish-b2').each(function(){
-			$(this).on('click', function(){
+		//agregar favorito en lista 
+		$(document).on('click', '.js-addwish-b2', function () {
+				console.log('click add favoritos')
+				var productId = $(this).attr('data-product-id');
+				var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
 				var nameProduct = $(this).data('item');
-				swal(nameProduct, "Agregado a Favoritos !", "success");
+				$.ajax({
+						url: '/add-to-favorite/' + productId,
+						type: 'POST',
+						data: {
+								_token: csrfToken, // Incluye el token CSRF en los datos de la solicitud
+						},
+						success: function(data) {
+								if (data.status == 'success') {
+										// El producto se agregó exitosamente al carrito
+										//$.toastr.success('Agregado con éxito');
+										swal(nameProduct, "Agregado a Favoritos !", "success");
+										$('.swal-button-container').css('width', '100%').css('margin', 'auto');
 
+										//cambiamos el count de cart
+										$('.js-show-favorites').attr('data-notify',data.totalFav);
+										var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
+										// Agrega el nuevo elemento al carrito usando jQuery
+										var favItem = data.favorites; // Último elemento del carrito
+										//console.log('favItem',favItem)
+										if(favItem){
+											var price = parseFloat(favItem.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
+											var favItemHtml = `
+												<li product-id="${favItem.id}" class="header-cart-item flex-w flex-t m-b-20">
+														<div class="header-cart-item-img">
+																<img src="/assets/images/products/${favItem.image1}" alt="IMG">
+														</div>
+														<div class="header-cart-item-txt p-t-8">
+																<a href="/item/${favItem.url}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+																		${favItem.name}
+																</a>
+																<span class="header-cart-item-info">
+																		 $${price}
+																		<div product-id="${favItem.id}" class="header-cart-item-info float-right quit-favorite" style="cursor:pointer;">
+																				<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"></path></svg>
+																		</div>
+																</span>
+														</div>
+												</li>`;
+											//quite el elemento y aAgrega el nuevo elemento al carrito
+											$('.header-favorite-wrapitem li[product-id="' + favItem.id + '"]').remove();
+											$('.header-favorite-wrapitem').append(favItemHtml);
+											sessionFavorites = data.sessionFavorites;//session con favoritos actualizada
+											$("#contAddFavoriteModal").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
+										}
+								} else {
+										// Maneja el caso de error si es necesario
+										//$.toastr.error('Error al agregar');
+										swal(nameProduct, "Error al agregar !", "error");
+								}
+						},
+						error: function() {
+								// Maneja el caso de error si la solicitud falla
+								alert('Error al realizar la solicitud');
+						}
+				});
 				$(this).addClass('js-addedwish-b2');
 				$('.swal-button-container').css('width', '100%').css('margin', 'auto');
-				$(this).off('click');
+				//$(this).off('click');
+			//});
+		});
+		//quitar item de Favoritos
+		/*---------------------------------------------*/
+		$('.header-favorite-wrapitem').on('click', '.quit-favorite', function() {
+			console.log('click quit favorite');
+			//var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var btnQuit = $(this);
+			var productId = $(this).attr('product-id');
+			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
+			// Realiza una solicitud AJAX para agregar el producto al carrito
+			$.ajax({
+					url: '/quit-to-favorite/' + productId,
+					type: 'GET',
+					data: {
+							_token: csrfToken, // Incluye el token CSRF en los datos de la solicitud
+					},
+					success: function(data) {
+							if (data.status == 'success') {
+									//$.toastr.success('Agregado con éxito');
+									//swal(nameProduct, "Agregado al carrito !", "success");
+									$(".header-cart-item[product-id='"+productId+"']").remove();
+        					$('.js-show-favorites').attr('data-notify',data.totalFav);
+									$(".js-addwish-b2[data-product-id='"+productId+"']").removeClass('js-addedwish-b2');
+									sessionFavorites = data.sessionFavorites;//session con favoritos actualizada
+							} else {
+									// Maneja el caso de error si es necesario
+									//$.toastr.error('Error al agregar');
+									swal(nameProduct, "Error al quitar !", "error");
+							}
+					},
+					error: function() {
+							// Maneja el caso de error si la solicitud falla
+							alert('Error al realizar la solicitud');
+					}
 			});
 		});
 		//agregar favorito dentro modal producto
-		$('.js-addwish-detail').each(function(){
-			$(this).on('click', function(){
-				var nameProduct = $(this).data('item');
-				swal(nameProduct, "Agregado a Favoritos !", "success");
+		// $('.js-addwish-detail').each(function(){
+		// 	$(this).on('click', function(){
+		// 		var nameProduct = $(this).data('item');
+		// 		swal(nameProduct, "Agregado a Favoritos !", "success");
 
-				$(this).addClass('js-addedwish-detail');
-				$('.swal-button-container').css('width', '100%').css('margin', 'auto');
-				$(this).off('click');
-			});
-		});
-
-
-
+		// 		//$(this).addClass('js-addedwish-detail');
+		// 		$('.swal-button-container').css('width', '100%').css('margin', 'auto');
+		// 		$(this).off('click');
+		// 	});
+		// });
 
 		//funcion agregar al carrito click
 		/*---------------------------------------------*/
@@ -854,7 +987,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 												window.location.href = '/carrito';
 										}
 									});
-
 									//cambiamos el count de cart
 									$('.js-show-cart').attr('data-notify',data.totalCart);
 									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
@@ -870,14 +1002,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 															<img src="/assets/images/products/${cartItem.image1}" alt="IMG">
 													</div>
 													<div class="header-cart-item-txt p-t-8">
-															<a href="${cartItem.url}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+															<a href="/item/${cartItem.url}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 																	${cartItem.name}
 															</a>
 															<span class="header-cart-item-info">
 																	${cartItem.quantity} x $${price}
-																	<a product-id="${cartItem.id}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
+																	<div product-id="${cartItem.id}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
 																			<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"></path></svg>
-																	</a>
+																	</div>
 															</span>
 													</div>
 											</li>`;
@@ -936,8 +1068,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					}
 			});
 		});
-	
-	</script>
+});	
+</script>
+
+@yield('script')
+
 <!--===============================================================================================-->
 	<script src="/assets/theme/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -958,6 +1093,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="/assets/theme/js/main.js"></script>
 
-  @yield('script')
+ 
 </body>
 </html>

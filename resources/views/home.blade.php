@@ -324,7 +324,6 @@
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
 						</button>
-
 						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
 					</div>	
 				</div>
@@ -356,7 +355,7 @@
                                     </span>
                                 </div>
                                 <div class="block2-txt-child2 flex-r p-t-3">
-                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
+                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 {{ session('favorites') && collect(session('favorites'))->contains('id', $product->id) ? 'js-addedwish-b2' : '' }}" data-item="{{$product->name}}" data-product-id="{{$product->id}}">
                                         <img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
                                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
                                     </a>
@@ -414,7 +413,7 @@
                                             </span>
                                         </div>
                                         <div class="block2-txt-child2 flex-r p-t-3">
-                                            <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}">
+                                            <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-item="{{$product->name}}" data-product-id="{{$product->id}}">
                                                 <img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
                                                 <img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
                                             </a>
@@ -664,10 +663,10 @@
                             </div>	
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                            <div class="flex-m  p-l-10 m-l-11">
-                                <a href="#" id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-item="" data-tooltip="Agregar">
+                            <div id="contAddFavoriteModal" class="flex-m  p-l-10 m-l-11">
+                                <div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar">
                                     <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
-                                </a>
+                                </div>
                             </div>
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -721,6 +720,18 @@ $(document).ready(function () {
         var productData = $(this).attr("data-product");
         var product = JSON.parse(productData);
 
+
+        //buscamos en la session de favoritos si ya esta agregado el item y cambiamos su link
+        ///sessionFavorites con favoritos variable global en -> (web.blade)
+        var isProductInFavorites = Object.values(sessionFavorites).some(item => item.id === product.id);
+        console.log('sessiones-fav',sessionFavorites)
+        if (isProductInFavorites) {
+            $("#contAddFavoriteModal").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
+        } else {
+            // Si no está en la lista, dejarlo como está
+            $("#contAddFavoriteModal").html('<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar"><i class="zmdi zmdi-favorite"></i> Agregar a favoritos </div>');
+        }
+        
         // Ahora puedes acceder a las propiedades del producto en JavaScript
         console.log('moda product');
         console.log(product);
@@ -731,11 +742,10 @@ $(document).ready(function () {
         $("#linkTwitter").attr('href', 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
         $("#linkTelegram").attr('href', 'https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
 
-
-
         $("#modal-btn-cart").attr('data-product-id', product.id);
         $("#modal-name").html('<a class="cl2" href="/item/'+product.url+'" >'+product.name+'</a>');
         $("#addFavoriteLink").attr('data-item',product.name);
+        $("#addFavoriteLink").attr('data-product-id',product.id);
         var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
         $("#modal-price").text('$'+price);
         if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
@@ -756,20 +766,20 @@ $(document).ready(function () {
         // Agrega las imagenes del producto al modal
         var imagenes = $(".slick3-dots img");
         imagenes.each(function (index, elemento) {
-                var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
-                if (product[propiedadImagen] !== null) {
-                    $(elemento).show();
-                    $(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
-                    $("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
-                    $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
-                }else{
-                    // $(elemento).remove();
-                    // $("#img-modal"+propiedadImagen).remove();
-                    // $("#modal-image"+propiedadImagen).remove();
-                    $(elemento).attr("src", '/assets/images/no-image2.png');
-                    $("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
-                    $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
-                }
+            var propiedadImagen = "image" + (index + 1); // Calcula la propiedad de imagen correspondiente
+            if (product[propiedadImagen] !== null) {
+                $(elemento).show();
+                $(elemento).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+                $("#modal-"+propiedadImagen).attr("src", '/assets/images/products/' + product[propiedadImagen]);
+                $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/products/' + product[propiedadImagen]);
+            }else{
+                // $(elemento).remove();
+                // $("#img-modal"+propiedadImagen).remove();
+                // $("#modal-image"+propiedadImagen).remove();
+                $(elemento).attr("src", '/assets/images/no-image2.png');
+                $("#modal-"+propiedadImagen).attr("src", '/assets/images/no-image2.png');
+                $("#modal-"+propiedadImagen).next('a').attr("href", '/assets/images/no-image2.png');
+            }
         });
 
         // Abre el modal
