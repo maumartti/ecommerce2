@@ -227,7 +227,7 @@ if(isset($users)){
                     <h6 class="m-0">Permisos de usuario</h6>
                 </div>
                 <div class="card-body py-0">
-                    @if(auth()->user()->type_id == 3)
+                    @if(auth()->check() && auth()->user()->type_id == 3)
                     <ul class="nav nav-tabs mt-3" id="myTabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="true">Usuarios</a>

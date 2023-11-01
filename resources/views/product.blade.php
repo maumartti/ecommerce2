@@ -158,11 +158,11 @@
 																<i class="fs-16 zmdi zmdi-minus"></i>
 														</div>
 														<input id="modal-cant" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" max="" min="1">
-														<div id="modal-cant-sum" data-max="" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+														<div id="modal-cant-sum" data-max="{{$product->stock}}" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 																<i class="fs-16 zmdi zmdi-plus"></i>
 														</div>
 													</div>
-												<button id="modal-btn-cart" data-product-id="" class="mx-auto flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+												<button id="modal-btn-cart" data-product-id="{{$product->id}}" class="mx-auto flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 														Agregar al carrito
 												</button>
 											@endif
@@ -174,9 +174,15 @@
 						</div>
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 									<div id="contAddFavorite" class="flex-m  p-l-10 m-l-11">
-											<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="{{$product->name}}" data-product-id="{{$product->id}}" data-tooltip="Agregar">
-													<i class="zmdi zmdi-favorite"></i> Agregar a favoritos
-											</div>
+										@if(session('favorites') && collect(session('favorites'))->contains('id', $product->id))
+										<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423">
+											<i class="zmdi zmdi-favorite"></i> Agregado a favoritos
+										</div>
+										@else
+										<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="{{$product->name}}" data-product-id="{{$product->id}}" data-tooltip="Agregar">
+											<i class="zmdi zmdi-favorite"></i> Agregar a favoritos
+										</div>
+										@endif
 									</div>
 							</div>
 							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -577,28 +583,28 @@
                                 </div>
                             </div> -->
                             <div class="flex-w flex-r-m p-b-10">
-                                <div id="modal-cont-cart" class="size-204 flex-w flex-m respon6-next">
+                                <div id="modal-cont-cart-modal" class="size-204 flex-w flex-m respon6-next">
                                     <div class="wrap-num-product flex-w m-l-20 m-tb-20">
                                         <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-minus"></i>
                                         </div>
 
-                                        <input id="modal-cant" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" max="" min="1">
+                                        <input id="modal-cant-modal" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" max="" min="1">
 
-                                        <div id="modal-cant-sum" data-max="" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                        <div id="modal-cant-sum-modal" data-max="" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-plus"></i>
                                         </div>
                                     </div>
-                                    <button id="modal-btn-cart" data-product-id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                    <button id="modal-btn-cart-modal" data-product-id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
                                         Agregar al carrito
                                     </button>
                                 </div>
-							    							<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
+							    							<h4 id="modal-no-stock-modal" style="margin: auto;padding-right: 24px;color: #de1616;" >Sin Stock !</h4>
                             </div>	
                         </div>
                         <div class="flex-w flex-m p-l-100 p-t-40 respon7">
 												<div id="contAddFavoriteModal" class="flex-m  p-l-10 m-l-11">
-                                <div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar">
+                                <div id="addFavoriteLinkModal" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar">
                                     <i class="zmdi zmdi-favorite"></i> Agregar a favoritos
                                 </div>
                             </div>
@@ -656,12 +662,12 @@ $(document).ready(function () {
 				$("#contAddFavoriteModal").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
 		} else {
 				// Si no está en la lista, dejarlo como está
-				$("#contAddFavoriteModal").html('<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar"><i class="zmdi zmdi-favorite"></i> Agregar a favoritos </div>');
+				$("#contAddFavoriteModal").html('<div id="addFavoriteLinkModal" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="" data-product-id="" data-tooltip="Agregar"><i class="zmdi zmdi-favorite"></i> Agregar a favoritos </div>');
 		}
 
 		// Ahora puedes acceder a las propiedades del producto en JavaScript
-		console.log('moda product');
-		console.log(product);
+		console.log('moda product pr');
+		console.log(product.name);
 
 		//links share sociales
 		$("#linkFacebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/item/' + product.url);
@@ -671,9 +677,10 @@ $(document).ready(function () {
 
 
 		$("#modal-btn-cart").attr('data-product-id', product.id);
+		$("#modal-btn-cart-modal").attr('data-product-id', product.id);
 		$("#modal-name").html('<a class="cl2" href="/item/'+product.url+'" >'+product.name+'</a>');
-		$("#addFavoriteLink").attr('data-item',product.name);
-		$("#addFavoriteLink").attr('data-product-id',product.id);
+		$("#addFavoriteLinkModal").attr('data-item',product.name);
+		$("#addFavoriteLinkModal").attr('data-product-id',product.id);
 		var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
 		$("#modal-price").text('$'+price);
 		if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
@@ -682,12 +689,17 @@ $(document).ready(function () {
 		$("#modal-cant").attr('max', product.stock);
 		$("#modal-cant").val(1);
 		$("#modal-cant-sum").attr('data-max', product.stock);
+
+		//para modal -
+		$("#modal-cant-modal").attr('max', product.stock);
+		$("#modal-cant-modal").val(1);
+		$("#modal-cant-sum-modal").attr('data-max', product.stock);
 		if(product.stock == 0){
-				$("#modal-cont-cart").hide();
-				$("#modal-no-stock").show();
+				$("#modal-cont-cart-modal").hide();
+				$("#modal-no-stock-modal").show();
 		}else{
-				$("#modal-no-stock").hide();
-				$("#modal-cont-cart").show();
+				$("#modal-no-stock-modal").hide();
+				$("#modal-cont-cart-modal").show();
 		}
 
 		// Agrega las imagenes del producto al modal

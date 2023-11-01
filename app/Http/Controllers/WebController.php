@@ -51,6 +51,13 @@ class WebController extends Controller
         $subcategories = SubCategory::with('category')->get();
         return view('contact')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
+    public function login()
+    {
+        if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
+        $web = Web::find(1);
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        return view('auth.login')->with('web', $web)->with('categories', $categories);
+    }
     public function register()
     {
         if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
@@ -58,6 +65,28 @@ class WebController extends Controller
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         return view('auth.register')->with('web', $web)->with('categories', $categories);
     }
+    public function passwordconfirm()
+    {
+        if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
+        $web = Web::find(1);
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        return view('auth.passwords.confirm')->with('web', $web)->with('categories', $categories);
+    }
+    public function passwordreset()
+    {
+        if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
+        $web = Web::find(1);
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        return view('auth.passwords.reset')->with('web', $web)->with('categories', $categories);
+    }
+    public function passwordemail()
+    {
+        if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
+        $web = Web::find(1);
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        return view('auth.passwords.email')->with('web', $web)->with('categories', $categories);
+    }
+
     public function about()
     {
         $web = Web::find(1);

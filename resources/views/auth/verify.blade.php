@@ -1,28 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.web')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+<section class="bg0 p-t-104 p-b-116">
+		<div class="container">
+			<div class="flex-w flex-tr mt-5">
+                <div class="bor10 p-t-35 p-b-35 m-auto col-md-6 col-sm-12">
+                    <div class="card-body">
+                        <div class="alert alert-success mb-5" role="alert">
+                        Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.
                         </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        Antes de continuar, consulte su correo electrónico para obtener un enlace de verificación. Si no recibió el correo electrónico,
+                        Si no recibiste el correo electrónico,
+                        <form class="d-inline" method="POST" action="">
+                            @csrf
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('haga clic aquí para solicitar otro') }}</button>.
+                        </form>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</section>	
 @endsection
+
