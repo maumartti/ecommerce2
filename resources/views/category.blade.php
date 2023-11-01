@@ -21,15 +21,15 @@
 						Ver Todos
 					</button>
 
-          @if (isset($subcategoriesCategory))
-            @if ($subcategoriesCategory)
-              @foreach ($subcategoriesCategory as $index => $category)
-              <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{$category->id}}">
-                {{$category->name}}
-              </button>
-              @endforeach
-      	    @endif
-          @endif     
+                    @if (isset($subcategoriesCategory))
+                        @if ($subcategoriesCategory)
+                        @foreach ($subcategoriesCategory as $index => $category)
+                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{$category->id}}">
+                            {{$category->name}}
+                        </button>
+                        @endforeach
+                        @endif
+                    @endif     
 
 				</div>
 
@@ -66,7 +66,7 @@
         @if ($productsCategory)
           @foreach ($productsCategory as $product)
           	@if ($loop->iteration <= 8)
-						<div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}} @if($product->promo == 1) populares @endif @if($product->new == 1) new @endif @if($product->size) size-{{$product->size}} @endif @if($product->kilos) kilos-{{$product->kilos}} @endif @if($product->color) color-{{$product->color}} @endif @if($product->tags) @foreach(json_decode($product->tags) as $tag) tag-{{$tag}} @endforeach @endif" data-id="{{$product->id}}" data-price="{{$product->price}}" data-sales="{{$product->sales}}">
+						<div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}} {{$product->subcategory_id}} @if($product->promo == 1) populares @endif @if($product->new == 1) new @endif @if($product->size) size-{{$product->size}} @endif @if($product->kilos) kilos-{{$product->kilos}} @endif @if($product->color) color-{{$product->color}} @endif @if($product->tags) @foreach(json_decode($product->tags) as $tag) tag-{{$tag}} @endforeach @endif" data-id="{{$product->id}}" data-price="{{$product->price}}" data-sales="{{$product->sales}}">
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">

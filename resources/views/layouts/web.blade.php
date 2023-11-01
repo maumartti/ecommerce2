@@ -332,7 +332,7 @@
 						@endguest
 
 						<a href="/login" class="flex-c-m p-lr-10 trans-04">
-							Admin
+							Entrar
 						</a>
 
 						<!-- <a href="#" class="flex-c-m p-lr-10 trans-04">
@@ -474,7 +474,7 @@
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			<div class="header-favorite-content flex-w js-pscroll">
+			<div class="header-favorite-content flex-w js-pscroll w-100">
 				<ul class="header-favorite-wrapitem w-full">
 					@if(session()->has('favorites'))
 						@foreach (session('favorites') as $item)
@@ -1040,6 +1040,7 @@ $(document).ready(function () {
 										//quite el elemento y aAgrega el nuevo elemento al carrito
 										$('.header-cart-wrapitem li[product-id="' + cartItem.id + '"]').remove();
 										$('.header-cart-wrapitem').append(cartItemHtml);
+										$('.empty-cart').remove();
 									}
 							} else {
 									// Maneja el caso de error si es necesario
