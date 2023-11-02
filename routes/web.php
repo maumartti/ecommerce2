@@ -33,10 +33,13 @@ Route::post('/actualizar-carrito/{productId}', [App\Http\Controllers\WebControll
 Route::post('/message', [App\Http\Controllers\MessageController::class, 'store']);
 Route::post('/subscriber', [App\Http\Controllers\SubscriberController::class, 'store']);
 
-Auth::routes();
+Auth::routes([
+    'verify'=> true,
+]);
+//Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
 Route::get('/login', [App\Http\Controllers\WebController::class, 'login'])->name('login');
 Route::get('/registro', [App\Http\Controllers\WebController::class, 'register'])->name('registro');
-Route::get('/password/reset', [App\Http\Controllers\WebController::class, 'passwordreset'])->name('passwordreset');
+Route::get('/password/reset/{token}', [App\Http\Controllers\WebController::class, 'passwordreset'])->name('password.reset');
 Route::get('/password/confirm', [App\Http\Controllers\WebController::class, 'passwordconfirm'])->name('passwordconfirm');
 Route::get('/password/email', [App\Http\Controllers\WebController::class, 'passwordemail'])->name('passwordemail');
 

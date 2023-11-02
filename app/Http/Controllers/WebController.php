@@ -72,12 +72,12 @@ class WebController extends Controller
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         return view('auth.passwords.confirm')->with('web', $web)->with('categories', $categories);
     }
-    public function passwordreset()
+    public function passwordreset($token)
     {
         if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
         $web = Web::find(1);
         $categories = Category::with('subcategories')->orderBy('pos')->get();
-        return view('auth.passwords.reset')->with('web', $web)->with('categories', $categories);
+        return view('auth.passwords.reset')->with('web', $web)->with('token', $token)->with('categories', $categories);
     }
     public function passwordemail()
     {

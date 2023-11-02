@@ -476,7 +476,7 @@
 			</div>
 			<div class="header-favorite-content flex-w js-pscroll w-100">
 				<ul class="header-favorite-wrapitem w-full">
-					@if(session()->has('favorites'))
+					@if(session()->has('favorites') && !empty(session('favorites')))
 						@foreach (session('favorites') as $item)
 						<li product-id="{{$item['id']}}" class="header-cart-item flex-w flex-t m-b-20">
 								<div class="header-cart-item-img">
@@ -915,6 +915,7 @@ $(document).ready(function () {
 											sessionFavorites = data.sessionFavorites;//session con favoritos actualizada
 											$("#contAddFavoriteModal").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
 											$("#contAddFavorite").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
+											$('.empty-favorites').hide();
 										}
 								} else {
 										// Maneja el caso de error si es necesario
@@ -956,7 +957,8 @@ $(document).ready(function () {
 									$(".js-addwish-b2[data-product-id='"+productId+"']").removeClass('js-addedwish-b2');
 									sessionFavorites = data.sessionFavorites;//session con favoritos actualizada
 									$("#contAddFavorite").html('<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="'+nameProduct+'" data-product-id="'+productId+'" data-tooltip="Agregar"><i class="zmdi zmdi-favorite"></i> Agregar a favoritos </div>');
-							} else {
+									if(data.totalFav == 0){ $('.empty-favorites').show(); }
+								} else {
 									// Maneja el caso de error si es necesario
 									//$.toastr.error('Error al agregar');
 									swal(nameProduct, "Error al quitar !", "error");
@@ -1040,7 +1042,7 @@ $(document).ready(function () {
 										//quite el elemento y aAgrega el nuevo elemento al carrito
 										$('.header-cart-wrapitem li[product-id="' + cartItem.id + '"]').remove();
 										$('.header-cart-wrapitem').append(cartItemHtml);
-										$('.empty-cart').remove();
+										$('.empty-cart').hide();
 									}
 							} else {
 									// Maneja el caso de error si es necesario
@@ -1081,6 +1083,7 @@ $(document).ready(function () {
 									if (totalPriceFormatted == 0 && window.location.pathname === '/carrito') {//recarga la web si es /carrito y preciototal = 0
         						window.location.reload();
     							}
+									if(data.totalCart == 0){ $('.empty-cart').show(); }
 							} else {
 									// Maneja el caso de error si es necesario
 									//$.toastr.error('Error al agregar');
