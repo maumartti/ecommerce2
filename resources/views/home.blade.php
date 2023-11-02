@@ -1,8 +1,13 @@
 @extends('layouts.web')
 
 @section('head')
-<title>Importadora Tatar</title>
-<meta name="description" content="Importadora tatar, fardos de ropa Americana y Europea de alta calidad.">
+<title>{{ config('app.name') }}</title>
+<meta name="description" content="{{ config('app.name') }} - Importación y venta de fardos de ropa Americana y Europea de alta calidad, para todo chile.">
+<meta property="og:title" content="{{ config('app.name') }} - Venta e Importación de fardos de ropa importada.">
+<meta property="og:description" content="{{ config('app.name') }} - Importación y venta de fardos de ropa Americana y Europea de alta calidad, para todo chile.">
+<meta property="og:url" content="{{request()->url()}}">
+<meta property="og:type" content="website">
+
 
 <style>
 @media (min-width: 768px) {

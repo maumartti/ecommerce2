@@ -2,8 +2,15 @@
 
 
 @section('head')
-
+    <title>Destacados - {{ config('app.name') }}</title>
+    <meta name="description" content="Productos destacados de nuestra tienda - {{ config('app.name') }}">
+    <meta property="og:title" content="Destacados - {{ config('app.name') }}">
+    <meta property="og:description" content="Productos destacados de nuestra {{ config('app.name') }}">
+    <meta property="og:url" content="{{request()->url()}}">
+    <meta property="og:type" content="website">
 @endsection
+
+
 
 @section('content')
 	<!-- Product -->

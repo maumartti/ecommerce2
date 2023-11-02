@@ -1,8 +1,17 @@
 @extends('layouts.web')
 
 
-@section('content')
+@section('head')
+    <title>Carrito de compras - {{ config('app.name') }}</title>
+    <meta name="description" content="Artículos del carrito de compras - {{ config('app.name') }}">
+    <meta property="og:title" content="Carrito de compras - {{ config('app.name') }}">
+    <meta property="og:description" content="Artículos del carrito de compras {{ config('app.name') }}">
+    <meta property="og:url" content="{{request()->url()}}">
+    <meta property="og:type" content="website">
+@endsection
 
+
+@section('content')
 	<!-- breadcrumb -->
 	<div class="container m-t-83">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">

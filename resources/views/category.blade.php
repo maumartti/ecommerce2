@@ -2,8 +2,14 @@
 
 
 @section('head')
-
+    <title>{{$category->name}} - {{ config('app.name') }}</title>
+    <meta name="description" content="Categoría: {{$category->name}} - {{ config('app.name') }}">
+    <meta property="og:title" content="Categoría {{$category->name}} - {{ config('app.name') }}">
+    <meta property="og:description" content="Categoría: {{$category->name}} - {{ config('app.name') }}">
+    <meta property="og:url" content="{{request()->url()}}">
+    <meta property="og:type" content="website">
 @endsection
+
 
 @section('content')
 	<!-- Product -->

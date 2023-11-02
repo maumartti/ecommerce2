@@ -1,5 +1,14 @@
 @extends('layouts.web')
 
+@section('head')
+    <title>Contacto - {{ config('app.name') }}</title>
+    <meta name="description" content="Ponte en contacto con nuestra empresa - {{ config('app.name') }}">
+    <meta property="og:title" content="Contacto - {{ config('app.name') }}">
+    <meta property="og:description" content="Ponte en contacto con nuestra empresa {{ config('app.name') }}">
+    <meta property="og:url" content="{{request()->url()}}">
+    <meta property="og:type" content="website">
+@endsection
+
 
 @section('content')
 	<!-- Title page -->
