@@ -77,5 +77,5 @@ Route::prefix('admin')->middleware(['auth', 'verifyemail'])->group(function () {
 
 Route::resource('payments', App\Http\Controllers\PaymentController::class);
 //Route::get('/webpay', [App\Http\Controllers\WebpayController::class, 'webpay_inicio'])->name('webpay_inicio');
-Route::get('/webpay/pagar', [App\Http\Controllers\WebpayController::class, 'webpay_pagar'])->name('webpay_pagar');
+Route::get('/webpay/pagar/{paymentId}', [App\Http\Controllers\WebpayController::class, 'webpay_pagar'])->name('webpay_pagar');
 Route::get('/webpay/respuesta', [App\Http\Controllers\WebpayController::class, 'webpay_respuesta'])->name('webpay_respuesta');

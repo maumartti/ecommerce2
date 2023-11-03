@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Transbank\Webpay\WebpayPlus\Transaction;
+use App\Models\Payment;
 
 class WebpayController extends Controller
 {
 
 
-    public function webpay_pagar(){
-        // Transbank\Webpay\WebpayPlus::setCommerceCode('59705555532');
-        // Transbank\Webpay\WebpayPlus::setApiKey('59705555532');
-        // Transbank\Webpay\WebpayPlus::setIntegrationType('TEST');
+    public function webpay_pagar($paymentId){
+        $payment = Payment::find($paymentId);
+        $id = $payment->id;
+        $code = $payment->code;
+        $amount = $payment->amountTotal;
+
         $transaction = new Transaction();
-        $createResponse = $transaction->create('buyOrder123', uniqid(), 1500, 'http://localhost:8000/webpay-plus/index.php?action=result');
-        $redirectUrl = $createResponse->getUrl().'?token_ws='.$createResponse->getToken();
+        $createResponse = $transaction->create($code, $id, $amount, 'http://localhost:8000/webpay-plus/index.php?action=result');
+        $redirectUrl = $createResponse->getUrl() . '?token_ws=' . $createResponse->getToken() . '&item_name=' . urlencode($code);
         header('Location: '.$redirectUrl, true, 302);
         exit;
     }

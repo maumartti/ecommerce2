@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('code',11);
             $table->string('status',20);
             $table->unsignedInteger('amount',11);
+            $table->unsignedInteger('amountTotal',11);
             $table->string('itemsId',100);
             $table->string('itemsPrices',255);
             $table->string('userName',100);
