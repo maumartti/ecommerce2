@@ -184,6 +184,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'InstagramFeed' => Dymantic\InstagramFeed\InstagramFeedFacade::class,
+        'Webpay' => Transbank\Webpay\WebpayFacade::class,
     ])->toArray(),
 
 ];

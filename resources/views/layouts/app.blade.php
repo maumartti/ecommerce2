@@ -184,12 +184,12 @@
               </li>
               @endif
               @if(auth()->check() && auth()->user()->userType->message_show  == 1)
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link " href="/admin/message">
                   <i class="material-icons">chat</i>
                   <span>Mensajes</span>
                 </a>
-              </li>
+              </li> -->
               @endif
               @if(auth()->check() && auth()->user()->userType->subscriber_show  == 1)
               <li class="nav-item">

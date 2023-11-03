@@ -86,6 +86,13 @@ class WebController extends Controller
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         return view('auth.passwords.email')->with('web', $web)->with('categories', $categories);
     }
+    public function verifyregister()
+    {
+        if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
+        $web = Web::find(1);
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        return view('auth.verify')->with('web', $web)->with('categories', $categories);
+    }
 
     public function about()
     {

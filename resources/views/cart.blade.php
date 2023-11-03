@@ -28,11 +28,22 @@
 		
 
 	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85">
+	<form action="payments" method="POST" class="php-email-form" class="bg0 p-t-75 p-b-85">
+	@csrf
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-7 col-lg-12 m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<!-- Muestra los errores de validación -->
+						@if ($errors->any())
+								<div class="alert alert-danger mt-3">
+										<ul>
+												@foreach ($errors->all() as $error)
+														<li>{{ $error }}</li>
+												@endforeach
+										</ul>
+								</div>
+						@endif
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart header-cart-wrapitem">
 								<tr class="table_head">
@@ -59,7 +70,7 @@
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="{{$item['quantity']}}">
+											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}">
 
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
@@ -136,21 +147,21 @@
 									</span>
 
 									<div class="bor8 bg0 m-b-12">
-										<input type="text" name="name" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Nombre y apellido" autocomplete="off" required>
+										<input type="text" name="userName" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Nombre y apellido" autocomplete="off" required>
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="text" name="rut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="RUT" autocomplete="off">
+										<input type="text" name="userRut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="RUT" autocomplete="off">
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="email" name="email" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" autocomplete="off">
+										<input type="email" name="userEmail" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" autocomplete="off">
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
 										<div class="input-group">
 											<div class="input-group-prepend">
-												<select name="countryCode" class="form-control w-100" autocomplete="off" required>
+												<select name="userCountryCode" class="form-control w-100" autocomplete="off" required>
 													<!-- <option value="" selected>Seleccione uno...</option> -->
 													<option value="+56" {{ auth()->check() && auth()->user()->countryCode == '+56' ? 'selected' : 'selected' }}>Chile (+56)</option>
 													<option value="+54" {{ auth()->check() && auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
@@ -163,7 +174,7 @@
 													<option value="+1" {{ auth()->check() && auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
 												</select>
 											</div>
-											<input type="text" id="cel" name="cel" value="@if(auth()->check() && auth()->user()->cel) {{auth()->user()->cel}} @endif" class="form-control" maxlength="20" pattern="[0-9]*"  placeholder="Teléfono / Cel" autocomplete="off" required>
+											<input type="text" id="cel" name="userCel" value="@if(auth()->check() && auth()->user()->cel) {{auth()->user()->cel}} @endif" class="form-control" maxlength="20"   placeholder="Teléfono / Cel" autocomplete="off" required>
 										</div>
 									</div>
 
@@ -238,7 +249,7 @@
 										</span>
 
 										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-											<select name="region" id="regionSelect" class="js-select2" autocomplete="off" required>
+											<select name="userRegion" id="regionSelect" class="js-select2" autocomplete="off" required>
 												<option value="">Selecciona tu región...</option>
 											@if($regions)
 													@foreach ($regions as $region)
@@ -250,15 +261,15 @@
 										</div>
 
 										<div class="bor8 bg0 m-b-12">
-											<input type="text" name="city" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" autocomplete="off">
+											<input type="text" name="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" autocomplete="off">
 										</div>
 
 										<div class="bor8 bg0 m-b-22">
-											<input type="text" name="postcode" value="@if(auth()->check() && auth()->user()->zip) {{auth()->user()->zip}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Código postal / Zip" autocomplete="off">
+											<input type="text" name="userZip" value="@if(auth()->check() && auth()->user()->zip) {{auth()->user()->zip}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Código postal / Zip" autocomplete="off">
 										</div>
 
 										<div class="bor8 bg0 m-b-22">
-											<textarea name="address" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" autocomplete="off">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
+											<textarea name="userAddress" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" autocomplete="off">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
 										</div>
 
 										<span class="stext-112 cl8">
@@ -269,7 +280,7 @@
 														@foreach ($regions->find(auth()->user()->region_id)->companies as $company)
 																<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 																	<label class="form-check-label" for="{{ $company->id }}">
-																			<input type="radio" class="form-check-input" id="{{ $company->id }}" name="company_id" value="{{ $company->id }}" style="top: 10px !important;" autocomplete="off">
+																			<input type="radio" class="form-check-input" id="{{ $company->id }}" name="shippingCompanyId" value="{{ $company->id }}" style="top: 10px !important;" autocomplete="off">
 																			<img src="/assets/images/companies/{{ $company->image }}" style="width: 100px;"> {{ $company->name }}
 																		</label>
 																</div>
@@ -311,19 +322,19 @@
 									<div class=" bg0 m-b-12 m-t-9" id="">
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-1">
-													<input type="radio" class="form-check-input" id="method-1" name="pay_method" value="mercadopago" style="top: 6px !important;" autocomplete="off">
+													<input type="radio" class="form-check-input" id="method-1" name="payMethod" value="mercado-pago" style="top: 6px !important;" autocomplete="off">
 													<img src="/assets/images/mercadopago.png" class="ml-2" style="width: 100px;">
 												</label>
 										</div>
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-2">
-													<input type="radio" class="form-check-input" id="method-2" name="pay_method" value="webpay" style="top: 6px !important;" autocomplete="off">
+													<input type="radio" class="form-check-input" id="method-2" name="payMethod" value="webpay" style="top: 6px !important;" autocomplete="off">
 													<img src="/assets/images/webpay.png" class="ml-2" style="width: 100px;">
 												</label>
 										</div>
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-3">
-													<input type="radio" class="form-check-input" id="method-3" name="pay_method" value="banco" style="top: 6px !important;" autocomplete="off">
+													<input type="radio" class="form-check-input" id="method-3" name="payMethod" value="banco" style="top: 6px !important;" autocomplete="off">
 													<img src="/assets/images/banco.jpg" class="ml-2" style="width: 125px;">
 												</label>
 										</div>
@@ -390,15 +401,15 @@
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
 			$(this).css('overflow','hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
+			// var ps = new PerfectScrollbar(this, {
+			// 	wheelSpeed: 1,
+			// 	scrollingThreshold: 1000,
+			// 	wheelPropagation: false,
+			// });
 
-			$(window).on('resize', function(){
-				ps.update();
-			})
+			// $(window).on('resize', function(){
+			// 	ps.update();
+			// })
 		});
 
 	

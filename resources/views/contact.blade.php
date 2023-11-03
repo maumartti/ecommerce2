@@ -48,7 +48,7 @@
 							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="text" maxlength="500" placeholder="¿Cómo podemos ayudarte?"></textarea>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							Enviar
 						</button>
 					</form>

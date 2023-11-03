@@ -38,7 +38,35 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'code' => 'integer',
+            'status' => 'string|max:20',
+            'amount' => 'nullable|integer',
+            'itemsId' => 'string|max:100',
+            'itemsPrices' => 'string|max:255',
+            'userName' => 'required|string|max:100',
+            'userRut' => 'string|max:20',
+            'userEmail' => 'required|string|email',
+            'userCel' => 'required|string|max:36',
+            'shipping' => 'required|string',
+            'amountShipping' => 'nullable|integer',
+            'shippingCompanyId' => 'nullable|integer',
+            'shippingCompanyName' => 'nullable|string|max:64',
+            'payMethod' => 'required|string|max:36',
+            'payConfirmed' => 'nullable|date',
+            'deliveredStart' => 'nullable|date',
+            'deliveredEnd' => 'nullable|date',
+            'user_id' => 'nullable|integer',
+            'seller_id' => 'nullable|integer',
+        ]);        
+        try {
+            $validatedData['code'] = 33333;
+            $validatedData['status'] = 'inicial';
+            $payment = Payment::create($validatedData);
+            return response()->json(['status' => 'success', 'pago guardado' => $payment], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al guardar pago: ' . $e->getMessage()], 500);
+        }
     }
 
     /**

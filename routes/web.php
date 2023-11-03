@@ -36,14 +36,15 @@ Route::post('/subscriber', [App\Http\Controllers\SubscriberController::class, 's
 Auth::routes([
     'verify'=> true,
 ]);
-//Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
 Route::get('/login', [App\Http\Controllers\WebController::class, 'login'])->name('login');
 Route::get('/registro', [App\Http\Controllers\WebController::class, 'register'])->name('registro');
 Route::get('/password/reset/{token}', [App\Http\Controllers\WebController::class, 'passwordreset'])->name('password.reset');
 Route::get('/password/confirm', [App\Http\Controllers\WebController::class, 'passwordconfirm'])->name('passwordconfirm');
 Route::get('/password/email', [App\Http\Controllers\WebController::class, 'passwordemail'])->name('passwordemail');
+Route::get('/email/verify', [App\Http\Controllers\WebController::class, 'verifyregister'])->name('verification.notice');
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+
+Route::prefix('admin')->middleware(['auth', 'verifyemail'])->group(function () {
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
     Route::post('saveData', [App\Http\Controllers\HomeController::class, 'saveData'])->name('saveData');
@@ -73,3 +74,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('user_type', App\Http\Controllers\UserTypeController::class);
 });
 
+
+Route::resource('payments', App\Http\Controllers\PaymentController::class);
+//Route::get('/webpay', [App\Http\Controllers\WebpayController::class, 'webpay_inicio'])->name('webpay_inicio');
+Route::get('/webpay/pagar', [App\Http\Controllers\WebpayController::class, 'webpay_pagar'])->name('webpay_pagar');
+Route::get('/webpay/respuesta', [App\Http\Controllers\WebpayController::class, 'webpay_respuesta'])->name('webpay_respuesta');

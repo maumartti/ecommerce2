@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ContactMessage;
 use App\Tools;
 use App\Models\Web;
 use App\Models\Message;
@@ -12,7 +15,7 @@ class MessageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -41,8 +44,21 @@ class MessageController extends Controller
             'email' => 'required|string|max:100',
             'text' => 'required|string|max:255',
         ]);
+    
         try {
             $message = Message::create($validatedData);
+    
+            // Enviar una notificación por correo electrónico aquí
+            $notificationData = [
+                'name' => $message->name, // Asegúrate de que tu modelo Message tenga un campo 'name'
+                'email' => $message->email,
+                'message' => $message->text,
+            ];
+    
+            // Notificar al usuario por correo electrónico
+            Notification::route('mail', config('mail.from.address'))
+                ->notify(new ContactMessage($notificationData));
+    
             return back()->with('success', 'El mensaje se ha enviado exitosamente.');
         } catch (\Exception $e) {
             return back()->with('error', 'Error al crear el mensaje: ' . $e->getMessage());
