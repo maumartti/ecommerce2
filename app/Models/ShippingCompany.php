@@ -15,4 +15,8 @@ class ShippingCompany extends Model
     {
         return $this->belongsToMany(Region::class, 'region_company', 'company_id', 'region_id');
     }
+    public function offices()
+    {
+        return $this->hasMany(ShippingOfficeCompanyRegion::class, 'company_id', 'id');
+    }
 }

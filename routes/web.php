@@ -59,6 +59,7 @@ Route::prefix('admin')->middleware(['auth', 'verifyemail'])->group(function () {
     Route::resource('products', App\Http\Controllers\ProductsController::class);
     Route::resource('shipping', App\Http\Controllers\ShippingController::class);
     Route::resource('shipping_companies', App\Http\Controllers\ShippingCompaniesController::class);
+    Route::resource('shipping_office_company_region', App\Http\Controllers\ShippingOfficeCompanyRegionController::class);
     Route::resource('regions', App\Http\Controllers\RegionsController::class);
     Route::resource('region_company', App\Http\Controllers\RegionCompanyController::class);
     Route::resource('activity', App\Http\Controllers\ActivityController::class);

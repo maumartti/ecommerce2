@@ -125,11 +125,33 @@
                                                                                                 <div class="card-body">
                                                                                                     <!-- Contenido del acordeón -->
                                                                                                     <ul class="list-group">
-                                                                                                        <li class="list-group-item">Cras justo odio</li>
-                                                                                                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                                                                                                        <li class="list-group-item">Morbi leo risus</li>
-                                                                                                        <li class="list-group-item">Porta ac consectetur ac</li>
-                                                                                                        <li class="list-group-item">Vestibulum at eros</li>
+                                                                                                        <li class="list-group">
+                                                                                                            <form action="shipping_office_company_region" method="POST" class="php-email-form">
+                                                                                                                <div class="input-group mb-4">
+                                                                                                                    <input type="text" class="form-control" id="btnAddOffice" name="address_office" value="" placeholder="Dirección de sucrusal..." maxlength="255" autocomplete="off">
+                                                                                                                    <input type="hidden" name="region_id" value="{{$item->id}}">
+                                                                                                                    <input type="hidden" name="company_id" value="{{$company->id}}">
+                                                                                                                    <div class="input-group-append" style="padding: 0px;">
+                                                                                                                        <span class="input-group-text p-0" style="border-radius: 4px;">
+                                                                                                                            <!-- Agregar un botón con un identificador para agregar tags -->
+                                                                                                                            <button type="submit" class="btn btn-primary" id="agregarTagBtn">Agregar Sucursal</button>
+                                                                                                                        </span>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </form>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                    <ul class="list-group">
+                                                                                                        @if (count($company->offices) > 0)
+                                                                                                            @foreach ($company->offices as $office)
+                                                                                                                @if($office->region_id == $item->id)
+                                                                                                                <li class="list-group-item">
+                                                                                                                    <span class="mt-2 float-left">{{$office->address_office}}</span>
+                                                                                                                    <button type="button" class="btn btn-danger delete-modal-button float-right" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($office)' data-id='{{$office->id}}' data-name='{{$office->address_office}}' data-type="sucursal" data-url="shipping_office_company_region"><i class="material-icons">delete</i></button>
+                                                                                                                </li>
+                                                                                                                @endif    
+                                                                                                            @endforeach
+                                                                                                        @endif    
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </div>

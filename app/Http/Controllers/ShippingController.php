@@ -7,6 +7,7 @@ use App\Tools;
 use App\Models\Web;
 use App\Models\Region;
 use App\Models\ShippingCompany;
+use App\Models\ShippingOfficeCompanyRegion;
 
 class ShippingController extends Controller
 {
@@ -23,7 +24,7 @@ class ShippingController extends Controller
         $web = Web::find(1);
         $regions = Region::with('companies')->get();
         //dd( $regions);
-        $companies = ShippingCompany::all();
+        $companies = ShippingCompany::with('offices')->get();
         return view('admin.shipping')->with('web',$web)->with('regions',$regions)->with('companies',$companies);   
     }
 

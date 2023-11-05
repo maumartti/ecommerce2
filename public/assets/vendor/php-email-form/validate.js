@@ -60,6 +60,7 @@
     var itemData = $(this).data('item');
     if(itemData.title){ itemData.name = itemData.title }//si tiene titulo es el nombre
     if(type == 'subscriptor'){ itemData.name = itemData.email }//si tiene titulo es el nombre
+    if(type == 'sucursal'){ itemData.name = itemData.address_office }//si tiene titulo es el nombre
     var surname = $(this).data('surname');
     var url = $(this).data('url');
     $('#ModalDeleteOne .type').text(type);
