@@ -40,6 +40,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $validatedData = $request->validate([
             'code' => 'integer',
             'status' => 'string|max:20',
@@ -55,8 +56,10 @@ class PaymentController extends Controller
             'userCity' => 'required|string|max:100',
             'userAddress' => 'required|string|max:255',
             'shipping' => 'required|string',
+            'shippingTwo' => 'nullable|string',
+            'shippingOfficeAddress' => 'nullable|string|max:255',
             'amountShipping' => 'nullable|integer',
-            'shippingCompanyId' => 'nullable',
+            'shippingCompanyId' => 'integer|nullable',
             'shippingCompanyName' => 'nullable|string|max:64',
             'payMethod' => 'required|string|max:36',
             'payConfirmed' => 'nullable|date',

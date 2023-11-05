@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('userZip',12);
             $table->string('userAddress',255);
             $table->string('shipping',20);
+            $table->string('shippingTwo',20)->nullable();
+            $table->string('shippingOfficeAddress',255)->nullable();
             $table->unsignedInteger('amountShipping',11)->nullable();
             $table->unsignedInteger('shippingCompanyId',11)->nullable();
             $table->string('shippingCompanyName',64)->nullable();

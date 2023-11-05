@@ -220,7 +220,7 @@
 									<div class="row">
 										<div class="col-6 pr-0">
 											<div class="form-check pb-2 bor8 p-l-12 p-t-4">
-												<input type="radio" class="form-check-input formaship" id="shipp-1" name="shipping" value="local" style="top: 6px !important;left: 26px;" autocomplete="off">
+												<input type="radio" class="form-check-input formaship" id="shipp-1" name="shipping" value="local" style="top: 6px !important;left: 26px;" autocomplete="off" required>
 												<label class="form-check-label" for="shipp-1">
 													Retiro en local <img src="/assets/images/box.png" style="position: relative;top: -1.4px;width:19px;">
 												</label>
@@ -228,7 +228,7 @@
 										</div>
 										<div class="col-6">
 											<div class="form-check pb-2 bor8 p-l-12 p-t-4">
-												<input type="radio" class="form-check-input formaship" id="shipp-2" name="shipping" value="envio" style="top: 6px !important;left: 26px;" autocomplete="off">
+												<input type="radio" class="form-check-input formaship" id="shipp-2" name="shipping" value="envio" style="top: 6px !important;left: 26px;" autocomplete="off" required>
 												<label class="form-check-label" for="shipp-2">
 													Qué me lo envíen <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;">
 												</label>
@@ -276,7 +276,7 @@
 															@foreach ($regions->find(auth()->user()->region_id)->companies as $company)
 																	<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 																		<label class="form-check-label" for="{{ $company->id }}">
-																				<input type="radio" name="shippingCompanyId" id="{{ $company->id }}" value="{{ $company->id }}" class="sucursal form-check-input" style="top: 10px !important;" autocomplete="off">
+																				<input type="radio" name="shippingCompanyId" id="{{ $company->id }}" value="{{ $company->id }}" class="sucursal form-check-input" data-offices="{{ $company->offices }}" style="top: 10px !important;" autocomplete="off">
 																				<img src="/assets/images/companies/{{ $company->image }}" style="width: 100px;"> {{ $company->name }}
 																			</label>
 																	</div>
@@ -290,22 +290,29 @@
 												</span>
 												<div class="bg0 m-b-12 m-t-9" id="">
 													<div class="row">
-														<div class="col-12 pr-0">
+														<div class="col-6 pr-0">
 															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
-																<input type="radio" class="form-check-input formaship" id="shipp-2" name="shipping" value="envio" style="top: 6px !important;left: 26px;" autocomplete="off">
-																<label class="form-check-label" for="shipp-2">
-																	Qué lo envíen a mi dirección <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;"><img src="/assets/images/home.png" style="position: relative;top: -1px;width:19px;">
-																</label>
-															</div>
-														</div>
-														<div class="col-12">
-															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
-																<input type="radio" class="form-check-input formaship" id="shipp-1" name="shipping" value="local" style="top: 6px !important;left: 26px;" autocomplete="off">
-																<label class="form-check-label" for="shipp-1">
+																<input type="radio" class="form-check-input modeship" name="shippingTwo" value="sucursal" id="shipp-mode-1" style="top: 6px !important;left: 26px;" autocomplete="off">
+																<label class="form-check-label" for="shipp-mode-1">
 																	Retiro en sucursal de mi zona <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;"><img src="/assets/images/store.png" style="position: relative;top: -1px;width:19px;">
 																</label>
 															</div>
 														</div>
+														<div class="col-6">
+															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+																<input type="radio" class="form-check-input modeship" name="shippingTwo" value="casa" id="shipp-mode-2" style="top: 6px !important;left: 26px;" autocomplete="off">
+																<label class="form-check-label" for="shipp-mode-2">
+																	Qué lo envíen a mi dirección <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;"><img src="/assets/images/home.png" style="position: relative;top: -1px;width:19px;">
+																</label>
+															</div>
+														</div>
+														<!-- sucursales empresa retiro en region seleccionada -->
+														<div class="col-12 input-group-prepend">
+															<select name="shippingOfficeAddress" id="SelectOffices" class="form-control w-100" autocomplete="off" style="display: none;">
+																<option value="" selected>Seleccione una sucursal...</option>
+															</select>
+														</div>
+
 													</div>
 												</div>
 											</div>
@@ -346,19 +353,19 @@
 									<div class=" bg0 m-b-12 m-t-9" id="">
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-1">
-													<input type="radio" class="form-check-input" id="method-1" name="payMethod" value="mercado-pago" style="top: 6px !important;" autocomplete="off">
+													<input type="radio" class="form-check-input" id="method-1" name="payMethod" value="mercado-pago" style="top: 6px !important;" autocomplete="off" required>
 													<img src="/assets/images/mercadopago.png" class="ml-2" style="width: 100px;">
 												</label>
 										</div>
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-2">
-													<input type="radio" class="form-check-input" id="method-2" name="payMethod" value="webpay" style="top: 6px !important;" autocomplete="off">
+													<input type="radio" class="form-check-input" id="method-2" name="payMethod" value="webpay" style="top: 6px !important;" autocomplete="off" required>
 													<img src="/assets/images/webpay.png" class="ml-2" style="width: 100px;">
 												</label>
 										</div>
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-3">
-													<input type="radio" class="form-check-input" id="method-3" name="payMethod" value="banco" style="top: 6px !important;" autocomplete="off">
+													<input type="radio" class="form-check-input" id="method-3" name="payMethod" value="banco" style="top: 6px !important;" autocomplete="off" required>
 													<img src="/assets/images/banco.jpg" class="ml-2" style="width: 125px;">
 												</label>
 										</div>
@@ -464,6 +471,40 @@
             }
         }
 		});
+
+		//muestra el select de sucursales si se selecciona: retira en sucursal de su zona
+		$('.modeship').on('change', function() {
+        var selectedValue = $(this).val();
+        if (selectedValue === 'sucursal') {
+            $('#SelectOffices').show(); // Mostrar el elemento select si se selecciona 'sucursal'
+						$('#SelectOffices').prop('required', true);
+        } else {
+            $('#SelectOffices').hide(); // Ocultar el elemento select en caso contrario
+						$('#SelectOffices').prop('required', false);
+        }
+    });
+
+		//llenamos el select de oficinas de la empresa de envio que se seleciono
+		$('input[type="radio"].sucursal').on('change', function() {
+			var selectedCompanyId = $(this).val(); // ID de la empresa seleccionada
+			var selectedRegionId = $('#regionSelect').val(); // Valor seleccionado en el elemento #regionSelect
+			var officesData = $(this).data('offices'); // Obtener los datos de oficinas desde el atributo data-offices
+			// Filtrar las oficinas por region_id
+			var filteredOffices = officesData.filter(function(office) {
+				return office.region_id == selectedRegionId;
+			});
+			// Limpiar y actualizar el elemento select con las oficinas filtradas
+			var selectOffices = $('#SelectOffices');
+			selectOffices.empty();
+			// Agregar la opción "Seleccione una sucursal..." como la primera opción y seleccionarla por defecto
+			selectOffices.append(new Option('Seleccione una sucursal...', '', true, true));
+			// Agregar las oficinas filtradas al elemento select
+			$.each(filteredOffices, function(index, office) {
+					selectOffices.append(new Option(office.address_office, office.address_office));
+			});
+		});
+
+
 
 
 		// muestra oculta div envio o retiro local - y suma el precio de envio al total

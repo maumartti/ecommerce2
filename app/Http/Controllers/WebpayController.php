@@ -18,7 +18,7 @@ class WebpayController extends Controller
         $amount = $payment->amountTotal;
 
         $transaction = new Transaction();
-        $createResponse = $transaction->create($code, $id, $amount, 'http://localhost:8000/webpay-plus/index.php?action=result');
+        $createResponse = $transaction->create($code, $id, $amount, 'https://importadoratatar.cl/webpay/respuesta?action=result');
         $redirectUrl = $createResponse->getUrl() . '?token_ws=' . $createResponse->getToken() . '&item_name=' . urlencode($code);
         header('Location: '.$redirectUrl, true, 302);
         exit;
