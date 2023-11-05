@@ -147,21 +147,21 @@
 									</span>
 
 									<div class="bor8 bg0 m-b-12">
-										<input type="text" name="userName" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Nombre y apellido" autocomplete="off" required>
+										<input type="text" name="userName" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Nombre y apellido"  required>
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="text" name="userRut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="RUT" autocomplete="off">
+										<input type="text" name="userRut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="RUT" >
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="email" name="userEmail" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" autocomplete="off">
+										<input type="email" name="userEmail" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" required>
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
 										<div class="input-group">
 											<div class="input-group-prepend">
-												<select name="userCountryCode" class="form-control w-100" autocomplete="off" required>
+												<select name="userCountryCode" class="form-control w-100" required>
 													<!-- <option value="" selected>Seleccione uno...</option> -->
 													<option value="+56" {{ auth()->check() && auth()->user()->countryCode == '+56' ? 'selected' : 'selected' }}>Chile (+56)</option>
 													<option value="+54" {{ auth()->check() && auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
@@ -174,7 +174,7 @@
 													<option value="+1" {{ auth()->check() && auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
 												</select>
 											</div>
-											<input type="text" id="cel" name="userCel" value="@if(auth()->check() && auth()->user()->cel) {{auth()->user()->cel}} @endif" class="form-control" maxlength="20"   placeholder="Teléfono / Cel" autocomplete="off" required>
+											<input type="text" id="cel" name="userCel" value="@if(auth()->check() && auth()->user()->cel) {{auth()->user()->cel}} @endif" class="form-control" maxlength="20"   placeholder="Teléfono / Cel" required>
 										</div>
 									</div>
 
@@ -261,11 +261,11 @@
 											</div>
 											<label class="mb-1">Tu ciudad:</label>
 											<div class="bor8 bg0 m-b-12">
-												<input type="text" name="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" autocomplete="off">
+												<input type="text" name="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" required>
 											</div>
 											<label class="mb-1">Tu dirección:</label>
 											<div class="bor8 bg0 m-b-22">
-												<textarea name="userAddress" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" autocomplete="off">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
+												<textarea name="userAddress" id="userAddress" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
 											</div>
 										<!-- selecciona sucursal -->
 											<span class="stext-112 cl8">
@@ -284,7 +284,7 @@
 													@endif
 											</div>
 											<!-- retiro sucursal / envien a casa -->
-											<div  id="cont">
+											<div id="contDonde" style="display:none">
 												<span class="stext-112 cl8">
 														A donde enviamos tu pedido
 												</span>
@@ -446,31 +446,41 @@
 	
 	//al cambiar select region , carga todos las empresas de envio de la nueva region selecionada
 	$(document).ready(function() {
-    $('#regionSelect').on('change', function() {
-        var regionId = $(this).val();
-        var $companyContainer = $('#companiesContainer');
-        // Limpiar el contenedor de compañías antes de cargar nuevas opciones
-        $companyContainer.empty();
-        // Verificar si la región seleccionada tiene compañías
-        if (regionId) {
-            var companies = {!! json_encode($regions->pluck('companies', 'id')) !!};
+		$('#regionSelect').on('change', function() {
+				var regionId = $(this).val();
+				var $companyContainer = $('#companiesContainer');
+				// Limpiar el contenedor de compañías antes de cargar nuevas opciones
+				$companyContainer.empty();
+				// Verificar si la región seleccionada tiene compañías
+				if (regionId) {
+						var companies = {!! json_encode($regions->pluck('companies', 'id')) !!};
+						//console.log('companies', companies);
+						if (companies[regionId]) {
+								// Obtener las oficinas correspondientes a regionId desde la variable $offices
+								// Procesa las oficinas y constrxuye tus elementos HTML
+								$.each(companies[regionId], function(index, company) {
+										var offices = {!! json_encode($offices) !!}.filter(function(office) {
+												return office.region_id == regionId && office.company_id == company.id;
+										});
+										var officesJSON = JSON.stringify(offices);
+										// console.log('regionId', regionId)
+										// console.log('company', company.id)
+										// console.log('offices', offices)
+										var companyHtml = '<div class="form-check pb-2 bor8 p-l-12 p-t-4">';
+										companyHtml += '<label class="form-check-label" for="' + company.id + '">';
+										companyHtml += '<input type="radio" class="sucursal form-check-input" id="' + company.id + '" name="company_id" value="' + company.id + '"  data-offices=\'' + officesJSON + '\' style="top: 10px !important;">';
+										companyHtml += '<img src="/assets/images/companies/' + company.image + '" style="width: 100px;"> ' + company.name;
+										companyHtml += '</label>';
+										companyHtml += '</div>';
 
-            if (companies[regionId]) {
-                $.each(companies[regionId], function(index, company) {
-                    // Crear la estructura HTML para cada compañía en el formato deseado
-                    var companyHtml = '<div class="form-check pb-2 bor8 p-l-12 p-t-4">';
-                    companyHtml += '<label class="form-check-label" for="' + company.id + '">';
-                    companyHtml += '<input type="radio" class="form-check-input" id="' + company.id + '" name="company_id" value="' + company.id + '" style="top: 10px !important;">';
-                    companyHtml += '<img src="/assets/images/companies/' + company.image + '" style="width: 100px;"> ' + company.name;
-                    companyHtml += '</label>';
-                    companyHtml += '</div>';
-
-                    // Agregar la estructura HTML de la compañía al contenedor de compañías
-                    $companyContainer.append(companyHtml);
-                });
-            }
-        }
+										var $companyElement = $(companyHtml);
+										$companyContainer.append($companyElement);
+								});
+						}
+				}
 		});
+
+
 
 		//muestra el select de sucursales si se selecciona: retira en sucursal de su zona
 		$('.modeship').on('change', function() {
@@ -478,17 +488,24 @@
         if (selectedValue === 'sucursal') {
             $('#SelectOffices').show(); // Mostrar el elemento select si se selecciona 'sucursal'
 						$('#SelectOffices').prop('required', true);
+						$('#userAddress').prop('required', false);
         } else {
             $('#SelectOffices').hide(); // Ocultar el elemento select en caso contrario
 						$('#SelectOffices').prop('required', false);
+						$('#userAddress').prop('required', true);
         }
     });
 
 		//llenamos el select de oficinas de la empresa de envio que se seleciono
-		$('input[type="radio"].sucursal').on('change', function() {
+		$(document).on('change', 'input[type="radio"].sucursal', function() {
+			console.log('change sucursal radiobutton');
+			$('#contDonde').show();
 			var selectedCompanyId = $(this).val(); // ID de la empresa seleccionada
 			var selectedRegionId = $('#regionSelect').val(); // Valor seleccionado en el elemento #regionSelect
-			var officesData = $(this).data('offices'); // Obtener los datos de oficinas desde el atributo data-offices
+			var data = $(this).attr('data-offices'); // Obtener los datos de oficinas desde el atributo data-offices
+			var officesData = JSON.parse(data);
+			//console.log('json', json);
+
 			// Filtrar las oficinas por region_id
 			var filteredOffices = officesData.filter(function(office) {
 				return office.region_id == selectedRegionId;

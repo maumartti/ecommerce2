@@ -14,6 +14,7 @@ use App\Models\Blog;
 use App\Models\CategoryBlog;
 use App\Models\Region;
 use App\Models\ShippingCompany;
+use App\Models\ShippingOfficeCompanyRegion;
 
 use Dymantic\InstagramFeed\InstagramFeed;
 use Dymantic\InstagramFeed\Profile;
@@ -240,8 +241,8 @@ class WebController extends Controller
         $regions = Region::with('companies')->with('offices')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
-        //$companies = ShippingCompany::with('offices')->get();
-        return view('cart')->with('iva',$iva)->with('total',$total)->with('regions',$regions)->with('web',$web)->with('subtotal',$subtotal)->with('categories',$categories)->with('subcategories',$subcategories);
+        $offices = ShippingOfficeCompanyRegion::all();
+        return view('cart')->with('iva',$iva)->with('total',$total)->with('regions',$regions)->with('offices',$offices)->with('web',$web)->with('subtotal',$subtotal)->with('categories',$categories)->with('subcategories',$subcategories);
     }
 
 

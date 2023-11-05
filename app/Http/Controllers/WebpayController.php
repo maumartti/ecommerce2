@@ -9,8 +9,6 @@ use App\Models\Payment;
 
 class WebpayController extends Controller
 {
-
-
     public function webpay_pagar($paymentId){
         $payment = Payment::find($paymentId);
         $id = $payment->id;
