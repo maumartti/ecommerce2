@@ -242,51 +242,75 @@
 									<p class="stext-111 cl6 p-t-10 alert alert-info">
 										Todos los envíos tienen un costo base de <strong>$5000</strong> pesos chilenos
 									</p>
-									
+									<span class="stext-112 cl8">
+										Información de envío
+									</span>
 									<div class="p-t-15">
-										<span class="stext-112 cl8">
-											Información de envío
-										</span>
-
-										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-											<select name="userRegion" id="regionSelect" class="js-select2" autocomplete="off" required>
-												<option value="">Selecciona tu región...</option>
-											@if($regions)
-													@foreach ($regions as $region)
-															<option value="{{$region->id}}" @if(auth()->check() && auth()->user()->region_id == $region->id) selected @endif>{{$region->name}}</option>
-													@endforeach
-											@endif
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-
-										<div class="bor8 bg0 m-b-12">
-											<input type="text" name="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" autocomplete="off">
-										</div>
-
-										<div class="bor8 bg0 m-b-22">
-											<input type="text" name="userZip" value="@if(auth()->check() && auth()->user()->zip) {{auth()->user()->zip}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Código postal / Zip" autocomplete="off">
-										</div>
-
-										<div class="bor8 bg0 m-b-22">
-											<textarea name="userAddress" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" autocomplete="off">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
-										</div>
-
-										<span class="stext-112 cl8">
-											Selecciona Empresa de envío <img src="/assets/images/local_shipping.png" style="position: relative;top: -1.4px;width:19px;">
-										</span>
-										<div class=" bg0 m-b-32 m-t-9" id="companiesContainer">
-												@if(auth()->check() && auth()->user()->region_id)
-														@foreach ($regions->find(auth()->user()->region_id)->companies as $company)
-																<div class="form-check pb-2 bor8 p-l-12 p-t-4">
-																	<label class="form-check-label" for="{{ $company->id }}">
-																			<input type="radio" class="form-check-input" id="{{ $company->id }}" name="shippingCompanyId" value="{{ $company->id }}" style="top: 10px !important;" autocomplete="off">
-																			<img src="/assets/images/companies/{{ $company->image }}" style="width: 100px;"> {{ $company->name }}
-																		</label>
-																</div>
+										<!-- info de direcccion -->
+											<label class="mt-1">Selecciona tu región:</label>
+											<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+												<select name="userRegion" id="regionSelect" class="js-select2" autocomplete="off" required>
+													<option value="">Selecciona tu región...</option>
+												@if($regions)
+														@foreach ($regions as $region)
+																<option value="{{$region->id}}" @if(auth()->check() && auth()->user()->region_id == $region->id) selected @endif>{{$region->name}}</option>
 														@endforeach
 												@endif
-										</div>
+												</select>
+												<div class="dropDownSelect2"></div>
+											</div>
+											<label class="mb-1">Tu ciudad:</label>
+											<div class="bor8 bg0 m-b-12">
+												<input type="text" name="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" autocomplete="off">
+											</div>
+											<label class="mb-1">Tu dirección:</label>
+											<div class="bor8 bg0 m-b-22">
+												<textarea name="userAddress" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" autocomplete="off">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
+											</div>
+										<!-- selecciona sucursal -->
+											<span class="stext-112 cl8">
+												Selecciona Empresa de envío <img src="/assets/images/local_shipping.png" style="position: relative;top: -1.4px;width:19px;">
+											</span>
+											<div class=" bg0 m-b-32 m-t-9" id="companiesContainer">
+													@if(auth()->check() && auth()->user()->region_id)
+															@foreach ($regions->find(auth()->user()->region_id)->companies as $company)
+																	<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+																		<label class="form-check-label" for="{{ $company->id }}">
+																				<input type="radio" name="shippingCompanyId" id="{{ $company->id }}" value="{{ $company->id }}" class="sucursal form-check-input" style="top: 10px !important;" autocomplete="off">
+																				<img src="/assets/images/companies/{{ $company->image }}" style="width: 100px;"> {{ $company->name }}
+																			</label>
+																	</div>
+															@endforeach
+													@endif
+											</div>
+											<!-- retiro sucursal / envien a casa -->
+											<div  id="cont">
+												<span class="stext-112 cl8">
+														A donde enviamos tu pedido
+												</span>
+												<div class="bg0 m-b-12 m-t-9" id="">
+													<div class="row">
+														<div class="col-12 pr-0">
+															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+																<input type="radio" class="form-check-input formaship" id="shipp-2" name="shipping" value="envio" style="top: 6px !important;left: 26px;" autocomplete="off">
+																<label class="form-check-label" for="shipp-2">
+																	Qué lo envíen a mi dirección <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;"><img src="/assets/images/home.png" style="position: relative;top: -1px;width:19px;">
+																</label>
+															</div>
+														</div>
+														<div class="col-12">
+															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+																<input type="radio" class="form-check-input formaship" id="shipp-1" name="shipping" value="local" style="top: 6px !important;left: 26px;" autocomplete="off">
+																<label class="form-check-label" for="shipp-1">
+																	Retiro en sucursal de mi zona <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;"><img src="/assets/images/store.png" style="position: relative;top: -1px;width:19px;">
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+
 									</div>
 									<!-- <div class="flex-w">
 										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">

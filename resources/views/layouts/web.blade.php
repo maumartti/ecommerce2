@@ -204,9 +204,15 @@
 						</a>
 						@endguest
 
+						@if(auth()->check())
+						<a href="/admin/home" class="flex-c-m trans-04 p-lr-25">
+						<i class="zmdi zmdi-account mr-2"></i> Panel
+						</a>
+						@else
 						<a href="/login" class="flex-c-m trans-04 p-lr-25">
 							Entrar
 						</a>
+						@endif
 
 						<!-- <a href="#" class="flex-c-m trans-04 p-lr-25">
 							EN
@@ -331,9 +337,15 @@
 						</a>
 						@endguest
 
-						<a href="/login" class="flex-c-m p-lr-10 trans-04">
+						@if(auth()->check())
+						<a href="/admin/home" class="flex-c-m trans-04 p-lr-25">
+						<i class="zmdi zmdi-account mr-2"></i> Panel
+						</a>
+						@else
+						<a href="/login" class="flex-c-m trans-04 p-lr-25">
 							Entrar
 						</a>
+						@endif
 
 						<!-- <a href="#" class="flex-c-m p-lr-10 trans-04">
 							EN

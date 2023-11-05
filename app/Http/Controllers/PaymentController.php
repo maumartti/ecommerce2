@@ -14,7 +14,7 @@ class PaymentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -53,11 +53,10 @@ class PaymentController extends Controller
             'userCel' => 'required|string|max:36',
             'userRegion' => 'required|string|max:64',
             'userCity' => 'required|string|max:100',
-            'userZip' => 'required|string|max:12',
             'userAddress' => 'required|string|max:255',
             'shipping' => 'required|string',
             'amountShipping' => 'nullable|integer',
-            'shippingCompanyId' => 'nullable|integer',
+            'shippingCompanyId' => 'nullable',
             'shippingCompanyName' => 'nullable|string|max:64',
             'payMethod' => 'required|string|max:36',
             'payConfirmed' => 'nullable|date',
@@ -67,6 +66,7 @@ class PaymentController extends Controller
             'seller_id' => 'nullable|integer',
         ]);        
         try {
+            //return $validatedData;
             $validatedData['code'] = 33333;
             $validatedData['status'] = 'inicial';
             $validatedData['amountShipping'] = 5000;

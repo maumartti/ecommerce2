@@ -42,7 +42,7 @@
 										<div class="tab-pane fade show active" id="categories" role="tabpanel" aria-labelledby="categories-tab">
 												<div class="row border-bottom py-2 bg-light">
 														<div class="col-12 col-sm-12">
-																<table id="categories-table" class="table mb-0">
+																<table id="shipping-table" class="table mb-0">
 																		<!-- Encabezados de la tabla de Categorías -->
 																		<thead class="bg-light">
 																				<tr>
@@ -82,39 +82,66 @@
 										<div class="tab-pane fade" id="subcategories" role="tabpanel" aria-labelledby="subcategories-tab">
 												<div class="row border-bottom py-2 bg-light">
 														<div class="col-12 col-sm-12">
-																<table id="products-table" class="table mb-0">
-																		<!-- Encabezados de la tabla de Categorías -->
-																		<thead class="bg-light">
-																				<tr>
-																						<!-- <th scope="col" class="border-0">#</th> -->
-																						<th scope="col" class="border-0">Región</th>
-																						<th scope="col" class="border-0">Empresa</th>
-																						<th scope="col" class="border-0">Logo</th>
-																						<!-- <th scope="col" class="border-0 text-center">Ver</th> -->
-																						<!-- <th scope="col" class="border-0 text-center">Editar</th> -->
-																						<th scope="col" class="border-0 text-center">Borrar</th>
-																				</tr>
-																		</thead>
-																		<tbody>
-																				@if(isset($regions))
-																				@if($regions)
-                                                                                    @foreach ($regions as $index => $item)
-																				        @if($item->companies)
-                                                                                        @foreach ($item->companies as $company)
-																						<tr>
-																								<td>{{$item->name}}</td>
-																								<td>{{$company->name}}</td>
-																								<td><img src="/assets/images/companies/{{$company->image}}" style="width:65px;"></td>
-																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
-																								<td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-surname='{{$company->name}}' data-type="(región / empresa)" data-url="region_company" >Borrar <i class="material-icons">delete</i></button></td>
-																						</tr>
-                                                                                        @endforeach
-                                                                                        @endif
-																					@endforeach
-																				@endif
-																				@endif
-																		</tbody>
-																</table>
+                                                            <table id="regionshipping-table" class="table mb-0">
+                                                                <!-- Encabezados de la tabla de Categorías -->
+                                                                <thead class="bg-light">
+                                                                    <tr>
+                                                                        <!-- <th scope="col" class="border-0">#</th> -->
+                                                                        <th scope="col" class="border-0">Región</th>
+                                                                        <th scope="col" class="border-0">Empresa</th>
+                                                                        <th scope="col" class="border-0">Logo</th>
+                                                                        <th scope="col" class="border-0 text-center">Locales</th>
+                                                                        <th scope="col" class="border-0 text-center">Editar</th>
+                                                                        <th scope="col" class="border-0 text-center">Borrar</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @if(isset($regions))
+                                                                    @if($regions)
+                                                                        @foreach ($regions as $index => $item)
+                                                                            @if($item->companies)
+                                                                                @foreach ($item->companies as $company)
+                                                                                    <tr>
+                                                                                        <td>{{$item->name}}</td>
+                                                                                        <td>{{$company->name}}</td>
+                                                                                        <td><img src="/assets/images/companies/{{$company->image}}" style="width:65px;"></td>
+                                                                                        <td class="text-center">
+                                                                                            <div id="accordion{{$company->id}}{{$item->id}}">
+                                                                                                <button class="btn btn-info" data-toggle="collapse" data-target="#collapseOne{{$company->id}}{{$item->id}}" aria-expanded="false" aria-controls="collapseOne{{$company->id}}{{$item->id}}">
+                                                                                                    <i class="material-icons">keyboard_double_arrow_down</i>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            <button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)'>Editar <i class="material-icons">edit</i></button>
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            <button type="button" class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-surname='{{$company->name}}' data-type="(región / empresa)" data-url="region_company">Borrar <i class="material-icons">delete</i></button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td colspan="6">
+                                                                                            <div id="collapseOne{{$company->id}}{{$item->id}}" class="collapse" aria-labelledby="headingOne{{$company->id}}{{$item->id}}" data-parent="#accordion{{$company->id}}{{$item->id}}">
+                                                                                                <div class="card-body">
+                                                                                                    <!-- Contenido del acordeón -->
+                                                                                                    <ul class="list-group">
+                                                                                                        <li class="list-group-item">Cras justo odio</li>
+                                                                                                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                                                                                                        <li class="list-group-item">Morbi leo risus</li>
+                                                                                                        <li class="list-group-item">Porta ac consectetur ac</li>
+                                                                                                        <li class="list-group-item">Vestibulum at eros</li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                    @endif
+                                                                </tbody>
+                                                            </table>
 														</div>
 														<div class="col-12 col-sm-12 d-flex mb-2 mb-sm-0">
 																<!-- <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button> -->
@@ -125,7 +152,7 @@
 										<div class="tab-pane fade" id="empresas" role="tabpanel" aria-labelledby="empresas-tab">
 												<div class="row border-bottom py-2 bg-light">
 														<div class="col-12 col-sm-12">
-																<table id="products-table" class="table mb-0">
+																<table id="companyshipping-table" class="table mb-0">
 																		<!-- Encabezados de la tabla de Categorías -->
 																		<thead class="bg-light">
 																				<tr>
@@ -148,7 +175,7 @@
 																								<!-- <td>{{$key}}</td> -->
 																								<td>{{$item->name}}</td>
 																								<td><img src="/assets/images/companies/{{$item->image}}" style="width:65px;"></td>
-																								<!-- <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td> -->
+																								<!-- <td class="text-center"></td> -->
 																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
 																								<td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="empresa" data-url="shipping_companies" >Borrar <i class="material-icons">delete</i></button></td>
 																						</tr>
@@ -354,7 +381,7 @@
 <script>
 $(document).ready(function(){
 
-	$('#products-table').DataTable({
+	$('#shipping-table, #regionshipping-table').DataTable({
         "pageLength": 50 // Configura el número de elementos por página
     });
 

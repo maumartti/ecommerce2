@@ -47,9 +47,11 @@ class RegionCompanyController extends Controller
         try {
             $region_id = $validatedData['region_id'];
             $company_ids = $validatedData['company_id'];
-            $region = Region::find($region_id);
-            if ($region) {
-                $region->companies()->attach($company_ids);
+            foreach ($company_ids as $company_id) {
+                $existingRegionCompany = RegionCompany::where('region_id', $region_id)->where('company_id', $company_id)->first();
+                if (!$existingRegionCompany) {
+                    RegionCompany::create(['region_id' => $region_id,'company_id' => $company_id,]);
+                }
             }
             $regionCompanies = RegionCompany::all();
             return response()->json(['status' => 'success', 'regionCompanies' => $regionCompanies], 200);
