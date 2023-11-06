@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('code',11);
+            $table->string('code',16);
             $table->string('status',20);
             $table->unsignedInteger('amount',11);
             $table->unsignedInteger('amountTotal',11);
@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('userEmail',20);
             $table->string('userCountryCode',10);
             $table->string('userCel',36);
-            $table->string('userRegion',64);
-            $table->string('userCity',100);
+            $table->string('userRegion',64)->nullable();
+            $table->string('userCity',100)->nullable();
             $table->string('userZip',12);
-            $table->string('userAddress',255);
+            $table->string('userAddress',255)->nullable();
             $table->string('shipping',20);
             $table->string('shippingTwo',20)->nullable();
             $table->string('shippingOfficeAddress',255)->nullable();
@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('shippingCompanyName',64)->nullable();
             $table->string('payMethod',36);
             $table->datetime('payConfirmed')->nullable()->default(null);
+            $table->unsignedInteger('amountConfirmed',11)->nullable()->default(null);
             $table->datetime('deliveredStart')->nullable()->default(null);
             $table->datetime('deliveredEnd')->nullable()->default(null);
             $table->unsignedInteger('user_id')->nullable();

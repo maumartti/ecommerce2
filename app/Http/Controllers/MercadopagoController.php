@@ -8,16 +8,16 @@ use Transbank\Webpay\WebpayPlus\Transaction;
 use App\Models\Web;
 use App\Models\Payment;
 
-class WebpayController extends Controller
+class MercadopagoController extends Controller
 {
-    public function webpay_pagar($paymentId){
+    public function mercadopago_pagar($paymentId){
         $payment = Payment::find($paymentId);
         $id = $payment->id;
         $code = $payment->code;
         $amount = $payment->amountTotal;
 
         $transaction = new Transaction();
-        $createResponse = $transaction->create($code, $id, $amount, 'https://importadoratatar.cl/webpay/respuesta?payment_id='. $id);
+        $createResponse = $transaction->create($code, $id, $amount, 'https://importadoratatar.cl/mercadopago/respuesta?payment_id='. $id);
         $redirectUrl = $createResponse->getUrl() . '?token_ws=' . $createResponse->getToken();
         header('Location: '.$redirectUrl, true, 302);
         exit;

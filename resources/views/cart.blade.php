@@ -8,6 +8,16 @@
     <meta property="og:description" content="Artículos del carrito de compras {{ config('app.name') }}">
     <meta property="og:url" content="{{request()->url()}}">
     <meta property="og:type" content="website">
+		<style>
+			.error-message {
+					color: red;
+					font-size: 12px;
+					margin-top: 5px;
+			}
+			.required-label {
+					color: red;
+			}
+		</style>
 @endsection
 
 
@@ -28,7 +38,7 @@
 		
 
 	<!-- Shoping Cart -->
-	<form action="payments" method="POST" class="php-email-form" class="bg0 p-t-75 p-b-85">
+	<form action="payments" method="POST" class="was-validated" class="bg0 p-t-75 p-b-85">
 	@csrf
 		<div class="container">
 			<div class="row">
@@ -147,15 +157,15 @@
 									</span>
 
 									<div class="bor8 bg0 m-b-12">
-										<input type="text" name="userName" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Nombre y apellido"  required>
+										<input type="text" name="userName" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Nombre y apellido"  required>
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="text" name="userRut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="RUT" >
+										<input type="text" name="userRut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="RUT" >
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="email" name="userEmail" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" required>
+										<input type="email" name="userEmail" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" required>
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
@@ -248,8 +258,8 @@
 									<div class="p-t-15">
 										<!-- info de direcccion -->
 											<label class="mt-1">Selecciona tu región:</label>
-											<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-												<select name="userRegion" id="regionSelect" class="js-select2" autocomplete="off" required>
+											<div class="rs1-select2 rs2-select2 bg0 m-b-12 m-t-9">
+												<select name="userRegion" id="regionSelect" class="form-control js-select2" autocomplete="off" required>
 													<option value="">Selecciona tu región...</option>
 												@if($regions)
 														@foreach ($regions as $region)
@@ -258,17 +268,20 @@
 												@endif
 												</select>
 												<div class="dropDownSelect2"></div>
+												<div class="invalid-feedback invalid-region">
+													Selecciona una región
+												</div>
 											</div>
 											<label class="mb-1">Tu ciudad:</label>
 											<div class="bor8 bg0 m-b-12">
-												<input type="text" name="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" required>
+												<input type="text" name="userCity" id="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" required>
 											</div>
-											<label class="mb-1">Tu dirección:</label>
-											<div class="bor8 bg0 m-b-22">
-												<textarea name="userAddress" id="userAddress" class="stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
+											<label class="mb-1" id="labeluserAddress">Tu dirección:</label>
+											<div class="bor8 bg0 m-b-22 has-validation">
+												<textarea name="userAddress" id="userAddress" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
 											</div>
 										<!-- selecciona sucursal -->
-											<span class="stext-112 cl8">
+											<span class="stext-112 cl8" id="labelSelectCompany">
 												Selecciona Empresa de envío <img src="/assets/images/local_shipping.png" style="position: relative;top: -1.4px;width:19px;">
 											</span>
 											<div class=" bg0 m-b-32 m-t-9" id="companiesContainer">
@@ -276,7 +289,7 @@
 															@foreach ($regions->find(auth()->user()->region_id)->companies as $company)
 																	<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 																		<label class="form-check-label" for="{{ $company->id }}">
-																				<input type="radio" name="shippingCompanyId" id="{{ $company->id }}" value="{{ $company->id }}" class="sucursal form-check-input" data-offices="{{ $company->offices }}" style="top: 10px !important;" autocomplete="off">
+																				<input type="radio" name="shippingCompanyId" id="{{ $company->id }}" value="{{ $company->id }}" class="sucursal form-control form-check-input" data-offices="{{ $company->offices }}" style="top: 10px !important;" autocomplete="off">
 																				<img src="/assets/images/companies/{{ $company->image }}" style="width: 100px;"> {{ $company->name }}
 																			</label>
 																	</div>
@@ -347,25 +360,25 @@
 									<!-- <span class="stext-112 cl8">
 										Información de pago
 									</span> -->
-									<span class="stext-112 cl8">
+									<span class="stext-112 cl8" id="labelSelectMetodoPago">
 										Selecciona Método de Pago <img src="/assets/images/credit.png" style="position: relative;top: -1.4px;width:19px;">
 									</span>
 									<div class=" bg0 m-b-12 m-t-9" id="">
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-1">
-													<input type="radio" class="form-check-input" id="method-1" name="payMethod" value="mercado-pago" style="top: 6px !important;" autocomplete="off" required>
+													<input type="radio" class="pay form-check-input" id="method-1" name="payMethod" value="mercadopago" style="top: 6px !important;" autocomplete="off" required>
 													<img src="/assets/images/mercadopago.png" class="ml-2" style="width: 100px;">
 												</label>
 										</div>
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-2">
-													<input type="radio" class="form-check-input" id="method-2" name="payMethod" value="webpay" style="top: 6px !important;" autocomplete="off" required>
+													<input type="radio" class="pay form-check-input" id="method-2" name="payMethod" value="webpay" style="top: 6px !important;" autocomplete="off" required>
 													<img src="/assets/images/webpay.png" class="ml-2" style="width: 100px;">
 												</label>
 										</div>
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-3">
-													<input type="radio" class="form-check-input" id="method-3" name="payMethod" value="banco" style="top: 6px !important;" autocomplete="off" required>
+													<input type="radio" class="pay form-check-input" id="method-3" name="payMethod" value="banco" style="top: 6px !important;" autocomplete="off" required>
 													<img src="/assets/images/banco.jpg" class="ml-2" style="width: 125px;">
 												</label>
 										</div>
@@ -397,13 +410,13 @@
 								</span>
 							</div>
 							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2 header-cart-subtotal" id="totalPriceDisplay">
+								<span class="mtext-110 cl2 header-cart-subtotal" id="totalPriceDisplay" data-total="{{ session()->has('totalPrice') ? str_replace(',', '.', number_format(session('totalPrice'), 0, '.', ',')) : '0' }}">
 								${{ session()->has('totalPrice') ? str_replace(',', '.', number_format(session('totalPrice'), 0, '.', ',')) : '0' }}
 								</span>
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg1 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+						<button id="btnsubmit" class="flex-c-m stext-101 cl0 size-116 bg1 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							Completar Pedido
 						</button>
 						@else
@@ -443,10 +456,39 @@
 			// })
 		});
 
-	
+
+
+
+		(function () {
+			'use strict'
+
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms)
+				.forEach(function (form) {
+					form.addEventListener('submit', function (event) {
+						console.log('inputfrom0')
+						if (!form.checkValidity()) {
+							event.preventDefault()
+							event.stopPropagation()
+						}
+
+						form.classList.add('was-validated')
+					}, false)
+				})
+		})()
+
+
 	//al cambiar select region , carga todos las empresas de envio de la nueva region selecionada
 	$(document).ready(function() {
+		//agregamos borde al select region
+		$('.select2').addClass('bor8');
+
+
 		$('#regionSelect').on('change', function() {
+			$('.invalid-region').hide();
 				var regionId = $(this).val();
 				var $companyContainer = $('#companiesContainer');
 				// Limpiar el contenedor de compañías antes de cargar nuevas opciones
@@ -468,7 +510,7 @@
 										// console.log('offices', offices)
 										var companyHtml = '<div class="form-check pb-2 bor8 p-l-12 p-t-4">';
 										companyHtml += '<label class="form-check-label" for="' + company.id + '">';
-										companyHtml += '<input type="radio" class="sucursal form-check-input" id="' + company.id + '" name="company_id" value="' + company.id + '"  data-offices=\'' + officesJSON + '\' style="top: 10px !important;">';
+										companyHtml += '<input type="radio" class="sucursal form-check-input" id="' + company.id + '" name="shippingCompanyId" value="' + company.id + '"  data-offices=\'' + officesJSON + '\' style="top: 10px !important;" required>';
 										companyHtml += '<img src="/assets/images/companies/' + company.image + '" style="width: 100px;"> ' + company.name;
 										companyHtml += '</label>';
 										companyHtml += '</div>';
@@ -499,6 +541,7 @@
 		//llenamos el select de oficinas de la empresa de envio que se seleciono
 		$(document).on('change', 'input[type="radio"].sucursal', function() {
 			console.log('change sucursal radiobutton');
+			$('#labelSelectCompany').css('color', '#666666');
 			$('#contDonde').show();
 			var selectedCompanyId = $(this).val(); // ID de la empresa seleccionada
 			var selectedRegionId = $('#regionSelect').val(); // Valor seleccionado en el elemento #regionSelect
@@ -527,16 +570,51 @@
 		// muestra oculta div envio o retiro local - y suma el precio de envio al total
 		$('.formaship').change(function() {
 			$('#contEnvio, #priceShipping').toggle(this.value === 'envio');
+			var initialTtotalPrice = $('#totalPriceDisplay').data('total');
+			var initialTtotalPrice = parseInt(initialTtotalPrice.replace(/[^\d]/g, '')); // Usar parseInt
 			var currentPrice = $('#totalPriceDisplay').text();
 			var currentPriceValue = parseInt(currentPrice.replace(/[^\d]/g, '')); // Usar parseInt
 			if (this.value === 'envio') {
+				$('#regionSelect').prop('required', true);
+				$('#userCity').prop('required', true);
+				$('#userAddress').prop('required', true);
 				var newPriceValue = currentPriceValue + 5000;
-			} else {
-				var newPriceValue = currentPriceValue - 5000; // Restar $5000 si no se selecciona 'envio'
+			} else {//retira en local
+				$('#regionSelect').prop('required', false);
+				$('#userCity').prop('required', false);
+				$('#userAddress').prop('required', false);
+				if(currentPriceValue == initialTtotalPrice + 5000){
+					var newPriceValue = currentPriceValue - 5000; // Restar $5000 si no se selecciona 'envio'
+				}
 			}
 			var newPriceString = '$' + newPriceValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 			$('#totalPriceDisplay').text(newPriceString);
 		});
+
+
+		//selecciona un metodo de pago
+		$(document).on('change', 'input[type="radio"].pay', function() {
+			$('#labelSelectMetodoPago').css('color', '#666666');
+		});	
+
+		//texto:  Selecciona Empresa de envío  en rojo si no se seleciono empresa
+		$('#btnsubmit').on('click', function (event) {
+				//seleciona empresa de envio
+				if ($('input[name="shippingCompanyId"]:checked').length === 0) {
+						$('#labelSelectCompany').css('color', 'red');
+				}else{
+					$('#labelSelectCompany').css('color', '#666666');
+				}
+				//seleciona metodo de pago
+				if ($('input[name="payMethod"]:checked').length === 0) {
+						$('#labelSelectMetodoPago').css('color', 'red');
+				}else{
+					$('#labelSelectMetodoPago').css('color', '#666666');
+				}
+		});
+
+
+
 
 
 });
