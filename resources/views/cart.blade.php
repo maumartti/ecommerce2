@@ -60,7 +60,8 @@
 									<th class="column-1">Producto</th>
 									<th class="column-2"></th>
 									<th class="column-3 p-l-10">Precio</th>
-									<th class="column-4">Cantidad</th>
+									<th class="">Stock</th>
+									<th class="text-center">Cantidad</th>
 									<th class="column-5">Total</th>
 									<th class="column-5">Borrar</th>
 								</tr>
@@ -72,17 +73,18 @@
 											<img src="/assets/images/products/{{ $item['image1'] }}" alt="IMG">
 										</div>
 									</td>
-									<td class="column-2">{{ $item['name'] }}</td>
+									<td class="column-2"><a class="stext-104 cl5 hov-cl1 trans-04 js-name-b2 p-b-6" href="/item/{{ $item['url'] }}">{{ $item['name'] }}</a></td>
 									<td class="column-3 p-l-10">{{ str_replace(',', '.', number_format($item['price'], 0, ',', '.')) }} </td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+									<td class="p-l-10">{{ $item['stock'] }}</td>
+									<td class="">
+										<div class="wrap-num-product flex-w m-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}">
+											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}" min="1" max="{{$item['stock']}}" autocomplete="off">
 
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+											<div id="modal-cant-sum" data-max="{{$item['stock']}}" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
