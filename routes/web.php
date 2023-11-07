@@ -82,5 +82,5 @@ Route::resource('payments', App\Http\Controllers\PaymentController::class);
 Route::get('/webpay/pagar/{paymentId}', [App\Http\Controllers\WebpayController::class, 'webpay_pagar'])->name('webpay_pagar');
 Route::get('/webpay/respuesta', [App\Http\Controllers\WebpayController::class, 'webpay_respuesta'])->name('webpay_respuesta');
 //mercado-pago
-Route::get('/mercadopago/pagar/{paymentId}', [App\Http\Controllers\MercadopagoController::class, 'mercadopago_pagar'])->name('mercadopago_pagar');
+Route::get('/mercadopago/pagar/{data}', [App\Http\Controllers\MercadopagoController::class, 'mercadopago_pagar'])->name('mercadopago_pagar');
 Route::get('/mercadopago/respuesta', [App\Http\Controllers\MercadopagoController::class, 'mercadopago_respuesta'])->name('mercadopago_respuesta');

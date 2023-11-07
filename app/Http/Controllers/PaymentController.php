@@ -115,7 +115,7 @@ class PaymentController extends Controller
             if($validatedData['payMethod'] == 'webpay'){
                 return redirect()->route('webpay_pagar', ['paymentId' => $payment->id]);
             }elseif($validatedData['payMethod'] == 'mercadopago'){
-                return redirect()->route('mercadopago_pagar', ['paymentId' => $payment->id]);
+                return redirect()->route('mercadopago_pagar', ['data' => $payment->code.'-'.$payment->id]);
             }elseif($validatedData['payMethod'] == 'banco'){
                 //return redirect()->route('mercadopago_pagar', ['paymentId' => $payment->id]);
             }

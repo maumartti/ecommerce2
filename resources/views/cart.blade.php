@@ -276,10 +276,6 @@
 											<div class="bor8 bg0 m-b-12">
 												<input type="text" name="userCity" id="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" required>
 											</div>
-											<label class="mb-1" id="labeluserAddress">Tu dirección:</label>
-											<div class="bor8 bg0 m-b-22 has-validation">
-												<textarea name="userAddress" id="userAddress" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Dirección" required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
-											</div>
 										<!-- selecciona sucursal -->
 											<span class="stext-112 cl8" id="labelSelectCompany">
 												Selecciona Empresa de envío <img src="/assets/images/local_shipping.png" style="position: relative;top: -1.4px;width:19px;">
@@ -324,6 +320,12 @@
 															<select name="shippingOfficeAddress" id="SelectOffices" class="form-control w-100" autocomplete="off" style="display: none;">
 																<option value="" selected>Seleccione una sucursal...</option>
 															</select>
+														</div>
+														<div id="contUserAddress" class="col-12 input-group-prepend" style="display: none;">
+															<label class="mb-1" id="labeluserAddress">Tu dirección:</label>
+															<div class="bor8 bg0 m-b-22 has-validation">
+																<textarea name="userAddress" id="userAddress" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Escribe tu dirección..." required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
+															</div>
 														</div>
 
 													</div>
@@ -391,6 +393,18 @@
 
 
 						<!-- seccion total -->
+						<div class="flex-w flex-t p-b-4 pt-4">
+							<div class="size-208">
+								<span class="mtext-101 cl2">
+									Subtotal:
+								</span>
+							</div>
+							<div class="size-209">
+								<span class="productId header-cart-subtotal mtext-110 cl2">
+								${{ session()->has('totalPrice') ? str_replace(',', '.', number_format(session('totalPrice'), 0, '.', ',')) : '0' }}
+								</span>
+							</div>
+						</div>
 						<div class="flex-w flex-t p-t-27 p-b-5" id="priceShipping" style="display:none;">
 								<div class="size-208">
 									<span class="mtext-101 cl2">
@@ -529,11 +543,13 @@
         var selectedValue = $(this).val();
         if (selectedValue === 'sucursal') {
             $('#SelectOffices').show(); // Mostrar el elemento select si se selecciona 'sucursal'
+            $('#contUserAddress').hide(); // Mostrar el elemento direccion
 						$('#SelectOffices').prop('required', true);
 						$('#userAddress').prop('required', false);
         } else {
             $('#SelectOffices').hide(); // Ocultar el elemento select en caso contrario
 						$('#SelectOffices').prop('required', false);
+            $('#contUserAddress').show(); // Ocultar el elemento direccion
 						$('#userAddress').prop('required', true);
         }
     });
