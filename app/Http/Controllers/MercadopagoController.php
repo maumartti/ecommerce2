@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Transbank\Webpay\WebpayPlus\Transaction;
 use App\Models\Web;
 use App\Models\Payment;
@@ -40,6 +41,7 @@ class MercadopagoController extends Controller
                 'title' => $combinedTitle,
                 'description' => $combinedTitle,
                 'unit_price' => ($payment->shipping == 'envio' ? $totalPrice + 5000 : $totalPrice),
+                //'brand__name' => 'IMPORTADORA TATAR',
                 //'quantity' => count($cartArray),
             ];
         }
@@ -66,6 +68,25 @@ class MercadopagoController extends Controller
             return view('paymentconfirmed')->with('payment',$payment)->with('web',$web);
         }
     }
+
+    public function mercadopagohooks(Request $request){
+        //traemos el JSON con el payment_id y obtenemos el external_reference que es el codigo de pago guardado en la BD
+        $payment_id = $request->data_id;
+        $url = 'https://api.mercadopago.com/v1/payments/'. $payment_id .'?access_token=APP_USR-1027733735932556-110716-4924158cbc263adb5a447097dd87d383-1526308784';
+        $json = file_get_contents($url);  
+        $data = json_decode($json, true);
+        $external_reference = $data['external_reference']; //codigo del pago agregado inicialmente en el front y guardado en tabla pagos de BD
+        $status_payment = $data['status']; //estado del pago
+        
+        //actualizamos el pago del external_reference = code , como pago 
+        if($status_payment == 'approved'){
+            $payment = Payment::where('code', $external_reference)->first();
+            if($payment){
+                $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null]);
+                $payment->save();
+            }
+        }
+      }
 
 }
 

@@ -82,7 +82,7 @@
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}" min="1" max="{{$item['stock']}}" autocomplete="off">
+											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}" min="1" max="{{$item['stock']}}" >
 
 											<div id="modal-cant-sum" data-max="{{$item['stock']}}" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
@@ -159,15 +159,15 @@
 									</span>
 
 									<div class="bor8 bg0 m-b-12">
-										<input type="text" name="userName" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Nombre y apellido"  required>
+										<input type="text" name="userName" value="@if(auth()->check() && auth()->user()->name) {{auth()->user()->name}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" maxlength="100" placeholder="Nombre y apellido"  required>
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="text" name="userRut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="RUT" >
+										<input type="text" name="userRut" value="@if(auth()->check() && auth()->user()->rut) {{auth()->user()->rut}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" maxlength="20" placeholder="RUT" >
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input type="email" name="userEmail" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" required>
+										<input type="email" name="userEmail" value="@if(auth()->check() && auth()->user()->email) {{auth()->user()->email}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Correo electrónico" maxlength="64"  required>
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
@@ -276,7 +276,7 @@
 											</div>
 											<label class="mb-1">Tu ciudad:</label>
 											<div class="bor8 bg0 m-b-12">
-												<input type="text" name="userCity" id="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Ciudad" required>
+												<input type="text" name="userCity" id="userCity" value="@if(auth()->check() && auth()->user()->city) {{auth()->user()->city}} @endif" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" maxlength="100" placeholder="Ciudad" required>
 											</div>
 										<!-- selecciona sucursal -->
 											<span class="stext-112 cl8" id="labelSelectCompany">
@@ -301,19 +301,19 @@
 												</span>
 												<div class="bg0 m-b-12 m-t-9" id="">
 													<div class="row">
-														<div class="col-6 pr-0">
+														<div class="col-sm-12 col-md-6 pr-0">
 															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
-																<input type="radio" class="form-check-input modeship" name="shippingTwo" value="sucursal" id="shipp-mode-1" style="top: 6px !important;left: 26px;" autocomplete="off">
+																<input type="radio" class="form-check-input modeship" name="shippingTwo" value="sucursal" id="shipp-mode-1" style="top: 5px !important;left: 26px;" autocomplete="off">
 																<label class="form-check-label" for="shipp-mode-1">
 																	Retiro en sucursal de mi zona <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;"><img src="/assets/images/store.png" style="position: relative;top: -1px;width:19px;">
 																</label>
 															</div>
 														</div>
-														<div class="col-6">
+														<div class="col-sm-12 col-md-6">
 															<div class="form-check pb-2 bor8 p-l-12 p-t-4">
-																<input type="radio" class="form-check-input modeship" name="shippingTwo" value="casa" id="shipp-mode-2" style="top: 6px !important;left: 26px;" autocomplete="off">
+																<input type="radio" class="form-check-input modeship" name="shippingTwo" value="casa" id="shipp-mode-2" style="top: 5px !important;left: 26px;" autocomplete="off">
 																<label class="form-check-label" for="shipp-mode-2">
-																	Qué lo envíen a mi dirección <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;"><img src="/assets/images/home.png" style="position: relative;top: -1px;width:19px;">
+																Enviarlo a mi dirección <img src="/assets/images/local_shipping.png" style="position: relative;top: -1px;width:19px;"><img src="/assets/images/home.png" style="position: relative;top: -1px;width:19px;">
 																</label>
 															</div>
 														</div>
@@ -326,7 +326,7 @@
 														<div id="contUserAddress" class="col-12 input-group-prepend" style="display: none;">
 															<label class="mb-1" id="labeluserAddress">Tu dirección:</label>
 															<div class="bor8 bg0 m-b-22 has-validation">
-																<textarea name="userAddress" id="userAddress" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Escribe tu dirección..." required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
+																<textarea name="userAddress" id="userAddress" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Escribe tu dirección..." maxlength="255" required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
 															</div>
 														</div>
 

@@ -2,7 +2,7 @@
 
 @php
     require base_path('vendor/autoload.php');
-    MercadoPago\SDK::setAccessToken('TEST-5723281934660194-110618-39dbda0b9e9407d699d3dff2e5f56d18-45448239');
+    MercadoPago\SDK::setAccessToken('APP_USR-1027733735932556-110716-4924158cbc263adb5a447097dd87d383-1526308784');
 
     // Crea un objeto de preferencia
     $preference = new MercadoPago\Preference();
@@ -13,7 +13,6 @@
     $item->quantity = 1;
     $item->unit_price = $allProductInOne['unit_price'];
     $preference->items = array($item);
-    
     $preference->external_reference = $payment->code;
 
     $preference->back_urls = array(
@@ -143,7 +142,7 @@
 <!-- Modulo mercado pago -->
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 <script>
-const mp = new MercadoPago('TEST-5c5b411d-eda2-4841-8aa1-0e9dd8e5955e', {
+const mp = new MercadoPago('APP_USR-08b6302a-97ed-4d10-94d1-0bce68c16088', {
     locale: 'es-UY'
   });
 
