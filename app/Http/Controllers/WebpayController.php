@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 use Transbank\Webpay\WebpayPlus\Transaction;
 use App\Models\Web;
 use App\Models\Payment;
@@ -35,13 +36,15 @@ class WebpayController extends Controller
         $transaction = new Transaction(); // Crea una instancia de la clase Transaction
         $response = $transaction->commit($token); // Llama al método commit en la instancia
         //dd($response);
+        $user_id = null;
+        if (Auth::check()){ $user_id = Auth::user()->id; }
         $payment = Payment::find($paymentId);
         if($response->status == 'AUTHORIZED'){
-            $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => $response->amount]);
+            $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => $response->amount, 'user_id' => $user_id]);
             return redirect('https://webpay3gint.transbank.cl/webpayserver/bp_auth_emisor.cgi?TBK_TOKEN='.$token);
             //dd($response);
         }else{//no autorizado
-            $payment->update(['status' => $response->status]);
+            $payment->update(['status' => $response->status, 'user_id' => $user_id]);
             return redirect('https://webpay3gint.transbank.cl/webpayserver/bp_auth_emisor.cgi?TBK_TOKEN='.$token);
             //dd($response);
         }

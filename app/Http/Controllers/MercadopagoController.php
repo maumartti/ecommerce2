@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Transbank\Webpay\WebpayPlus\Transaction;
 use App\Models\Web;
@@ -56,20 +57,24 @@ class MercadopagoController extends Controller
     public function mercadopago_respuesta(Request $request){
         $paymentCode = $request->input('external_reference');
         $st = $request->input('status');
+        $user_id = null;
+        if (Auth::check()){ $user_id = Auth::user()->id; }
         if($st == 'approved'){
             $payment = Payment::where('code',$paymentCode)->first();
-            $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null]);
+            $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null, 'user_id' => $user_id]);
             $web = Web::find(1);
             return view('paymentconfirmed')->with('payment',$payment)->with('web',$web);
         }else{
             $payment = Payment::where('code',$paymentCode)->first();
-            $payment->update(['status' => $st]);
+            $payment->update(['status' => $st, 'user_id' => $user_id]);
             $web = Web::find(1);
             return view('paymentconfirmed')->with('payment',$payment)->with('web',$web);
         }
     }
 
     public function mercadopagohooks(Request $request){
+        $user_id = null;
+        if (Auth::check()){ $user_id = Auth::user()->id; }
         //traemos el JSON con el payment_id y obtenemos el external_reference que es el codigo de pago guardado en la BD
         $payment_id = $request->data_id;
         $url = 'https://api.mercadopago.com/v1/payments/'. $payment_id .'?access_token=APP_USR-1027733735932556-110716-4924158cbc263adb5a447097dd87d383-1526308784';
@@ -82,7 +87,7 @@ class MercadopagoController extends Controller
         if($status_payment == 'approved'){
             $payment = Payment::where('code', $external_reference)->first();
             if($payment){
-                $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null]);
+                $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null, 'user_id' => $user_id]);
                 $payment->save();
             }
         }
