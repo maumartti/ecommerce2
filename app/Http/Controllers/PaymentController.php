@@ -74,7 +74,7 @@ class PaymentController extends Controller
         try {
             //return $validatedData;
             $validatedData['code'] = Str::random(8) . Str::random(8);// Genera un número aleatorio de 10 dígitos
-            $validatedData['status'] = 'inicial';
+            $validatedData['status'] = 'INICIAL';
             $validatedData['amountShipping'] = 5000;
             $validatedData['user_id'] = Auth::check() ? Auth::user()->id : null;
             $validatedData['seller_id'] = null;
@@ -90,9 +90,11 @@ class PaymentController extends Controller
                 if (isset($item['id'])) {
                     $ids[] = $item['id'];
                     $prs[] = $item['price'];
+                    $nms[] = $item['name'];
                 }
             }
             $validatedData['itemsId'] = implode(',', $ids);
+            $validatedData['itemsNames'] = implode(',', $nms);
             $validatedData['itemsPrices'] = implode(',', $prs);
             //--
             

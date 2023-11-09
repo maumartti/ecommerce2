@@ -147,7 +147,7 @@
               <li class="nav-item">
                 <a class="nav-link " href="/admin/payments">
                   <i class="material-icons">view_module</i>
-                  <span>Ventas</span>
+                  <span>Pagos</span>
                 </a>
               </li>
               @endif
@@ -282,17 +282,10 @@
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item" href="/admin/profile">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
-                    @if(auth()->check() && auth()->user()->userType->blog_show == 1)
-                    <a class="dropdown-item" href="/admin/blog">
-                      <i class="material-icons">vertical_split</i> Blog Posts</a>
-                    @endif  
+                      <i class="material-icons">&#xE7FD;</i> Profile
+                    </a>
                     <!-- <a class="dropdown-item" href="/admin/about">
                       <i class="material-icons">badge</i> Nosotros</a> -->
-                    @if(auth()->check() && auth()->user()->userType->message_show == 1)  
-                    <a class="dropdown-item" href="/admin/messages">
-                      <i class="material-icons">chat</i> Mensajes</a>
-                    @endif  
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{ route('logout') }}" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

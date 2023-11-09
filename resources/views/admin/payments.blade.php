@@ -33,28 +33,62 @@
                                                 <!-- Encabezados de la tabla de Categorías -->
                                                 <thead class="bg-light">
                                                         <tr>
-                                                            <th scope="col" class="border-0">#</th>
-                                                            <th scope="col" class="border-0">Nombre</th>
-                                                            <th scope="col" class="border-0">Rol</th>
-                                                            <th scope="col" class="border-0">Correo</th>
-                                                            <th scope="col" class="border-0 text-center">Editar</th>
-                                                            <th scope="col" class="border-0 text-center">Borrar</th>
+                                                            <th scope="col" class="border-0">Estado</th>
+                                                            <th scope="col" class="border-0">Fecha</th>
+                                                            <th scope="col" class="border-0">Monto</th>
+                                                            <th scope="col" class="border-0">Monto Envio</th>
+                                                            <th scope="col" class="border-0">Monto Total</th>
+                                                            <th scope="col" class="border-0">Cant</th>
+                                                            <th scope="col" class="border-0">Nombres</th>
+                                                            <th scope="col" class="border-0">Precios</th>
+                                                            <th scope="col" class="border-0">Región</th>
+                                                            <th scope="col" class="border-0">Ciudad</th>
+                                                            <th scope="col" class="border-0">Envío</th>
+                                                            <th scope="col" class="border-0">Envío Empresa</th>
+                                                            <th scope="col" class="border-0">Envío Destino</th>
+                                                            <th scope="col" class="border-0">Código</th>
+                                                            <th scope="col" class="border-0">Enviado</th>
                                                         </tr>
                                                 </thead>
                                                 <tbody>
-                                                        @if(isset($users))
-                                                        @if($users)
-                                                                @foreach ($users as $index => $item)
+                                                        @if(isset($payments))
+                                                        @if($payments)
+                                                                @foreach ($payments as $index => $item)
                                                                 @php
                                                                         $key = $index + 1;
                                                                 @endphp
                                                                 <tr>
-                                                                    <td>{{$key}}</td>
-                                                                    <td>{{$item->name}}</td>
-                                                                    <td>{{$item->type}}</td>
-                                                                    <td>{{$item->email}}</td>
-                                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' data-subcategories='@json($users)'>Editar <i class="material-icons">edit</i></button></td>
-                                                                    <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
+                                                                    <td>
+                                                                    @if($item->status == 'INICIAL')
+                                                                        <button class="btn btn-info delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">{{$item->status}} <i class="material-icons">upgrade</i></button>
+                                                                        @else
+                                                                        <button class="btn btn-success">{{$item->status}} <i class="material-icons">done</i></button>
+                                                                    @endif   
+                                                                    <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
+                                                                    <td>${{ str_replace(',', '.', number_format($item->amount, 0, '.', ',')) }}</td>
+                                                                    <td>${{$item->shipping == 'envio' ? '5.000' : '0'}}</td>
+                                                                    <td>${{ str_replace(',', '.', number_format($item->amountTotal, 0, '.', ',')) }}</td>
+                                                                    <td>{{count(explode(',', $item->itemsId))}}</td>
+                                                                    <td>{{str_replace(',', ' / ', $item->itemsNames);}}</td>
+                                                                    <td>
+                                                                        @foreach (explode(',', $item->itemsPrices) as $price)
+                                                                        ${{ str_replace(',', '.', number_format($price, 0, '.', ',')) }} /
+                                                                        @endforeach
+                                                                    </td>
+                                                                    <td>{{$item->userRegion}}</td>
+                                                                    <td>{{$item->userCity}}</td>
+                                                                    <td>{{$item->shipping}} / {{$item->shippingTwo}}</td>
+                                                                    <td>{{$item->shippingCompanyName}}</td>
+                                                                    <td>{{$item->shippingOfficeAddress}}</td>
+                                                                    <td>{{$item->code}}</td>
+                                                                    <td>
+                                                                    @if($item->deliveredStart !== null)
+                                                                        @php $carbonDate = Carbon\Carbon::parse($item->deliveredStart); @endphp
+                                                                        <button class="btn btn-success">{{ $carbonDate->format('d/m/Y H:i') }}</button>
+                                                                    @else
+                                                                        <button class="btn btn-warning delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">Iniciar Envío <i class="material-icons">local_shipping</i></button>
+                                                                    @endif 
+                                                                    </td>
                                                                 </tr>
                                                                 @endforeach
                                                         @endif
@@ -100,9 +134,10 @@
 <script>
 $(document).ready(function(){
 
-	// $('#first-table').DataTable({
-    //     "pageLength": 100 // Configura el número de elementos por página
-    // });
+	$('#first-table').DataTable({
+        "pageLength": 100, // Configura el número de elementos por página
+        "scrollX": true
+    });
 
 });
 

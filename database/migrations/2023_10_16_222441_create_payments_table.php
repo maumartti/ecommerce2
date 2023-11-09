@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('amount',11);
             $table->unsignedInteger('amountTotal',11);
             $table->string('itemsId',100);
+            $table->string('itemsNames',400);
             $table->string('itemsPrices',255);
             $table->string('userName',100);
             $table->string('userRut',20)->nullable();
