@@ -29,7 +29,7 @@
                     <div class="tab-content" id="myTabsContent">
                         <div class="row border-bottom py-2 bg-light">
                                 <div class="col-12 col-sm-12">
-                                        <table id="first-table" class="table mb-0">
+                                        <table id="payments-table" class="table mb-0">
                                                 <!-- Encabezados de la tabla de Categorías -->
                                                 <thead class="bg-light">
                                                         <tr>
@@ -60,7 +60,7 @@
                                                                 <tr>
                                                                     <td>
                                                                     @if($item->status == 'INICIAL')
-                                                                        <button class="btn btn-info delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">{{$item->status}} <i class="material-icons">upgrade</i></button>
+                                                                        <button class="btn btn-info confirm-modal-button" data-toggle="modal" data-target="#ModalConfirmPay" id="{{$item->code}}" data-item='@json($item)' data-type="payments" data-name="{{$item->code}} - {{$item->userName}} / {{$item->userEmail}} / cel: {{$item->userCel}} / Monto total: ${{ str_replace(',', '.', number_format($item->amountTotal, 0, '.', ',')) }}" data-url="payments">{{$item->status}} <i class="material-icons">upgrade</i></button>
                                                                         @else
                                                                         <button class="btn btn-success">{{$item->status}} <i class="material-icons">done</i></button>
                                                                     @endif   
@@ -86,7 +86,11 @@
                                                                         @php $carbonDate = Carbon\Carbon::parse($item->deliveredStart); @endphp
                                                                         <button class="btn btn-success">{{ $carbonDate->format('d/m/Y H:i') }}</button>
                                                                     @else
-                                                                        <button class="btn btn-warning delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">Iniciar Envío <i class="material-icons">local_shipping</i></button>
+                                                                        @if($item->shipping !== 'local')
+                                                                        <button class="btn btn-warning shipping-modal-button" data-toggle="modal" data-target="#ModalConfirmShipping" data-item='@json($item)' data-name="{{$item->shipping}} / {{$item->shippingTwo}} / Empresa: {{$item->shippingCompanyName}} : (Región: {{$item->userRegionName}}, Ciudad: {{$item->userCity}}) - Direccieon: {{$item->shippingTwo == 'local' ? $item->shippingOfficeAddress : $item->userAddress}}" data-type="envio" data-url="shipping">Iniciar Envío <i class="material-icons">local_shipping</i></button>
+                                                                        @else
+                                                                        <button class="btn btn-success">Retira en local</button>
+                                                                        @endif
                                                                     @endif 
                                                                     </td>
                                                                 </tr>
@@ -121,6 +125,58 @@
         </div> -->
 
 
+        <!-- Modal Iniciar envio -->
+        <div class="modal fade" id="ModalConfirmShipping">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Iniciar envío</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Dirección:</label>
+                            <h4 id="name"></h4>
+                        </div>
+                        <div class="form-group">
+                            <h5 class="text-danger">¿Confirma que se inició el envío de este paquete?</h5>
+                            <!-- <h5 class="text-danger deletesub" style="display:none;"><i class="material-icons">warning</i> Atención!! <br> Se eliminarán todas las sub-categorías hijas!</h5> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success confirm-shipping-button" id="#" data-url="#">Confirmar el Envío <i class="material-icons">local_shipping</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Confirmar Pago -->
+     <div class="modal fade" id="ModalConfirmPay">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmar Pago</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Código del pago:</label>
+                        <h4 id="name"></h4>
+                        <img id="image" src="" class="w-100">
+                    </div>
+                    <div class="form-group">
+                        <h5 class="text-danger">¿Está seguro de que desea CONFIRMAR que este pago ya fue acreditado a su cuenta?</h5>
+                        <!-- <h5 class="text-danger deletesub" style="display:none;"><i class="material-icons">warning</i> Atención!! <br> Se eliminarán todas las sub-categorías hijas!</h5> -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success confirm-pay-button" id="#" data-url="#">Confirmar el Pago <i class="material-icons">attach_money</i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </div>
 </div>
 
@@ -134,7 +190,7 @@
 <script>
 $(document).ready(function(){
 
-	$('#first-table').DataTable({
+	$('#payments-table').DataTable({
         "pageLength": 100, // Configura el número de elementos por página
         "scrollX": true
     });

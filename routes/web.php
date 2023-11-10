@@ -85,3 +85,5 @@ Route::get('/webpay/respuesta', [App\Http\Controllers\WebpayController::class, '
 Route::get('/mercadopago/pagar/{data}', [App\Http\Controllers\MercadopagoController::class, 'mercadopago_pagar'])->name('mercadopago_pagar');
 Route::get('/mercadopago/respuesta', [App\Http\Controllers\MercadopagoController::class, 'mercadopago_respuesta'])->name('mercadopago_respuesta');
 Route::post('/mercadopagohooks',[App\Http\Controllers\MercadopagoController::class, 'mercadopagohooks'])->name('mercadopagohooks');
+//banco
+Route::post('/bankconfirmpay',[App\Http\Controllers\BankPayController::class, 'confirm_pay_bank'])->name('confirm_pay_bank');

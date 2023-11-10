@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('userCountryCode',10);
             $table->string('userCel',36);
             $table->string('userRegion',64)->nullable();
+            $table->string('userRegionName',124)->nullable();
             $table->string('userCity',100)->nullable();
             $table->string('userZip',12);
             $table->string('userAddress',255)->nullable();

@@ -25,6 +25,7 @@ class WebpayController extends Controller
     }
 
     public function webpay_respuesta(Request $request){
+        //dd($request->all());
         $paymentId = $request->input('payment_id');
         $tbk = $request->input('TBK_ORDEN_COMPRA');
         if($tbk){

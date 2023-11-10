@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
 use App\Models\Region;
+use App\Models\Payment;
+use App\Models\Shipping;
 use App\Models\ShippingCompany;
 use App\Models\ShippingOfficeCompanyRegion;
 
@@ -25,7 +27,8 @@ class ShippingController extends Controller
         $regions = Region::with('companies')->get();
         //dd( $regions);
         $companies = ShippingCompany::with('offices')->get();
-        return view('admin.shipping')->with('web',$web)->with('regions',$regions)->with('companies',$companies);   
+        $shippings = Shipping::with('payment')->get();
+        return view('admin.shipping')->with('web',$web)->with('regions',$regions)->with('companies',$companies)->with('shippings',$shippings);   
     }
 
     /**
@@ -41,7 +44,21 @@ class ShippingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'payment_id' => 'required',
+        ]);       
+        try {
+            $payment = Payment::find($validatedData['payment_id']);
+            if($payment){
+                $shipping = Shipping::create(['status' => 'ENVIADO', 'payment_id' => $payment->id]);
+                $payment->update(['deliveredStart'=> now()]);
+            }
+            $shippings = Shipping::all();
+            return response()->json(['status' => 'success', 'shipping' => $shipping, 'shippings' => $shippings], 200);
+            return response()->json(['status' => 'success', 'envío guardado' => $payment], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al guardar envio: ' . $e->getMessage()], 500);
+        }
     }
 
     /**

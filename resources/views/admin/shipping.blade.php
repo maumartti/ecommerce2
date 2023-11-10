@@ -2,6 +2,17 @@
 
 @section('head')
 <link href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+<style>
+.card-body {
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+/* Add this if you want to prevent the content from breaking into multiple lines */
+.card-body * {
+  white-space: nowrap;
+}
+</style>
 @endsection
 
 @section('content')
@@ -46,30 +57,46 @@
 																		<!-- Encabezados de la tabla de Categorías -->
 																		<thead class="bg-light">
 																				<tr>
-																						<th scope="col" class="border-0">#</th>
-																						<th scope="col" class="border-0">Id</th>
-																						<th scope="col" class="border-0">Nombre</th>
-																						<th scope="col" class="border-0 text-center">Editar</th>
-																						<th scope="col" class="border-0 text-center">Borrar</th>
+                                                                                        <th scope="col" class="border-0">Estado</th>
+																						<th scope="col" class="border-0">Código</th>
+																						<th scope="col" class="border-0">Fecha Envío</th>
+																						<th scope="col" class="border-0">Poductos</th>
+																						<th scope="col" class="border-0">Cant</th>
+																						<th scope="col" class="border-0">Cel</th>
+																						<th scope="col" class="border-0">Correo</th>
+																						<th scope="col" class="border-0">Envío</th>
+																						<th scope="col" class="border-0">Envío Empresa</th>
+																						<th scope="col" class="border-0">Envío Destino</th>
+																						<th scope="col" class="border-0">Región</th>
+																						<th scope="col" class="border-0">Ciudad</th>
 																				</tr>
 																		</thead>
 																		<tbody>
-																				@if(isset($categories))
-																				@if($categories)
-																						@foreach ($categories as $index => $item)
-																						@php
-																								$key = $index + 1;
-																						@endphp
-																						<tr id="categories-{{$item->id}}" data-id="{{$item->id}}">
-																								<td>{{$key}}</td>
-																								<td>{{$item->id}}</td>
-																								<td>{{$item->name}}</td>
-																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-image="{{$item->image}}">Editar <i class="material-icons">edit</i></button></td>
-																								<td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="envio" data-url="shipping">Borrar <i class="material-icons">delete</i></button></td>
-																						</tr>
-																						@endforeach
-																				@endif
-																				@endif
+                                                                        @if(isset($shippings))
+                                                                        @if($shippings)
+                                                                                @foreach ($shippings as $index => $item)
+                                                                                <tr id="shipping-{{$item->id}}" data-id="{{$item->id}}">
+                                                                                        <td>
+                                                                                            @if($item->status == 'ENVIADO')
+                                                                                            <button class="btn btn-success">{{$item->status}}</button>
+                                                                                            @endif
+                                                                                        </td>
+                                                                                        <td>{{$item->payment->code}}</td>
+                                                                                        <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
+                                                                                        <td>{{$item->payment->itemsNames}}</td>
+                                                                                        <td>{{count(explode(',', $item->payment->itemsId))}}</td>
+                                                                                        <td>{{$item->payment->userCel}}</td>
+                                                                                        <td>{{$item->payment->userEmail}}</td>
+                                                                                        <td>{{$item->payment->shipping}} / {{$item->payment->shippingTwo}}</td>
+                                                                                        <td>{{$item->payment->shippingCompanyName}}</td>
+                                                                                        <td>{{$item->payment->shippingTwo == 'sucursal' ? $item->payment->shippingOfficeAddress : $item->payment->userAddress}}</td>
+                                                                                        <td>{{$item->payment->shippingCompanyName}}</td>
+                                                                                        <td>{{$item->payment->userRegion}}</td>
+                                                                                        <td>{{$item->payment->userCity}}</td>
+                                                                                </tr>
+                                                                                @endforeach
+                                                                        @endif
+                                                                        @endif
 																		</tbody>
 																</table>
 														</div>
@@ -403,8 +430,9 @@
 <script>
 $(document).ready(function(){
 
-	$('#shipping-table, #regionshipping-table').DataTable({
-        "pageLength": 50 // Configura el número de elementos por página
+	$('#shipping-table').DataTable({
+        "pageLength": 100, // Configura el número de elementos por página
+        "scrollX": true
     });
 
     $("#categories-table tbody").sortable({

@@ -50,9 +50,121 @@
     });
   });
 
-
-//------ PARTE FUNCIONES BORAR ITEM ----
-
+  //------ PARTE FUNCIONES CREAR ENVIO ----
+  $(document).on('click', '.shipping-modal-button', function () {
+    console.log('open modal confirm pay')
+    var type = $(this).data('type');
+    var itemData = $(this).data('item');
+    var name = $(this).data('name');
+    var url = $(this).data('url');
+    $('#ModalConfirmShipping .type').text(type);
+    $('#ModalConfirmShipping #name').html('<i class="material-icons">arrow_forward</i> '+name);
+    //if(surname && surname!=''){ $('#ModalConfirmShipping #surname').html('<i class="material-icons">arrow_forward</i> '+surname); }else{ $('#ModalConfirmShipping #surname').html(''); }
+    $('#ModalConfirmShipping .confirm-shipping-button').attr('id', itemData.id);
+    $('#ModalConfirmShipping .confirm-shipping-button').attr('data-url', url);
+  });
+  //Funcion crear envio
+  $('.confirm-shipping-button').click(function () {
+      var id = $(this).attr('id')
+      var url = $(this).attr('data-url');
+      createShipping(id, url);
+      $('#ModalConfirmShipping').modal('hide');
+  });
+  // Función para crear envio
+  function createShipping(id, url = null) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    // Construct the request body
+    const requestBody = {
+      payment_id: id,
+    };
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': csrfToken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody), // Convert the object to a JSON string
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'success') {
+        window.location.href = '/admin/payments'; 
+        console.log('Shipping creation successful:', data.message);
+      } else {
+        // Handle other cases if needed
+        console.error('Shipping creation failed:', data.error);
+      }
+    })
+    .catch(error => {
+      // Handle fetch errors
+      console.error('Error creating shipping:', error);
+    });
+  }  
+  //------ PARTE FUNCIONES CONFIRMAR PAGO ----
+  $(document).on('click', '.confirm-modal-button', function () {
+    console.log('open modal confirm pay')
+    var type = $(this).data('type');
+    var itemData = $(this).data('item');
+    var name = $(this).data('name');
+    var url = $(this).data('url');
+    $('#ModalConfirmPay .type').text(type);
+    $('#ModalConfirmPay #name').html('<i class="material-icons">arrow_forward</i> '+name);
+    //if(surname && surname!=''){ $('#ModalConfirmPay #surname').html('<i class="material-icons">arrow_forward</i> '+surname); }else{ $('#ModalConfirmPay #surname').html(''); }
+    $('#ModalConfirmPay .confirm-pay-button').attr('id', itemData.id);
+    $('#ModalConfirmPay .confirm-pay-button').attr('data-url', url);
+  });
+    //Funcion confirmar
+    $('.confirm-pay-button').click(function () {
+      var id = $(this).attr('id')
+      var url = $(this).attr('data-url');
+      confirmpay(id, url);
+      $('#ModalDeleteOne').modal('hide');
+  });
+  // Función para confirmar pago
+  function confirmpay(id, url = null) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetch(url + '/' + id, {
+      method: 'PUT',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': csrfToken,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json(); // Parse the JSON response
+        } else {
+          return response.text().then(errorText => {
+            throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
+          });
+        }
+      })
+      .then(data => {
+        if (data.status === 'success') {
+          // pago actualizada 
+          if(data.payments) {
+            window.location.href = '/admin/payments'; 
+            // const paymentsTable = document.querySelector('#payments-table');
+            // clearTable(paymentsTable);
+            // data.categories.forEach((item, index) => {
+            //     addCategoryRow(paymentsTable, item, index);
+            // });
+          }
+          //toast y quita elemento de tabla 
+          $.toastr.success('Confirmado con éxito');
+          //$(`[id="${url}-${itemId}"]`).closest('tr').remove();
+        } else {
+          $.toastr.success('Error al Eliminar');
+        }
+      })
+      .catch(error => {
+        console.error('Error al eliminar el elemento: ', error);
+        alert('Error al eliminar el elemento');
+      });
+  }
+  //------ PARTE FUNCIONES BORAR ITEM ----
   //abre el modal BORRAR
   $(document).on('click', '.delete-modal-button', function () {
     console.log('open modal delete')
@@ -61,6 +173,7 @@
     if(itemData.title){ itemData.name = itemData.title }//si tiene titulo es el nombre
     if(type == 'subscriptor'){ itemData.name = itemData.email }//si tiene titulo es el nombre
     if(type == 'sucursal'){ itemData.name = itemData.address_office }//si tiene titulo es el nombre
+    if(type == 'payments'){ itemData.name = itemData.name }//si tiene titulo es el nombre
     var surname = $(this).data('surname');
     var url = $(this).data('url');
     $('#ModalDeleteOne .type').text(type);

@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Tools;
 use App\Models\Web;
 use App\Models\Payment;
+use App\Models\Region;
 use App\Models\ShippingCompany;
 
 
@@ -78,7 +79,12 @@ class PaymentController extends Controller
             $validatedData['amountShipping'] = 5000;
             $validatedData['user_id'] = Auth::check() ? Auth::user()->id : null;
             $validatedData['seller_id'] = null;
-            
+
+            //region name
+            $region = Region::find($validatedData['userRegion']);
+            if($region){
+                $validatedData['userRegionName'] = $region->name;
+            }
 
             //del carrito sacamos los items
             $cart = session()->get('cart', []); // Obtener el array de la sesión
@@ -148,7 +154,16 @@ class PaymentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $payment = Payment::find($id);
+            if($payment){
+                $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null]);
+                $payments = Payment::all();
+                return response()->json(['status' => 'success', 'payment' => $payment, 'payments' => $payments], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al confirmar el pago: ' . $e->getMessage()], 500);
+        }
     }
 
     /**
