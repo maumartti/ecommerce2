@@ -108,7 +108,7 @@ class AccountsController extends Controller
                 'company' => 'string|nullable',
                 'address' => 'string|required',
                 'city' => 'string|required',
-                'zip' => 'string|required',
+                'zip' => 'nullable',
                 'countryCode' => 'required',
                 'cel' => 'string|nullable',
                 'region_id' => 'required',

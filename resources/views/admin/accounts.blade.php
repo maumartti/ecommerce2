@@ -44,7 +44,7 @@ if(isset($users)){
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
                 <span class="stats-small__label text-uppercase">Usuarios</span>
-                <h6 id="count-product" class="stats-small__value count my-3">{{ $userCount }}</h6>
+                <h6 id="count-product" class="stats-small__value count my-3">{{ $users->where('type_id', 1)->count() }}</h6>
                 </div>
                 <!-- <div class="stats-small__data">
                 <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
@@ -60,7 +60,7 @@ if(isset($users)){
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
                 <span class="stats-small__label text-uppercase">Vendedores</span>
-                <h6 id="count-product" class="stats-small__value count my-3">{{ $shellerCount }}</h6>
+                <h6 id="count-product" class="stats-small__value count my-3">{{ $users->where('type_id', 2)->count() }}</h6>
                 </div>
                 <!-- <div class="stats-small__data">
                 <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
@@ -76,7 +76,7 @@ if(isset($users)){
             <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
                 <span class="stats-small__label text-uppercase">Administradores</span>
-                <h6 id="count-product" class="stats-small__value count my-3">{{ $adminCount }}</h6>
+                <h6 id="count-product" class="stats-small__value count my-3">{{ $users->where('type_id', 3)->count() }}</h6>
                 </div>
                 <!-- <div class="stats-small__data">
                 <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
@@ -1089,7 +1089,7 @@ if(isset($users)){
                 </div>
             </div>
         </div>
-        <!-- Modal Editar-blog-->
+        <!-- Modal Editar-Cuenta-->
         <div class="modal fade" id="ModalEditOne">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -1108,9 +1108,9 @@ if(isset($users)){
                                     <input name="company" class="form-control mb-3" type="text" id="feLastName" placeholder="Empresa" value="" autocomplete="off"> 
                                     <label for="email">Correo:</label>
                                     <input name="email" class="form-control mb-3" type="email" placeholder="Correo electrónico" maxlength="100" autocomplete="off" required>
-                                    <label for="password">Contraseña:</label>
+                                    <!-- <label for="password">Contraseña:</label>
                                     <input name="password" class="form-control mb-3" type="password" placeholder="Contraseña" maxlength="12" autocomplete="off" >
-                                    <input name="password_confirmation" class="form-control mb-3" type="password" placeholder="Repite Contraseña" maxlength="12" autocomplete="off">
+                                    <input name="password_confirmation" class="form-control mb-3" type="password" placeholder="Repite Contraseña" maxlength="12" autocomplete="off"> -->
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
@@ -1175,7 +1175,7 @@ if(isset($users)){
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputZip">Zip</label>
-                                    <input type="text" name="zip" class="form-control" id="inputZip" value="" autocomplete="off" required> 
+                                    <input type="text" name="zip" class="form-control" id="inputZip" value="" autocomplete="off"> 
                                 </div>
                             </div>
 
@@ -1220,10 +1220,12 @@ if(isset($users)){
 <script>
 $(document).ready(function(){
 
-	// $('#first-table').DataTable({
-    //     "pageLength": 100 // Configura el número de elementos por página
-    // });
-    //Datos al modal Editar Blog
+	$('#users-table').DataTable({
+        "pageLength": 100, // Configura el número de elementos por página
+        "scrollX": true
+    });
+
+    //Datos al modal Editar Cuenta
     $(document).on('click', '.edit-button', function () {
         var item = $(this).data("item");
         //console.log('entra click',item)

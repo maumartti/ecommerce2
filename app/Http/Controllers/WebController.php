@@ -21,11 +21,11 @@ use Dymantic\InstagramFeed\Profile;
 
 class WebController extends Controller
 {
-
+//$profile = \Dymantic\InstagramFeed\Profile::where('username','maumartti')->first();
     public function index()
     {
         $web = Web::find(1);
-        $profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
+        //$profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
         //$feed = [];
         //$feed = $profile->refreshFeed(4);
         $feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
