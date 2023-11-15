@@ -170,6 +170,7 @@
     console.log('open modal delete')
     var type = $(this).data('type');
     var itemData = $(this).data('item');
+    console.log('open modal delete', itemData)
     if(itemData.title){ itemData.name = itemData.title }//si tiene titulo es el nombre
     if(type == 'subscriptor'){ itemData.name = itemData.email }//si tiene titulo es el nombre
     if(type == 'sucursal'){ itemData.name = itemData.address_office }//si tiene titulo es el nombre
@@ -465,13 +466,13 @@ function addUsersRow(table, item, index) {
   const tbody = table.querySelector('tbody');
   const row = document.createElement('tr');
   row.innerHTML = `
-      <td><img class="user-avatar rounded-circle" src="${item.image ? '/assets/images/users/'+item.image : '/assets/images/no-user.png'}" style="width:30px;"></td>
-      <td>${item.name}</td>
-      <td>${item.user_type.name}</td>
-      <td>${item.email}</td>
-      <td>${item.active == 1 ? '<span class="text-success"><i class="material-icons">check</i>Activo</span>' : '<span class="text-danger" style="font-size: 12px;"><i class="material-icons">clear</i>InActivo</span>'}
-      <td class="text-center"><type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>
-      <td class="text-center">${item.id != 1 ? '<button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item="'+JSON.stringify(item)+'" data-type="cuenta" data-url="accounts">Borrar <i class="material-icons">delete</i></button>' : ''}</td>`;
+  <td><img class="user-avatar rounded-circle" src="${item.image ? '/assets/images/users/'+item.image : '/assets/images/no-user.png'}" style="width:30px;"></td>
+  <td>${item.name}</td>
+  <td>${item.user_type.name}</td>
+  <td>${item.email}</td>
+  <td>${item.active == 1 ? '<span class="text-success"><i class="material-icons">check</i>Activo</span>' : '<span class="text-danger" style="font-size: 12px;"><i class="material-icons">clear</i>InActivo</span>'}</td>
+  <td class="text-center"><button class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>
+  <td class="text-center">${item.id != 1 ? `<button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(item)}' data-type="cuenta" data-url="accounts">Borrar <i class="material-icons">delete</i></button>` : ''}</td>`;
   tbody.appendChild(row);
   // Actualizar count"
   //const count = document.getElementById('count-product');

@@ -29,6 +29,7 @@
                     <div class="tab-content" id="myTabsContent">
                         <div class="row border-bottom py-2 bg-light">
                                 <div class="col-12 col-sm-12">
+                                    <div class="table-responsive">
                                         <table id="payments-table" class="table mb-0">
                                                 <!-- Encabezados de la tabla de Categorías -->
                                                 <thead class="bg-light">
@@ -48,6 +49,7 @@
                                                             <th scope="col" class="border-0">Envío Destino</th>
                                                             <th scope="col" class="border-0">Código</th>
                                                             <th scope="col" class="border-0">Enviado</th>
+                                                            <th scope="col" class="border-0">Tarjeta</th>
                                                         </tr>
                                                 </thead>
                                                 <tbody>
@@ -93,12 +95,18 @@
                                                                         @endif
                                                                     @endif 
                                                                     </td>
+                                                                    <td>
+                                                                    @if($item->deliveredStart !== null)
+                                                                        <button data-item='@json($item)' class="btnPrint btn btn-dark">Imprimir Tarjeta <i class="material-icons">print</i></button>
+                                                                    @endif
+                                                                    </td>
                                                                 </tr>
                                                                 @endforeach
                                                         @endif
                                                         @endif
                                                 </tbody>
                                         </table>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-sm-12 d-flex mb-2 mb-sm-0">
                                         <!-- <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button> -->
@@ -194,6 +202,57 @@ $(document).ready(function(){
         "pageLength": 100, // Configura el número de elementos por página
         "scrollX": true
     });
+
+
+    //imprimir datos de envio
+    $('.btnPrint').on('click', function () {
+        console.log('print');
+        var jsonData = $(this).data('item');
+        if (typeof jsonData === 'string') {
+            jsonData = JSON.parse(jsonData);
+        }
+        console.log('dataPrint', jsonData);
+        var currentDate = new Date(); // Get the current date
+        var arrCount = jsonData.itemsId.split(',');
+        // Generate the content to be printed
+        var contentToPrint = `
+            <h2>Importadora Tatar</h2>
+            <h3>Código de compra: ${jsonData.code}</h3>
+            <p>Productos: ${jsonData.itemsNames}</p>
+            <p>Cantidad: ${arrCount.length}</p>
+            <p>Empresa de envío: ${jsonData.shippingCompanyName}</p>
+            <p>Región: ${jsonData.userRegionName}</p>
+            <p>Ciudad: ${jsonData.userCity}</p>
+            <p>Enviar hacia: ${jsonData.shippingTwo == 'casa' ? 'domicilio del comprador' : 'Sucursal de ' + jsonData.shippingCompanyName}</p>
+            <p>Address: ${jsonData.userAddress && jsonData.shippingTwo == 'casa' ? jsonData.userAddress : jsonData.shippingOfficeAddress}</p>
+            <p>Fecha de partida: ${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}</p>
+            <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+
+            @media print {
+                /* Hide header information in print version */
+                @page {
+                    margin: 0;
+                }
+
+                body {
+                    margin: 1.6cm;
+                }
+            }
+            </style>`;
+        // Create a new window for printing
+        var printWindow = window.open('', '_blank');
+        // Wait for the new window to finish loading before writing content and printing
+        //printWindow.onload = function () {
+            printWindow.document.write(contentToPrint);
+            printWindow.document.close();
+            printWindow.print();
+        //};
+    });
+
+
 
 });
 

@@ -1063,7 +1063,7 @@ if(isset($users)){
         </div>
 
 
-        <!-- Modal Borrar Categoria-blog-->
+        <!-- Modal Borrar Ceunta-->
         <div class="modal fade" id="ModalDeleteOne">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -1079,7 +1079,7 @@ if(isset($users)){
                         </div>
                         <div class="form-group">
                             <h5 class="text-danger">¿Está seguro de que desea borrar esta <span class="type"></span>?</h5>
-                            <h5 class="text-danger deletesub" style="display:none;"><i class="material-icons">warning</i> Atención!! <br> Se eliminarán todas las sub-categorías hijas!</h5>
+                            <h5 class="text-danger deletesub" style="display:none;"><i class="material-icons">warning</i> Atención!! <br> Se eliminarán todas ventas,compras</h5>
                         </div>
                     </div>
                     <div class="modal-footer">

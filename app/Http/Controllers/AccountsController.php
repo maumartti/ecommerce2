@@ -150,7 +150,7 @@ class AccountsController extends Controller
             }
             // Elimina la categoría
             $user->delete();
-            $users = User::all();
+            $users = User::with('UserType')->get();
             return response()->json(['status' => 'success', 'users' => $users], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar el usuario: ' . $e->getMessage()], 500);
