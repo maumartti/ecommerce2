@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('cel',20)->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes(); // Agrega esta línea para habilitar eliminación suave
         });
     }
 
