@@ -74,7 +74,7 @@ class PaymentController extends Controller
         ]);        
         try {
             //return $validatedData;
-            $validatedData['code'] = Str::random(8) . Str::random(8);// Genera un número aleatorio de 10 dígitos
+            $validatedData['code'] = mt_rand(100000000,999999999);// Genera un número aleatorio numerico de 8 dígitos
             $validatedData['status'] = 'INICIAL';
             $validatedData['amountShipping'] = 5000;
             $validatedData['user_id'] = Auth::check() ? Auth::user()->id : null;

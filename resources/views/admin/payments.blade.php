@@ -63,8 +63,10 @@
                                                                     <td>
                                                                     @if($item->status == 'INICIAL')
                                                                         <button class="btn btn-info confirm-modal-button" data-toggle="modal" data-target="#ModalConfirmPay" id="{{$item->code}}" data-item='@json($item)' data-type="payments" data-name="{{$item->code}} - {{$item->userName}} / {{$item->userEmail}} / cel: {{$item->userCel}} / Monto total: ${{ str_replace(',', '.', number_format($item->amountTotal, 0, '.', ',')) }}" data-url="payments">{{$item->status}} <i class="material-icons">upgrade</i></button>
-                                                                        @else
+                                                                    @elseif($item->status == 'AUTHORIZED')
                                                                         <button class="btn btn-success">{{$item->status}} <i class="material-icons">done</i></button>
+                                                                    @else    
+                                                                        <button class="btn btn-danger">{{$item->status}} <i class="material-icons">error</i></button>
                                                                     @endif   
                                                                     <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
                                                                     <td>${{ str_replace(',', '.', number_format($item->amount, 0, '.', ',')) }}</td>
@@ -89,7 +91,9 @@
                                                                         <button class="btn btn-success">{{ $carbonDate->format('d/m/Y H:i') }}</button>
                                                                     @else
                                                                         @if($item->shipping !== 'local')
-                                                                        <button class="btn btn-warning shipping-modal-button" data-toggle="modal" data-target="#ModalConfirmShipping" data-item='@json($item)' data-name="{{$item->shipping}} / {{$item->shippingTwo}} / Empresa: {{$item->shippingCompanyName}} : (Región: {{$item->userRegionName}}, Ciudad: {{$item->userCity}}) - Direccieon: {{$item->shippingTwo == 'local' ? $item->shippingOfficeAddress : $item->userAddress}}" data-type="envio" data-url="shipping">Iniciar Envío <i class="material-icons">local_shipping</i></button>
+                                                                            @if($item->status === 'AUTHORIZED')
+                                                                                <button class="btn btn-warning shipping-modal-button" data-toggle="modal" data-target="#ModalConfirmShipping" data-item='@json($item)' data-name="{{$item->shipping}} / a {{$item->shippingTwo}} / mediante: {{$item->shippingCompanyName}} / (Región: {{$item->userRegionName}}, Ciudad: {{$item->userCity}}) - Direccieon: {{$item->shippingTwo == 'local' ? $item->shippingOfficeAddress : $item->userAddress}}" data-type="envio" data-url="shipping">Iniciar Envío <i class="material-icons">local_shipping</i></button>
+                                                                            @endif
                                                                         @else
                                                                         <button class="btn btn-success">Retira en local</button>
                                                                         @endif
@@ -213,24 +217,27 @@ $(document).ready(function(){
         }
         console.log('dataPrint', jsonData);
         var currentDate = new Date(); // Get the current date
+        var modifiedItemsNames = jsonData.itemsNames.replace(/,/g, ' / ');
         var arrCount = jsonData.itemsId.split(',');
         // Generate the content to be printed
         var contentToPrint = `
-            <h2>Importadora Tatar</h2>
+            <img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO">
+            <div style="padding:0px 15px">
             <h3>Código de compra: ${jsonData.code}</h3>
-            <p>Productos: ${jsonData.itemsNames}</p>
+            <p>Cliente: ${jsonData.userName}</p>
+            <p>Productos: ${modifiedItemsNames}</p>
             <p>Cantidad: ${arrCount.length}</p>
             <p>Empresa de envío: ${jsonData.shippingCompanyName}</p>
             <p>Región: ${jsonData.userRegionName}</p>
             <p>Ciudad: ${jsonData.userCity}</p>
             <p>Enviar hacia: ${jsonData.shippingTwo == 'casa' ? 'domicilio del comprador' : 'Sucursal de ' + jsonData.shippingCompanyName}</p>
-            <p>Address: ${jsonData.userAddress && jsonData.shippingTwo == 'casa' ? jsonData.userAddress : jsonData.shippingOfficeAddress}</p>
+            <p>Dirección: ${jsonData.userAddress && jsonData.shippingTwo == 'casa' ? jsonData.userAddress : jsonData.shippingOfficeAddress}</p>
             <p>Fecha de partida: ${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}</p>
+            </div>
             <style>
             body {
                 font-family: Arial, sans-serif;
             }
-
             @media print {
                 /* Hide header information in print version */
                 @page {
