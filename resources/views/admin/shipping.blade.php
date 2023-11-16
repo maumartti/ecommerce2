@@ -38,18 +38,18 @@
             <div class="card-body pt-0">
 							<div class="container pt-3">
 								<ul class="nav nav-tabs" id="myTabs" role="tablist">
-										<li class="nav-item" role="presentation">
-												<a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Envíos</a>
-										</li>
-										<li class="nav-item" role="presentation">
-												<a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Región / Empresa</a>
-										</li>
-										<li class="nav-item" role="presentation">
-												<a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Empresas de transporte</a>
-										</li>
+                                    <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Envíos</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Región / Empresa</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Empresas de transporte</a>
+                                    </li>
 								</ul>
 								<div class="tab-content" id="myTabsContent">
-										<!-- Pestaña de Categorías -->
+										<!-- Pestaña de Envíos realizados -->
 										<div class="tab-pane fade show active" id="categories" role="tabpanel" aria-labelledby="categories-tab">
 												<div class="row border-bottom py-2 bg-light">
 														<div class="col-12 col-sm-12">
@@ -57,18 +57,18 @@
 																		<!-- Encabezados de la tabla de Categorías -->
 																		<thead class="bg-light">
 																				<tr>
-                                                                                        <th scope="col" class="border-0">Estado</th>
-																						<th scope="col" class="border-0">Código</th>
-																						<th scope="col" class="border-0">Fecha Envío</th>
-																						<th scope="col" class="border-0">Poductos</th>
-																						<th scope="col" class="border-0">Cant</th>
-																						<th scope="col" class="border-0">Cel</th>
-																						<th scope="col" class="border-0">Correo</th>
-																						<th scope="col" class="border-0">Envío</th>
-																						<th scope="col" class="border-0">Envío Empresa</th>
-																						<th scope="col" class="border-0">Envío Destino</th>
-																						<th scope="col" class="border-0">Región</th>
-																						<th scope="col" class="border-0">Ciudad</th>
+                                                                                    <th scope="col" class="border-0">Estado</th>
+                                                                                    <th scope="col" class="border-0">Código</th>
+                                                                                    <th scope="col" class="border-0">Fecha Envío</th>
+                                                                                    <th scope="col" class="border-0">Poductos</th>
+                                                                                    <th scope="col" class="border-0">Cant</th>
+                                                                                    <th scope="col" class="border-0">Cel</th>
+                                                                                    <th scope="col" class="border-0">Correo</th>
+                                                                                    <th scope="col" class="border-0">Envío</th>
+                                                                                    <th scope="col" class="border-0">Envío Empresa</th>
+                                                                                    <th scope="col" class="border-0">Envío Destino</th>
+                                                                                    <th scope="col" class="border-0">Región</th>
+                                                                                    <th scope="col" class="border-0">Ciudad</th>
 																				</tr>
 																		</thead>
 																		<tbody>
@@ -77,8 +77,10 @@
                                                                                 @foreach ($shippings as $index => $item)
                                                                                 <tr id="shipping-{{$item->id}}" data-id="{{$item->id}}">
                                                                                         <td>
-                                                                                            @if($item->status == 'ENVIADO')
-                                                                                            <button class="btn btn-success">{{$item->status}}</button>
+                                                                                            @if($item->status == 'ENVIADO' && $item->payment->deliveredEnd === null)
+                                                                                            <button class="btn btn-success btn-recibed-shipping" data-toggle="modal" data-target="#ModalEndShippingOne" data-item='@json($item)' data-name='{{$item->name}}' data-type="envío" data-url="shipping">{{$item->status}} <i class="material-icons">local_shipping</i></button>
+                                                                                            @elseif($item->status == 'ENVIADO' && $item->payment->deliveredEnd)
+                                                                                            <button class="btn btn-success">RECIBIDO <i class="material-icons">event_available</i> {{ date('d/m/Y H:i', strtotime($item->payment->deliveredEnd)) }}</button>
                                                                                             @endif
                                                                                         </td>
                                                                                         <td>{{$item->payment->code}}</td>
@@ -90,8 +92,7 @@
                                                                                         <td>{{$item->payment->shipping}} / {{$item->payment->shippingTwo}}</td>
                                                                                         <td>{{$item->payment->shippingCompanyName}}</td>
                                                                                         <td>{{$item->payment->shippingTwo == 'sucursal' ? $item->payment->shippingOfficeAddress : $item->payment->userAddress}}</td>
-                                                                                        <td>{{$item->payment->shippingCompanyName}}</td>
-                                                                                        <td>{{$item->payment->userRegion}}</td>
+                                                                                        <td>{{$item->payment->userRegionName}}</td>
                                                                                         <td>{{$item->payment->userCity}}</td>
                                                                                 </tr>
                                                                                 @endforeach
@@ -416,6 +417,27 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Confirmar Envío llegó -->
+        <div class="modal fade" id="ModalEndShippingOne">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmar Paquete recibido</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Código de envío:</label>
+                            <h4 id="name"></h4>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success confirm-pay-button" id="#" data-url="#">Confirmo Que llegó a destino <i class="material-icons">check</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -521,6 +543,8 @@ $(document).ready(function(){
         form.attr('action', 'subcategories/' + id);
     });
     //Modal confirma borrar
+
+
 });
 
 

@@ -53,7 +53,7 @@ class ShippingController extends Controller
                 $shipping = Shipping::create(['status' => 'ENVIADO', 'payment_id' => $payment->id]);
                 $payment->update(['deliveredStart'=> now()]);
             }
-            $shippings = Shipping::all();
+            $shippings = Shipping::with('payment')->get();
             return response()->json(['status' => 'success', 'shipping' => $shipping, 'shippings' => $shippings], 200);
             return response()->json(['status' => 'success', 'envío guardado' => $payment], 200);
         } catch (\Exception $e) {
@@ -78,11 +78,21 @@ class ShippingController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     *  confirma que el envio llego a destino cambiando (deliveredEnd -> en la tabla del pago)
      */
     public function update(Request $request, string $id)
-    {
-        //
+    {     
+        try {
+            $payment = Payment::find($id);
+            if($payment){
+                $payment->update(['deliveredEnd'=> now()]);
+            }
+            $shippings = Shipping::with('payment')->get();
+            return response()->json(['status' => 'success', 'shippings' => $shippings], 200);
+            return response()->json(['status' => 'success', 'confirmado envío recibido' => $payment], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al confirmar envio recibido: ' . $e->getMessage()], 500);
+        }
     }
 
     /**

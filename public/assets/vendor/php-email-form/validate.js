@@ -164,6 +164,66 @@
         alert('Error al eliminar el elemento');
       });
   }
+    //------ PARTE FUNCIONES CONFIRMAR ENVIO LLEGO ----
+    $(document).on('click', '.btn-recibed-shipping', function () {
+      console.log('open modal confirm llego')
+      var type = $(this).data('type');
+      var itemData = $(this).data('item');
+      var url = $(this).data('url');
+      $('#ModalEndShippingOne #name').html('<i class="material-icons">arrow_forward</i> '+itemData.payment.code);
+      $('#ModalEndShippingOne .confirm-pay-button').attr('id', itemData.payment.id);
+      $('#ModalEndShippingOne .confirm-pay-button').attr('data-url', url);
+    });
+      //Funcion confirmar
+      $('.confirm-pay-button').click(function () {
+        var id = $(this).attr('id')
+        var url = $(this).attr('data-url');
+        confirmshippingrecibed(id, url);
+        $('#ModalEndShippingOne').modal('hide');
+    });
+    // Función para confirmar llego envio
+    function confirmshippingrecibed(id, url = null) {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      fetch(url + '/' + id, {
+        method: 'PUT',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-TOKEN': csrfToken,
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+          if (response.ok) {
+            return response.json(); // Parse the JSON response
+          } else {
+            return response.text().then(errorText => {
+              throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
+            });
+          }
+        })
+        .then(data => {
+          if (data.status === 'success') {
+            // pago actualizada 
+            if(data.shippings) {
+              window.location.href = '/admin/shipping'; 
+              // const paymentsTable = document.querySelector('#payments-table');
+              // clearTable(paymentsTable);
+              // data.categories.forEach((item, index) => {
+              //     addCategoryRow(paymentsTable, item, index);
+              // });
+            }
+            //toast y quita elemento de tabla 
+            $.toastr.success('Confirmado con éxito.');
+            window.location.href = '/admin/shipping'; 
+            //$(`[id="${url}-${itemId}"]`).closest('tr').remove();
+          } else {
+            $.toastr.success('Error al Eliminar');
+          }
+        })
+        .catch(error => {
+          console.error('Error al eliminar el elemento: ', error);
+          alert('Error al eliminar el elemento');
+        });
+    }
   //------ PARTE FUNCIONES BORAR ITEM ----
   //abre el modal BORRAR
   $(document).on('click', '.delete-modal-button', function () {
@@ -187,7 +247,7 @@
     } else {
         $('.deletesub').css('display', 'none');
     }
-});
+  });
   //Funcion borrar
   $('.delete-button').click(function () {
       var deleteId = $(this).attr('id')

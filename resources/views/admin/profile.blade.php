@@ -39,9 +39,9 @@
                     </div>
                 </div>
             </div>
-            <h4 class="mb-0">Marcos</h4>
+            <h4 class="mb-0">{{ auth()->user()->name }}</h4>
             <!-- <span class="text-muted d-block mb-2">Empresa</span> -->
-            <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">
+            <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2 mt-3">
                 <i class="material-icons mr-1">person_add</i>Usuario</button>
             </div>
             <ul class="list-group list-group-flush">
@@ -56,9 +56,9 @@
                 </div>
             </li>
             <li class="list-group-item p-4">
-                <strong class="text-muted d-block mb-2">Compras totales: 0</strong>
-                <strong class="text-muted d-block mb-2">Compras año: 0</strong>
-                <strong class="text-muted d-block mb-2">Compras mes: 0</strong>
+                <strong class="text-muted d-block mb-2">{{ auth()->user()->email }}</strong>
+                <!-- <strong class="text-muted d-block mb-2">{{ auth()->user()->address }}</strong> -->
+                <!-- <strong class="text-muted d-block mb-2">Compras mes: 0</strong> -->
             </li>
             </ul>
         </div>
