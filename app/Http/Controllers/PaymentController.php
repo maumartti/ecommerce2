@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\PrePaymentMessage;
+use App\Notifications\PaymentMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Tools;
@@ -120,12 +124,43 @@ class PaymentController extends Controller
             $payment = Payment::create($validatedData);
             //return $payment->id;
             //redirecciona al pago
+
+
+            // Enviar una notificación por correo electrónico aquí
+            if($validatedData['payMethod'] == 'banco'){ // SOLO MANDAR SI SE SELECIONO TRANSFERENCIA BANCARIA , LOS OTROS SE ENVIAN AL CONFIRMAR EL PAGO
+                if(isset($shippingCompany)){
+                    if($validatedData['shippingTwo'] == 'casa'){
+                        $end = 'Dirección del cliente'.', dirección: '.$validatedData['userAddress'];
+                    }else{
+                        $end = 'sucursal de '.$shippingCompany->name.', dirección: '.$validatedData['shippingOfficeAddress'];
+                    }
+                    $ship = 'mediante ( Empresa: '.$shippingCompany->name.' ), destino: '.$end.', Región: '.$region->name.', ciudad: '.$validatedData['userCity'];
+                }else{
+                    $ship = 'Retira en nuestro local';
+                    $validatedData['amountShipping'] = 0;
+                }
+                $notificationData = [
+                    'details' => $validatedData['itemsNames'],
+                    'name' => $payment->userName,
+                    'code' => $validatedData['code'],
+                    'counts' => count($ids),
+                    'subtotal' => '$'.$validatedData['amount'],
+                    'envio' => '$'.$validatedData['amountShipping'],
+                    'total' => '$'.$validatedData['amountTotal'],
+                    'shipping' => $ship,
+                    'message' => 'Si realizaste la compra mediante transferencia bancaria, te solicitamos amablemente que te comuniques con nosotros una vez que hayas efectuado el pago respondiendo a este correo con la confirmación. Estamos aquí para brindarte asistencia y agilizar el proceso.',      
+                    'messagetwo' => ''    
+                ];
+                Notification::route('mail', $payment->userEmail)->notify(new PrePaymentMessage($notificationData));
+            }
+
+
             if($validatedData['payMethod'] == 'webpay'){
                 return redirect()->route('webpay_pagar', ['paymentId' => $payment->id]);
             }elseif($validatedData['payMethod'] == 'mercadopago'){
                 return redirect()->route('mercadopago_pagar', ['data' => $payment->code.'-'.$payment->id]);
             }elseif($validatedData['payMethod'] == 'banco'){
-                //return redirect()->route('mercadopago_pagar', ['paymentId' => $payment->id]);
+                return redirect()->route('bank_pagar', ['data' => $payment->code.'-'.$payment->id]);
             }
             return response()->json(['status' => 'success', 'pago guardado' => $payment], 200);
         } catch (\Exception $e) {
@@ -158,6 +193,40 @@ class PaymentController extends Controller
             $payment = Payment::find($id);
             if($payment){
                 $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null]);
+
+            // Enviar una notificación por correo electrónico aquí
+            if($payment->payMethod == 'banco'){ //CONFIRMAR EL PAGO
+                if(isset($payment->shippingCompanyName)){
+                    if($payment->shippingTwo == 'casa'){
+                        $end = 'Dirección del cliente'.', dirección: '.$payment->userAddress;
+                    }else{
+                        $end = 'sucursal de '.$payment->shippingCompanyName.', dirección: '.$payment->shippingOfficeAddress;
+                    }
+                    $ship = 'mediante ( Empresa: '.$payment->shippingCompanyName.' ), destino: '.$end.', Región: '.$payment->userRegionName.', ciudad: '.$payment->userCity;
+                    $amountShipping = 5000;
+                }else{
+                    $ship = 'Retira en nuestro local';
+                    $amountShipping = 0;
+                }
+                $notificationData = [
+                    'header' => '',
+                    'name' => $payment->userName, // Asegúrate de que tu modelo Message tenga un campo 'name'
+                    'code' => $payment->code, // Asegúrate de que tu modelo Message tenga un campo 'name'
+                    'details' => $payment->itemsNames,
+                    'counts' => count(explode(',', $payment->itemsId)),
+                    'subtotal' => '$'.$payment->amount,
+                    'envio' => '$'.$amountShipping,
+                    'total' => '$'.$payment->amountTotal,
+                    'shipping' => $ship,
+                    'message' => 'Si realizaste la compra mediante transferencia bancaria, te solicitamos amablemente que te comuniques con nosotros una vez que hayas efectuado el pago respondiendo a este correo con la confirmación. Estamos aquí para brindarte asistencia y agilizar el proceso.',      
+                    'messagetwo' => ''    
+                ];
+                Notification::route('mail', $payment->userEmail)->notify(new PaymentMessage($notificationData));
+                $notificationData['header'] = 'AVISO DE PAGO CONFIRMADO !! -> '.$payment->userEmail.' / cel: '.$payment->userCountryCode.' '.$payment->userCel.' / RUT: '.$payment->userRut;
+                Notification::route('mail', config('mail.from.address'))->notify(new PaymentMessage($notificationData));
+            }
+
+
                 $payments = Payment::all();
                 return response()->json(['status' => 'success', 'payment' => $payment, 'payments' => $payments], 200);
             }

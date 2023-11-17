@@ -204,7 +204,7 @@
           if (data.status === 'success') {
             // pago actualizada 
             if(data.shippings) {
-              window.location.href = '/admin/shipping'; 
+              //window.location.href = '/admin/shipping'; 
               // const paymentsTable = document.querySelector('#payments-table');
               // clearTable(paymentsTable);
               // data.categories.forEach((item, index) => {
@@ -213,7 +213,7 @@
             }
             //toast y quita elemento de tabla 
             $.toastr.success('Confirmado con éxito.');
-            window.location.href = '/admin/shipping'; 
+            //window.location.href = '/admin/shipping'; 
             //$(`[id="${url}-${itemId}"]`).closest('tr').remove();
           } else {
             $.toastr.success('Error al Eliminar');

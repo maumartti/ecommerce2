@@ -88,6 +88,40 @@ class MercadopagoController extends Controller
             $payment = Payment::where('code', $external_reference)->first();
             if($payment){
                 $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null, 'user_id' => $user_id]);
+
+                // Enviar una notificación por correo electrónico aquí
+                //if($payment->payMethod == 'banco'){ //CONFIRMAR EL PAGO
+                    if(isset($payment->shippingCompanyName)){
+                        if($payment->shippingTwo == 'casa'){
+                            $end = 'Dirección del cliente'.', dirección: '.$payment->userAddress;
+                        }else{
+                            $end = 'sucursal de '.$payment->shippingCompanyName.', dirección: '.$payment->shippingOfficeAddress;
+                        }
+                        $ship = 'mediante ( Empresa: '.$payment->shippingCompanyName.' ), destino: '.$end.', Región: '.$payment->userRegionName.', ciudad: '.$payment->userCity;
+                        $amountShipping = 5000;
+                    }else{
+                        $ship = 'Retira en nuestro local';
+                        $amountShipping = 0;
+                    }
+                    $notificationData = [
+                        'header' => '',
+                        'name' => $payment->userName, // Asegúrate de que tu modelo Message tenga un campo 'name'
+                        'code' => $payment->code, // Asegúrate de que tu modelo Message tenga un campo 'name'
+                        'details' => $payment->itemsNames,
+                        'counts' => count(explode(',', $payment->itemsId)),
+                        'subtotal' => '$'.$payment->amount,
+                        'envio' => '$'.$amountShipping,
+                        'total' => '$'.$payment->amountTotal,
+                        'shipping' => $ship,
+                        'message' => 'Si realizaste la compra mediante transferencia bancaria, te solicitamos amablemente que te comuniques con nosotros una vez que hayas efectuado el pago respondiendo a este correo con la confirmación. Estamos aquí para brindarte asistencia y agilizar el proceso.',      
+                        'messagetwo' => ''    
+                    ];
+                    Notification::route('mail', $payment->userEmail)->notify(new PaymentMessage($notificationData));
+                    $notificationData['header'] = 'AVISO DE PAGO CONFIRMADO !! -> '.$payment->userEmail.' / cel: '.$payment->userCountryCode.' '.$payment->userCel.' / RUT: '.$payment->userRut;
+                    Notification::route('mail', config('mail.from.address'))->notify(new PaymentMessage($notificationData));
+                //}
+
+
                 $payment->save();
             }
         }

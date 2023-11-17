@@ -262,10 +262,10 @@
 											<label class="mt-1">Selecciona tu región:</label>
 											<div class="rs1-select2 rs2-select2 bg0 m-b-12 m-t-9">
 												<select name="userRegion" id="regionSelect" class="form-control js-select2" autocomplete="off" required>
-													<option value="">Selecciona tu región...</option>
+													<option value="" selected>Selecciona tu región...</option>
 												@if($regions)
 														@foreach ($regions as $region)
-																<option value="{{$region->id}}" @if(auth()->check() && auth()->user()->region_id == $region->id) selected @endif>{{$region->name}}</option>
+																<option value="{{$region->id}}" >{{$region->name}}</option>
 														@endforeach
 												@endif
 												</select>
@@ -587,27 +587,31 @@
 
 		// muestra oculta div envio o retiro local - y suma el precio de envio al total
 		$('.formaship').change(function() {
-			$('#contEnvio, #priceShipping').toggle(this.value === 'envio');
-			var initialTtotalPrice = $('#totalPriceDisplay').data('total');
-			var initialTtotalPrice = parseInt(initialTtotalPrice.replace(/[^\d]/g, '')); // Usar parseInt
-			var currentPrice = $('#totalPriceDisplay').text();
-			var currentPriceValue = parseInt(currentPrice.replace(/[^\d]/g, '')); // Usar parseInt
-			if (this.value === 'envio') {
-				$('#regionSelect').prop('required', true);
-				$('#userCity').prop('required', true);
-				$('#userAddress').prop('required', true);
-				var newPriceValue = currentPriceValue + 5000;
-			} else {//retira en local
-				$('#regionSelect').prop('required', false);
-				$('#userCity').prop('required', false);
-				$('#userAddress').prop('required', false);
-				if(currentPriceValue == initialTtotalPrice + 5000){
-					var newPriceValue = currentPriceValue - 5000; // Restar $5000 si no se selecciona 'envio'
+				var initialTtotalPrice = $('#totalPriceDisplay').data('total');
+				var initialTtotalPrice = parseInt(initialTtotalPrice.replace(/[^\d]/g, '')); // Usar parseInt
+				var currentPrice = $('#totalPriceDisplay').text();
+				var currentPriceValue = parseInt(currentPrice.replace(/[^\d]/g, '')); // Usar parseInt
+				var newPriceValue = currentPriceValue; // Inicializar con el valor actual
+
+				$('#contEnvio, #priceShipping').toggle(this.value === 'envio');
+
+				if (this.value === 'envio') {
+						$('#regionSelect').prop('required', true);
+						$('#userCity').prop('required', true);
+						$('#userAddress').prop('required', true);
+						newPriceValue += 5000;
+				} else { // retira en local
+						$('#regionSelect').prop('required', false);
+						$('#userCity').prop('required', false);
+						$('#userAddress').prop('required', false);
+						if (currentPriceValue == initialTtotalPrice + 5000) {
+								newPriceValue -= 5000; // Restar $5000 si no se selecciona 'envio'
+						}
 				}
-			}
-			var newPriceString = '$' + newPriceValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-			$('#totalPriceDisplay').text(newPriceString);
+				var newPriceString = '$' + newPriceValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+				$('#totalPriceDisplay').text(newPriceString);
 		});
+
 
 
 		//selecciona un metodo de pago

@@ -75,9 +75,10 @@
                                                                         @if(isset($shippings))
                                                                         @if($shippings)
                                                                                 @foreach ($shippings as $index => $item)
+                                                                                @if($item->payment)
                                                                                 <tr id="shipping-{{$item->id}}" data-id="{{$item->id}}">
                                                                                         <td>
-                                                                                            @if($item->status == 'ENVIADO' && $item->payment->deliveredEnd === null)
+                                                                                            @if($item->status == 'ENVIADO' && $item->payment->deliveredEnd == null)
                                                                                             <button class="btn btn-success btn-recibed-shipping" data-toggle="modal" data-target="#ModalEndShippingOne" data-item='@json($item)' data-name='{{$item->name}}' data-type="envío" data-url="shipping">{{$item->status}} <i class="material-icons">local_shipping</i></button>
                                                                                             @elseif($item->status == 'ENVIADO' && $item->payment->deliveredEnd)
                                                                                             <button class="btn btn-success">RECIBIDO <i class="material-icons">event_available</i> {{ date('d/m/Y H:i', strtotime($item->payment->deliveredEnd)) }}</button>
@@ -95,6 +96,7 @@
                                                                                         <td>{{$item->payment->userRegionName}}</td>
                                                                                         <td>{{$item->payment->userCity}}</td>
                                                                                 </tr>
+                                                                                @endif
                                                                                 @endforeach
                                                                         @endif
                                                                         @endif
