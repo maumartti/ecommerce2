@@ -67,8 +67,14 @@
                                                                     <td>
                                                                     @if($item->status == 'INICIAL')
                                                                         <button class="btn btn-info confirm-modal-button" data-toggle="modal" data-target="#ModalConfirmPay" id="{{$item->code}}" data-item='@json($item)' data-type="payments" data-name="{{$item->code}} - {{$item->userName}} / {{$item->userEmail}} / cel: {{$item->userCel}} / Monto total: ${{ str_replace(',', '.', number_format($item->amountTotal, 0, '.', ',')) }}" data-url="payments">{{$item->status}} <i class="material-icons">upgrade</i></button>
-                                                                    @elseif($item->status == 'AUTHORIZED')
-                                                                        <button class="btn btn-success">{{$item->status}} <i class="material-icons">done</i></button>
+                                                                    @elseif($item->status == 'AUTHORIZED' || 'AUTHORIZED ENVIADO' )
+                                                                        <button class="btn btn-success">{{$item->status}} 
+                                                                            @if($item->status == 'AUTHORIZED')
+                                                                                <i class="material-icons">done</i>
+                                                                                @else
+                                                                                <i class="material-icons">done_all</i>
+                                                                            @endif
+                                                                        </button>
                                                                     @else    
                                                                         <button class="btn btn-danger">{{$item->status}} <i class="material-icons">error</i></button>
                                                                     @endif   

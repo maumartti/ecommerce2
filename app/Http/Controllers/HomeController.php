@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tools;
+use Carbon\Carbon;
 use App\Models\Web;
+use App\Models\Payment;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -26,7 +29,77 @@ class HomeController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        return view('admin.home')->with('web',$web);
+
+        //grafico de torta
+        $initialCount = Payment::where('status', 'INICIAL')->count();
+        $authorizedCount = Payment::where('status', 'AUTHORIZED')->count();
+        $authorizedEnvCount = Payment::where('status', 'AUTHORIZED ENVIADO')->count();
+        // Calculate percentages
+        $totalCount = $initialCount + $authorizedCount + $authorizedEnvCount;
+        $initialPercentage = ($initialCount / $totalCount) * 100;
+        $authorizedPercentage = ($authorizedCount / $totalCount) * 100;
+        $authorizedEnvPercentage = ($authorizedEnvCount / $totalCount) * 100;
+        // Create $dataGraph array
+        $dataGraph = [$initialPercentage, $authorizedPercentage, $authorizedEnvPercentage];
+        //END
+        $currentMonth = Carbon::now()->month;//este mes
+        $lastMonth = Carbon::now()->subMonth()->month;//mes pasado
+        $paymentsAllCount = Payment::count();//todos los pedidos
+        $salesAllCount = Payment::where('status', 'AUTHORIZED')->count();//todas las ventas
+        //datos de este mes
+        $ordersMonthCount = Payment::where('status', 'INICIAL')->whereMonth('created_at', $currentMonth)->count();//pedidos del mes
+        $salesMonthCount = Payment::where('status', 'AUTHORIZED')->whereMonth('created_at', $currentMonth)->count();//ventas del mes
+        //datos del mes pasado
+        $ordersLastMonthCount = Payment::where('status', 'INICIAL')->whereMonth('created_at', $currentMonth)->count();//pedidos del mes
+        $salesLastMonthCount = Payment::where('status', 'AUTHORIZED')->whereMonth('created_at', $currentMonth)->count();//ventas del mes
+        $usersCount = User::where('type_id', 1)->count();//usuarios tipo clientes
+
+        // Calculate percentage difference
+        $differenceSalesLastMonth = 0;
+        $differenceOrdersLastMonth = 0;
+        if ($salesLastMonthCount > 0) {
+            $differenceSalesLastMonth = (($salesMonthCount - $salesLastMonthCount) / $salesLastMonthCount) * 100;
+        }
+        if ($ordersLastMonthCount > 0) {
+            $differenceOrdersLastMonth = (($ordersMonthCount - $ordersLastMonthCount) / $ordersLastMonthCount) * 100;
+        }
+        //ARRAY DE VENTAS DEL MES POR DIA
+        $daysInMonth = Carbon::now()->daysInMonth;
+        $salesByDayMonth = array_fill(1, $daysInMonth, 0);
+        $sales = Payment::where('status', 'AUTHORIZED')->whereMonth('created_at', $currentMonth)->get();
+        foreach ($sales as $sale) {
+            $day = Carbon::parse($sale->created_at)->day;
+            $salesByDayMonth[$day]++;
+        }
+        $salesByDayMonth = array_values($salesByDayMonth);
+        //ARRAY DE VENTAS DEL MES PASADO POR DIA
+        $firstDayOfCurrentMonth = Carbon::now()->firstOfMonth();
+        $firstDayOfPreviousMonth = $firstDayOfCurrentMonth->subMonth();
+        $daysInPreviousMonth = $firstDayOfPreviousMonth->daysInMonth;
+        $salesByDayLastMonth = array_fill(1, $daysInPreviousMonth, 0);
+        $sales = Payment::where('status', 'AUTHORIZED')
+            ->whereBetween('created_at', [
+                $firstDayOfPreviousMonth->startOfDay(),
+                $firstDayOfPreviousMonth->endOfMonth(),
+            ])->get();
+        foreach ($sales as $sale) {
+            $day = Carbon::parse($sale->created_at)->day;
+            $salesByDayLastMonth[$day]++;
+        }
+        //END ---
+        $salesByDayLastMonth = array_values($salesByDayLastMonth);
+        //dd($salesByDayMonth);
+        return view('admin.home')->with('web',$web)
+        ->with('dataGraph',$dataGraph)
+        ->with('paymentsAllCount',$paymentsAllCount)
+        ->with('salesAllCount',$salesAllCount)
+        ->with('ordersMonthCount',$ordersMonthCount)
+        ->with('salesMonthCount',$salesMonthCount)
+        ->with('differenceSalesLastMonth',$differenceSalesLastMonth)
+        ->with('differenceOrdersLastMonth',$differenceOrdersLastMonth)
+        ->with('salesByDayMonth',$salesByDayMonth)
+        ->with('salesByDayLastMonth',$salesByDayLastMonth)
+        ->with('usersCount',$usersCount);
     }
 /*
     public function saveData(Request $request) {

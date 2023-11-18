@@ -489,7 +489,8 @@
 			<div class="row">
       @if (isset($feed))
         @if ($feed)
-        @foreach($feed as $item)
+        @foreach($feed as $index => $item)
+        @if($index < 4)
         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item d-inline-block" >
             <div class="block2-pic hov-img0" style="background:black;">
                 @if($item->type === 'video')
@@ -504,6 +505,7 @@
                 @endif
             </div>
         </div>
+        @endif
         @endforeach
       	@endif
       @endif

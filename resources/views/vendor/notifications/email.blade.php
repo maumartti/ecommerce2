@@ -1,14 +1,16 @@
 <x-mail::message>
-{{-- Greeting --}}
-@if (! empty($greeting))
-# {{ $greeting }}
-@else
-@if ($level === 'error')
-# @lang('Whoops!')
-@else
-# @lang('Hola!')
-@endif
-@endif
+    {{-- Greeting --}}
+    @if (! empty($greeting))
+        # {{ $greeting }}
+    @else
+        @if ($level === 'error')
+            # @lang('Whoops!')
+        @else
+        <div style="text-align:center;padding-bottom:30px;">
+            <img src="https://importadoratatar.cl/assets/images/logoh.png" >
+        </div>
+        @endif
+    @endif
 
 {{-- Intro Lines --}}
 @foreach ($introLines as $line)

@@ -51,7 +51,7 @@ class ShippingController extends Controller
             $payment = Payment::find($validatedData['payment_id']);
             if($payment){
                 $shipping = Shipping::create(['status' => 'ENVIADO', 'payment_id' => $payment->id]);
-                $payment->update(['deliveredStart'=> now()]);
+                $payment->update(['status' => 'AUTHORIZED ENVIADO', 'deliveredStart'=> now()]);
             }
             $shippings = Shipping::with('payment')->get();
             return response()->json(['status' => 'success', 'shipping' => $shipping, 'shippings' => $shippings], 200);
