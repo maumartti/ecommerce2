@@ -66,29 +66,38 @@ class HomeController extends Controller
         //ARRAY DE VENTAS DEL MES POR DIA
         $daysInMonth = Carbon::now()->daysInMonth;
         $salesByDayMonth = array_fill(1, $daysInMonth, 0);
-        $sales = Payment::whereIn('status', ['AUTHORIZED', 'AUTHORIZED ENVIADO'])->whereMonth('created_at', $currentMonth)->get();
+        $sales = Payment::whereIn('status', ['AUTHORIZED', 'AUTHORIZED ENVIADO'])
+            ->whereMonth('created_at', $currentMonth)
+            ->get();
+        
         foreach ($sales as $sale) {
             $day = Carbon::parse($sale->created_at)->day;
             $salesByDayMonth[$day]++;
         }
+        $salesByDayMonth = [0] + $salesByDayMonth;
         $salesByDayMonth = array_values($salesByDayMonth);
+        //END ---
         //ARRAY DE VENTAS DEL MES PASADO POR DIA
         $firstDayOfCurrentMonth = Carbon::now()->firstOfMonth();
-        $firstDayOfPreviousMonth = $firstDayOfCurrentMonth->subMonth();
+        $firstDayOfPreviousMonth = $firstDayOfCurrentMonth->copy()->subMonth();
         $daysInPreviousMonth = $firstDayOfPreviousMonth->daysInMonth;
         $salesByDayLastMonth = array_fill(1, $daysInPreviousMonth, 0);
+        
         $sales = Payment::whereIn('status', ['AUTHORIZED', 'AUTHORIZED ENVIADO'])
             ->whereBetween('created_at', [
-                $firstDayOfPreviousMonth->startOfDay(),
-                $firstDayOfPreviousMonth->endOfMonth(),
+                $firstDayOfPreviousMonth->copy()->startOfDay(),
+                $firstDayOfPreviousMonth->copy()->endOfMonth(),
             ])->get();
+        
         foreach ($sales as $sale) {
             $day = Carbon::parse($sale->created_at)->day;
             $salesByDayLastMonth[$day]++;
         }
-        //END ---
+        $salesByDayLastMonth = [0] + $salesByDayLastMonth;
         $salesByDayLastMonth = array_values($salesByDayLastMonth);
-        //dd($salesByDayMonth);
+       // dd($salesByDayLastMonth);
+        //END ---
+       //dd($firstDayOfPreviousMonth);
         return view('admin.home')->with('web',$web)
         ->with('dataGraph',$dataGraph)
         ->with('paymentsAllCount',$paymentsAllCount)

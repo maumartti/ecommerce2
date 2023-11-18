@@ -427,7 +427,7 @@ $(document).ready(function() {
             }],
             yAxes: [{
             ticks: {
-                suggestedMax: 45,
+                suggestedMax: 12,
                 callback: function (tick, index, ticks) {
                 if (tick === 0) {
                     return tick;
