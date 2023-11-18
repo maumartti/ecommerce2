@@ -45,13 +45,13 @@ class HomeController extends Controller
         $currentMonth = Carbon::now()->month;//este mes
         $lastMonth = Carbon::now()->subMonth()->month;//mes pasado
         $paymentsAllCount = Payment::count();//todos los pedidos
-        $salesAllCount = Payment::where('status', 'AUTHORIZED')->count();//todas las ventas
+        $salesAllCount = Payment::whereIn('status', ['AUTHORIZED', 'AUTHORIZED ENVIADO'])->count();//todas las ventas
         //datos de este mes
         $ordersMonthCount = Payment::where('status', 'INICIAL')->whereMonth('created_at', $currentMonth)->count();//pedidos del mes
-        $salesMonthCount = Payment::where('status', 'AUTHORIZED')->whereMonth('created_at', $currentMonth)->count();//ventas del mes
+        $salesMonthCount = Payment::whereIn('status', ['AUTHORIZED', 'AUTHORIZED ENVIADO'])->whereMonth('created_at', $currentMonth)->count();//ventas del mes
         //datos del mes pasado
         $ordersLastMonthCount = Payment::where('status', 'INICIAL')->whereMonth('created_at', $currentMonth)->count();//pedidos del mes
-        $salesLastMonthCount = Payment::where('status', 'AUTHORIZED')->whereMonth('created_at', $currentMonth)->count();//ventas del mes
+        $salesLastMonthCount = Payment::whereIn('status', ['AUTHORIZED', 'AUTHORIZED ENVIADO'])->whereMonth('created_at', $currentMonth)->count();//ventas del mes
         $usersCount = User::where('type_id', 1)->count();//usuarios tipo clientes
 
         // Calculate percentage difference
@@ -66,7 +66,7 @@ class HomeController extends Controller
         //ARRAY DE VENTAS DEL MES POR DIA
         $daysInMonth = Carbon::now()->daysInMonth;
         $salesByDayMonth = array_fill(1, $daysInMonth, 0);
-        $sales = Payment::where('status', 'AUTHORIZED')->whereMonth('created_at', $currentMonth)->get();
+        $sales = Payment::whereIn('status', ['AUTHORIZED', 'AUTHORIZED ENVIADO'])->whereMonth('created_at', $currentMonth)->get();
         foreach ($sales as $sale) {
             $day = Carbon::parse($sale->created_at)->day;
             $salesByDayMonth[$day]++;
@@ -77,7 +77,7 @@ class HomeController extends Controller
         $firstDayOfPreviousMonth = $firstDayOfCurrentMonth->subMonth();
         $daysInPreviousMonth = $firstDayOfPreviousMonth->daysInMonth;
         $salesByDayLastMonth = array_fill(1, $daysInPreviousMonth, 0);
-        $sales = Payment::where('status', 'AUTHORIZED')
+        $sales = Payment::whereIn('status', ['AUTHORIZED', 'AUTHORIZED ENVIADO'])
             ->whereBetween('created_at', [
                 $firstDayOfPreviousMonth->startOfDay(),
                 $firstDayOfPreviousMonth->endOfMonth(),
