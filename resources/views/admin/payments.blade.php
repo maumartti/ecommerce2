@@ -105,7 +105,7 @@
                                                                         <button class="btn btn-success">{{ $carbonDate->format('d/m/Y H:i') }}</button>
                                                                     @else
                                                                         @if($item->shipping !== 'local')
-                                                                            @if($item->status === 'AUTHORIZED')
+                                                                            @if($item->status === 'AUTHORIZED' && auth()->user()->userType->sales_edit == 1)
                                                                                 <button class="btn btn-warning shipping-modal-button" data-toggle="modal" data-target="#ModalConfirmShipping" data-item='@json($item)' data-name="{{$item->shipping}} / a {{$item->shippingTwo}} / mediante: {{$item->shippingCompanyName}} / (Región: {{$item->userRegionName}}, Ciudad: {{$item->userCity}}) - Direccieon: {{$item->shippingTwo == 'local' ? $item->shippingOfficeAddress : $item->userAddress}}" data-type="envio" data-url="shipping">Iniciar Envío <i class="material-icons">local_shipping</i></button>
                                                                             @endif
                                                                         @else
@@ -114,7 +114,7 @@
                                                                     @endif 
                                                                     </td>
                                                                     <td>
-                                                                    @if($item->deliveredStart !== null)
+                                                                    @if($item->deliveredStart !== null && auth()->user()->userType->sales_show == 1)
                                                                         <button data-item='@json($item)' class="btnPrint btn btn-dark">Imprimir Tarjeta <i class="material-icons">print</i></button>
                                                                     @endif
                                                                     </td>
@@ -152,6 +152,7 @@
 
 
         <!-- Modal Iniciar envio -->
+        @if(auth()->user()->userType->sales_edit == 1)
         <div class="modal fade" id="ModalConfirmShipping">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -177,31 +178,32 @@
             </div>
         </div>
         <!-- Modal Confirmar Pago -->
-     <div class="modal fade" id="ModalConfirmPay">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Confirmar Pago</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Código del pago:</label>
-                        <h4 id="name"></h4>
-                        <img id="image" src="" class="w-100">
+        <div class="modal fade" id="ModalConfirmPay">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmar Pago</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <div class="form-group">
-                        <h5 class="text-danger">¿Está seguro de que desea CONFIRMAR que este pago ya fue acreditado a su cuenta?</h5>
-                        <!-- <h5 class="text-danger deletesub" style="display:none;"><i class="material-icons">warning</i> Atención!! <br> Se eliminarán todas las sub-categorías hijas!</h5> -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Código del pago:</label>
+                            <h4 id="name"></h4>
+                            <img id="image" src="" class="w-100">
+                        </div>
+                        <div class="form-group">
+                            <h5 class="text-danger">¿Está seguro de que desea CONFIRMAR que este pago ya fue acreditado a su cuenta?</h5>
+                            <!-- <h5 class="text-danger deletesub" style="display:none;"><i class="material-icons">warning</i> Atención!! <br> Se eliminarán todas las sub-categorías hijas!</h5> -->
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success confirm-pay-button" id="#" data-url="#">Confirmar el Pago <i class="material-icons">attach_money</i></button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success confirm-pay-button" id="#" data-url="#">Confirmar el Pago <i class="material-icons">attach_money</i></button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        @endif
 
     </div>
 </div>
