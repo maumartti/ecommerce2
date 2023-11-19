@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="main-content-container container-fluid px-4">
-            <!-- Page Header -->
+     <!-- Page Header -->
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
         <span class="text-uppercase page-subtitle">Dashboard</span>
@@ -28,43 +28,43 @@
                 <div class="container pt-3">
                     <div class="tab-content" id="myTabsContent">
                         <div class="row border-bottom py-2 bg-light">
-                                <div class="col-12 col-sm-12">
-                                        <table id="first-table" class="table mb-0">
-                                                <!-- Encabezados de la tabla de Categorías -->
-                                                <thead class="bg-light">
-                                                        <tr>
-                                                            <th scope="col" class="border-0">#</th>
-                                                            <th scope="col" class="border-0">Nombre</th>
-                                                            <th scope="col" class="border-0">Rol</th>
-                                                            <th scope="col" class="border-0">Correo</th>
-                                                            <th scope="col" class="border-0 text-center">Editar</th>
-                                                            <th scope="col" class="border-0 text-center">Borrar</th>
-                                                        </tr>
-                                                </thead>
-                                                <tbody>
-                                                        @if(isset($users))
-                                                        @if($users)
-                                                                @foreach ($users as $index => $item)
-                                                                @php
-                                                                        $key = $index + 1;
-                                                                @endphp
-                                                                <tr>
-                                                                    <td>{{$key}}</td>
-                                                                    <td>{{$item->name}}</td>
-                                                                    <td>{{$item->type}}</td>
-                                                                    <td>{{$item->email}}</td>
-                                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' data-subcategories='@json($users)'>Editar <i class="material-icons">edit</i></button></td>
-                                                                    <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
-                                                                </tr>
-                                                                @endforeach
-                                                        @endif
-                                                        @endif
-                                                </tbody>
-                                        </table>
-                                </div>
-                                <div class="col-12 col-sm-12 d-flex mb-2 mb-sm-0">
-                                        <!-- <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button> -->
-                                </div>
+                            <div class="col-12 col-sm-12">
+                                <table id="first-table" class="table mb-0">
+                                    <!-- Encabezados de la tabla de Categorías -->
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th scope="col" class="border-0">#</th>
+                                            <th scope="col" class="border-0">Nombre</th>
+                                            <th scope="col" class="border-0">Rol</th>
+                                            <th scope="col" class="border-0">Correo</th>
+                                            <th scope="col" class="border-0 text-center">Editar</th>
+                                            <th scope="col" class="border-0 text-center">Borrar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(isset($users))
+                                        @if($users)
+                                            @foreach ($users as $index => $item)
+                                            @php
+                                                $key = $index + 1;
+                                            @endphp
+                                            <tr>
+                                                <td>{{$key}}</td>
+                                                <td>{{$item->name}}</td>
+                                                <td>{{$item->type}}</td>
+                                                <td>{{$item->email}}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' data-subcategories='@json($users)'>Editar <i class="material-icons">edit</i></button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
+                                            </tr>
+                                            @endforeach
+                                        @endif
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-12 col-sm-12 d-flex mb-2 mb-sm-0">
+                                <!-- <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button> -->
+                            </div>
                         </div>
                     </div>
                 </div>

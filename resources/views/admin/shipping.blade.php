@@ -30,7 +30,7 @@
     <!-- End Small Stats Blocks -->
     <div class="row">
         <!-- Users Stats -->
-        <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+        <div class="col-lg-{{ auth()->user()->userType->shipping_edit == 1 ? '8' : '12' }} col-md-12 col-sm-12 mb-4">
         <div class="card card-small">
             <div class="card-header border-bottom">
             <h6 class="m-0">Tarifas de envíos</h6>
@@ -120,9 +120,15 @@
                                                                         <th scope="col" class="border-0">Región</th>
                                                                         <th scope="col" class="border-0">Empresa</th>
                                                                         <th scope="col" class="border-0">Logo</th>
+                                                                        @if(auth()->user()->userType->shipping_edit == 1)
                                                                         <th scope="col" class="border-0 text-center">Locales</th>
+                                                                        @endif
+                                                                        @if(auth()->user()->userType->shipping_edit == 1)
                                                                         <th scope="col" class="border-0 text-center">Editar</th>
+                                                                        @endif
+                                                                        @if(auth()->user()->userType->shipping_delete == 1)
                                                                         <th scope="col" class="border-0 text-center">Borrar</th>
+                                                                        @endif
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -135,6 +141,7 @@
                                                                                         <td>{{$item->name}}</td>
                                                                                         <td>{{$company->name}}</td>
                                                                                         <td><img src="/assets/images/companies/{{$company->image}}" style="width:65px;"></td>
+                                                                                        @if(auth()->user()->userType->shipping_edit == 1)
                                                                                         <td class="text-center">
                                                                                             <div id="accordion{{$company->id}}{{$item->id}}">
                                                                                                 <button class="btn btn-info" data-toggle="collapse" data-target="#collapseOne{{$company->id}}{{$item->id}}" aria-expanded="false" aria-controls="collapseOne{{$company->id}}{{$item->id}}">
@@ -142,13 +149,19 @@
                                                                                                 </button>
                                                                                             </div>
                                                                                         </td>
+                                                                                        @endif
+                                                                                        @if(auth()->user()->userType->shipping_edit == 1)
                                                                                         <td class="text-center">
                                                                                             <button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)'>Editar <i class="material-icons">edit</i></button>
                                                                                         </td>
+                                                                                        @endif
+                                                                                        @if(auth()->user()->userType->shipping_delete == 1)
                                                                                         <td class="text-center">
                                                                                             <button type="button" class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-surname='{{$company->name}}' data-type="(región / empresa)" data-url="region_company">Borrar <i class="material-icons">delete</i></button>
                                                                                         </td>
+                                                                                        @endif
                                                                                     </tr>
+                                                                                    @if(auth()->user()->userType->shipping_edit == 1)
                                                                                     <tr>
                                                                                         <td colspan="6">
                                                                                             <div id="collapseOne{{$company->id}}{{$item->id}}" class="collapse" aria-labelledby="headingOne{{$company->id}}{{$item->id}}" data-parent="#accordion{{$company->id}}{{$item->id}}">
@@ -187,6 +200,7 @@
                                                                                             </div>
                                                                                         </td>
                                                                                     </tr>
+                                                                                    @endif
                                                                                 @endforeach
                                                                             @endif
                                                                         @endforeach
@@ -208,12 +222,16 @@
 																		<!-- Encabezados de la tabla de Categorías -->
 																		<thead class="bg-light">
 																				<tr>
-																						<!-- <th scope="col" class="border-0">#</th> -->
-																						<th scope="col" class="border-0">Nombre</th>
-																						<th scope="col" class="border-0">Logo</th>
-																						<!-- <th scope="col" class="border-0 text-center">Ver</th> -->
-																						<th scope="col" class="border-0 text-center">Editar</th>
-																						<th scope="col" class="border-0 text-center">Borrar</th>
+                                                                                    <!-- <th scope="col" class="border-0">#</th> -->
+                                                                                    <th scope="col" class="border-0">Nombre</th>
+                                                                                    <th scope="col" class="border-0">Logo</th>
+                                                                                    <!-- <th scope="col" class="border-0 text-center">Ver</th> -->
+                                                                                    @if(auth()->user()->userType->shipping_edit == 1)
+                                                                                    <th scope="col" class="border-0 text-center">Editar</th>
+                                                                                    @endif
+                                                                                    @if(auth()->user()->userType->shipping_delete == 1)
+                                                                                    <th scope="col" class="border-0 text-center">Borrar</th>
+                                                                                    @endif
 																				</tr>
 																		</thead>
 																		<tbody>
@@ -224,13 +242,17 @@
 																								$key = $index + 1;
 																						@endphp
 																						<tr>
-																								<!-- <td>{{$key}}</td> -->
-																								<td>{{$item->name}}</td>
-																								<td><img src="/assets/images/companies/{{$item->image}}" style="width:65px;"></td>
-																								<!-- <td class="text-center"></td> -->
-																								<td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
-																								<td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="empresa" data-url="shipping_companies" >Borrar <i class="material-icons">delete</i></button></td>
-																						</tr>
+                                                                                            <!-- <td>{{$key}}</td> -->
+                                                                                            <td>{{$item->name}}</td>
+                                                                                            <td><img src="/assets/images/companies/{{$item->image}}" style="width:65px;"></td>
+                                                                                            <!-- <td class="text-center"></td> -->
+                                                                                            @if(auth()->user()->userType->shipping_edit == 1)
+                                                                                            <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
+                                                                                            @endif
+                                                                                            @if(auth()->user()->userType->shipping_edit == 1)
+                                                                                            <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="empresa" data-url="shipping_companies" >Borrar <i class="material-icons">delete</i></button></td>
+                                                                                            @endif
+                                                                                        </tr>
 																						@endforeach
 																				@endif
 																				@endif
@@ -249,6 +271,7 @@
         </div>
         <!-- End Users Stats -->
         <!-- Users By Device Stats -->
+        @if(auth()->user()->userType->shipping_edit == 1)
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card card-small h-100">
                 <div class="card-header border-bottom">
@@ -314,6 +337,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
 
         <!-- Modal Editar Categoria-->

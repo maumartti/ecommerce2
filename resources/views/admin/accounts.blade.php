@@ -158,18 +158,22 @@ if(isset($users)){
                             </div>
                         </div>
                         <div class="tab-pane fade" id="subcategories" role="tabpanel" aria-labelledby="subcategories-tab">
-                            <!-- Pestaña Nuevo Blog -->
+                            <!-- Pestaña Nuevo Usuario -->
                             <div class="card-body pl-0">
                                 <form action="accounts" method="POST" id="FormSaveDataAbout" class="quick-post-form php-email-form" >
                                     <div class="row">
                                         <div class="col-6">
                                             <label for="name">Nombre:</label>
-                                            <input name="name" class="form-control form-control-lg mb-3" type="text" placeholder="Nombre de Usuario" maxlength="100" autocomplete="off" required>
+                                            <input name="name" class="form-control form-control-lg mb-3" type="text" placeholder="Nombre de Usuario" maxlength="26" autocomplete="off" required>
                                             <label for="email">Correo:</label>
-                                            <input name="email" class="form-control form-control-lg mb-3" type="email" placeholder="Correo electrónico" maxlength="100" autocomplete="off" required>
+                                            <input name="email" class="form-control form-control-lg mb-3" type="email" placeholder="Correo electrónico" maxlength="64" autocomplete="off" required>
                                             <label for="password">Contraseña:</label>
-                                            <input name="password" class="form-control form-control-lg mb-3" type="password" placeholder="Contraseña" maxlength="12" autocomplete="off" required>
-                                            <input name="password_confirmation" class="form-control form-control-lg mb-3" type="password" placeholder="Repite Contraseña" maxlength="12" autocomplete="off" required>
+                                            <div class="alert alert-info" style="font-size: 15px;" role="alert">
+                                            <i class='material-icons touch'>info</i>
+                                            Se enviará un correo electrónico al usuario con una contraseña primaria para iniciar sesión, que luego podrá camabiar.
+                                            </div>
+                                            <!-- <input name="password" class="form-control form-control-lg mb-3" type="password" placeholder="Contraseña" maxlength="12" autocomplete="off" required>
+                                            <input name="password_confirmation" class="form-control form-control-lg mb-3" type="password" placeholder="Repite Contraseña" maxlength="12" autocomplete="off" required> -->
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
@@ -178,7 +182,7 @@ if(isset($users)){
                                                     data-button-remove-title="Borrar"
                                                     data-ratio="1:1"
                                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                    data-size="120,120"
+                                                    data-size="240,240"
                                                     style="background:#e6e6e6">
                                                     <input type="file" name="image"/>
                                                 </div>
@@ -189,7 +193,7 @@ if(isset($users)){
                                         <div class="col-12">
                                             <div class="form-group mb-3">
                                                 <label for="type">Typo de cuenta:</label>
-                                                <select name="type" id="type_id" class="form-control" autocomplete="off" required>
+                                                <select name="type_id" id="type_id" class="form-control" autocomplete="off" required>
                                                     <option value="" selected>Seleccionar una...</option>
                                                     <option value="1">Usuario</option>
                                                     <option value="2">Vendedor</option>
@@ -336,31 +340,31 @@ if(isset($users)){
                                             <input name="activity_show" id="x16" type="checkbox" class="form-check-input show-g" {{$userTypeUsuario->activity_show == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x16">VER</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="activity_edit" id="x17" type="checkbox" class="form-check-input" {{$userTypeUsuario->activity_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x17">EDITAR</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input name="activity_delete" id="x18" type="checkbox" class="form-check-input" {{$userTypeUsuario->activity_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x18">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Perfil:</h6>
                                     <div class="form-group pt-2">
                                         <div class="form-check form-check-inline">
-                                            <input name="profile_show" id="x19" type="checkbox" class="form-check-input show-g" {{$userTypeUsuario->profile_show == 1 ? 'checked' : '' }} autocomplete="off">
+                                            <input name="profile_show" id="x19" type="checkbox" class="form-check-input show-g" {{$userTypeUsuario->profile_show == 1 ? 'checked' : '' }} autocomplete="off" disabled>
                                             <label class="form-check-label" for="x19">VER</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input name="profile_edit" id="x20" type="checkbox" class="form-check-input" {{$userTypeUsuario->profile_edit == 1 ? 'checked' : '' }} autocomplete="off">
+                                            <input name="profile_edit" id="x20" type="checkbox" class="form-check-input" {{$userTypeUsuario->profile_edit == 1 ? 'checked' : '' }} autocomplete="off" disabled>
                                             <label class="form-check-label" for="x20">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="profile_delete" id="x21" type="checkbox" class="form-check-input" {{$userTypeUsuario->profile_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x21">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
@@ -380,7 +384,7 @@ if(isset($users)){
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
+                                <!-- <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Mensajes:</h6>
                                     <div class="form-group pt-2">
                                         <div class="form-check form-check-inline">
@@ -396,7 +400,7 @@ if(isset($users)){
                                             <label class="form-check-label" for="x27">BORRAR</label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Subscriptores:</h6>
                                     <div class="form-group pt-2">
@@ -404,10 +408,10 @@ if(isset($users)){
                                             <input name="subscriber_show" id="x28" type="checkbox" class="form-check-input show-g" {{$userTypeUsuario->subscriber_show == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x28">VER</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="subscriber_edit" id="x29" type="checkbox" class="form-check-input" {{$userTypeUsuario->subscriber_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x29">EDITAR</label>
-                                        </div>
+                                        </div> -->
                                         <div class="form-check form-check-inline">
                                             <input name="subscriber_delete" id="x30" type="checkbox" class="form-check-input" {{$userTypeUsuario->subscriber_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x30">BORRAR</label>
@@ -608,31 +612,31 @@ if(isset($users)){
                                             <input name="activity_show" id="xx16" type="checkbox" class="form-check-input show-g" {{$userTypeVendedor->activity_show == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx16">VER</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="activity_edit" id="xx17" type="checkbox" class="form-check-input" {{$userTypeVendedor->activity_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx17">EDITAR</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input name="activity_delete" id="xx18" type="checkbox" class="form-check-input" {{$userTypeVendedor->activity_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx18">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Perfil:</h6>
                                     <div class="form-group pt-2">
                                         <div class="form-check form-check-inline">
-                                            <input name="profile_show" id="xx19" type="checkbox" class="form-check-input show-g" {{$userTypeVendedor->profile_show == 1 ? 'checked' : '' }} autocomplete="off">
+                                            <input name="profile_show" id="xx19" type="checkbox" class="form-check-input show-g" {{$userTypeVendedor->profile_show == 1 ? 'checked' : '' }} autocomplete="off" disabled>
                                             <label class="form-check-label" for="xx19">VER</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input name="profile_edit" id="xx20" type="checkbox" class="form-check-input" {{$userTypeVendedor->profile_edit == 1 ? 'checked' : '' }} autocomplete="off">
+                                            <input name="profile_edit" id="xx20" type="checkbox" class="form-check-input" {{$userTypeVendedor->profile_edit == 1 ? 'checked' : '' }} autocomplete="off" disabled>
                                             <label class="form-check-label" for="xx20">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="profile_delete" id="xx21" type="checkbox" class="form-check-input" {{$userTypeVendedor->profile_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx21">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
@@ -652,7 +656,7 @@ if(isset($users)){
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
+                                <!-- <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Mensajes:</h6>
                                     <div class="form-group pt-2">
                                         <div class="form-check form-check-inline">
@@ -668,7 +672,7 @@ if(isset($users)){
                                             <label class="form-check-label" for="xx27">BORRAR</label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Subscriptores:</h6>
                                     <div class="form-group pt-2">
@@ -676,10 +680,10 @@ if(isset($users)){
                                             <input name="subscriber_show" id="xx28" type="checkbox" class="form-check-input show-g" {{$userTypeVendedor->subscriber_show == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx28">VER</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="subscriber_edit" id="xx29" type="checkbox" class="form-check-input" {{$userTypeVendedor->subscriber_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx29">EDITAR</label>
-                                        </div>
+                                        </div> -->
                                         <div class="form-check form-check-inline">
                                             <input name="subscriber_delete" id="xx30" type="checkbox" class="form-check-input" {{$userTypeVendedor->subscriber_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx30">BORRAR</label>
@@ -880,31 +884,31 @@ if(isset($users)){
                                             <input name="activity_show" id="xxx16" type="checkbox" class="form-check-input show-g"  {{$userTypeAdministrador->activity_show == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx16">VER</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="activity_edit" id="xxx17" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->activity_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx17">EDITAR</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input name="activity_delete" id="xxx18" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->activity_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx18">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Perfil:</h6>
                                     <div class="form-group pt-2">
                                         <div class="form-check form-check-inline">
-                                            <input name="profile_show" id="xxx19" type="checkbox" class="form-check-input show-g"  {{$userTypeAdministrador->profile_show == 1 ? 'checked' : '' }} autocomplete="off">
+                                            <input name="profile_show" id="xxx19" type="checkbox" class="form-check-input show-g"  {{$userTypeAdministrador->profile_show == 1 ? 'checked' : '' }} autocomplete="off" disabled>
                                             <label class="form-check-label" for="xxx19">VER</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input name="profile_edit" id="xxx20" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->profile_edit == 1 ? 'checked' : '' }} autocomplete="off">
+                                            <input name="profile_edit" id="xxx20" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->profile_edit == 1 ? 'checked' : '' }} autocomplete="off" disabled>
                                             <label class="form-check-label" for="xxx20">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="profile_delete" id="xxx21" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->profile_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx21">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
@@ -924,7 +928,7 @@ if(isset($users)){
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
+                                <!-- <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Mensajes:</h6>
                                     <div class="form-group pt-2">
                                         <div class="form-check form-check-inline">
@@ -940,7 +944,7 @@ if(isset($users)){
                                             <label class="form-check-label" for="xxx27">BORRAR</label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="mb-2 pt-1" style="border: 1px solid silver;border-radius:4px;">
                                     <h6 class="m-0 ml-3">Subscriptores:</h6>
                                     <div class="form-group pt-2">
@@ -948,10 +952,10 @@ if(isset($users)){
                                             <input name="subscriber_show" id="xxx28" type="checkbox" class="form-check-input show-g"  {{$userTypeAdministrador->subscriber_show == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx28">VER</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="subscriber_edit" id="xxx29" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->subscriber_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx29">EDITAR</label>
-                                        </div>
+                                        </div> -->
                                         <div class="form-check form-check-inline">
                                             <input name="subscriber_delete" id="xxx30" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->subscriber_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx30">BORRAR</label>
@@ -1103,14 +1107,16 @@ if(isset($users)){
                             <div class="form-row">
                                 <div class="col-6">
                                     <label for="name">Nombre:</label>
-                                    <input name="name" class="form-control mb-3" type="text" placeholder="Nombre de Usuario" maxlength="100" autocomplete="off" required>
+                                    <input name="name" class="form-control mb-3" type="text" placeholder="Nombre de Usuario" maxlength="26" autocomplete="off" required>
                                     <label for="feLastName">Empresa</label>
-                                    <input name="company" class="form-control mb-3" type="text" id="feLastName" placeholder="Empresa" value="" autocomplete="off"> 
+                                    <input name="company" class="form-control mb-3" type="text" id="feLastName" placeholder="Empresa" value="" maxlength="20" autocomplete="off"> 
                                     <label for="email">Correo:</label>
-                                    <input name="email" class="form-control mb-3" type="email" placeholder="Correo electrónico" maxlength="100" autocomplete="off" required>
-                                    <!-- <label for="password">Contraseña:</label>
-                                    <input name="password" class="form-control mb-3" type="password" placeholder="Contraseña" maxlength="12" autocomplete="off" >
-                                    <input name="password_confirmation" class="form-control mb-3" type="password" placeholder="Repite Contraseña" maxlength="12" autocomplete="off"> -->
+                                    <input name="email" class="form-control mb-3" type="email" placeholder="Correo electrónico" maxlength="100" autocomplete="off" disabled>
+                                    <label for="password">Contraseña:</label>
+                                    <div class="alert alert-info" style="font-size: 16px;" role="alert">
+                                        <i class='material-icons touch'>info</i>
+                                        Solo el propietario de la cuenta puede modificar la contraseña de la misma.
+                                    </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
@@ -1119,7 +1125,7 @@ if(isset($users)){
                                             data-button-remove-title="Borrar"
                                             data-ratio="1:1"
                                             data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                            data-size="120,120"
+                                            data-size="240,240"
                                             style="background:#e6e6e6">
                                             <input type="file" name="image"/>
                                         </div>
@@ -1131,7 +1137,7 @@ if(isset($users)){
                                     <label for="cel">Cel - WhatsApp:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <select name="countryCode" class="form-control" autocomplete="off" required>
+                                            <select name="countryCode" class="form-control" autocomplete="off">
                                                 <option value="+54">Argentina (+54)</option>
                                                 <option value="+56">Chile (+56)</option>
                                                 <option value="+57">Colombia (+57)</option>
@@ -1160,11 +1166,11 @@ if(isset($users)){
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="city">Ciudad</label>
-                                    <input type="text" name="city" id="city" class="form-control" value="" autocomplete="off" required> 
+                                    <input type="text" name="city" id="city" class="form-control" value="" maxlength="100" autocomplete="off" > 
                                 </div>
                                 <div class=" col-md-4">
                                     <label for="state" >Región</label>
-                                    <select id="state" name="region_id" class="form-control" autocomplete="off" required>
+                                    <select id="state" name="region_id" class="form-control" autocomplete="off">
                                         <option value="" selected>Selecciona uno...</option>
                                         @if($regions)
                                             @foreach ($regions as $region)
@@ -1175,13 +1181,13 @@ if(isset($users)){
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputZip">Zip</label>
-                                    <input type="text" name="zip" class="form-control" id="inputZip" value="" autocomplete="off"> 
+                                    <input type="text" name="zip" class="form-control" id="inputZip" value="" maxlength="12" autocomplete="off"> 
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="feInputAddress">Dirección</label>
-                                <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" autocomplete="off" required>
+                                <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" maxlength="255" autocomplete="off">
                             </div>
                                 
                             <div class="form-group mb-3">

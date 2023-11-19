@@ -11,10 +11,10 @@
                         Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.
                         </div>
                         Antes de continuar, consulte su correo electrónico para obtener un enlace de verificación de su cuenta.
-                        <!-- <form class="d-inline" method="POST" action="">
+                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
                             <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('haga clic aquí para solicitar otro') }}</button>.
-                        </form> -->
+                        </form>
                     </div>
 				</div>
 			</div>

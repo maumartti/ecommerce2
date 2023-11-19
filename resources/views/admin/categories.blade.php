@@ -51,7 +51,7 @@
     <!-- End Small Stats Blocks -->
     <div class="row">
         <!-- Users Stats -->
-        <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+        <div class="col-lg-{{ auth()->user()->userType->category_edit == 1 ? '8' : '12' }} col-md-12 col-sm-12 mb-4">
         <div class="card card-small">
             <div class="card-header border-bottom">
             <h6 class="m-0">Categorías / Sub-categorías</h6>
@@ -78,8 +78,12 @@
                                                 <th scope="col" class="border-0">#</th>
                                                 <th scope="col" class="border-0">Id</th>
                                                 <th scope="col" class="border-0">Nombre</th>
+                                                @if(auth()->user()->userType->category_edit == 1)
                                                 <th scope="col" class="border-0 text-center">Editar</th>
+                                                @endif
+                                                @if(auth()->user()->userType->category_delete == 1)
                                                 <th scope="col" class="border-0 text-center">Borrar</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -93,8 +97,16 @@
                                                     <td>{{$key}}</td>
                                                     <td>{{$item->id}}</td>
                                                     <td>{{$item->name}}</td>
-                                                    <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-image="{{$item->image}}">Editar <i class="material-icons">edit</i></button></td>
-                                                    <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">Borrar <i class="material-icons">delete</i></button></td>
+                                                    @if(auth()->user()->userType->category_edit == 1)
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-image="{{$item->image}}">Editar <i class="material-icons">edit</i></button>
+                                                    </td>
+                                                    @endif
+                                                    @if(auth()->user()->userType->category_delete == 1)
+                                                    <td class="text-center">
+                                                        <button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="categoría" data-url="categories">Borrar <i class="material-icons">delete</i></button>
+                                                    </td>
+                                                    @endif
                                                 </tr>
                                                 @endforeach
                                             @endif
@@ -118,8 +130,12 @@
                                                 <th scope="col" class="border-0">#</th>
                                                 <th scope="col" class="border-0">Nombre</th>
                                                 <th scope="col" class="border-0">Categoría Padre</th>
+                                                @if(auth()->user()->userType->category_edit == 1)
                                                 <th scope="col" class="border-0 text-center">Editar</th>
+                                                @endif
+                                                @if(auth()->user()->userType->category_delete == 1)
                                                 <th scope="col" class="border-0 text-center">Borrar</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -133,8 +149,12 @@
                                                     <td>{{$key}}</td>
                                                     <td>{{$item->name}}</td>
                                                     <td>{{$item->category ? $item->category->name : ''}}</td>
+                                                    @if(auth()->user()->userType->category_edit == 1)
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditSubCat" data-id="{{$item->id}}" data-name="{{$item->name}}" data-category_id="{{$item->category ? $item->category->id : ''}}">Editar <i class="material-icons">edit</i></button></td>
+                                                    @endif
+                                                    @if(auth()->user()->userType->category_delete == 1)
                                                     <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="subcategoría" data-url="subcategories">Borrar <i class="material-icons">delete</i></button></td>
+                                                    @endif
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -154,6 +174,7 @@
         </div>
         <!-- End Users Stats -->
         <!-- Users By Device Stats -->
+        @if(auth()->user()->userType->category_edit == 1)
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card card-small h-100">
                 <div class="card-header border-bottom">
@@ -227,6 +248,7 @@
                 </div> -->
             </div>
         </div>
+        @endif
 
 
         <!-- Modal Editar Categoria-->

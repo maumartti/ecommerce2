@@ -1,8 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewUserMessage;
 use App\Tools;
 use App\Models\Web;
 use App\Models\User;
@@ -45,20 +51,19 @@ class AccountsController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->input('password') !== $request->input('password_confirmation')) {
-            return response()->json(['error' => 'Los passwords no coinciden'], 422);
-        }
+        //if ($request->input('password') !== $request->input('password_confirmation')) {
+            //return response()->json(['error' => 'Los passwords no coinciden'], 422);
+        //}
         if (User::where('email', $request->input('email'))->exists()) {
             return response()->json(['error' => 'Ya existe un usuario con ese correo'], 422);
         }
         try {
             $validatedData = $request->validate([
-                'type' => 'string|max:160|required',
-                'name' => 'required|string|max:36',
+                'type_id' => 'required',
+                'name' => 'required|string|max:26',
                 'email' => 'string|max:255|required|email|unique:users',
                 'active' => 'required',
-                'image' => 'json|nullable',
-                'password' => 'string|required|min:8|confirmed',
+                'image' => 'json|nullable'
             ]);
             $tools = new Tools;
             if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($validatedData['image'])) {
@@ -66,8 +71,22 @@ class AccountsController extends Controller
             }else{
                 $validatedData['image'] = null;
             }
-            //return $validatedData;
-            $user = User::create($validatedData);
+            $password = Str::random(8);//password de 8 caracteres alfanumerico
+            $validatedData['password'] = Hash::make($password);//password lo hace Hash para guardar en BD
+            $user = User::create($validatedData);//crea el usuario
+
+            //ENVIAR CORREO AL NUEVO USUARIO CON CONTRASENA PRIMARIA
+            $type = UserType::find($validatedData['type_id']);
+            $notificationData = [
+                'id' => $user->id,
+                'name' => $validatedData['name'],
+                'type' => $type->name,
+                'email' => $validatedData['email'],
+                'password' => $password 
+            ];
+            Notification::route('mail', $user->email)->notify(new NewUserMessage($notificationData));
+            //END CORREO
+
             $users = User::with('UserType')->get();
             return response()->json(['status' => 'success', 'users' => $users], 200);
         } catch (\Exception $e) {
@@ -102,16 +121,16 @@ class AccountsController extends Controller
                 return response()->json(['status' => 'error', 'message' => 'Usuario no encontrado'], 404);
             }
             $validatedData = $request->validate([
-                'name' => 'required|string|max:36',
-                'email' => 'string|max:255|required|email',
+                'name' => 'required|string|max:26',
+                //'email' => 'string|max:255|required|email',
                 'image' => 'nullable',
                 'company' => 'string|nullable',
-                'address' => 'string|required',
-                'city' => 'string|required',
+                'address' => 'string|nullable',
+                'city' => 'string|nullable',
                 'zip' => 'nullable',
-                'countryCode' => 'required',
+                'countryCode' => 'nullable',
                 'cel' => 'string|nullable',
-                'region_id' => 'required',
+                'region_id' => 'nullable',
                 'type_id' => 'required',
                 'active' => 'required',
             ]);
@@ -154,6 +173,26 @@ class AccountsController extends Controller
             return response()->json(['status' => 'success', 'users' => $users], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar el usuario: ' . $e->getMessage()], 500);
+        }
+    }
+
+
+    public function resetpassword(Request $request){
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|different:current_password',
+            'repit_password' => 'required|same:new_password',
+        ]);
+        $user = User::find(Auth::user()->id);
+        // Verificar que la contraseña actual proporcionada sea correcta
+        if (Hash::check($request->current_password, $user->password)) {
+            // Actualizar la contraseña con la nueva contraseña proporcionada
+            $user->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+            return redirect()->back()->with('success', 'Contraseña actualizada exitosamente.');
+        } else {
+            return redirect()->back()->with('error', 'La contraseña actual no es correcta.');
         }
     }
 }

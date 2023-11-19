@@ -18,13 +18,37 @@
     <!-- Default Light Table -->
     <div class="row">
         <div class="col-lg-4">
-        <div class="card card-small mb-4 pt-3">
+        <div class="card card-small mb-4 pt-0">
             <div class="card-header border-bottom text-center">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-0 pt-0">
+                        <button type="button" id="btnShowReset" class="btn btn-accent mt-0 w-100">Cambiar Contraseña</button>
+                        @if(session('success'))
+                            <div class="alert alert-success mt-1" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if(session('error'))
+                            <div class="alert alert-danger mt-1" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <div class="py-3" id="contReset">
+                            <form action="resetpassword" method="POST" >
+                            @csrf
+                                <input  class="form-control" type="password" name="current_password" placeholder="Contraseña actual" maxlength="16" required>
+                                <input  class="form-control mt-1" type="password" name="new_password" placeholder="Nueva Contraseña" maxlength="16" required>
+                                <input  class="form-control mt-1" type="password" name="repit_password" placeholder="Repite Contraseña" maxlength="16" required>
+                                <button type="submit" class="btn btn-accent mt-3 w-100">Resetear Contraseña!</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
             <div class="mb-3 mx-auto">
                 <!-- <img class="rounded-circle" src="/assets/images/avatars/1.jpg" alt="User Avatar" width="110">  -->
                 <form action="user/{{ auth()->user()->id }}" method="POST" class="php-email-form" >
                 @method('PUT')
-                <div class="form-group">
+                <div class="form-group mt-3">
                     <div class="slim rounded-circle" id="slimEdit"
                         data-button-edit-title="Editar"
                         data-button-remove-title="Borrar"
@@ -41,11 +65,11 @@
             </div>
             <h4 class="mb-0">{{ auth()->user()->name }}</h4>
             <!-- <span class="text-muted d-block mb-2">Empresa</span> -->
-            <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2 mt-3">
-                <i class="material-icons mr-1">person_add</i>Usuario</button>
+            <button type="button" class="mb-2 btn btn-sm btn-pill btn-primary mr-2 mt-3">
+                <i class="material-icons mr-1">person_add</i>{{ auth()->user()->userType->name }}</button>
             </div>
             <ul class="list-group list-group-flush">
-            <li class="list-group-item px-4">
+            <!-- <li class="list-group-item px-4">
                 <div class="progress-wrapper">
                 <strong class="text-muted d-block mb-2">Total gastado</strong>
                 <div class="progress progress-sm">
@@ -54,9 +78,11 @@
                     </div>
                 </div>
                 </div>
-            </li>
+            </li> -->
             <li class="list-group-item p-4">
-                <strong class="text-muted d-block mb-2">{{ auth()->user()->email }}</strong>
+                <!-- <strong class="text-muted d-block mb-2">{{ auth()->user()->email }}</strong> -->
+                <strong class="text-muted d-block mb-2">Cuenta tipo: {{ auth()->user()->userType->name }}</strong>
+                <strong class="text-muted d-block mb-2">Fecha registro: {{ auth()->user()->created_at->format('d/m/y') }}</strong>
                 <!-- <strong class="text-muted d-block mb-2">{{ auth()->user()->address }}</strong> -->
                 <!-- <strong class="text-muted d-block mb-2">Compras mes: 0</strong> -->
             </li>
@@ -85,13 +111,13 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="feEmailAddress">Email</label>
-                            <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" autocomplete="off" required> </div>
+                            <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" autocomplete="off" required disabled> </div>
                             <div class="form-group col-md-6">
                             <!-- Cell Phone -->
                                 <label for="cel">Cel - WhatsApp:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <select name="countryCode" class="form-control" autocomplete="off" required>
+                                        <select name="countryCode" class="form-control" autocomplete="off">
                                             <option value="" selected>Seleccione uno...</option>
                                             <option value="+54" {{ auth()->user()->countryCode == '+54' ? 'selected' : '' }}>Argentina (+54)</option>
                                             <option value="+56" {{ auth()->user()->countryCode == '+56' ? 'selected' : '' }}>Chile (+56)</option>
@@ -104,22 +130,22 @@
                                             <option value="+1" {{ auth()->user()->countryCode == '+1' ? 'selected' : '' }}>USA (+1)</option>
                                         </select>
                                     </div>
-                                    <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off" required>
+                                    <input type="text" id="cel" name="cel" value="{{ auth()->user()->cel }}" class="form-control" maxlength="20" pattern="[0-9]*" autocomplete="off">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="feInputAddress">Dirección</label>
-                            <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" autocomplete="off" required>
+                            <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" autocomplete="off">
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="feInputCity">Ciudad</label>
-                                <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" autocomplete="off" required> 
+                                <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" autocomplete="off"> 
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="feInputState">Región</label>
-                                <select id="feInputState" name="region_id" class="form-control" autocomplete="off" required>
+                                <select id="feInputState" name="region_id" class="form-control" autocomplete="off">
                                     <option value="" selected>Selecciona uno...</option>
                                     @if($regions)
                                         @foreach ($regions as $region)
@@ -130,7 +156,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="inputZip">Zip</label>
-                                <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" autocomplete="off" required> 
+                                <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" autocomplete="off"> 
                             </div>
                         </div>
                         <button type="submit" class="btn btn-accent">Actualizar Cuenta</button>
@@ -154,6 +180,12 @@
 
 <script>
 $(document).ready(function(){
+    //muestra oculta div reset password
+    $('#contReset').hide();
+    $('#btnShowReset').click(function() {
+        $('#contReset').toggle();
+    });
+
 
 	// $('#first-table').DataTable({
     //     "pageLength": 100 // Configura el número de elementos por página

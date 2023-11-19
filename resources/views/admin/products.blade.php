@@ -70,7 +70,7 @@
     <!-- End Small Stats Blocks -->
     <div class="row">
         <!-- Users Stats -->
-        <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+        <div class="col-lg-{{ auth()->user()->userType->product_edit == 1 ? '8' : '12' }} col-md-12 col-sm-12 mb-4">
         <div class="card card-small">
             <div class="card-header border-bottom">
             <h6 class="m-0">Productos de la tienda</h6>
@@ -99,9 +99,15 @@
                                                 <th scope="col" class="border-0">Nombre</th>
                                                 <th scope="col" class="border-0">Precio</th>
                                                 <th scope="col" class="border-0">Categoría</th>
+                                                @if(auth()->user()->userType->product_show == 1)
                                                 <th scope="col" class="border-0 text-center">Ver</th>
+                                                @endif
+                                                @if(auth()->user()->userType->product_edit == 1)
                                                 <th scope="col" class="border-0 text-center">Editar</th>
+                                                @endif
+                                                @if(auth()->user()->userType->product_delete == 1)
                                                 <th scope="col" class="border-0 text-center">Borrar</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -117,9 +123,15 @@
                                                     <td>{{$item->name}}</td>
                                                     <td>${{$item->price}}</td>
                                                     <td>{{$item->category ? $item->category->name : '----'}}</td>
+                                                    @if(auth()->user()->userType->product_show == 1)
                                                     <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td>
+                                                    @endif
+                                                    @if(auth()->user()->userType->product_edit == 1)
                                                     <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' data-subcategories='@json($subcategories)'>Editar <i class="material-icons">edit</i></button></td>
+                                                    @endif
+                                                    @if(auth()->user()->userType->product_delete == 1)
                                                     <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
+                                                    @endif
                                                 </tr>
                                                 @endforeach
                                             @endif
@@ -176,6 +188,7 @@
         </div>
         <!-- End Users Stats -->
         <!-- Users By Device Stats -->
+        @if(auth()->user()->userType->product_edit == 1)
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card card-small h-100">
                 <div class="card-header border-bottom">
@@ -443,6 +456,7 @@
                 </div> -->
             </div>
         </div>
+        @endif
 
 
         <!-- Modal Editar Producto-->
@@ -743,7 +757,7 @@
 $(document).ready(function(){
 
     $('#products-table').DataTable({
-        "pageLength": 50 // Configura el número de elementos por página
+        "pageLength": 100 // Configura el número de elementos por página
     });
 
     //si borramos imagen exsistente para saber que exsistia y ya no

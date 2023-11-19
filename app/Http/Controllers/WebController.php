@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
@@ -11,6 +12,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\Blog;
+use App\Models\User;
 use App\Models\CategoryBlog;
 use App\Models\Region;
 use App\Models\ShippingCompany;
@@ -95,7 +97,31 @@ class WebController extends Controller
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         return view('auth.verify')->with('web', $web)->with('categories', $categories);
     }
-
+    public function resend(Request $request)
+    {
+        $user = Auth::user(); // Obtén al usuario autenticado
+        if ($user->hasVerifiedEmail()) {
+            return redirect('/admin/home'); // Otra ruta a la que redirigir si ya está verificado
+        }
+        $user->sendEmailVerificationNotification();
+        return back()->with('resent', true); // Podrías usar esto para mostrar un mensaje en la vista
+    }
+    public function verifylink(Request $request, $id)
+    {//cuando se crea un usuario desde el panel se manda un link al usuario por correo que llega aqui y verifica su correo y loguea
+        try {
+            $userId = Crypt::decrypt($id);//decodificar el id
+            $user = User::find($userId);
+            if ($user) {
+                $user->email_verified_at = now();
+                $user->save();
+                return redirect('/login')->with('success', 'Tu correo electrónico ha sido verificado correctamente. Puedes iniciar sesión ahora.');
+            } else {
+                return redirect('/login')->with('error', 'El enlace de verificación no es válido.');
+            }
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            return redirect('/login')->with('error', 'El enlace de verificación no es válido.');
+        }
+    }
     public function about()
     {
         $web = Web::find(1);

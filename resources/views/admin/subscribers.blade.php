@@ -37,7 +37,9 @@
                                                             <th scope="col" class="border-0">Correo</th>
                                                             <th scope="col" class="border-0">Fecha</th>
                                                             <!-- <th scope="col" class="border-0 text-center">Ver</th> -->
+                                                            @if(auth()->user()->userType->subscriber_delete == 1)
                                                             <th scope="col" class="border-0 text-center">Borrar</th>
+                                                            @endif
                                                         </tr>
                                                 </thead>
                                                 <tbody>
@@ -52,7 +54,9 @@
                                                                     <td>{{$item->email}}</td>
                                                                     <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
                                                                     <!-- <td class="text-center"><button type="button" class="btn btn-info edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Ver <i class="material-icons">visibility</i></button></td> -->
+                                                                    @if(auth()->user()->userType->subscriber_delete == 1)
                                                                     <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="subscriptor" data-url="subscriber" >Borrar <i class="material-icons">delete</i></button></td>
+                                                                    @endif
                                                                 </tr>
                                                                 @endforeach
                                                         @endif

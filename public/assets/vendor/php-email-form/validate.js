@@ -521,7 +521,7 @@ function addSubscriberRow(table, item, index) {
   const count = document.getElementById('count-product');
   count.textContent = index + 1;
 }
-// Actualiza tabla subscriptores
+// Actualiza tabla usuarios
 function addUsersRow(table, item, index) {
   const tbody = table.querySelector('tbody');
   const row = document.createElement('tr');

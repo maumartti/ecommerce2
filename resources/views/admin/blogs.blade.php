@@ -20,7 +20,7 @@
     <!-- End Small Stats Blocks -->
     <div class="row">
         <!-- Users Stats -->
-        <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+        <div class="col-lg-{{ auth()->user()->userType->blog_edit == 1 ? '8' : '12' }} col-md-12 col-sm-12 mb-4">
         <div class="card card-small">
             <div class="card-header border-bottom">
             <h6 class="m-0">Blog y Noticias</h6>
@@ -31,9 +31,11 @@
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Lista de Artículos</a>
                             </li>
+                            @if(auth()->user()->userType->blog_edit == 1)
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Agregar Blog</a>
                             </li>
+                            @endif
                             <!-- <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Empresas de transporte</a>
                             </li> -->
@@ -53,8 +55,12 @@
                                                 <!-- <th scope="col" class="border-0">Link</th> -->
                                                 <!-- <th scope="col" class="border-0 text-center">Ver</th> -->
                                                 <th scope="col" class="border-0 text-center">Ver</th>
+                                                @if(auth()->user()->userType->blog_edit == 1)
                                                 <th scope="col" class="border-0 text-center">Editar</th>
+                                                @endif
+                                                @if(auth()->user()->userType->blog_delete == 1)
                                                 <th scope="col" class="border-0 text-center">Borrar</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -66,8 +72,12 @@
                                                         <td>{{$item->title}}</td>
                                                         <td>@if($item->category) {{$item->category->name}} @endif</td>
                                                         <td class="text-center"><a type="button" class="btn btn-info show-button" href="/blog/{{$item->url}}"  target="_blank" >Ver <i class="material-icons">open_in_new</i></a></td>
+                                                        @if(auth()->user()->userType->blog_edit == 1)
                                                         <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Editar <i class="material-icons">edit</i></button></td>
+                                                        @endif
+                                                        @if(auth()->user()->userType->blog_delete == 1)
                                                         <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="blog" data-url="blog" >Borrar <i class="material-icons">delete</i></button></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             @endif
@@ -138,6 +148,7 @@
 
 
         <!-- LATERAL -->
+        @if(auth()->user()->userType->blog_edit == 1)
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card card-small h-100">
                 <div class="card-header border-bottom">
@@ -176,6 +187,7 @@
                 </div>
             </div>
         </div>
+        @endif
         <!-- Modal Borrar Categoria-blog-->
         <div class="modal fade" id="ModalDeleteOne">
             <div class="modal-dialog">

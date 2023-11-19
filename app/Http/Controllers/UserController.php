@@ -70,16 +70,16 @@ class UserController extends Controller
                 return response()->json(['status' => 'error', 'message' => 'Usuario no encontrado'], 404);
             }
             $validatedData = $request->validate([
-                'name' => 'required|string|max:36',
-                'email' => 'string|max:255|required|email',
+                'name' => 'required|string|max:26',
+                //'email' => 'string|max:255|required|email',
                 'image' => 'nullable',
                 'company' => 'string|nullable',
-                'address' => 'string|required',
-                'city' => 'string|required',
-                'zip' => 'string|required',
-                'countryCode' => 'required',
-                'cel' => 'string|required',
-                'region_id' => 'required',
+                'address' => 'string|nullable',
+                'city' => 'string|nullable',
+                'zip' => 'nullable',
+                'countryCode' => 'nullable',
+                'cel' => 'string|nullable',
+                'region_id' => 'nullable'
             ]);
             $tools = new Tools;
             // Guardar la imagen Portada

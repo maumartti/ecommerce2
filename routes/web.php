@@ -42,7 +42,8 @@ Route::get('/password/reset/{token}', [App\Http\Controllers\WebController::class
 Route::get('/password/confirm', [App\Http\Controllers\WebController::class, 'passwordconfirm'])->name('passwordconfirm');
 Route::get('/password/email', [App\Http\Controllers\WebController::class, 'passwordemail'])->name('passwordemail');
 Route::get('/email/verify', [App\Http\Controllers\WebController::class, 'verifyregister'])->name('verification.notice');
-
+Route::get('/email/verifylink/{id}', [App\Http\Controllers\WebController::class, 'verifylink'])->name('verifylink');
+//Route::post('/verification/resend', [App\Http\Controllers\WebController::class, 'resend'])->name('verification.resend');
 
 Route::prefix('admin')->middleware(['auth', 'verifyemail'])->group(function () {
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -73,6 +74,7 @@ Route::prefix('admin')->middleware(['auth', 'verifyemail'])->group(function () {
     Route::resource('message', App\Http\Controllers\MessageController::class);
     Route::resource('subscriber', App\Http\Controllers\SubscriberController::class);
     Route::resource('user_type', App\Http\Controllers\UserTypeController::class);
+    Route::post('resetpassword', [App\Http\Controllers\AccountsController::class, 'resetpassword']);
 });
 
 

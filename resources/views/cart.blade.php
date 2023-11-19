@@ -261,7 +261,7 @@
 										<!-- info de direcccion -->
 											<label class="mt-1">Selecciona tu región:</label>
 											<div class="rs1-select2 rs2-select2 bg0 m-b-12 m-t-9">
-												<select name="userRegion" id="regionSelect" class="form-control js-select2" autocomplete="off" required>
+												<select name="userRegion" id="regionSelect" class="form-control js-select2" autocomplete="off" >
 													<option value="" selected>Selecciona tu región...</option>
 												@if($regions)
 														@foreach ($regions as $region)
@@ -587,7 +587,7 @@
 
 		// muestra oculta div envio o retiro local - y suma el precio de envio al total
 		$('.formaship').change(function() {
-				var initialTtotalPrice = $('#totalPriceDisplay').data('total');
+				var initialTtotalPrice = $('#totalPriceDisplay').attr('data-total');
 				var initialTtotalPrice = parseInt(initialTtotalPrice.replace(/[^\d]/g, '')); // Usar parseInt
 				var currentPrice = $('#totalPriceDisplay').text();
 				var currentPriceValue = parseInt(currentPrice.replace(/[^\d]/g, '')); // Usar parseInt
@@ -599,11 +599,13 @@
 						$('#regionSelect').prop('required', true);
 						$('#userCity').prop('required', true);
 						$('#userAddress').prop('required', true);
+						$('.modeship').prop('required', true);
 						newPriceValue += 5000;
-				} else { // retira en local
+				} else if(this.value === 'local'){ // retira en local
 						$('#regionSelect').prop('required', false);
 						$('#userCity').prop('required', false);
 						$('#userAddress').prop('required', false);
+						$('.modeship').prop('required', false);
 						if (currentPriceValue == initialTtotalPrice + 5000) {
 								newPriceValue -= 5000; // Restar $5000 si no se selecciona 'envio'
 						}
