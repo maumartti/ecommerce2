@@ -34,7 +34,7 @@
                                                 <!-- Encabezados de la tabla de Categorías -->
                                                 <thead class="bg-light">
                                                         <tr>
-                                                            <th scope="col" class="border-0">Estado</th>
+                                                            <th scope="col" class="border-0">Estado del Pago</th>
                                                             <th scope="col" class="border-0">Código</th>
                                                             <th scope="col" class="border-0">Cliente</th>
                                                             <th scope="col" class="border-0">Correo cliente</th>
@@ -68,7 +68,7 @@
                                                                     @if($item->status == 'INICIAL')
                                                                         <button class="btn btn-info confirm-modal-button" data-toggle="modal" data-target="#ModalConfirmPay" id="{{$item->code}}" data-item='@json($item)' data-type="payments" data-name="{{$item->code}} - {{$item->userName}} / {{$item->userEmail}} / cel: {{$item->userCel}} / Monto total: ${{ str_replace(',', '.', number_format($item->amountTotal, 0, '.', ',')) }}" data-url="payments">{{$item->status}} <i class="material-icons">upgrade</i></button>
                                                                     @elseif($item->status == 'AUTHORIZED' || 'AUTHORIZED ENVIADO' )
-                                                                        <button class="btn btn-success">{{$item->status}} 
+                                                                        <button class="btn btn-success">$ {{$item->status}} 
                                                                             @if($item->status == 'AUTHORIZED')
                                                                                 <i class="material-icons">done</i>
                                                                                 @else
@@ -107,6 +107,8 @@
                                                                         @if($item->shipping !== 'local')
                                                                             @if($item->status === 'AUTHORIZED' && auth()->user()->userType->sales_edit == 1)
                                                                                 <button class="btn btn-warning shipping-modal-button" data-toggle="modal" data-target="#ModalConfirmShipping" data-item='@json($item)' data-name="{{$item->shipping}} / a {{$item->shippingTwo}} / mediante: {{$item->shippingCompanyName}} / (Región: {{$item->userRegionName}}, Ciudad: {{$item->userCity}}) - Direccieon: {{$item->shippingTwo == 'local' ? $item->shippingOfficeAddress : $item->userAddress}}" data-type="envio" data-url="shipping">Iniciar Envío <i class="material-icons">local_shipping</i></button>
+                                                                            @else
+                                                                                <button class="btn btn-warning enviado">NO enviado <i class="material-icons">local_shipping</i></button>
                                                                             @endif
                                                                         @else
                                                                         <button class="btn btn-success">Retira en local</button>

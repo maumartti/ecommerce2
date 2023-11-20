@@ -81,9 +81,9 @@
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Productos</a>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <!-- <li class="nav-item" role="presentation">
                             <a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">-----</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="tab-content" id="myTabsContent">
                         <!-- Pestaña de Productos -->

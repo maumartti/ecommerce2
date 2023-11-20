@@ -157,7 +157,7 @@
               @if(auth()->check() && auth()->user()->userType->purchases_show == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/purchases">
-                  <i class="material-icons">note_add</i>
+                  <i class="material-icons">local_mall</i>
                   <span>Compras</span>
                 </a>
               </li>
@@ -165,8 +165,8 @@
               @if(auth()->check() && auth()->user()->userType->sales_show == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/payments">
-                  <i class="material-icons">view_module</i>
-                  <span>Pagos</span>
+                  <i class="material-icons">paid</i>
+                  <span>Ventas</span>
                 </a>
               </li>
               @endif
@@ -181,7 +181,7 @@
               @if(auth()->check() && auth()->user()->userType->user_show  == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/accounts">
-                  <i class="material-icons">table_chart</i>
+                  <i class="material-icons">group</i>
                   <span>Usuarios</span>
                 </a>
               </li>
@@ -197,7 +197,7 @@
               @if(auth()->check() && auth()->user()->userType->blog_show  == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/blog">
-                  <i class="material-icons">vertical_split</i>
+                  <i class="material-icons">feed</i>
                   <span>Blog</span>
                 </a>
               </li>
@@ -213,7 +213,7 @@
               @if(auth()->check() && auth()->user()->userType->subscriber_show  == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/subscriber">
-                  <i class="material-icons">card_membership</i>
+                  <i class="material-icons">mail</i>
                   <span>Suscriptores</span>
                 </a>
               </li>
@@ -301,14 +301,14 @@
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item" href="/admin/profile">
-                      <i class="material-icons">&#xE7FD;</i> Profile
+                      <i class="material-icons">&#xE7FD;</i> Mi Perfil
                     </a>
                     <!-- <a class="dropdown-item" href="/admin/about">
                       <i class="material-icons">badge</i> Nosotros</a> -->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{ route('logout') }}" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                      <i class="material-icons text-danger">&#xE879;</i> Logout </a>
+                      <i class="material-icons text-danger">&#xE879;</i> Salir </a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                       </form>

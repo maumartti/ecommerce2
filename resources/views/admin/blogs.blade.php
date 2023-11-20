@@ -36,9 +36,9 @@
                                 <a class="nav-link" id="subcategories-tab" data-toggle="tab" href="#subcategories" role="tab" aria-controls="subcategories" aria-selected="false">Agregar Blog</a>
                             </li>
                             @endif
-                            <!-- <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Empresas de transporte</a>
-                            </li> -->
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Página blog</a>
+                            </li>
                     </ul>
                     <div class="tab-content" id="myTabsContent">
                         <!-- Pestaña de Articulos -->
@@ -138,6 +138,35 @@
                                 </form>
                             </div>
                             
+                        </div>
+                        <div class="tab-pane fade" id="empresas" role="tabpanel" aria-labelledby="empresas-tab">
+                            <div class="form-group pt-3">
+                                <h6>Imágen de página Blog</h6>
+                                <form action="{{ route('saveData') }}" method="POST" class="quick-post-form php-email-form">
+                                    <div class="py-5" style="background:#eee;">
+                                        @if(auth()->user()->userType->blog_edit == 1)
+                                        <div class="slim"
+                                            data-button-edit-title="Editar"
+                                            data-button-remove-title="Borrar"
+                                            data-ratio="19:3"
+                                            data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
+                                            data-size="1920,240">
+                                            @if($web->imageblog)
+                                            <img src="/assets/images/{{$web->imageblog}}" />
+                                            @endif
+                                            <input type="file" name="imageBlog" />
+                                        </div>
+                                        @else
+                                            <img src="{{ $web->imageblog ? '/assets/images/'.$web->imageblog : '/assets/images/mage3.png' }}" class="w-100" />
+                                        @endif
+                                    </div>
+                                    <div class="pt-2 px-0 col-12">
+                                        @if(auth()->user()->userType->blog_edit == 1)
+                                        <button type="submit" class="btn btn-accent btn-block">Guardar</button>
+                                        @endif
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -312,6 +341,15 @@ $(document).ready(function(){
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script>
 $(document).ready(function() {
+
+    //si borramos imagen exsistente para saber que exsistia y ya no
+    $('.slim-btn-remove').click(function(){
+        var secondParent = $(this).parent().parent();
+        var hiddenInput = secondParent.find('input[type="hidden"]');
+        if (hiddenInput.length > 0) {
+            hiddenInput.val("empty");//en el input hidden le ponemos = empty
+        }
+    });
 
     //-------------------TAGS---------------
     $('.tags-hidden').val('');

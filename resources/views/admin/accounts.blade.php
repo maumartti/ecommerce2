@@ -430,10 +430,10 @@ if(isset($users)){
                                             <input name="general_slider_edit" id="x32" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_slider_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x32">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_slider_delete" id="x33" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_slider_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x33">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Logo Web:</label>
                                     <div class="form-group pt-2">
@@ -445,10 +445,10 @@ if(isset($users)){
                                             <input name="general_logo_edit" id="x35" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_logo_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x35">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_logo_delete" id="x36" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_logo_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x36">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Color Web:</label>
                                     <div class="form-group pt-2">
@@ -460,10 +460,10 @@ if(isset($users)){
                                             <input name="general_color_edit" id="x38" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_color_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x38">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_color_delete" id="x39" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_color_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x39">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Datos Contacto Web:</label>
                                     <div class="form-group pt-2">
@@ -475,10 +475,10 @@ if(isset($users)){
                                             <input name="general_contact_edit" id="x41" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_contact_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x41">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_contact_delete" id="x42" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_contact_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x42">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Filtros Web:</label>
                                     <div class="form-group pt-2">
@@ -490,10 +490,10 @@ if(isset($users)){
                                             <input name="general_filter_edit" id="x44" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_filter_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x44">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_filter_delete" id="x45" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_filter_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x45">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Web Sobre Nosotros:</label>
                                     <div class="form-group pt-2">
@@ -505,10 +505,10 @@ if(isset($users)){
                                             <input name="general_about_edit" id="x47" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_about_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x47">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_about_delete" id="x48" type="checkbox" class="form-check-input" {{$userTypeUsuario->general_about_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="x48">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -702,10 +702,10 @@ if(isset($users)){
                                             <input name="general_slider_edit" id="xx32" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_slider_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx32">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_slider_delete" id="xx33" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_slider_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx33">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Logo Web:</label>
                                     <div class="form-group pt-2">
@@ -717,10 +717,10 @@ if(isset($users)){
                                             <input name="general_logo_edit" id="xx35" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_logo_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx35">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_logo_delete" id="xx36" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_logo_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx36">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Color Web:</label>
                                     <div class="form-group pt-2">
@@ -732,10 +732,10 @@ if(isset($users)){
                                             <input name="general_color_edit" id="xx38" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_color_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx38">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_color_delete" id="xx39" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_color_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx39">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Datos Contacto Web:</label>
                                     <div class="form-group pt-2">
@@ -747,10 +747,10 @@ if(isset($users)){
                                             <input name="general_contact_edit" id="xx41" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_contact_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx41">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_contact_delete" id="xx42" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_contact_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx42">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Filtros Web:</label>
                                     <div class="form-group pt-2">
@@ -762,10 +762,10 @@ if(isset($users)){
                                             <input name="general_filter_edit" id="xx44" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_filter_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx44">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_filter_delete" id="xx45" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_filter_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx45">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Web Sobre Nosotros:</label>
                                     <div class="form-group pt-2">
@@ -777,10 +777,10 @@ if(isset($users)){
                                             <input name="general_about_edit" id="xx47" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_about_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx47">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_about_delete" id="xx48" type="checkbox" class="form-check-input" {{$userTypeVendedor->general_about_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xx48">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -974,10 +974,10 @@ if(isset($users)){
                                             <input name="general_slider_edit" id="xxx32" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_slider_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx32">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_slider_delete" id="xxx33" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_slider_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx33">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Logo Web:</label>
                                     <div class="form-group pt-2">
@@ -989,10 +989,10 @@ if(isset($users)){
                                             <input name="general_logo_edit" id="xxx35" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_logo_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx35">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_logo_delete" id="xxx36" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_logo_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx36">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Color Web:</label>
                                     <div class="form-group pt-2">
@@ -1004,10 +1004,10 @@ if(isset($users)){
                                             <input name="general_color_edit" id="xxx38" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_color_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx38">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_color_delete" id="xxx39" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_color_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx39">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Datos Contacto Web:</label>
                                     <div class="form-group pt-2">
@@ -1019,10 +1019,10 @@ if(isset($users)){
                                             <input name="general_contact_edit" id="xxx41" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_contact_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx41">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_contact_delete" id="xxx42" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_contact_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx42">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Filtros Web:</label>
                                     <div class="form-group pt-2">
@@ -1034,10 +1034,10 @@ if(isset($users)){
                                             <input name="general_filter_edit" id="xxx44" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_filter_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx44">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_filter_delete" id="xxx45" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_filter_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx45">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <label class="m-0 ml-3">Web Sobre Nosotros:</label>
                                     <div class="form-group pt-2">
@@ -1049,10 +1049,10 @@ if(isset($users)){
                                             <input name="general_about_edit" id="xxx47" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_about_edit == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx47">EDITAR</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <!-- <div class="form-check form-check-inline">
                                             <input name="general_about_delete" id="xxx48" type="checkbox" class="form-check-input"  {{$userTypeAdministrador->general_about_delete == 1 ? 'checked' : '' }} autocomplete="off">
                                             <label class="form-check-label" for="xxx48">BORRAR</label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="form-group">
