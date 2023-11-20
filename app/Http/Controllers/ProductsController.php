@@ -63,7 +63,8 @@ class ProductsController extends Controller
             'color' => 'nullable|string',
             'size' => 'nullable|string',
             'tags' => 'nullable|array',
-            'promo' => 'string'
+            'promo' => 'string',
+            'status' => 'nullable'
         ]);
 
         try {
@@ -74,6 +75,7 @@ class ProductsController extends Controller
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], true);
             $validatedData['user_id'] = Auth::user()->id;
             $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
+            $validatedData['status'] = $request->has('status') && $request->input('status') === 'on' ? 1 : 0;
             $validatedData['code'] = strtoupper(Str::random(6));//AT5F1P
             //dd($validatedData);
             unset($validatedData['btnAddTag']);//borramos si existe

@@ -27,9 +27,9 @@ class WebController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        //$profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
-        //$feed = [];
-        //$feed = $profile->refreshFeed(4);
+        $profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
+        $feed = [];
+        $feed = $profile->refreshFeed(4);
         $feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
         //dd($feed);
         $products = Product::orderBy('created_at', 'desc')->with('category', 'subcategory')->get();

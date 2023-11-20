@@ -493,7 +493,7 @@
         @if($index < 4)
         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item d-inline-block" >
             <div class="block2-pic hov-img0" style="background:black;">
-                @if($item->type === 'video')
+                @if($item->type === 'video' || $item->type == 'carousel')
                 <video preload="metadata" id="video-{{ $loop->index }}" class="video-element" style="width: 100%;">
                     <source src="{{ $item->url }}" type="video/mp4">
                 </video>

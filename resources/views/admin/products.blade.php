@@ -200,7 +200,7 @@
                             <form action="products" method="POST" class="php-email-form">
                                 <div class="form-group pt-3">
                                     <label for="nombreSubcategoria">Nombre del producto:</label>
-                                    <input type="text" name="name" class="form-control" id="nombreSubcategoria" placeholder="nombre">
+                                    <input type="text" name="name" class="form-control" id="nombreSubcategoria" placeholder="nombre" maxlength="64">
                                 </div>
                                 <div class="row">
                                     <div class="col-6 pr-0">
@@ -427,9 +427,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="custom-control custom-checkbox">
-                                        <input name="promo" type="checkbox" class="custom-control-input" checked="false">
+                                        <input name="promo" type="checkbox" class="custom-control-input" autocomplete="off">
                                         <label class="custom-control-label" aria-hidden="true"></label>
-                                        <span class="custom-control-description">Destacado</span>
+                                        <span class="custom-control-description">Agregar como destacado</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-checkbox">
+                                        <input name="status" type="checkbox" class="custom-control-input" checked="true" autocomplete="off">
+                                        <label class="custom-control-label" aria-hidden="true"></label>
+                                        <span class="custom-control-description">Activo</span>
                                     </label>
                                 </div>
                                 <div class="form-group">
@@ -644,37 +651,37 @@
                             <div class="col-6 pl-0">
                                 <div class="form-group">
                                     <!-- <label for="categoria">Imagen 1:</label> -->
-                                    <img id="image1" class="w-100 border" src="/assets/images/no-image.png">
+                                    <img id="image1" class="w-100 border" src="/assets/images/no-image2.png">
                                 </div>
                             </div>
                             <div class="col-6 pl-0">
                                 <div class="form-group">
                                     <!-- <label for="categoria">Imagen 2:</label> -->
-                                    <img id="image2" class="w-100 border" src="/assets/images/no-image.png">
+                                    <img id="image2" class="w-100 border" src="/assets/images/no-image2.png">
                                 </div>
                             </div>
                             <div class="col-6 pl-0">
                                 <div class="form-group">
                                     <!-- <label for="categoria">Imagen 3:</label> -->
-                                    <img id="image3" class="w-100 border" src="/assets/images/no-image.png">
+                                    <img id="image3" class="w-100 border" src="/assets/images/no-image2.png">
                                 </div>
                             </div>
                             <div class="col-6 pl-0">
                                 <div class="form-group">
                                     <!-- <label for="categoria">Imagen 4:</label> -->
-                                    <img id="image4" class="w-100 border" src="/assets/images/no-image.png">
+                                    <img id="image4" class="w-100 border" src="/assets/images/no-image2.png">
                                 </div>
                             </div>
                             <div class="col-6 pl-0">
                                 <div class="form-group">
                                     <!-- <label for="categoria">Imagen 5:</label> -->
-                                    <img id="image5" class="w-100 border" src="/assets/images/no-image.png">
+                                    <img id="image5" class="w-100 border" src="/assets/images/no-image2.png">
                                 </div>
                             </div>
                             <div class="col-6 pl-0">
                                 <div class="form-group">
                                     <!-- <label for="categoria">Imagen 6:</label> -->
-                                    <img id="image6" class="w-100 border" src="/assets/images/no-image.png">
+                                    <img id="image6" class="w-100 border" src="/assets/images/no-image2.png">
                                 </div>
                             </div>
                         </div>
@@ -707,8 +714,12 @@
                             <h5 id="descount"></h5>
                         </div>
                         <div class="form-group">
-                            <label for="promo">Promo:</label>
+                            <label for="promo">En destacados:</label>
                             <h5 id="promo"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Activo:</label>
+                            <h5 id="status"></h5>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -800,6 +811,11 @@ $(document).ready(function(){
             $('#ModalShowOne #promo').text('SI');
         } else {
             $('#ModalShowOne #promo').text('NO');
+        }
+        if(itemData.status || itemData.status == 1){
+            $('#ModalShowOne #status').text('SI');
+        } else {
+            $('#ModalShowOne #status').text('NO');
         }
         //images
         if (itemData.image1) {

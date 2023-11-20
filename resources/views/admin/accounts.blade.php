@@ -1061,6 +1061,8 @@ if(isset($users)){
                             </form>
                         </div>
                     </div>
+                    @else
+                    <h6 class="mt-5 text-center">Solo Administrador</h6>
                     @endif
                 </div>
             </div>

@@ -26,47 +26,80 @@
             </div>
             <div class="card-body pt-0">
                 <div class="container pt-3">
+                    <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="subscribers-tab" data-toggle="tab" href="#subscribers" role="tab" aria-controls="subscribers" aria-selected="true">Lista de Subscriptores</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="send-tab" data-toggle="tab" href="#send" role="tab" aria-controls="send" aria-selected="false">Enviar Correo</a>
+                        </li>
+                    </ul>
                     <div class="tab-content" id="myTabsContent">
-                        <div class="row border-bottom py-2 bg-light">
+                        <div class="tab-pane fade show active" id="subscribers" role="tabpanel" aria-labelledby="subscribers-tab">
+                            <div class="row border-bottom py-2 bg-light">
                                 <div class="col-12 col-sm-12">
-                                        <table id="subscribers-table" class="table mb-0">
-                                                <!-- Encabezados de la tabla de Categorías -->
-                                                <thead class="bg-light">
-                                                        <tr>
-                                                            <th scope="col" class="border-0">#</th>
-                                                            <th scope="col" class="border-0">Correo</th>
-                                                            <th scope="col" class="border-0">Fecha</th>
-                                                            <!-- <th scope="col" class="border-0 text-center">Ver</th> -->
-                                                            @if(auth()->user()->userType->subscriber_delete == 1)
-                                                            <th scope="col" class="border-0 text-center">Borrar</th>
-                                                            @endif
-                                                        </tr>
-                                                </thead>
-                                                <tbody>
-                                                        @if(isset($subscribers))
-                                                        @if($subscribers)
-                                                                @foreach ($subscribers as $index => $item)
-                                                                @php
-                                                                    $key = $index + 1;
-                                                                @endphp
-                                                                <tr>
-                                                                    <td>{{$key}}</td>
-                                                                    <td>{{$item->email}}</td>
-                                                                    <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
-                                                                    <!-- <td class="text-center"><button type="button" class="btn btn-info edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Ver <i class="material-icons">visibility</i></button></td> -->
-                                                                    @if(auth()->user()->userType->subscriber_delete == 1)
-                                                                    <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="subscriptor" data-url="subscriber" >Borrar <i class="material-icons">delete</i></button></td>
-                                                                    @endif
-                                                                </tr>
-                                                                @endforeach
+                                    <table id="subscribers-table" class="table mb-0">
+                                            <!-- Encabezados de la tabla de Categorías -->
+                                            <thead class="bg-light">
+                                                    <tr>
+                                                        <th scope="col" class="border-0">#</th>
+                                                        <th scope="col" class="border-0">Correo</th>
+                                                        <th scope="col" class="border-0">Fecha</th>
+                                                        <!-- <th scope="col" class="border-0 text-center">Ver</th> -->
+                                                        @if(auth()->user()->userType->subscriber_delete == 1)
+                                                        <th scope="col" class="border-0 text-center">Borrar</th>
                                                         @endif
-                                                        @endif
-                                                </tbody>
-                                        </table>
+                                                    </tr>
+                                            </thead>
+                                            <tbody>
+                                                    @if(isset($subscribers))
+                                                    @if($subscribers)
+                                                            @foreach ($subscribers as $index => $item)
+                                                            @php
+                                                                $key = $index + 1;
+                                                            @endphp
+                                                            <tr>
+                                                                <td>{{$key}}</td>
+                                                                <td>{{$item->email}}</td>
+                                                                <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
+                                                                <!-- <td class="text-center"><button type="button" class="btn btn-info edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' >Ver <i class="material-icons">visibility</i></button></td> -->
+                                                                @if(auth()->user()->userType->subscriber_delete == 1)
+                                                                <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="subscriptor" data-url="subscriber" >Borrar <i class="material-icons">delete</i></button></td>
+                                                                @endif
+                                                            </tr>
+                                                            @endforeach
+                                                    @endif
+                                                    @endif
+                                            </tbody>
+                                    </table>
                                 </div>
-                                <div class="col-12 col-sm-12 d-flex mb-2 mb-sm-0">
-                                        <!-- <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button> -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="send" role="tabpanel" aria-labelledby="send-tab">
+                            <div class="row border-bottom py-2 bg-light">
+                                <div class="col-lg-5 col-sm-12">
+                                    <div class="form-group pt-3">
+                                        <h6>Enviar una Imágen</h6>
+                                        <form action="sendmessagesubs" method="POST" class="quick-post-form php-email-form">
+                                             <div class="slim"
+                                                data-button-edit-title="Editar"
+                                                data-button-remove-title="Borrar"
+                                                data-ratio="5:6"
+                                                data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
+                                                data-size="500,600">
+                                                <input type="file" name="image" required/>
+                                            </div>
+                                            <div class="mt-2">
+                                                <label for="descripcion">Mensaje (opcional):</label>
+                                                <textarea name="message" class="form-control" maxlength="255" rows="2" placeholder="Escribe algo de ser necesario..."></textarea>
+                                            </div>
+                                            <div class="pt-2 px-0 col-12">
+                                                <button type="submit" class="btn btn-accent btn-block">Enviar a todos los Subscriptores</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -75,6 +75,7 @@ Route::prefix('admin')->middleware(['auth', 'verifyemail'])->group(function () {
     Route::resource('subscriber', App\Http\Controllers\SubscriberController::class);
     Route::resource('user_type', App\Http\Controllers\UserTypeController::class);
     Route::post('resetpassword', [App\Http\Controllers\AccountsController::class, 'resetpassword']);
+    Route::post('sendmessagesubs', [App\Http\Controllers\SubscriberController::class, 'sendMessageSubs']);
 });
 
 

@@ -76,7 +76,7 @@
                                         <thead class="bg-light">
                                             <tr>
                                                 <th scope="col" class="border-0">#</th>
-                                                <th scope="col" class="border-0">Id</th>
+                                                <!-- <th scope="col" class="border-0">Id</th> -->
                                                 <th scope="col" class="border-0">Nombre</th>
                                                 @if(auth()->user()->userType->category_edit == 1)
                                                 <th scope="col" class="border-0 text-center">Editar</th>
@@ -95,7 +95,7 @@
                                                 @endphp
                                                 <tr id="categories-{{$item->id}}" data-id="{{$item->id}}">
                                                     <td>{{$key}}</td>
-                                                    <td>{{$item->id}}</td>
+                                                    <!-- <td>{{$item->id}}</td> -->
                                                     <td>{{$item->name}}</td>
                                                     @if(auth()->user()->userType->category_edit == 1)
                                                     <td class="text-center">

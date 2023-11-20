@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Subscriber;
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\SubscriberMessage;
 
 class SubscriberController extends Controller
 {
@@ -50,9 +52,34 @@ class SubscriberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function sendMessageSubs(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'image' => 'required',
+            'message' => 'string|nullable|max:255'
+        ]);
+
+        try {
+            // Guardar la imagen
+            $tools = new Tools;
+            if(isset($validatedData['image'])){
+                if ($validatedData['image'] !== '' && $validatedData['image'] !== null && Tools::isValidJson($request->image)) {
+                    $validatedData['image'] = $tools->saveImage64('/assets/images/promos/', $request->image);
+                }
+            }
+            $notificationData = [
+                'message' => $validatedData['message'],
+                'image' => '/assets/images/promos/'.$validatedData['image']
+            ];
+            //return  $notificationData;
+            $subscribers = Subscriber::all();
+            foreach($subscribers as $sub){//mandamos el correo a todos los subscriptores
+                Notification::route('mail', $sub->email)->notify(new SubscriberMessage($notificationData));
+            }
+            return response()->json(['status' => 'success', 'subscribers' => $subscribers], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al enviar los correos: ' . $e->getMessage()], 500);
+        }
     }
 
     /**

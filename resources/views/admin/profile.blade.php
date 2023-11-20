@@ -54,7 +54,7 @@
                         data-button-remove-title="Borrar"
                         data-ratio="1:1"
                         data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                        data-size="120,120"
+                        data-size="240,240"
                         style="width: 150px;margin: auto;height: 150px;">
                         <input type="file" name="image"/>
                         @if(auth()->user()->image)
