@@ -64,6 +64,7 @@ class CategoryController extends Controller
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $category = Category::create($validatedData);
             $categories = Category::orderBy('pos')->get();
+            $this->logActivity('Categoría','Agregar categoría', $validatedData['name']);//registramos Acción
             return response()->json(['status' => 'success', 'categories' => $categories], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear la categoría: ' . $e->getMessage()], 500);
@@ -118,6 +119,7 @@ class CategoryController extends Controller
             $category->update($validatedData);
 
             $categories = Category::orderBy('pos')->get();
+            $this->logActivity('Categoría','Actualizar categoría', $category->name);//registramos Acción
             return response()->json(['status' => 'success', 'categories' => $categories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar la categoría: ' . $e->getMessage()], 500);
@@ -146,6 +148,7 @@ class CategoryController extends Controller
             $category->delete();
             $categories = Category::all();
             $subcategories = SubCategory::with('category')->get();
+            $this->logActivity('Categoría','Eliminar categoría', $category->name);//registramos Acción
             return response()->json(['status' => 'success', 'categories' => $categories, 'subcategories' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar la categoría: ' . $e->getMessage()], 500);
@@ -163,6 +166,7 @@ class CategoryController extends Controller
                     $category->update(['pos' => $item['index']]);
                 }
             }
+            $this->logActivity('Categoría','Re-ordenar categoría', 'nuevo orden');//registramos Acción
             return response()->json(['status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error reordering categories: ' . $e->getMessage()], 500);

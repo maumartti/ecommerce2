@@ -36,11 +36,11 @@
                                                         <tr>
                                                             <th scope="col" class="border-0">Estado del Pago</th>
                                                             <th scope="col" class="border-0">Código</th>
+                                                            <th scope="col" class="border-0">Fecha</th>
                                                             <th scope="col" class="border-0">Cliente</th>
                                                             <th scope="col" class="border-0">Correo cliente</th>
                                                             <th scope="col" class="border-0">Cel cliente</th>
                                                             <th scope="col" class="border-0">RUT cliente</th>
-                                                            <th scope="col" class="border-0">Fecha</th>
                                                             <th scope="col" class="border-0">Monto</th>
                                                             <th scope="col" class="border-0">Monto Envio</th>
                                                             <th scope="col" class="border-0">Monto Total</th>
@@ -79,11 +79,11 @@
                                                                         <button class="btn btn-danger">{{$item->status}} <i class="material-icons">error</i></button>
                                                                     @endif   
                                                                     <td>{{$item->code}}</td>
+                                                                    <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
                                                                     <td>{{$item->userName}}</td>
                                                                     <td>{{$item->userEmail}}</td>
                                                                     <td>{{$item->userCel}}</td>
                                                                     <td>{{$item->userRut}}</td>
-                                                                    <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
                                                                     <td>${{ str_replace(',', '.', number_format($item->amount, 0, '.', ',')) }}</td>
                                                                     <td>${{$item->shipping == 'envio' ? '5.000' : '0'}}</td>
                                                                     <td>${{ str_replace(',', '.', number_format($item->amountTotal, 0, '.', ',')) }}</td>
@@ -94,7 +94,7 @@
                                                                         ${{ str_replace(',', '.', number_format($price, 0, '.', ',')) }} /
                                                                         @endforeach
                                                                     </td>
-                                                                    <td>{{$item->userRegion}}</td>
+                                                                    <td>{{$item->userRegionName}}</td>
                                                                     <td>{{$item->userCity}}</td>
                                                                     <td>{{$item->shipping}} / {{$item->shippingTwo}}</td>
                                                                     <td>{{$item->shippingCompanyName}}</td>

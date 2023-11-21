@@ -402,6 +402,9 @@
             addUsersRow(itemsTable, item, index);
           });
           //updateCategorySelect()//actualiza select categorias
+        }else if(data.subscribers){
+          $('img[src="/assets/images/loading.svg"]').hide();
+          $('#btnSendEmailSubscribers').prop('disabled', false);
         }
 
       } else {
@@ -413,7 +416,6 @@
       displayError(thisForm, error);
     });
   }
-
   function displayError(thisForm, error) {
     $.toastr.config({
       position: 'top-right', 

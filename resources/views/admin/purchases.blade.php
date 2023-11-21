@@ -11,7 +11,7 @@
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
         <span class="text-uppercase page-subtitle">Dashboard</span>
-        <h3 class="page-title">Compras</h3>
+        <h3 class="page-title">Tus Compras</h3>
         </div>
     </div>
 
@@ -29,38 +29,94 @@
                     <div class="tab-content" id="myTabsContent">
                         <div class="row border-bottom py-2 bg-light">
                             <div class="col-12 col-sm-12">
-                                <table id="first-table" class="table mb-0">
-                                    <!-- Encabezados de la tabla de Categorías -->
-                                    <thead class="bg-light">
+                            <table id="payments-table" class="table mb-0">
+                                <!-- Encabezados de la tabla de Categorías -->
+                                <thead class="bg-light">
                                         <tr>
-                                            <th scope="col" class="border-0">#</th>
-                                            <th scope="col" class="border-0">Nombre</th>
-                                            <th scope="col" class="border-0">Rol</th>
+                                            <th scope="col" class="border-0">Estado del Pago</th>
+                                            <th scope="col" class="border-0">Código</th>
+                                            <th scope="col" class="border-0">Fecha</th>
+                                            <th scope="col" class="border-0">Cliente</th>
                                             <th scope="col" class="border-0">Correo</th>
-                                            <th scope="col" class="border-0 text-center">Editar</th>
-                                            <th scope="col" class="border-0 text-center">Borrar</th>
+                                            <th scope="col" class="border-0">RUT</th>
+                                            <th scope="col" class="border-0">Monto</th>
+                                            <th scope="col" class="border-0">Monto Envio</th>
+                                            <th scope="col" class="border-0">Monto Total</th>
+                                            <th scope="col" class="border-0">Cant</th>
+                                            <th scope="col" class="border-0">Nombres</th>
+                                            <th scope="col" class="border-0">Precios</th>
+                                            <th scope="col" class="border-0">Región</th>
+                                            <th scope="col" class="border-0">Ciudad</th>
+                                            <th scope="col" class="border-0">Envío</th>
+                                            <th scope="col" class="border-0">Envío Empresa</th>
+                                            <th scope="col" class="border-0">Envío Destino</th>
+                                            <th scope="col" class="border-0">Enviado</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if(isset($users))
-                                        @if($users)
-                                            @foreach ($users as $index => $item)
-                                            @php
-                                                $key = $index + 1;
-                                            @endphp
-                                            <tr>
-                                                <td>{{$key}}</td>
-                                                <td>{{$item->name}}</td>
-                                                <td>{{$item->type}}</td>
-                                                <td>{{$item->email}}</td>
-                                                <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='@json($item)' data-subcategories='@json($users)'>Editar <i class="material-icons">edit</i></button></td>
-                                                <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='@json($item)' data-type="producto" data-url="products" >Borrar <i class="material-icons">delete</i></button></td>
-                                            </tr>
-                                            @endforeach
+                                </thead>
+                                <tbody>
+                                        @if(isset($payments))
+                                        @if($payments)
+                                                @foreach ($payments as $index => $item)
+                                                @php
+                                                        $key = $index + 1;
+                                                @endphp
+                                                <tr>
+                                                    <td>
+                                                    @if($item->status == 'INICIAL')
+                                                        <button class="btn btn-info confirm-modal-button">{{$item->status}} <i class="material-icons">upgrade</i></button>
+                                                    @elseif($item->status == 'AUTHORIZED' || 'AUTHORIZED ENVIADO' )
+                                                        <button class="btn btn-success">$ {{$item->status}} 
+                                                            @if($item->status == 'AUTHORIZED')
+                                                                <i class="material-icons">done</i>
+                                                                @else
+                                                                <i class="material-icons">done_all</i>
+                                                            @endif
+                                                        </button>
+                                                    @else    
+                                                        <button class="btn btn-danger">{{$item->status}} <i class="material-icons">error</i></button>
+                                                    @endif   
+                                                    <td>{{$item->code}}</td>
+                                                    <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
+                                                    <td>{{$item->userName}}</td>
+                                                    <td>{{$item->userEmail}}</td>
+                                                    <td>{{$item->userRut}}</td>
+                                                    <td>${{ str_replace(',', '.', number_format($item->amount, 0, '.', ',')) }}</td>
+                                                    <td>${{$item->shipping == 'envio' ? '5.000' : '0'}}</td>
+                                                    <td>${{ str_replace(',', '.', number_format($item->amountTotal, 0, '.', ',')) }}</td>
+                                                    <td>{{count(explode(',', $item->itemsId))}}</td>
+                                                    <td>{{str_replace(',', ' / ', $item->itemsNames);}}</td>
+                                                    <td>
+                                                        @foreach (explode(',', $item->itemsPrices) as $price)
+                                                        ${{ str_replace(',', '.', number_format($price, 0, '.', ',')) }} /
+                                                        @endforeach
+                                                    </td>
+                                                    <td>{{$item->userRegionName}}</td>
+                                                    <td>{{$item->userCity}}</td>
+                                                    <td>{{$item->shipping}} / {{$item->shippingTwo}}</td>
+                                                    <td>{{$item->shippingCompanyName}}</td>
+                                                    <td>{{$item->shippingOfficeAddress}}</td>
+                                                    <td>
+                                                    @if($item->deliveredStart !== null)
+                                                        @php $carbonDate = Carbon\Carbon::parse($item->deliveredStart); @endphp
+                                                        <button class="btn btn-success">{{ $carbonDate->format('d/m/Y H:i') }}</button>
+                                                    @else
+                                                        @if($item->shipping !== 'local')
+                                                            @if($item->status === 'AUTHORIZED' && auth()->user()->userType->sales_edit == 1)
+                                                                <button class="btn btn-warning enviado">Pendiente de envio <i class="material-icons">local_shipping</i></button>
+                                                            @else
+                                                                <button class="btn btn-warning enviado">NO enviado <i class="material-icons">local_shipping</i></button>
+                                                            @endif
+                                                        @else
+                                                        <button class="btn btn-success">Retira en local</button>
+                                                        @endif
+                                                    @endif 
+                                                    </td>
+                                                </tr>
+                                                @endforeach
                                         @endif
                                         @endif
-                                    </tbody>
-                                </table>
+                                </tbody>
+                            </table>
                             </div>
                             <div class="col-12 col-sm-12 d-flex mb-2 mb-sm-0">
                                 <!-- <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button> -->
@@ -100,9 +156,10 @@
 <script>
 $(document).ready(function(){
 
-	// $('#first-table').DataTable({
-    //     "pageLength": 100 // Configura el número de elementos por página
-    // });
+    $('#payments-table').DataTable({
+        "pageLength": 100, // Configura el número de elementos por página
+        "scrollX": true
+    });
 
 });
 

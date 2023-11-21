@@ -19,7 +19,7 @@ class Controller extends BaseController
         Activity::create([
             'user_id' => $user->id,
             'user_name' => $user->name,
-            'user_type' => $user->type,
+            'user_type' => $user->userType->name,
             'module' => $module,
             'action' => $action,
             'item' => $item,

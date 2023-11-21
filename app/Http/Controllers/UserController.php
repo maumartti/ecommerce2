@@ -71,9 +71,9 @@ class UserController extends Controller
             }
             $validatedData = $request->validate([
                 'name' => 'required|string|max:26',
-                //'email' => 'string|max:255|required|email',
                 'image' => 'nullable',
                 'company' => 'string|nullable',
+                'rut' => 'string|nullable',
                 'address' => 'string|nullable',
                 'city' => 'string|nullable',
                 'zip' => 'nullable',
@@ -94,7 +94,9 @@ class UserController extends Controller
             }else{
                 $validatedData['image'] = $user->image;
             }   
+            //return $validatedData;
             $user->update($validatedData);
+            $this->logActivity('Perfil','Edición de perfil', 'perfil propio');//registramos Acción
             return response()->json(['status' => 'success', 'user' => $user], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar el usuario: ' . $e->getMessage()], 500);

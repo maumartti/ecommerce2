@@ -86,8 +86,8 @@ class AccountsController extends Controller
             ];
             Notification::route('mail', $user->email)->notify(new NewUserMessage($notificationData));
             //END CORREO
-
             $users = User::with('UserType')->get();
+            $this->logActivity('Usuarios','Creación de cuenta', $validatedData['email']);//registramos Acción
             return response()->json(['status' => 'success', 'users' => $users], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred while saving data:' . $e], 500);
@@ -125,6 +125,7 @@ class AccountsController extends Controller
                 //'email' => 'string|max:255|required|email',
                 'image' => 'nullable',
                 'company' => 'string|nullable',
+                'rut' => 'string|nullable',
                 'address' => 'string|nullable',
                 'city' => 'string|nullable',
                 'zip' => 'nullable',
@@ -149,6 +150,7 @@ class AccountsController extends Controller
             }   
             $user->update($validatedData);
             $users = User::with('UserType')->get();
+            $this->logActivity('Usuarios','Edición de cuenta', $user->email);//registramos Acción
             return response()->json(['status' => 'success', 'users' => $users], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar el usuario: ' . $e->getMessage()], 500);
@@ -170,6 +172,7 @@ class AccountsController extends Controller
             // Elimina la categoría
             $user->delete();
             $users = User::with('UserType')->get();
+            $this->logActivity('Usuarios','Eliminación de cuenta', $user->email);//registramos Acción
             return response()->json(['status' => 'success', 'users' => $users], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar el usuario: ' . $e->getMessage()], 500);
@@ -190,6 +193,7 @@ class AccountsController extends Controller
             $user->update([
                 'password' => Hash::make($request->new_password),
             ]);
+            $this->logActivity('Usuarios','Reseteo de contraseña', $user->email);//registramos Acción
             return redirect()->back()->with('success', 'Contraseña actualizada exitosamente.');
         } else {
             return redirect()->back()->with('error', 'La contraseña actual no es correcta.');

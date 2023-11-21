@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tools;
 use App\Models\Web;
 use App\Models\Purchase;
+use App\Models\Payment;
 
 
 class PurchaseController extends Controller
@@ -20,9 +22,10 @@ class PurchaseController extends Controller
      */
     public function index()
     {
+        $payments = Payment::where('user_id', Auth::user()->id)->get();
+        //return view('admin.payments')->with('web',$web)->with('payments',$payments);  
         $web = Web::find(1);
-        $purchases = Purchase::all();
-        return view('admin.purchases')->with('web',$web)->with('purchases',$purchases);   
+        return view('admin.purchases')->with('web',$web)->with('payments',$payments);   
     }
 
     /**

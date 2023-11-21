@@ -50,6 +50,7 @@ class SubCategoryController extends Controller
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], false);
             $subcategory = SubCategory::create($validatedData);
             $subcategories = SubCategory::with('category')->get();
+            $this->logActivity('SubCategorías','Agregar SubCategorías', $validatedData['name']);//registramos Acción
             return response()->json(['status' => 'success', 'subcategories' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear la categoría: ' . $e->getMessage()], 500);
@@ -94,6 +95,7 @@ class SubCategoryController extends Controller
             $subcategory->update($validatedData);
             
             $subcategories = SubCategory::with('category')->get();
+            $this->logActivity('SubCategorías','Actualizar SubCategorías', $subcategory->name);//registramos Acción
             return response()->json(['status' => 'success', 'subcategories' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar la categoría: ' . $e->getMessage()], 500);
@@ -113,6 +115,7 @@ class SubCategoryController extends Controller
             // Elimina
             $subcategory->delete();
             $subcategories = SubCategory::with('category')->get();
+            $this->logActivity('SubCategorías','Eliminar SubCategorías', $subcategory->name);//registramos Acción
             return response()->json(['status' => 'success', 'subcategories' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar la sub-categoría: ' . $e->getMessage()], 500);

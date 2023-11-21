@@ -102,16 +102,20 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="feFirstName">Nombre</label>
-                        <input type="text" name="name" class="form-control" id="feFirstName" placeholder="Nombre" value="{{auth()->user()->name}}" autocomplete="off" required> </div>
-                        <div class="form-group col-md-6">
-                        <label for="feLastName">Empresa</label>
-                        <input type="text" name="company" class="form-control" id="feLastName" placeholder="Empresa" value="{{auth()->user()->company}}" autocomplete="off"> 
+                        <input type="text" name="name" class="form-control" id="feFirstName" placeholder="Nombre" maxlength="26"  value="{{auth()->user()->name}}" autocomplete="off" required> </div>
+                        <div class="form-group col-md-3">
+                            <label for="feLastName">Empresa</label>
+                            <input type="text" name="company" class="form-control" id="feLastName" placeholder="Empresa" maxlength="20" value="{{auth()->user()->company}}" autocomplete="off"> 
+                        </div>
+                        <div class="form-group col-md-3">
+                        <label for="feLastName">RUT</label>
+                        <input type="text" name="rut" class="form-control" placeholder="RUT" maxlength="20" value="{{auth()->user()->rut}}" autocomplete="off"> 
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="feEmailAddress">Email</label>
-                            <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" autocomplete="off" required disabled> </div>
+                            <input type="email" name="email" class="form-control" id="feEmailAddress" placeholder="Correo" value="{{auth()->user()->email}}" maxlength="64" autocomplete="off" required disabled> </div>
                             <div class="form-group col-md-6">
                             <!-- Cell Phone -->
                                 <label for="cel">Cel - WhatsApp:</label>
@@ -136,12 +140,12 @@
                         </div>
                         <div class="form-group">
                             <label for="feInputAddress">Dirección</label>
-                            <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" autocomplete="off">
+                            <input type="text" name="address" class="form-control" value="{{auth()->user()->address}}" placeholder="1234 Main St" maxlength="255"  autocomplete="off">
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="feInputCity">Ciudad</label>
-                                <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" autocomplete="off"> 
+                                <input type="text" name="city" class="form-control" value="{{auth()->user()->city}}" maxlength="64" autocomplete="off"> 
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="feInputState">Región</label>
@@ -156,7 +160,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="inputZip">Zip</label>
-                                <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}" autocomplete="off"> 
+                                <input type="text" name="zip" class="form-control" id="inputZip" value="{{auth()->user()->zip}}"maxlength="12" autocomplete="off"> 
                             </div>
                         </div>
                         <button type="submit" class="btn btn-accent">Actualizar Cuenta</button>

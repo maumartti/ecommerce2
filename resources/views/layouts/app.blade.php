@@ -154,7 +154,7 @@
                 </a>
               </li>
               @endif
-              @if(auth()->check() && auth()->user()->userType->purchases_show == 1)
+              @if(auth()->check() && auth()->user()->type_id == 1)
               <li class="nav-item">
                 <a class="nav-link " href="/admin/purchases">
                   <i class="material-icons">local_mall</i>
