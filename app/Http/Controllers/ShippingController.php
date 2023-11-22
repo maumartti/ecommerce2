@@ -54,8 +54,8 @@ class ShippingController extends Controller
                 $payment->update(['status' => 'AUTHORIZED ENVIADO', 'deliveredStart'=> now()]);
             }
             $shippings = Shipping::with('payment')->get();
+            $this->logActivity('Envíos','Envío Agregado', $payment->code);//registramos Acción
             return response()->json(['status' => 'success', 'shipping' => $shipping, 'shippings' => $shippings], 200);
-            return response()->json(['status' => 'success', 'envío guardado' => $payment], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al guardar envio: ' . $e->getMessage()], 500);
         }
@@ -88,8 +88,8 @@ class ShippingController extends Controller
                 $payment->update(['deliveredEnd'=> now()]);
             }
             $shippings = Shipping::with('payment')->get();
+            $this->logActivity('Envíos','Envío Editado', $payment->code);//registramos Acción
             return response()->json(['status' => 'success', 'shippings' => $shippings], 200);
-            return response()->json(['status' => 'success', 'confirmado envío recibido' => $payment], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al confirmar envio recibido: ' . $e->getMessage()], 500);
         }

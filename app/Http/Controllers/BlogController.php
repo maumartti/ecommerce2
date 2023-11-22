@@ -66,6 +66,7 @@ class BlogController extends Controller
             $validatedData["url"] = $tools->generateUrl($validatedData["title"]);
             $blog = Blog::create($validatedData);
     
+            $this->logActivity('Blog','Blog Agregado', $validatedData["title"]);//registramos Acción
             return response()->json(['status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred while saving data:' . $e], 500);
@@ -124,6 +125,7 @@ class BlogController extends Controller
             $blog->update($validatedData);
 
             $blogs = Blog::all();
+            $this->logActivity('Blog','Blog Editado', $blog->title);//registramos Acción
             return response()->json(['status' => 'success', 'blogs' => $blogs], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar el blog: ' . $e->getMessage()], 500);
@@ -145,6 +147,7 @@ class BlogController extends Controller
             // Elimina la categoría
             $blog->delete();
             $blogs = Blog::all();
+            $this->logActivity('Blog','Blog Eliminado', $blog->title);//registramos Acción
             return response()->json(['status' => 'success', 'blogs' => $blogs], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar el blog: ' . $e->getMessage()], 500);

@@ -2,7 +2,22 @@
 
 @section('head')
 <link href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdn.tiny.cloud/1/l43hx0vt9pt2w5u1uuc6k2w1tvx8m3bydfw8ixm5k9c4xqz2/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- Estilos del text area de texto -->
+<style>
+    #container {
+        width: 1000px;
+        margin: 20px auto;
+    }
+    .ck-editor__editable[role="textbox"] {
+        /* editing area */
+        min-height: 200px;
+    }
+    .ck-content .image {
+        /* block images */
+        max-width: 80%;
+        margin: 20px auto;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -107,8 +122,7 @@
                                     </div>
                                     <input name="title" class="form-control form-control-lg mb-3" type="text" placeholder="Título del post" maxlength="100" autocomplete="off">
                                     <textarea name="cita" class="form-control form-control-lg mb-3" placeholder="Cita del post, maximo 160 caractéres" maxlength="160" autocomplete="off"></textarea>
-                                    <textarea name="text" class="form-control textedit" autocomplete="off"></textarea>
-                                    <!-- <textarea name="text" id="editor-container" class="add-new-post__editor mb-3" placeholder="Texto del post..."></textarea> -->
+                                    <textarea name="text" id="textedit" class="form-control textedit" autocomplete="off"></textarea>
                                     <div class="form-group mb-3">
                                         <label for="categoria">Categoría:</label>
                                         <select name="category_blog_id" id="categorias-blog" class="form-control" autocomplete="off" required>
@@ -267,7 +281,7 @@
                             </div>
                             <input name="title" class="form-control form-control-lg mb-3" type="text" placeholder="Título del post" maxlength="100" autocomplete="off">
                             <textarea name="cita" class="form-control form-control-lg mb-3" placeholder="Cita del post, maximo 160 caractéres" maxlength="160" autocomplete="off"></textarea>
-                            <textarea name="text" id="textEdit" class="form-control textedit" autocomplete="off"></textarea>
+                            <textarea name="text" id="texteditModal" class="form-control ck-editor__editable" autocomplete="off" contenteditable="true"></textarea>
                             <!-- <textarea name="text" id="editor-container" class="add-new-post__editor mb-3" placeholder="Texto del post..."></textarea> -->
                             <div class="form-group mb-3">
                                 <label for="categoria">Categoría:</label>
@@ -293,7 +307,7 @@
                                 <input type="hidden" name="tags" class="tags-hidden">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-accent btn-block">Guardar post</button>
+                                <button type="submit" id="btnSubmitModalEdit" class="btn btn-accent btn-block">Guardar post</button>
                             </div>
                         </form>
                     </div>
@@ -315,21 +329,29 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="/assets/js/app/app-blog-new-post.1.1.0.js"></script>
+<!-- ckeditor para textarea -->
+<script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js"></script>
 <script>
 $(document).ready(function(){
 
-    tinymce.init({
-        selector: 'textarea.textedit', //los q tienen la calse textedit
-        menubar: false,
-        plugins: 'link',
-        toolbar: 'undo redo | bold italic underline | link | styleselect | removeformat | h2 | h3',
-        style_formats: [
-            { title: 'Título 2', format: 'h2' },
-            { title: 'Título 3', format: 'h3' }
-        ],
-        style_formats_merge: true,
-        height: 400
-    });
+    let editorInstance;
+    editorInstance =ClassicEditor
+        .create( document.querySelector( '#textedit'), {
+            toolbar: {
+                items: [
+                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                    'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                ],
+                shouldNotGroupWhenFull: true
+            },
+        } )
+        .catch( error => {
+            console.error( error );
+    } );
+
+
+    //crea para modal
+
 
 	// $('#first-table').DataTable({
     //     "pageLength": 100 // Configura el número de elementos por página
@@ -430,6 +452,8 @@ $(document).ready(function() {
     });
 
 
+    let editorInstanceModal;// Variable global para almacenar la instancia del editor
+    
     //Datos al modal Editar Blog
     $(document).on('click', '.edit-button', function () {
         var item = $(this).data("item");
@@ -446,8 +470,31 @@ $(document).ready(function() {
                 form.find('[name="' + key + '"]').val(value); 
             }
             if (key == 'text') { // Verificar si el atributo de datos comienza con 'field'
-                var editor = tinymce.get('textEdit'); // Reemplaza 'editor_id' con el ID de tu textarea TincyMCE
-                editor.setContent(value);
+                //cargar el textarea al abrir el modal
+                if(editorInstanceModal){ editorInstanceModal.destroy(); editorInstanceModal = null, console.log(editorInstanceModal)}//estruye instancia anterior
+                if(!editorInstanceModal) {//si no exite lo creamos al editor texto - textarea
+                    editorInstanceModal = ClassicEditor.create( document.querySelector( '#texteditModal'), {
+                        isReadOnly: false, // Asegúrate de que el editor no esté en modo solo lectura
+                        placeholder: 'Escribe aquí...', 
+                            toolbar: {
+                                items: [
+                                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                                    'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                                ],
+                                shouldNotGroupWhenFull: true
+                            },
+                        } )
+                        .catch( error => {
+                            console.error( error );
+                    } ).then(editor => {
+                        //editor.destroy();
+                        editor.setData(value);
+                        $('#texteditModal').val(value);
+                        editorInstanceModal = editor;
+                    });
+                }    
+                //end textarea
+                console.log('editorInstanceModal',editorInstanceModal)
             }
             if (key == 'tags') {
                 var editTags = value.split(','); // Obtén los tags del artículo que se está editandod
@@ -472,6 +519,12 @@ $(document).ready(function() {
             }
         });
         //form.attr('action', 'blog/' + id);
+    });
+
+    //Al dar SUBMIT REEMPLAZAMOS EL VALOR DEL TEXTAREA X EL EDITADO
+    $('#btnSubmitModalEdit').on('click', function() {
+        var editedText = editorInstanceModal.getData();
+        $('[name="text"]').val(editedText);
     });
 });
 </script>

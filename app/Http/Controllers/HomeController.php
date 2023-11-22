@@ -256,7 +256,7 @@ class HomeController extends Controller
             unset($data['btnAddTag']);//borramos si existe
             
             $web->update($data);
-    
+            $this->logActivity('Generales Web','Actualizar', 'rotor, logo, color, info contacto, filtros');//registramos Acción
             return response()->json(['status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred while saving data:' . $e], 500);
@@ -308,7 +308,7 @@ class HomeController extends Controller
             //dd($data);
             unset($data['btnAddTag']);//borramos si existe
             $web->update($data);
-    
+            $this->logActivity('Generales Web','Actualizar', 'Datos de página nosotros');//registramos Acción
             return response()->json(['status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred while saving data:' . $e], 500);

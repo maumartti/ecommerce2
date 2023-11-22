@@ -82,6 +82,7 @@ class ProductsController extends Controller
             $validatedData['tags'] = json_encode($request->input('tags'));//tags array
             $category = Product::create($validatedData);
             $products = Product::with('category', 'subcategory')->get();
+            $this->logActivity('Productos','Agregar producto', $validatedData['name']);//registramos Acción
             return response()->json(['status' => 'success', 'products' => $products], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear la categoría: ' . $e->getMessage()], 500);
@@ -164,6 +165,7 @@ class ProductsController extends Controller
 
             $products = Product::with('category', 'subcategory')->get();
             $subcategories = SubCategory::with('category')->get();
+            $this->logActivity('Productos','Actualizar producto', $validatedData['name']);//registramos Acción
             return response()->json(['status' => 'success', 'products' => $products, 'subcategoriesAll' => $subcategories], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al actualizar la categoría: ' . $e->getMessage()], 500);
@@ -186,6 +188,7 @@ class ProductsController extends Controller
             // Elimina la Producto
             $product->delete();
             $products = Product::with('category', 'subcategory')->get();
+            $this->logActivity('Productos','Eliminar producto', $product->name);//registramos Acción
             return response()->json(['status' => 'success', 'products' => $products], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar la Producto: ' . $e->getMessage()], 500);

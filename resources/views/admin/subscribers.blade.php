@@ -80,7 +80,7 @@
                                 <div class="col-lg-5 col-sm-12">
                                     <div class="form-group pt-3">
                                         <h5>Enviar un correo a todos los subscriptores</h5>
-                                        <h6>Enviar una Imágen</h6>
+                                        <h6>Enviar una Imágen (obligatoria):</h6>
                                         <form action="sendmessagesubs" method="POST" class="quick-post-form php-email-form">
                                              <div class="slim"
                                                 data-button-edit-title="Editar"
@@ -92,7 +92,7 @@
                                             </div>
                                             <div class="mt-2">
                                                 <label for="descripcion">Mensaje (opcional):</label>
-                                                <textarea name="message" class="form-control" maxlength="255" rows="2" placeholder="Escribe algo de ser necesario..."></textarea>
+                                                <textarea name="message" class="form-control" maxlength="255" rows="2" placeholder="Escribe algo..."></textarea>
                                             </div>
                                             <div class="pt-2 px-0 col-12">
                                                 <button type="submit" id="btnSendEmailSubscribers" class="btn btn-primary btn-block" style="font-size: 15px;">

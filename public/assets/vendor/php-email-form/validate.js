@@ -501,8 +501,8 @@ function addBlogsRow(table, item, index) {
       <td>${item.title}</td>
       <td>${item.category ? item.category.name : '----'}</td>
       <td class="text-center"><a type="button" class="btn btn-info show-button" href="/blog/${item.url}"  target="_blank" >Ver <i class="material-icons">open_in_new</i></a></td>
-      <td class="text-center"><type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>
-      <td class="text-center"><button class="btn btn-danger delete-modal-button" data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(item)}' data-type="blog" data-url="blog">Borrar <i class="material-icons">delete</i></button></td>`;
+      <td class="text-center"><button type="button" class="btn btn-warning edit-button" data-toggle="modal" data-target="#ModalEditOne" data-item='${JSON.stringify(item)}'>Editar <i class="material-icons">edit</i></button></td>
+      <td class="text-center"><button type="button" class="btn btn-danger delete-modal-button"  data-toggle="modal" data-target="#ModalDeleteOne" data-item='${JSON.stringify(item)}' data-type="blog" data-url="blog">Borrar <i class="material-icons">delete</i></button></td>`;
   tbody.appendChild(row);
   // Actualizar count"
   //const count = document.getElementById('count-product');

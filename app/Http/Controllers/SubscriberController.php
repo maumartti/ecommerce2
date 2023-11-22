@@ -76,6 +76,7 @@ class SubscriberController extends Controller
             foreach($subscribers as $sub){//mandamos el correo a todos los subscriptores
                 Notification::route('mail', $sub->email)->notify(new SubscriberMessage($notificationData));
             }
+            $this->logActivity('Subscriptores','Subscriptores', 'Mensaje enviado');//registramos Acción
             return response()->json(['status' => 'success', 'subscribers' => $subscribers], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al enviar los correos: ' . $e->getMessage()], 500);
@@ -113,6 +114,7 @@ class SubscriberController extends Controller
             // Elimina la categoría
             $subscriber->delete();
             $subscribers = Subscriber::all();
+            $this->logActivity('Subscriptores','Subscriptor Eliminado', $subscriber->name);//registramos Acción
             return response()->json(['status' => 'success', 'subscribers' => $subscribers], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error al eliminar el subscritor: ' . $e->getMessage()], 500);
