@@ -424,7 +424,7 @@ $(document).ready(function() {
     tagListAdd.on("click", ".remove-tag", function() {
         var tagText = $(this).parent().text().trim();
         var index = tags.indexOf(tagText);
-        if (index > -1) {
+        if (index >= -1) {
             tags.splice(index, 1);
             // Actualizar el campo de entrada oculto con las etiquetas
             tagsHiddenInputAdd.val(tags.join(','));
@@ -432,12 +432,12 @@ $(document).ready(function() {
         $(this).parent().remove();
     });
     //eliminación de etiquetas EDIT
-    tagListEdit.on("click", ".remove-tag", function() {
+    tagListEdit.on("click", ".remove-tag-edit", function() {
         var tagText = $(this).parent().text().trim();
         var index = tags.indexOf(tagText);
-        if (index > -1) {
-            tags.splice(index, 1);
-            // Actualizar el campo de entrada oculto con las etiquetas
+        console.log('tags', index)
+        if (index >= -1) {
+            tags.splice(index, 1); 
             tagsHiddenInputEdit.val(tags.join(','));
         }
         $(this).parent().remove();
@@ -501,7 +501,7 @@ $(document).ready(function() {
                 tags = tags.concat(editTags); // Agrega las etiquetas existentes al array de etiquetas
                 // Recorre editTags y crea elementos de etiqueta visibles para ellos
                 editTags.forEach(function (tagText) {
-                    var tagElement = $("<span class='tag pr-2 mr-1' style='display: inline-block;border: 1px solid silver;padding: 4px;border-radius: 6px;'>" + tagText + " <a class='remove-tag text-danger' style='cursor:pointer;'>&times;</a></span>");
+                    var tagElement = $("<span class='tag pr-2 mr-1' style='display: inline-block;border: 1px solid silver;padding: 4px;border-radius: 6px;'>" + tagText + " <a class='remove-tag-edit text-danger' style='cursor:pointer;'>&times;</a></span>");
                     // Agrega la etiqueta al elemento de lista de etiquetas
                     $(".tag-list-edit").append(tagElement);
                 });
@@ -521,10 +521,11 @@ $(document).ready(function() {
         //form.attr('action', 'blog/' + id);
     });
 
-    //Al dar SUBMIT REEMPLAZAMOS EL VALOR DEL TEXTAREA X EL EDITADO
+    //Al dar SUBMIT REEMPLAZAMOS EL VALOR DEL TEXTAREA X EL
     $('#btnSubmitModalEdit').on('click', function() {
         var editedText = editorInstanceModal.getData();
         $('[name="text"]').val(editedText);
+        console.log('tag',tags)
     });
 });
 </script>

@@ -122,6 +122,21 @@ class BlogController extends Controller
                 $validatedData['image'] = $blog->image;
             }    
             $validatedData['url'] = $tools->generateUrl($validatedData['title'], false);
+
+            $currentTags = explode(',', $blog->tags);
+
+            //Obtener los nuevos tags del formulario y agregamo si no existen
+            // $newTags = explode(',', $validatedData['tags']);
+            // foreach ($newTags as $tag) {
+            //     $trimmedTag = trim($tag);
+            //     if (!in_array($trimmedTag, $currentTags) && $trimmedTag !== '') {
+            //         $currentTags[] = $trimmedTag;
+            //     }
+            // }
+            // $currentTags = array_intersect($currentTags, $newTags);
+            // $validatedData['tags'] = implode(',', $currentTags);
+            //end tags
+            $blog->tags = $validatedData['tags'];
             $blog->update($validatedData);
 
             $blogs = Blog::all();
