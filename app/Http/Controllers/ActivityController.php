@@ -21,7 +21,7 @@ class ActivityController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $activities = Activity::all();
+        $activities = Activity::orderBy('created_at', 'desc')->get();
         return view('admin.activity')->with('web',$web)->with('activities',$activities);   
     }
 

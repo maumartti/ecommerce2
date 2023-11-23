@@ -405,8 +405,9 @@
         }else if(data.subscribers){
           $('img[src="/assets/images/loading.svg"]').hide();
           $('#btnSendEmailSubscribers').prop('disabled', false);
+        }else if(data.blogs){
+          window.location.href = '/admin/blog'; 
         }
-
       } else {
         $.toastr.error(data.message || 'Form submission failed and no error message returned from: ' + action);
       }
