@@ -33,9 +33,9 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="company" class="col-md-4 col-form-label text-md-end">Empresa:</label>
+                                <label for="company" class="col-md-4 col-form-label text-md-end">RUT:</label>
                                 <div class="col-md-6">
-                                    <input id="company" type="text" class="form-control @error('company') is-invalid @enderror" name="company" value="{{ old('company') }}" maxlenght="20"  autocomplete="company" autofocus>
+                                    <input id="company" type="text" class="form-control @error('company') is-invalid @enderror" name="rut" value="{{ old('company') }}" maxlenght="20"  required autocomplete="company" autofocus>
                                     @error('company')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

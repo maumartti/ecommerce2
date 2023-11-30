@@ -82,11 +82,11 @@ class WebpayController extends Controller
             // END CORREO
 
 
-            return redirect('https://webpay3gint.transbank.cl/webpayserver/bp_auth_emisor.cgi?TBK_TOKEN='.$token);
+            return redirect('https://webpay3g.transbank.cl/webpayserver/bp_auth_emisor.cgi?TBK_TOKEN='.$token);
             //dd($response);
         }else{//no autorizado
             $payment->update(['status' => $response->status, 'user_id' => $user_id]);
-            return redirect('https://webpay3gint.transbank.cl/webpayserver/bp_auth_emisor.cgi?TBK_TOKEN='.$token);
+            return redirect('https://webpay3g.transbank.cl/webpayserver/bp_auth_emisor.cgi?TBK_TOKEN='.$token);
             //dd($response);
         }
         //dd($response);
