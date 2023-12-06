@@ -20,8 +20,11 @@ class WebpayController extends Controller
         $code = $payment->code;
         $amount = $payment->amountTotal;
         //$codewp = Str::random(8) . Str::random(8);
+        
+        $transaction = new Transaction(); 
+        // Opción C: Configurar en la instancia del producto (en este ejemplo, WebpayPlus\Transaction)
+        $transaction->configureForProduction('597049766599', '401147f9-5d58-4164-8b48-aef3a1a13f0f'); 
 
-        $transaction = new Transaction();
         $createResponse = $transaction->create($code, $id, $amount, 'https://importadoratatar.cl/webpay/respuesta?payment_id='. $id);
         //dd($createResponse->getToken());
         $redirectUrl = $createResponse->getUrl() . '?token_ws=' . $createResponse->getToken();

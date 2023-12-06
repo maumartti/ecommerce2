@@ -17,6 +17,9 @@
 			.required-label {
 					color: red;
 			}
+			/* #btnsubmit:hover{
+				background:#c02a29 !important;
+			} */
 		</style>
 @endsection
 
@@ -38,7 +41,7 @@
 		
 
 	<!-- Shoping Cart -->
-	<form action="payments" method="POST" class="was-validated" class="bg0 p-t-75 p-b-85">
+	<form action="payments" method="POST" id="paymentForm" class="was-validated" class="bg0 p-t-75 p-b-85">
 	@csrf
 		<div class="container">
 			<div class="row">
@@ -326,7 +329,7 @@
 														<div id="contUserAddress" class="col-12 input-group-prepend" style="display: none;">
 															<label class="mb-1" id="labeluserAddress">Tu dirección:</label>
 															<div class="bor8 bg0 m-b-22 has-validation">
-																<textarea name="userAddress" id="userAddress" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Escribe tu dirección..." maxlength="255" required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
+																<textarea name="userAddress" id="userAddress" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" placeholder="Escribir tu dirección / villa o condominio / referencia..." maxlength="255" required="false">@if(auth()->check() && auth()->user()->address){{auth()->user()->address}}@endif</textarea>
 															</div>
 														</div>
 
@@ -368,12 +371,12 @@
 										Selecciona Método de Pago <img src="/assets/images/credit.png" style="position: relative;top: -1.4px;width:19px;">
 									</span>
 									<div class=" bg0 m-b-12 m-t-9" id="">
-										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
+										<!-- <div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-1">
 													<input type="radio" class="pay form-check-input" id="method-1" name="payMethod" value="mercadopago" style="top: 6px !important;" autocomplete="off" required>
 													<img src="/assets/images/mercadopago.png" class="ml-2" style="width: 100px;">
 												</label>
-										</div>
+										</div> -->
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-2">
 													<input type="radio" class="pay form-check-input" id="method-2" name="payMethod" value="webpay" style="top: 6px !important;" autocomplete="off" required>
@@ -432,7 +435,7 @@
 							</div>
 						</div>
 
-						<button id="btnsubmit" class="flex-c-m stext-101 cl0 size-116 bg1 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+						<button type="submit" id="btnsubmit" class="flex-c-m stext-101 cl0 size-116 bg1 bor1 hov-btn3 p-lr-15 trans-04 pointer" style="z-index:9999999;">
 							Completar Pedido
 						</button>
 						@else
@@ -454,9 +457,9 @@
 @endsection
 
 @section('script')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
 	<script src="js/map-custom.js"></script>
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script> -->
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -475,26 +478,28 @@
 
 
 
-		(function () {
-			'use strict'
+		// (function () {
+		// 	'use strict'
 
-			// Fetch all the forms we want to apply custom Bootstrap validation styles to
-			var forms = document.querySelectorAll('.needs-validation')
+		// 	// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		// 	var forms = document.querySelectorAll('.needs-validation')
 
-			// Loop over them and prevent submission
-			Array.prototype.slice.call(forms)
-				.forEach(function (form) {
-					form.addEventListener('submit', function (event) {
-						console.log('inputfrom0')
-						if (!form.checkValidity()) {
-							event.preventDefault()
-							event.stopPropagation()
-						}
-
-						form.classList.add('was-validated')
-					}, false)
-				})
-		})()
+		// 	// Loop over them and prevent submission
+		// 	Array.prototype.slice.call(forms)
+		// 		.forEach(function (form) {
+		// 			form.addEventListener('submit', function (event) {
+		// 				console.log('inputfrom0')
+		// 				if (!form.checkValidity()) {
+		// 					event.preventDefault()
+		// 					//event.stopPropagation()
+		// 				}else{
+		// 					console.log('problema ')
+		// 					event.submit();
+		// 				}
+		// 				form.classList.add('was-validated')
+		// 			}, false)
+		// 		})
+		// })()
 
 
 	//al cambiar select region , carga todos las empresas de envio de la nueva region selecionada
@@ -623,6 +628,7 @@
 
 		//texto:  Selecciona Empresa de envío  en rojo si no se seleciono empresa
 		$('#btnsubmit').on('click', function (event) {
+				//alert('hola')
 				//seleciona empresa de envio
 				if ($('input[name="shippingCompanyId"]:checked').length === 0) {
 						$('#labelSelectCompany').css('color', 'red');
@@ -635,6 +641,9 @@
 				}else{
 					$('#labelSelectMetodoPago').css('color', '#666666');
 				}
+				//submit
+				//var paymentForm = document.getElementById('paymentForm');
+        //paymentForm.submit();
 		});
 
 

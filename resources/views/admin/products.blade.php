@@ -98,6 +98,7 @@
                                                 <th scope="col" class="border-0">Imágen</th>
                                                 <th scope="col" class="border-0">Nombre</th>
                                                 <th scope="col" class="border-0">Precio</th>
+                                                <th scope="col" class="border-0">Stock</th>
                                                 <th scope="col" class="border-0">Categoría</th>
                                                 @if(auth()->user()->userType->product_show == 1)
                                                 <th scope="col" class="border-0 text-center">Ver</th>
@@ -122,6 +123,7 @@
                                                     <td><img src="/assets/images/products/{{$item->image1}}" style="width:65px;"></td>
                                                     <td>{{$item->name}}</td>
                                                     <td>${{$item->price}}</td>
+                                                    <td>{{$item->stock}}</td>
                                                     <td>{{$item->category ? $item->category->name : '----'}}</td>
                                                     @if(auth()->user()->userType->product_show == 1)
                                                     <td class="text-center"><button type="button" class="btn btn-primary show-button" data-toggle="modal" data-target="#ModalShowOne" data-item='@json($item)'>Ver <i class="material-icons">visibility</i></button></td>
@@ -377,7 +379,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descripcion">Descripción:</label>
-                                    <textarea name="description" class="form-control" id="descripcion" maxlength="255" rows="4" placeholder="Descripción"></textarea>
+                                    <textarea name="description" class="form-control" id="descripcion" maxlength="500" rows="4" placeholder="Descripción"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label  for="descuento">Descuento:</label>
@@ -596,7 +598,7 @@
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripción:</label>
-                        <textarea name="description" id="description" class="form-control" rows="4"  maxlength="255" placeholder="Descripción"></textarea>
+                        <textarea name="description" id="description" class="form-control" rows="4"  maxlength="500" placeholder="Descripción"></textarea>
                     </div>
                     <div class="form-group">
                         <label  for="descuento">Descuento:</label>
