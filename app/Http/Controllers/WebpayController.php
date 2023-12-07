@@ -32,11 +32,23 @@ class WebpayController extends Controller
         exit;
     }
 
+    public function webpay_respuesta_post(Request $request){
+        return redirect('https://importadoratatar.cl/carrito');
+        dd($request->all());
+        $tbk = $request->input('TBK_ORDEN_COMPRA');
+        if (!$tbk) {
+            // Redirecciona al carrito 
+            return redirect('https://importadoratatar.cl/carrito');
+        }
+    }
     public function webpay_respuesta(Request $request){
         //dd($request->all());
         $paymentId = $request->input('payment_id');
         $tbk = $request->input('TBK_ORDEN_COMPRA');
-        if($tbk){
+        if ($tbk) {
+            // Redirecciona al carrito 
+            //return redirect('https://importadoratatar.cl/carrito');
+        //}else{
             $payment = Payment::find($paymentId);
             $web = Web::find(1);
             return view('paymentconfirmed')->with('payment',$payment)->with('web',$web);
