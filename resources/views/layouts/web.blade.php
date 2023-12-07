@@ -645,6 +645,9 @@
 					<a href="#" class="m-all-1">
 						<img src="/assets/theme/images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
+					<a href="#" class="m-all-1">
+						<img src="/assets/images/wps.png" alt="ICON-PAY" style="width:32px;position:relative;top:-1px;height:21px;border-radius:3px;">
+					</a>
 				</div>
 
 				<p class="stext-107 cl6 txt-center">
