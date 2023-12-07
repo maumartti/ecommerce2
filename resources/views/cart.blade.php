@@ -380,7 +380,7 @@
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">
 											<label class="form-check-label" for="method-2">
 													<input type="radio" class="pay form-check-input" id="method-2" name="payMethod" value="webpay" style="top: 6px !important;" autocomplete="off" required>
-													<img src="/assets/images/webpay.png" class="ml-2" style="width: 100px;">
+													<img src="/assets/images/webpay2.png" class="ml-2" style="width: 100px;">
 												</label>
 										</div>
 										<div class="form-check pb-2 bor8 p-l-12 p-t-4">

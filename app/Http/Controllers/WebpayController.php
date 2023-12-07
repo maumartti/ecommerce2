@@ -33,34 +33,33 @@ class WebpayController extends Controller
     }
 
     public function webpay_respuesta_post(Request $request){
-        return redirect('https://importadoratatar.cl/carrito');
+        return redirect('https://importadoratatar.cl')->with('data', $request->all());
         dd($request->all());
-        $tbk = $request->input('TBK_ORDEN_COMPRA');
-        if (!$tbk) {
-            // Redirecciona al carrito 
-            return redirect('https://importadoratatar.cl/carrito');
-        }
+        // $tbk = $request->input('TBK_ORDEN_COMPRA');
+        // if (!$tbk) {
+        //     // Redirecciona al carrito 
+        //     return redirect('https://importadoratatar.cl/carrito');
+        // }
     }
     public function webpay_respuesta(Request $request){
         //dd($request->all());
         $paymentId = $request->input('payment_id');
         $tbk = $request->input('TBK_ORDEN_COMPRA');
         if ($tbk) {
-            // Redirecciona al carrito 
-            //return redirect('https://importadoratatar.cl/carrito');
-        //}else{
             $payment = Payment::find($paymentId);
             $web = Web::find(1);
             return view('paymentconfirmed')->with('payment',$payment)->with('web',$web);
         }
         $token = $request->input('token_ws');
         $transaction = new Transaction(); // Crea una instancia de la clase Transaction
+        $transaction->configureForProduction('597049766599', '401147f9-5d58-4164-8b48-aef3a1a13f0f'); 
         $response = $transaction->commit($token); // Llama al método commit en la instancia
-        //dd($response);
+        $status = $response->getStatus();
+        //dd($status);
         $user_id = null;
         if (Auth::check()){ $user_id = Auth::user()->id; }
         $payment = Payment::find($paymentId);
-        if($response->status == 'AUTHORIZED'){
+        if($response->isApproved()){
             $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => $response->amount, 'user_id' => $user_id]);
 
             // Enviar una notificación por correo electrónico aquí
