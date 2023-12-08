@@ -57,7 +57,7 @@ class ProductsController extends Controller
             'price' => 'string|max:255',
             'price_old' => 'string|max:255',
             'stock' => 'required',
-            'description' => 'string|max:500',
+            'description' => 'required|string|max:500',
             'descount' => 'nullable|string',
             'kilos' => 'nullable|string',
             'color' => 'nullable|string',
@@ -79,7 +79,7 @@ class ProductsController extends Controller
             $validatedData['code'] = strtoupper(Str::random(6));//AT5F1P
             //dd($validatedData);
             unset($validatedData['btnAddTag']);//borramos si existe
-            $validatedData['tags'] = json_encode($request->input('tags'));//tags array
+            $validatedData['tags'] = $request->has('tags') ? json_encode($request->input('tags')) : null;//tags array
             $category = Product::create($validatedData);
             $products = Product::with('category', 'subcategory')->get();
             $this->logActivity('Productos','Agregar producto', $validatedData['name']);//registramos Acción
@@ -128,7 +128,7 @@ class ProductsController extends Controller
                 'price' => 'string|max:255',
                 'price_old' => 'string|max:255',
                 'stock' => 'required',
-                'description' => 'string|min:0|max:500',
+                'description' => 'required|string|min:0|max:500',
                 'descount' => 'nullable|string',
                 'promo' => 'string'
             ]);

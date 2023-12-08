@@ -85,14 +85,14 @@
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}" min="1" max="{{$item['stock']}}" >
+											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}" min="1" max="{{$item['stock']}}" autocomplete="off">
 
 											<div id="modal-cant-sum" data-max="{{$item['stock']}}" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 									</td>
-									<td class="column-5">{{ str_replace(',', '.', number_format($item['price'] * $item['quantity'], 0, ',', '.')) }}</td>
+									<td class="column-5 totalItemPrice" id="totalItemPrice{{$item['id']}}" >{{ str_replace(',', '.', number_format($item['price'] * $item['quantity'], 0, ',', '.')) }}</td>
 									<td class="column-5">
 										<a product-id="{{ $item['id'] }}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
 											<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
@@ -621,30 +621,49 @@
 
 
 
-		//selecciona un metodo de pago
-		$(document).on('change', 'input[type="radio"].pay', function() {
-			$('#labelSelectMetodoPago').css('color', '#666666');
-		});	
+		//--------------------------------
+		//sumar restar precio dentro del item
+		//--------------------------------
 
-		//texto:  Selecciona Empresa de envío  en rojo si no se seleciono empresa
-		$('#btnsubmit').on('click', function (event) {
-				//alert('hola')
-				//seleciona empresa de envio
-				if ($('input[name="shippingCompanyId"]:checked').length === 0) {
-						$('#labelSelectCompany').css('color', 'red');
-				}else{
-					$('#labelSelectCompany').css('color', '#666666');
+    // sumar precio
+    $('.btn-num-product-up').on('click', function() {
+        console.log('click up')
+        var quantityInput = $(this).siblings('.num-product');
+        var currentQuantity = parseInt(quantityInput.val());
+        var maxStock = parseInt($(this).prev().attr('max'));
+
+				console.log('quantityInput',currentQuantity)
+				console.log('maxStock',maxStock)
+
+        // Check if the current quantity is less than the maximum stockx
+        if(currentQuantity <= maxStock) {
+          updateTotalItemPrice(quantityInput);
+        }
+    });
+		// restar precio 
+		$('.btn-num-product-down').on('click', function() {
+				console.log('click down');
+				var quantityInput = $(this).siblings('.num-product');
+				var currentQuantity = parseInt(quantityInput.val());
+
+				// Check if the current quantity is greater than 1 (minimum quantity)
+				if (currentQuantity >= 1) {
+						updateTotalItemPrice(quantityInput, -1); // Pass -1 to indicate subtraction
 				}
-				//seleciona metodo de pago
-				if ($('input[name="payMethod"]:checked').length === 0) {
-						$('#labelSelectMetodoPago').css('color', 'red');
-				}else{
-					$('#labelSelectMetodoPago').css('color', '#666666');
-				}
-				//submit
-				//var paymentForm = document.getElementById('paymentForm');
-        //paymentForm.submit();
 		});
+
+		// Function to update the total item price
+		function updateTotalItemPrice(quantityInput) {
+			var row = quantityInput.closest('.header-cart-item');
+			var price = parseFloat(row.find('.column-3').text().replace(',', '.'));
+			var newTotalPrice = price * parseInt(quantityInput.val());
+			console.log('newTotalPrice', newTotalPrice)
+			var formattedTotalPrice = newTotalPrice.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+			row.find('.totalItemPrice').text(formattedTotalPrice);
+		}
+
+
+
 
 
 

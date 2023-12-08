@@ -212,7 +212,7 @@
                                                 data-button-remove-title="Borrar"
                                                 data-ratio="7:9"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="600,400"
+                                                data-size="1000,800"
                                                 style="background:#e6e6e6">
                                                 <input type="file" name="image1" required/>
                                             </div>
@@ -225,7 +225,7 @@
                                                 data-button-remove-title="Borrar"
                                                 data-ratio="7:9"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="600,400">
+                                                data-size="1000,800">
                                                 <input type="file" name="image2" />
                                             </div>
                                         </div>
@@ -237,7 +237,7 @@
                                                 data-button-remove-title="Borrar"
                                                 data-ratio="7:9"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="600,400">
+                                                data-size="1000,800">
                                                 <input type="file" name="image3"/>
                                             </div>
                                         </div>
@@ -249,7 +249,7 @@
                                                 data-button-remove-title="Borrar"
                                                 data-ratio="7:9"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="600,400"
+                                                data-size="1000,800"
                                                 style="background:#e6e6e6">
                                                 <input type="file" name="image4"/>
                                             </div>
@@ -262,7 +262,7 @@
                                                 data-button-remove-title="Borrar"
                                                 data-ratio="7:9"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="600,400"
+                                                data-size="1000,800"
                                                 style="background:#e6e6e6">
                                                 <input type="file" name="image5"/>
                                             </div>
@@ -275,7 +275,7 @@
                                                 data-button-remove-title="Borrar"
                                                 data-ratio="7:9"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="600,400">
+                                                data-size="1000,800">
                                                 <input type="file" name="image6"/>
                                             </div>
                                         </div>
@@ -379,7 +379,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descripcion">Descripción:</label>
-                                    <textarea name="description" class="form-control" id="descripcion" maxlength="500" rows="4" placeholder="Descripción"></textarea>
+                                    <textarea name="description" class="form-control" id="descripcion" maxlength="500" rows="4" placeholder="Descripción" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label  for="descuento">Descuento:</label>
@@ -491,7 +491,7 @@
                                     data-button-remove-title="Borrar"
                                     data-ratio="7:9"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="600,400"
+                                    data-size="1000,800"
                                     style="background:#e6e6e6">
                                     <input type="file" name="image1" equired/>
                                 </div>
@@ -504,7 +504,7 @@
                                     data-button-remove-title="Borrar"
                                     data-ratio="7:9"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="600,400">
+                                    data-size="1000,800">
                                     <input type="file" name="image2" />
                                 </div>
                             </div>
@@ -516,7 +516,7 @@
                                     data-button-remove-title="Borrar"
                                     data-ratio="7:9"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="600,400">
+                                    data-size="1000,800">
                                     <input type="file" name="image3"/>
                                 </div>
                             </div>
@@ -528,7 +528,7 @@
                                     data-button-remove-title="Borrar"
                                     data-ratio="7:9"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="600,400"
+                                    data-size="1000,800"
                                     style="background:#e6e6e6">
                                     <input type="file" name="image4"/>
                                 </div>
@@ -541,7 +541,7 @@
                                     data-button-remove-title="Borrar"
                                     data-ratio="7:9"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="600,400"
+                                    data-size="1000,800"
                                     style="background:#e6e6e6">
                                     <input type="file" name="image5"/>
                                 </div>
@@ -554,7 +554,7 @@
                                     data-button-remove-title="Borrar"
                                     data-ratio="7:9"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="600,400">
+                                    data-size="1000,800">
                                     <input type="file" name="image6"/>
                                 </div>
                             </div>
