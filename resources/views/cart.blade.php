@@ -85,7 +85,7 @@
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}" min="1" max="{{$item['stock']}}" autocomplete="off">
+											<input class="mtext-104 cl3 txt-center num-product" type="number" value="{{$item['quantity']}}" min="1" max="{{$item['stock']}}" product-id="{{$item['id']}}" autocomplete="off">
 
 											<div id="modal-cant-sum" data-max="{{$item['stock']}}" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
@@ -625,42 +625,74 @@
 		//sumar restar precio dentro del item
 		//--------------------------------
 
-    // sumar precio
-    $('.btn-num-product-up').on('click', function() {
-        console.log('click up')
-        var quantityInput = $(this).siblings('.num-product');
-        var currentQuantity = parseInt(quantityInput.val());
-        var maxStock = parseInt($(this).prev().attr('max'));
+// Click event for the plus button
+$('.btn-num-product-up').on('click', function() {
+    var quantityInput = $(this).siblings('.num-product');
+    var currentQuantity = parseInt(quantityInput.val());
+    var maxStock = parseInt($(this).prev().attr('max'));
+    var productId = parseInt($(this).prev().attr('product-id'));
 
-				console.log('quantityInput',currentQuantity)
-				console.log('maxStock',maxStock)
+    if (currentQuantity <= maxStock) {
+        updateTotalItemPrice(quantityInput, productId);
+    }
+});
 
-        // Check if the current quantity is less than the maximum stockx
-        if(currentQuantity <= maxStock) {
-          updateTotalItemPrice(quantityInput);
+// Click event for the minus button
+$('.btn-num-product-down').on('click', function() {
+    var quantityInput = $(this).siblings('.num-product');
+    var currentQuantity = parseInt(quantityInput.val());
+    var productId = parseInt($(this).next().attr('product-id'));
+
+		console.log('currentQuantity', currentQuantity)
+    if (currentQuantity >= 1) {
+				console.log('resta');
+        updateTotalItemPrice(quantityInput, productId, -1); // Pass -1 to indicate subtraction
+    }
+});
+
+// Function to update the total item price
+function updateTotalItemPrice(quantityInput, productId, multiplier) {
+    var row = quantityInput.closest('.header-cart-item');
+    var price = parseFloat(row.find('.column-3').text().replace(',', '.'));
+    var newQuantity = parseInt(quantityInput.val()) ;
+    var newTotalPrice = price * newQuantity;
+    var formattedTotalPrice = newTotalPrice.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    row.find('.totalItemPrice').text(formattedTotalPrice);
+
+    // Update the subtotal with productId and newQuantity
+    updateSubtotal(productId, newQuantity);
+}
+
+// Function to update subtotal
+function updateSubtotal(productId, newQuantity) {
+    var subtotal = 0;
+    $('.header-cart-item').each(function () {
+        var price = parseFloat($(this).find('.column-3').text().replace(',', '.'));
+        var quantity = parseInt($(this).find('.num-product').val());
+        subtotal += price * quantity;
+    });
+    // Send productId and newQuantity via AJAX
+		var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
+    $.ajax({
+        method: 'POST',
+        url: `actualizar-carrito/${productId}`, // Replace with your actual endpoint
+        data: { 
+					_token: csrfToken,
+					quantity: newQuantity 
+				},
+        success: function(response) {
+            console.log(response.totalPrice);
+						let totalPrice = response.totalPrice
+						var formattedSubtotal = totalPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    				$('.header-cart-subtotal').text('$' + formattedSubtotal);
+        },
+        error: function(error) {
+            console.error('Error updating subtotal:', error);
         }
     });
-		// restar precio 
-		$('.btn-num-product-down').on('click', function() {
-				console.log('click down');
-				var quantityInput = $(this).siblings('.num-product');
-				var currentQuantity = parseInt(quantityInput.val());
+}
 
-				// Check if the current quantity is greater than 1 (minimum quantity)
-				if (currentQuantity >= 1) {
-						updateTotalItemPrice(quantityInput, -1); // Pass -1 to indicate subtraction
-				}
-		});
 
-		// Function to update the total item price
-		function updateTotalItemPrice(quantityInput) {
-			var row = quantityInput.closest('.header-cart-item');
-			var price = parseFloat(row.find('.column-3').text().replace(',', '.'));
-			var newTotalPrice = price * parseInt(quantityInput.val());
-			console.log('newTotalPrice', newTotalPrice)
-			var formattedTotalPrice = newTotalPrice.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-			row.find('.totalItemPrice').text(formattedTotalPrice);
-		}
 
 
 

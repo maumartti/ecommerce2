@@ -401,14 +401,13 @@ class WebController extends Controller
 
 
 
-    public function actualizarCarrito(Request $request, $productId)
+    public function actualizarCarrito(Request $request,  $productId)
     {
-        // Obtén el producto del carrito
+        $quantity = $request->input('quantity');
         $cart = session()->get('cart', []);
         foreach ($cart as $key => $item) {
             if ($item['id'] == $productId) {
-                // Actualiza la cantidad del producto con la cantidad proporcionada en la solicitud
-                $cart[$key]['quantity'] = $request->input('quantity');
+                $cart[$key]['quantity'] = (int) $quantity;
                 break;
             }
         }
@@ -417,6 +416,7 @@ class WebController extends Controller
         // Calcula la cantidad total de productos en el carrito
         $totalCart = 0;
         $totalPrice = 0;
+    
         foreach ($cart as $item) {
             $totalCart += $item['quantity'];
             $totalPrice += $item['price'] * $item['quantity'];
@@ -424,8 +424,11 @@ class WebController extends Controller
         session()->put('totalCart', $totalCart);
         session()->put('totalPrice', $totalPrice);
         // Devuelve una respuesta JSON con los nuevos datos del carrito
-        return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart], 200);
+        return response()->json(['status' => 'success', 'cart' => $cart, 'totalCart' => $totalCart, 'totalPrice' => $totalPrice], 200);
     }
+    
+    
+    
 
 
 
