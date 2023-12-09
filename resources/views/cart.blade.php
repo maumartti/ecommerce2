@@ -646,7 +646,7 @@ $('.btn-num-product-down').on('click', function() {
 		console.log('currentQuantity', currentQuantity)
     if (currentQuantity >= 1) {
 				console.log('resta');
-        updateTotalItemPrice(quantityInput, productId, -1); //f Pass -1 to indicate subtraction
+        updateTotalItemPrice(quantityInput, productId, -1); // Pass -1 to indicate subtraction
     }
 });
 
@@ -683,7 +683,7 @@ function updateSubtotal(productId, newQuantity) {
         success: function(response) {
             console.log(response.totalPrice);
 						let totalPrice = response.totalPrice
-						var formattedSubtotal = totalPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+						var formattedSubtotal = totalPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');//format 
     				$('.header-cart-subtotal').text('$' + formattedSubtotal);
         },
         error: function(error) {
