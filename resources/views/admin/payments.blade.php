@@ -23,6 +23,7 @@
         <div class="card card-small">
             <div class="card-header border-bottom">
             <h6 class="m-0">Pagos realizadas</h6>
+            <button class="btn btn-info" style="float: right;">Descargar Pagos mes</button>
             </div>
             <div class="card-body pt-0">
                 <div class="container pt-3">
