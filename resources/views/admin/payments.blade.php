@@ -23,7 +23,7 @@
         <div class="card card-small">
             <div class="card-header border-bottom">
             <h6 class="m-0">Pagos realizadas</h6>
-            <button class="btn btn-info" style="float: right;">Descargar Pagos mes</button>
+            <button id="descargarPagos" class="btn btn-info" style="float: right;">Descargar pagos mes <i class="material-icons">download</i></button>
             </div>
             <div class="card-body pt-0">
                 <div class="container pt-3">
@@ -34,28 +34,28 @@
                                         <table id="payments-table" class="table mb-0">
                                                 <!-- Encabezados de la tabla de Categorías -->
                                                 <thead class="bg-light">
-                                                        <tr>
-                                                            <th scope="col" class="border-0">Estado del Pago</th>
-                                                            <th scope="col" class="border-0">Código</th>
-                                                            <th scope="col" class="border-0">Fecha</th>
-                                                            <th scope="col" class="border-0">Cliente</th>
-                                                            <th scope="col" class="border-0">Correo cliente</th>
-                                                            <th scope="col" class="border-0">Cel cliente</th>
-                                                            <th scope="col" class="border-0">RUT cliente</th>
-                                                            <th scope="col" class="border-0">Monto</th>
-                                                            <th scope="col" class="border-0">Monto Envio</th>
-                                                            <th scope="col" class="border-0">Monto Total</th>
-                                                            <th scope="col" class="border-0">Cant</th>
-                                                            <th scope="col" class="border-0">Nombres</th>
-                                                            <th scope="col" class="border-0">Precios</th>
-                                                            <th scope="col" class="border-0">Región</th>
-                                                            <th scope="col" class="border-0">Ciudad</th>
-                                                            <th scope="col" class="border-0">Envío</th>
-                                                            <th scope="col" class="border-0">Envío Empresa</th>
-                                                            <th scope="col" class="border-0">Envío Destino</th>
-                                                            <th scope="col" class="border-0">Enviado</th>
-                                                            <th scope="col" class="border-0">Tarjeta</th>
-                                                        </tr>
+                                                    <tr>
+                                                        <th scope="col" class="border-0">Estado del Pago</th>
+                                                        <th scope="col" class="border-0">Código</th>
+                                                        <th scope="col" class="border-0">Fecha</th>
+                                                        <th scope="col" class="border-0">Cliente</th>
+                                                        <th scope="col" class="border-0">Correo cliente</th>
+                                                        <th scope="col" class="border-0">Cel cliente</th>
+                                                        <th scope="col" class="border-0">RUT cliente</th>
+                                                        <th scope="col" class="border-0">Monto</th>
+                                                        <th scope="col" class="border-0">Monto Envio</th>
+                                                        <th scope="col" class="border-0">Monto Total</th>
+                                                        <th scope="col" class="border-0">Cant</th>
+                                                        <th scope="col" class="border-0">Nombres</th>
+                                                        <th scope="col" class="border-0">Precios</th>
+                                                        <th scope="col" class="border-0">Región</th>
+                                                        <th scope="col" class="border-0">Ciudad</th>
+                                                        <th scope="col" class="border-0">Envío</th>
+                                                        <th scope="col" class="border-0">Envío Empresa</th>
+                                                        <th scope="col" class="border-0">Envío Destino</th>
+                                                        <th scope="col" class="border-0">Enviado</th>
+                                                        <th scope="col" class="border-0">Tarjeta</th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
                                                         @if(isset($payments))
@@ -278,6 +278,21 @@ $(document).ready(function(){
         //};
     });
 
+
+
+    //botn descargar pagos
+    document.getElementById('descargarPagos').addEventListener('click', function () {
+        // Realizar una solicitud AJAX para descargar el archivo CSV
+        fetch('/exportar-csv-payments') // Ajusta la URL según la ruta de descarga en tu aplicación
+            .then(response => response.blob())
+            .then(blob => {
+                // Crea un enlace temporal y simula un clic para descargar el archivo
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'pagos_mes.csv'; // Nombre del archivo CSV
+                link.click();
+            });
+    });
 
 
 });

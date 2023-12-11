@@ -10,6 +10,7 @@ use App\Notifications\PrePaymentMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Tools;
+use Carbon\Carbon;
 use App\Models\Web;
 use App\Models\Payment;
 use App\Models\Region;
@@ -242,4 +243,93 @@ class PaymentController extends Controller
     {
         //
     }
+
+    public function exportarCsvPayments()
+    {
+        // Obtén el primer y último día del mes actual
+        $primerDiaMesActual = Carbon::now()->startOfMonth();
+        $ultimoDiaMesActual = Carbon::now()->endOfMonth();
+
+        // Filtra los pagos dentro del mes actual y excluye los estados 'INICIAL' y 'FAILED'
+        $payments = Payment::whereNotIn('status', ['INICIAL', 'FAILED'])->whereBetween('created_at', [$primerDiaMesActual, $ultimoDiaMesActual])->get();
+
+        $csvFileName = 'exportacion.csv';
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$csvFileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0",
+        );
+        $handle = fopen('php://output', 'w');
+        // Cabecera personalizada con los campos que quieres exportar
+        $headerFields = [
+            'code',
+            'status',
+            'payMethod',
+            'payConfirmed',
+            'amountConfirmed',
+            'amount',
+            'amountTotal',
+            'itemsNames',
+            'itemsPrices',
+            'userName',
+            'userRut',
+            'userEmail',
+            'userCel',
+            'userRegion',
+            'userRegionName',
+            'userCity',
+            'userZip',
+            'userAddress',
+            'userCountryCode',
+            'shipping',
+            'shippingTwo',
+            'shippingOfficeAddress',
+            'amountShipping',
+            'shippingCompanyId',
+            'shippingCompanyName',
+            'deliveredStart',
+            'deliveredEnd',
+        ];
+        fputcsv($handle, $headerFields);
+        foreach ($payments as $payment) {
+            $paymentData = [
+                $payment->code,
+                $payment->status,
+                $payment->payMethod,
+                $payment->payConfirmed,
+                $payment->amountConfirmed,
+                $payment->amount,
+                $payment->amountTotal,
+                $payment->itemsNames,
+                $payment->itemsPrices,
+                $payment->userName,
+                $payment->userRut,
+                $payment->userEmail,
+                $payment->userCel,
+                $payment->userRegion,
+                $payment->userRegionName,
+                $payment->userCity,
+                $payment->userZip,
+                $payment->userAddress,
+                $payment->userCountryCode,
+                $payment->shipping,
+                $payment->shippingTwo,
+                $payment->shippingOfficeAddress,
+                $payment->amountShipping,
+                $payment->shippingCompanyId,
+                $payment->shippingCompanyName,
+                $payment->deliveredStart,
+                $payment->deliveredEnd,
+            ];
+    
+            fputcsv($handle, $paymentData);
+        }
+        fclose($handle);
+        return response()->make('', 200, $headers);
+    }
+    
+    
+    
 }

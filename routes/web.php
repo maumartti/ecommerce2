@@ -80,6 +80,7 @@ Route::prefix('admin')->middleware(['auth', 'verifyemail'])->group(function () {
 
 
 Route::resource('payments', App\Http\Controllers\PaymentController::class);
+Route::get('/exportar-csv-payments', [App\Http\Controllers\PaymentController::class, 'exportarCsvPayments']);
 
 //webPay
 Route::get('/webpay/pagar/{paymentId}', [App\Http\Controllers\WebpayController::class, 'webpay_pagar'])->name('webpay_pagar');
