@@ -32,6 +32,7 @@ Route::post('/clear-cart', [App\Http\Controllers\WebController::class, 'clearCar
 Route::post('/actualizar-carrito/{productId}', [App\Http\Controllers\WebController::class, 'actualizarCarrito'])->name('actualizarCarrito');
 Route::post('/message', [App\Http\Controllers\MessageController::class, 'store']);
 Route::post('/subscriber', [App\Http\Controllers\SubscriberController::class, 'store']);
+Route::get('/politicas-privacidad', [App\Http\Controllers\WebController::class, 'politics']);
 
 Auth::routes([
     'verify'=> true,

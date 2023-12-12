@@ -326,6 +326,9 @@
             });
             //updateCategorySelect()//actualiza select categorias
           }
+          if(data.categoriesBlog){
+            window.location.href = '/admin/blog'; 
+          }
           //toast y quita elemento de tabla 
           $.toastr.success('Eliminado con éxito');
           //$(`[id="${url}-${itemId}"]`).closest('tr').remove();
@@ -395,6 +398,7 @@
           data.categoriesBlog.forEach((item, index) => {
             addCategoryBlogRow(itemsTable, item, index);
           });
+          window.location.href = '/admin/blog'; 
         }else if(data.users){
           const itemsTable = document.querySelector('#users-table');
           clearTable(itemsTable);

@@ -67,11 +67,11 @@
 
 							<div class="flex-col-c-m size-123 bg9 how-pos5">
 								<span class="ltext-107 cl2 txt-center">
-									22
+								{{ $blog->updated_at->format('d') }}
 								</span>
 
 								<span class="stext-109 cl3 txt-center">
-									Jan 2018
+								{{ $blog->updated_at->format('M Y') }}
 								</span>
 							</div>
 						</div>
@@ -84,7 +84,7 @@
 								</span>
 
 								<span>
-								{{ $blog->created_at->format('d') }} {{ $blog->created_at->format('M Y') }}
+								{{ $blog->updated_at->format('d') }} {{ $blog->updated_at->format('M Y') }}
 									<span class="cl12 m-l-4 m-r-6">|</span>
 								</span>
 
@@ -357,9 +357,11 @@
 							<div class="flex-w m-r--5">
 								@if($tagsAll)
 								@foreach ($tagsAll as $tag)
+								@if($tag)
 								<a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 									{{$tag}}
 								</a>
+								@endif
 								@endforeach
 								@endif
 							</div>

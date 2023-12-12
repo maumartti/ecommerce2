@@ -563,16 +563,16 @@
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="/politicas-privacidad" class="stext-107 cl7 hov-cl1 trans-04">
 								Políticas
 							</a>
 						</li>
 
-						<li class="p-b-10">
+						<!-- <li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
 								FAQs
 							</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 

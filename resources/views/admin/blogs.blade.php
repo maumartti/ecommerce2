@@ -286,7 +286,6 @@
                             <div class="form-group mb-3">
                                 <label for="categoria">Categoría:</label>
                                 <select name="category_blog_id" id="categorias-blog" class="form-control" autocomplete="off" required>
-                                    <option value="" selected>Seleccionar una...</option>
                                     @foreach ($categoriesBlog as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
@@ -295,7 +294,6 @@
                             <div class="form-group mb-3">
                                 <label for="estado-publicacion">Estado de Publicación:</label>
                                 <select name="active" id="estado-publicacion" class="form-control" autocomplete="off" required>
-                                    <option value="" selected>Seleccionar una...</option>
                                     <option value="1">Publicar Ahora</option>
                                     <option value="0">Guardar sin Publicar</option>
                                 </select>

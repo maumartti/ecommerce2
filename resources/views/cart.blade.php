@@ -20,6 +20,9 @@
 			/* #btnsubmit:hover{
 				background:#c02a29 !important;
 			} */
+			#btnsubmit:disabled {
+        background-color: #8B8B8B !important;
+    	}
 		</style>
 @endsection
 
@@ -435,6 +438,41 @@
 							</div>
 						</div>
 
+
+						<div>
+							<div class="accordion mb-3" id="accordionTerms">
+									<div class="card pl-3">
+											<div class="card-header" id="headingOne" style="background: white;">
+													<div class="form-check">
+															<input type="checkbox" class="form-check-input" id="termsCheckbox" checked="false" autocomplete="off" style="margin-top: .65rem !important">
+															<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+																	Acepto las Condiciones de Compra en ImportadoraTatar.cl
+															</button>
+													</div>
+											</div>
+											<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionTerms">
+													<div class="card-body">
+															<h5>Condiciones de Compra en ImportadoraTatar.cl:</h5><hr>
+															<p>¡Bienvenido a Importadora Tatar! Queremos asegurarnos de que tengas una experiencia de compra clara y satisfactoria con nosotros. <strong>A continuación, detallamos nuestras condiciones en 7 pasos para tu conocimiento:</strong></p>
+															<hr>
+															<ol>
+																	<li><strong>Paso 1: Explora Nuestro Catálogo:</strong><br>Navega por nuestra amplia selección de productos y encuentra todo lo que necesitas. Estamos comprometidos a ofrecer productos de calidad para satisfacer tus necesidades.</li>
+																	<li><strong>Paso 2: Realiza tu Pedido:</strong><br>Selecciona los productos deseados y completa el proceso de compra. Asegúrate de revisar tu carrito antes de confirmar la orden para evitar errores.</li>
+																	<li><strong>Paso 3: Pago Seguro:</strong><br>Garantizamos un proceso de pago seguro para proteger tu información personal. Aceptamos diversas formas de pago para tu comodidad.</li>
+																	<li><strong>Paso 4: Confirmación de Pedido:</strong><br>Recibirás una confirmación de tu pedido por correo electrónico. Revísalo detenidamente para asegurarte de que todos los detalles sean correctos.</li>
+																	<li><strong>Paso 5: Envío Rápido:</strong><br>Nos esforzamos por procesar y enviar tu pedido lo más rápido posible. Mantente al tanto de las actualizaciones de seguimiento proporcionadas por nuestro equipo.</li>
+																	<li><strong>Paso 6: Política de No Devoluciones:</strong><br>En Importadora Tatar, queremos ser transparentes sobre nuestra política de no devoluciones. Una vez realizada la compra, no aceptamos devoluciones. Sin embargo, entendemos que pueden surgir situaciones especiales.</li>
+																	<li><strong>Paso 7: Cambios y Compensaciones Futuras:</strong><br>A pesar de nuestra política de no devoluciones, estamos comprometidos a brindarte el mejor servicio. En situaciones excepcionales, como productos defectuosos o errores en el envío, ofrecemos la posibilidad de cambios o compensaciones futuras. Contáctanos directamente para discutir cualquier problema y buscaremos la mejor solución para ti.</li>
+															</ol>
+															<p>En Importadora Tatar, valoramos a nuestros clientes y nos esforzamos por garantizar tu satisfacción. ¡Gracias por elegirnos!</p>
+															<p>Para cualquier pregunta o inquietud, no dudes en ponerte en contacto con nuestro equipo de atención al cliente.</p>
+													</div>
+											</div>
+									</div>
+								</div>
+						</div>
+
+
 						<button type="submit" id="btnsubmit" class="flex-c-m stext-101 cl0 size-116 bg1 bor1 hov-btn3 p-lr-15 trans-04 pointer" style="z-index:9999999;">
 							Completar Pedido
 						</button>
@@ -504,6 +542,15 @@
 
 	//al cambiar select region , carga todos las empresas de envio de la nueva region selecionada
 	$(document).ready(function() {
+
+		//Bloquea completar pedido si no esta check terminos
+		var checkbox = $('#termsCheckbox');
+		var button = $('#btnsubmit');
+		checkbox.change(function () {
+				button.prop('disabled', !checkbox.prop('checked'));
+		});
+
+
 		//agregamos borde al select region
 		$('.select2').addClass('bor8');
 

@@ -55,6 +55,18 @@ class WebController extends Controller
         $subcategories = SubCategory::with('category')->get();
         return view('contact')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
+    public function politics(Request $request) {
+        $web = Web::find(1);
+        $products = Product::with('category', 'subcategory')->get();
+        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::orderBy('likes', 'desc')->with('category', 'subcategory')->get();
+        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::whereNotNull('promo')->with('category', 'subcategory')->get();
+        $categories = Category::with('subcategories')->orderBy('pos')->get();
+        $subcategories = SubCategory::with('category')->get();
+        return view('politics')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
+    }
     public function login()
     {
         if (Auth::check()) { return redirect('/admin/home');} //redirecciona si esta logeado
@@ -429,13 +441,10 @@ class WebController extends Controller
     
     
     
-
-
-
-    
     public function clearCart(Request $request) {
         session()->forget('cart');
         return response()->json(['status' => 'success'], 200);
     }
+
     
 }
