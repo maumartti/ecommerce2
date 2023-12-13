@@ -31,9 +31,17 @@ class PaymentController extends Controller
     public function index()
     {
         $web = Web::find(1);
-        $payments = Payment::all();
-        return view('admin.payments')->with('web',$web)->with('payments',$payments);   
+        // Buscar y eliminar pagos con estado 'INICIAL' y created_at mayor a 48 horas
+        Payment::where(function($query) {
+            $query->where('status', 'INICIAL')
+                  ->orWhere('status', 'FAILED');
+        })->where('created_at', '<=', Carbon::now()->subHours(72))->delete();
+        //get todos los pagos con fecha de confirmado mas reciente arriba 
+        $payments = Payment::orderBy('payConfirmed', 'desc')->get();
+        //dd($payments);
+        return view('admin.payments')->with('web', $web)->with('payments', $payments);
     }
+    
 
     /**
      * Show the form for creating a new resource.

@@ -35,9 +35,9 @@
                                                 <!-- Encabezados de la tabla de Categorías -->
                                                 <thead class="bg-light">
                                                     <tr>
+                                                        <th scope="col" class="border-0">Fecha</th>
                                                         <th scope="col" class="border-0">Estado del Pago</th>
                                                         <th scope="col" class="border-0">Código</th>
-                                                        <th scope="col" class="border-0">Fecha</th>
                                                         <th scope="col" class="border-0">Cliente</th>
                                                         <th scope="col" class="border-0">Correo cliente</th>
                                                         <th scope="col" class="border-0">Cel cliente</th>
@@ -79,8 +79,8 @@
                                                                     @else    
                                                                         <button class="btn btn-danger">{{$item->status}} <i class="material-icons">error</i></button>
                                                                     @endif   
+                                                                    <td>{{$item->payConfirmed}}</td>
                                                                     <td>{{$item->code}}</td>
-                                                                    <td>{{$item->created_at->format('d/m/Y H:i')}}</td>
                                                                     <td>{{$item->userName}}</td>
                                                                     <td>{{$item->userEmail}}</td>
                                                                     <td>{{$item->userCel}}</td>
@@ -109,7 +109,7 @@
                                                                             @if($item->status === 'AUTHORIZED' && auth()->user()->userType->sales_edit == 1)
                                                                                 <button class="btn btn-warning shipping-modal-button" data-toggle="modal" data-target="#ModalConfirmShipping" data-item='@json($item)' data-name="{{$item->shipping}} / a {{$item->shippingTwo}} / mediante: {{$item->shippingCompanyName}} / (Región: {{$item->userRegionName}}, Ciudad: {{$item->userCity}}) - Direccieon: {{$item->shippingTwo == 'local' ? $item->shippingOfficeAddress : $item->userAddress}}" data-type="envio" data-url="shipping">Iniciar Envío <i class="material-icons">local_shipping</i></button>
                                                                             @else
-                                                                                <button class="btn btn-warning enviado">NO enviado <i class="material-icons">local_shipping</i></button>
+                                                                                <button class="btn btn-warning enviado" data-toggle="modal" data-target="#ModalNoConfirmShipping">NO enviado <i class="material-icons">local_shipping</i></button>
                                                                             @endif
                                                                         @else
                                                                         <button class="btn btn-success">Retira en local</button>
@@ -117,7 +117,7 @@
                                                                     @endif 
                                                                     </td>
                                                                     <td>
-                                                                    @if($item->deliveredStart !== null && auth()->user()->userType->sales_show == 1)
+                                                                    @if($item->payConfirmed !== null && auth()->user()->userType->sales_show == 1)
                                                                         <button data-item='@json($item)' class="btnPrint btn btn-dark">Imprimir Tarjeta <i class="material-icons">print</i></button>
                                                                     @endif
                                                                     </td>
@@ -207,6 +207,25 @@
             </div>
         </div>
         @endif
+        <!-- Modal Pago NO CONFIRMADO -->
+        <div class="modal fade" id="ModalNoConfirmShipping">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Pago No Confirmado</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <h5 class="text-danger">No es posible procesar el envío si el pago no fue confirmado</h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -223,7 +242,8 @@ $(document).ready(function(){
 
 	$('#payments-table').DataTable({
         "pageLength": 100, // Configura el número de elementos por página
-        "scrollX": true
+        "scrollX": true,
+        "order": [[1, "desc"]]
     });
 
 
@@ -239,35 +259,67 @@ $(document).ready(function(){
         var modifiedItemsNames = jsonData.itemsNames.replace(/,/g, ' / ');
         var arrCount = jsonData.itemsId.split(',');
         // Generate the content to be printed
-        var contentToPrint = `
-            <img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO">
-            <div style="padding:0px 15px">
-            <h3>Código de compra: ${jsonData.code}</h3>
-            <p>Cliente: ${jsonData.userName}</p>
-            <p>Productos: ${modifiedItemsNames}</p>
-            <p>Cantidad: ${arrCount.length}</p>
-            <p>Empresa de envío: ${jsonData.shippingCompanyName}</p>
-            <p>Región: ${jsonData.userRegionName}</p>
-            <p>Ciudad: ${jsonData.userCity}</p>
-            <p>Enviar hacia: ${jsonData.shippingTwo == 'casa' ? 'domicilio del comprador' : 'Sucursal de ' + jsonData.shippingCompanyName}</p>
-            <p>Dirección: ${jsonData.userAddress && jsonData.shippingTwo == 'casa' ? jsonData.userAddress : jsonData.shippingOfficeAddress}</p>
-            <p>Fecha de partida: ${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}</p>
-            </div>
-            <style>
-            body {
-                font-family: Arial, sans-serif;
-            }
-            @media print {
-                /* Hide header information in print version */
-                @page {
-                    margin: 0;
-                }
-
+        if(jsonData.shipping == 'local'){
+            var contentToPrint = `
+                <img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO">
+                <div style="padding:0px 15px">
+                <h3>Código de compra: ${jsonData.code}</h3>
+                <p>Cliente: ${jsonData.userName}</p>
+                <p>Rut: ${jsonData.userRut ? jsonData.userRut : ''}</p>
+                <p>Productos: ${modifiedItemsNames}</p>
+                <p>Cantidad: ${arrCount.length}</p>
+                <p>Región: ${jsonData.userRegionName ? jsonData.userRegionName : ''}</p>
+                <p>Ciudad: ${jsonData.userCity}</p>
+                <p>Retira Local</p>
+                <p>Fecha de partida: ${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}</p>
+                </div>
+                <style>
                 body {
-                    margin: 1.6cm;
+                    font-family: Arial, sans-serif;
                 }
-            }
-            </style>`;
+                @media print {
+                    /* Hide header information in print version */
+                    @page {
+                        margin: 0;
+                    }
+    
+                    body {
+                        margin: 1.6cm;
+                    }
+                }
+                </style>`;
+        }else{
+            var contentToPrint = `
+                <img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO">
+                <div style="padding:0px 15px">
+                <h3>Código de compra: ${jsonData.code}</h3>
+                <p>Cliente: ${jsonData.userName}</p>
+                <p>Rut: ${jsonData.userRut ? jsonData.userRut : ''}</p>
+                <p>Productos: ${modifiedItemsNames}</p>
+                <p>Cantidad: ${arrCount.length}</p>
+                <p>Empresa de envío: ${jsonData.shippingCompanyName}</p>
+                <p>Región: ${jsonData.userRegionName ? jsonData.userRegionName : ''}</p>
+                <p>Ciudad: ${jsonData.userCity}</p>
+                <p>Enviar hacia: ${jsonData.shippingTwo ? (jsonData.shippingTwo === 'casa' ? 'domicilio del comprador' : 'Sucursal de ' + jsonData.shippingCompanyName) : 'Retira Local'}</p>
+                <p>Dirección: ${jsonData.userAddress && jsonData.shippingTwo == 'casa' ? jsonData.userAddress : jsonData.shippingOfficeAddress}</p>
+                <p>Fecha de partida: ${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}</p>
+                </div>
+                <style>
+                body {
+                    font-family: Arial, sans-serif;
+                }
+                @media print {
+                    /* Hide header information in print version */
+                    @page {
+                        margin: 0;
+                    }
+    
+                    body {
+                        margin: 1.6cm;
+                    }
+                }
+                </style>`;
+        }
         // Create a new window for printing
         var printWindow = window.open('', '_blank');
         // Wait for the new window to finish loading before writing content and printing

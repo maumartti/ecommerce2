@@ -445,8 +445,8 @@
 											<div class="card-header" id="headingOne" style="background: white;">
 													<div class="form-check">
 															<input type="checkbox" class="form-check-input" id="termsCheckbox" checked="false" autocomplete="off" style="margin-top: .65rem !important">
-															<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-																	Acepto las Condiciones de Compra en ImportadoraTatar.cl
+															<button class="btn btn-link pl-1" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+															Acepto las Condiciones de Compra
 															</button>
 													</div>
 											</div>
