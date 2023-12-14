@@ -259,7 +259,7 @@ class PaymentController extends Controller
         $ultimoDiaMesActual = Carbon::now()->endOfMonth();
 
         // Filtra los pagos dentro del mes actual y excluye los estados 'INICIAL' y 'FAILED'
-        $payments = Payment::whereNotIn('status', ['INICIAL', 'FAILED'])->whereBetween('created_at', [$primerDiaMesActual, $ultimoDiaMesActual])->get();
+        $payments = Payment::whereNotIn('status', ['INICIAL', 'FAILED'])->whereBetween('created_at', [$primerDiaMesActual, $ultimoDiaMesActual])->orderBy('payConfirmed', 'desc')->get();
 
         $csvFileName = 'exportacion.csv';
         $headers = array(
