@@ -338,8 +338,9 @@
 
 			<div class="row isotope-grid">
             @if (isset($products))
-                @if ($products)
-                @foreach ($products as $product)
+            @if ($products)
+            @foreach ($products as $product)
+            @if ($product->stock > 0)
                     
                     <div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}} @if($product->promo == 1) populares @endif @if($product->new == 1) new @endif @if($product->size) size-{{$product->size}} @endif @if($product->kilos) kilos-{{$product->kilos}} @endif @if($product->color) color-{{$product->color}} @endif @if($product->tags) @foreach(json_decode($product->tags) as $tag) tag-{{$tag}} @endforeach @endif" data-id="{{$product->id}}" data-price="{{$product->price}}" data-sales="{{$product->sales}}">
                         <!-- Block2 -->
@@ -369,6 +370,7 @@
                         </div>
                     </div>
                     
+                @endif
                 @endforeach
                 @endif
             @endif
@@ -399,6 +401,7 @@
                 <div class="carousel-inner row w-100 mx-auto flex-nowrap" role="listbox">
                     @if (isset($productsPromo) && $productsPromo)
                         @foreach ($productsPromo as $index => $product)
+                        @if ($product->stock > 0)
                             <div class="carousel-item pl-1 col-md-3 isotope-item p-0 @if ($loop->first) active @endif">
                                 <!-- Contenido del producto -->
                                 <div class="block2">
@@ -426,6 +429,7 @@
                                     </div>
                                 </div>
                             </div>
+                        @endif
                         @endforeach
                     @endif
                 </div>
