@@ -145,7 +145,7 @@
         if (data.status === 'success') {
           // pago actualizada 
           if(data.payments) {
-            window.location.href = '/admin/payments'; 
+            //window.location.href = '/admin/payments'; 
             // const paymentsTable = document.querySelector('#payments-table');
             // clearTable(paymentsTable);
             // data.categories.forEach((item, index) => {

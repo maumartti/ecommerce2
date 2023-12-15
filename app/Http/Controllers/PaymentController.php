@@ -15,6 +15,7 @@ use App\Models\Web;
 use App\Models\Payment;
 use App\Models\Region;
 use App\Models\ShippingCompany;
+use App\Models\Product;
 
 
 
@@ -217,6 +218,16 @@ class PaymentController extends Controller
                     $ship = 'Retira en nuestro local';
                     $amountShipping = 0;
                 }
+                //descontar stock
+                $productIds = array_map('intval', explode(',', $payment->itemsId));
+                foreach ($productIds as $productId) {
+                    $product = Product::find($productId);
+                    if ($product) {
+                        $product->stock -= 1;
+                        $product->save();
+                    }
+                }
+                //--
                 $notificationData = [
                     'header' => '',
                     'name' => $payment->userName, // Asegúrate de que tu modelo Message tenga un campo 'name'

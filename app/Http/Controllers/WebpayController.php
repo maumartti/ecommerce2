@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Transbank\Webpay\WebpayPlus\Transaction;
 use App\Models\Web;
 use App\Models\Payment;
+use App\Models\Product;
 
 class WebpayController extends Controller
 {
@@ -62,6 +63,18 @@ class WebpayController extends Controller
         if($response->isApproved()){
             $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => $response->amount, 'user_id' => $user_id]);
 
+            //descontar stock
+            //descontar stock
+            $productIds = array_map('intval', explode(',', $payment->itemsId));
+            foreach ($productIds as $productId) {
+                $product = Product::find($productId);
+                if ($product) {
+                    $product->stock -= 1;
+                    $product->save();
+                }
+            }
+            //--
+            //--
             // Enviar una notificación por correo electrónico aquí
             //if($payment->payMethod == 'banco'){ //CONFIRMAR EL PAGO
             if(isset($payment->shippingCompanyName)){

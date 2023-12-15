@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Transbank\Webpay\WebpayPlus\Transaction;
 use App\Models\Web;
 use App\Models\Payment;
+use App\Models\Product;
 
 use MercadoPago\SDK;
 use MercadoPago\Preference;
@@ -58,6 +59,16 @@ class BankPayController extends Controller
         try {
             $payment = Payment::where('code',$code)->first();
             if($payment){
+                //descontar stock
+                $productIds = array_map('intval', explode(',', $payment->itemsId));
+                foreach ($productIds as $productId) {
+                    $product = Product::find($productId);
+                    if ($product) {
+                        $product->stock -= 1;
+                        $product->save();
+                    }
+                }
+                //--
                 $payment->update(['status' => 'AUTHORIZED','payConfirmed' => now(),'amountConfirmed' => null]);
                 $payments = Payment::all();
                 return response()->json(['status' => 'success', 'payment' => $payment, 'payments' => $payments], 200);
