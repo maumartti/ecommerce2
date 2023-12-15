@@ -142,6 +142,10 @@
 							@if($category_name !== '') Categoría: <strong>{{$category_name}}</strong> @endif
 						</p>
 
+						<p class="stext-102 cl3 p-t-30">
+							@if($product->kilos) Kilos: <strong>{{$product->kilos}}</strong> @endif
+						</p>
+
 						<p class="stext-102 cl3 p-t-10">
 							{{$product->description}}
 						</p>
