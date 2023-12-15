@@ -696,6 +696,13 @@
                         </label>
                     </div>
                     <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input name="status" id="statusEdit" type="checkbox" class="custom-control-input" >
+                            <label class="custom-control-label" aria-hidden="true"></label>
+                            <span class="custom-control-description">Activo</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" id="BtnSaveEdit" class="btn btn-accent btn-block">Guardar</button>
                     </div>
                     </form>
@@ -965,6 +972,12 @@ $(document).ready(function(){
         $('#subcategoriasEdit').val(itemData.subcategory_id);//selecciona el correcto
 
 
+        //status
+        if (itemData.status === 1) {
+            $('#statusEdit').prop('checked', true);
+        } else {
+            $('#statusEdit').prop('checked', false);
+        }
         //promo
         if (itemData.promo === 1) {
             $('#formModalEditOne [name="promo"]').prop('checked', true);

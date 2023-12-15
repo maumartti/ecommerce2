@@ -131,6 +131,7 @@ class ProductsController extends Controller
                 'description' => 'required|string|min:0|max:500',
                 'descount' => 'nullable|string',
                 'promo' => 'string',
+                'status' => 'nullable',
                 'kilos' => 'nullable|string',
                 'color' => 'nullable|string',
                 'size' => 'nullable|string',
@@ -165,6 +166,7 @@ class ProductsController extends Controller
             $validatedData['url'] = $tools->generateUrl($validatedData['name'], true);
             $validatedData['user_id'] = Auth::user()->id;
             $validatedData['promo'] = $request->has('promo') && $request->input('promo') === 'on' ? 1 : 0;
+            $validatedData['status'] = $request->has('status') && $request->input('status') === 'on' ? 1 : 0;
             $product->update($validatedData);
 
             $products = Product::with('category', 'subcategory')->get();
