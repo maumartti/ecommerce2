@@ -130,7 +130,11 @@ class ProductsController extends Controller
                 'stock' => 'required',
                 'description' => 'required|string|min:0|max:500',
                 'descount' => 'nullable|string',
-                'promo' => 'string'
+                'promo' => 'string',
+                'kilos' => 'nullable|string',
+                'color' => 'nullable|string',
+                'size' => 'nullable|string',
+                'tags' => 'nullable|array',
             ]);
             $tools = new Tools;
             if ($validatedData['image1'] !== 'empty' && $validatedData['image1'] !== null && Tools::isValidJson($validatedData['image1'])) {
