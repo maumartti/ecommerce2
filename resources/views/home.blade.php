@@ -316,11 +316,11 @@
 						 Filtros
 					</div>
 
-					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+					<!-- <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						Buscar
-					</div>
+					</div> -->
 				</div>
 				
 				<!-- Search product -->
@@ -614,6 +614,10 @@
                         <p id="modal-kilos" class="stext-102 cl3 p-t-15">
 						 <strong></strong>
 						</p>
+
+                        <p id="modal-tags" class="stext-102 cl3 p-t-15">
+						 <strong></strong>
+						</p>
 												
                         <p id="modal-description" class="stext-102 cl3 p-t-15">
 						Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
@@ -765,6 +769,14 @@ $(document).ready(function () {
         $("#modal-price").text('$'+price);
         if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
         if(product.kilos){ $("#modal-kilos").html("Kilos: <strong>"+product.kilos+"</strong>"); }
+        if (product.tags) {
+            let tags = JSON.parse(product.tags);
+            var cleanedTags = tags.map(function (tag) {
+                return tag.replace(/[^\w\s]/gi, '').toLowerCase();
+            });
+            var tagsString = cleanedTags.join(', ');
+            $("#modal-tags").html("Tags: <strong>" + tagsString + "</strong>");
+        }
         $("#modal-description").text(product.description); 
         $("#modal-stock").text('Stock: '+product.stock);
         $("#modal-cant").attr('max', product.stock);
