@@ -688,6 +688,34 @@
                             <option value="60">60%</option>
                         </select>
                     </div>
+                    <div class="pb-2">
+                        <label>Tags:</label>
+                        <div class="form-group p-2" id="seccionFilterTags" style="background: #eee;border-radius: 4px;">
+                            <!-- Checkbox para cada color -->
+                            <div class="input-group mb-4">
+                                <input type="text" class="form-control" id="btnAddTag" name="btnAddTag" value="" placeholder="nombre del tag..." maxlength="22">
+                                <div class="input-group-append" style="padding: 0px;">
+                                    <span class="input-group-text p-0" style="border-radius: 4px;">
+                                        <!-- Agregar un botón con un identificador para agregar tags -->
+                                        <button type="button" class="btn btn-primary" id="agregarTagBtn">Agregar Tag</button>
+                                    </span>
+                                </div>
+                            </div>
+                            @if($web->filtersTags )
+                                @php
+                                    $tagsRanges = json_decode($web->filtersTags);
+                                @endphp
+                                @if(!empty($tagsRanges) && is_array($tagsRanges))
+                                @foreach($tagsRanges as $tag)
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="{{$tag}}" name="tags[]" value="{{$tag}}">
+                                    <label class="form-check-label" for="{{$tag}}">{{$tag}}</label>
+                                </div>
+                                @endforeach
+                                @endif
+                            @endif
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
                             <input name="promo" type="checkbox" class="custom-control-input" checked="false">
