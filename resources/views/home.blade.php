@@ -772,10 +772,10 @@ $(document).ready(function () {
         if (product.tags) {
             let tags = JSON.parse(product.tags);
             var cleanedTags = tags.map(function (tag) {
-                return tag.replace(/[^\w\s]/gi, '').toLowerCase();
+                return '<span style="border: 1px solid silver;padding: 1px 2px;border-radius: 8px;">' + tag.replace(/[^\w\s]/gi, '').toLowerCase() + '</span>';
             });
-            var tagsString = cleanedTags.join(', ');
-            $("#modal-tags").html("Tags: <strong>" + tagsString + "</strong>");
+            var tagsString = cleanedTags.join(' ');
+            $("#modal-tags").html("Tags: " + tagsString);
         }
         $("#modal-description").text(product.description); 
         $("#modal-stock").text('Stock: '+product.stock);

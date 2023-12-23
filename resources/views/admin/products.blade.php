@@ -691,16 +691,7 @@
                     <div class="pb-2">
                         <label>Tags:</label>
                         <div class="form-group p-2" id="seccionFilterTags" style="background: #eee;border-radius: 4px;">
-                            <!-- Checkbox para cada color -->
-                            <div class="input-group mb-4">
-                                <input type="text" class="form-control" id="btnAddTag" name="btnAddTag" value="" placeholder="nombre del tag..." maxlength="22">
-                                <div class="input-group-append" style="padding: 0px;">
-                                    <span class="input-group-text p-0" style="border-radius: 4px;">
-                                        <!-- Agregar un botón con un identificador para agregar tags -->
-                                        <button type="button" class="btn btn-primary" id="agregarTagBtn">Agregar Tag</button>
-                                    </span>
-                                </div>
-                            </div>
+                            <!-- Checkbox tags -->
                             @if($web->filtersTags )
                                 @php
                                     $tagsRanges = json_decode($web->filtersTags);
@@ -708,8 +699,8 @@
                                 @if(!empty($tagsRanges) && is_array($tagsRanges))
                                 @foreach($tagsRanges as $tag)
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="{{$tag}}" name="tags[]" value="{{$tag}}">
-                                    <label class="form-check-label" for="{{$tag}}">{{$tag}}</label>
+                                    <input type="checkbox" class="form-check-input-edit" id="{{$tag}}edit" name="tags[]" value="{{$tag}}">
+                                    <label class="form-check-label" for="{{$tag}}edit">{{$tag}}</label>
                                 </div>
                                 @endforeach
                                 @endif
@@ -825,6 +816,10 @@
                             <h5 id="promo"></h5>
                         </div>
                         <div class="form-group">
+                            <label for="tags">Tags:</label>
+                            <h5 id="tags"></h5>
+                        </div>
+                        <div class="form-group">
                             <label for="status">Activo:</label>
                             <h5 id="status"></h5>
                         </div>
@@ -913,6 +908,9 @@ $(document).ready(function(){
         }
         if(itemData.descount){
             $('#ModalShowOne #descount').text(itemData.descount+' %');
+        }
+        if(itemData.filtersTags){
+            $('#ModalShowOne #tags').text(itemData.filtersTags);
         }
         if(itemData.promo || itemData.promo == 1){
             $('#ModalShowOne #promo').text('SI');
@@ -1012,6 +1010,14 @@ $(document).ready(function(){
         } else {
             $('#formModalEditOne [name="promo"]').prop('checked', false);
         }
+
+        //recorre los tags y pone en check los que tiene el items
+        var itemTags = itemData.tags ? JSON.parse(itemData.tags) : [];
+        $('.form-check-input-edit').each(function () {
+            var tag = $(this).val();
+            $(this).prop('checked', itemTags.includes(tag));
+        });
+
         //Formulario url
         var id = $(this).data('id');
         var form = $('#ModalEditOne form'); 

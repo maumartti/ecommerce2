@@ -189,17 +189,25 @@
                             $0
                         </span>
 
-												<p id="modal-category" class="stext-102 cl3 p-t-30">
-													<strong></strong>
-												</p>
+                        <p id="modal-category" class="stext-102 cl3 p-t-30">
+                            <strong></strong>
+                        </p>
+
+                        <p id="modal-kilos" class="stext-102 cl3 p-t-15">
+						 <strong></strong>
+						</p>
+
+                        <p id="modal-tags" class="stext-102 cl3 p-t-15">
+						 <strong></strong>
+						</p>
 												
                         <p id="modal-description" class="stext-102 cl3 p-t-23">
 													Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
                         </p>
 
-												<div id="modal-stock" class="mtext-106 cl2 p-t-23">
-														Stock: 0
-												</div>
+                        <div id="modal-stock" class="mtext-106 cl2 p-t-23">
+                                Stock: 0
+                        </div>
                         <div class="p-t-23">
                             <!-- <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-203 flex-c-m respon6">
@@ -341,6 +349,15 @@ $(document).ready(function () {
         var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
         $("#modal-price").text('$'+price);
         if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
+        if(product.kilos){ $("#modal-kilos").html("Kilos: <strong>"+product.kilos+"</strong>"); }
+        if (product.tags) {
+            let tags = JSON.parse(product.tags);
+            var cleanedTags = tags.map(function (tag) {
+                return '<span style="border: 1px solid silver;padding: 1px 2px;border-radius: 8px;">' + tag.replace(/[^\w\s]/gi, '').toLowerCase() + '</span>';
+            });
+            var tagsString = cleanedTags.join(' ');
+            $("#modal-tags").html("Tags: " + tagsString);
+        }
         $("#modal-description").text(product.description); 
         $("#modal-stock").text('Stock: '+product.stock);
         $("#modal-cant").attr('max', product.stock);

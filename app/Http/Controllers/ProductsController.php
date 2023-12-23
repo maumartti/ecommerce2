@@ -28,6 +28,22 @@ class ProductsController extends Controller
         $products = Product::with('category', 'subcategory')->get();
         $categories = Category::all();
         $subcategories = SubCategory::with('category')->get();
+
+        $allTags = [];
+        foreach ($products as $product) {
+            $tags = json_decode($product->tags, true); // Asegúrate de que "tags" sea un campo en tu modelo
+            $allTags = array_merge($allTags, $tags);
+        }
+        // Eliminar etiquetas duplicadas
+        $allTags = array_unique($allTags);
+        // Reindexar el array para quitar las claves numéricas
+        $allTags = array_values($allTags);
+        // Convertir a formato JSON y guardar en $web->filterTags como cadena
+        $web->filtersTags = json_encode($allTags);
+        $web->save();
+    
+    
+
         return view('admin.products')->with('web',$web)->with('products',$products)->with('categories',$categories)->with('subcategories',$subcategories);   
     }
 

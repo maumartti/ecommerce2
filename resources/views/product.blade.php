@@ -542,6 +542,14 @@
                         <p id="modal-category" class="stext-102 cl3 p-t-30">
 												<strong></strong>
 												</p>
+
+												<p id="modal-kilos" class="stext-102 cl3 p-t-15">
+												<strong></strong>
+												</p>
+
+												<p id="modal-tags" class="stext-102 cl3 p-t-15">
+												<strong></strong>
+												</p>
 												
                         <p id="modal-description" class="stext-102 cl3 p-t-15">
 													Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
@@ -688,6 +696,15 @@ $(document).ready(function () {
 		var price = parseFloat(product.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
 		$("#modal-price").text('$'+price);
 		if(product.category){ $("#modal-category").html("Categoría: <strong>"+product.category.name+"</strong>"); }
+		if(product.kilos){ $("#modal-kilos").html("Kilos: <strong>"+product.kilos+"</strong>"); }
+			if (product.tags) {
+					let tags = JSON.parse(product.tags);
+					var cleanedTags = tags.map(function (tag) {
+							return '<span style="border: 1px solid silver;padding: 1px 2px;border-radius: 8px;">' + tag.replace(/[^\w\s]/gi, '').toLowerCase() + '</span>';
+					});
+					var tagsString = cleanedTags.join(' ');
+					$("#modal-tags").html("Tags: " + tagsString);
+			}
 		$("#modal-description").text(product.description); 
 		$("#modal-stock-modal").text('Stock: '+product.stock);
 		$("#modal-cant").attr('max', product.stock);
