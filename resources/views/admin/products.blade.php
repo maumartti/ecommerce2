@@ -804,6 +804,18 @@
                             <h5 id="stock"></h5>
                         </div>
                         <div class="form-group">
+                            <label  for="kilos">Kilos:</label>
+                            <h5 id="kilos"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label  for="color">Color:</label>
+                            <h5 id="color"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label  for="size">Talle:</label>
+                            <h5 id="talle"></h5>
+                        </div>
+                        <div class="form-group">
                             <label for="description">Descripción:</label>
                             <h5 id="description"></h5>
                         </div>
@@ -812,12 +824,12 @@
                             <h5 id="descount"></h5>
                         </div>
                         <div class="form-group">
-                            <label for="promo">En destacados:</label>
-                            <h5 id="promo"></h5>
-                        </div>
-                        <div class="form-group">
                             <label for="tags">Tags:</label>
                             <h5 id="tags"></h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="promo">En destacados:</label>
+                            <h5 id="promo"></h5>
                         </div>
                         <div class="form-group">
                             <label for="status">Activo:</label>
@@ -909,8 +921,17 @@ $(document).ready(function(){
         if(itemData.descount){
             $('#ModalShowOne #descount').text(itemData.descount+' %');
         }
-        if(itemData.filtersTags){
-            $('#ModalShowOne #tags').text(itemData.filtersTags);
+        if(itemData.size){
+            $('#ModalShowOne #descount').text(itemData.size);
+        }
+        if(itemData.color){
+            $('#ModalShowOne #color').text(itemData.color);
+        }
+        if(itemData.kilos){
+            $('#ModalShowOne #kilos').text(itemData.kilos+' kilos');
+        }
+        if(itemData.tags){
+            $('#ModalShowOne #tags').text(itemData.tags);
         }
         if(itemData.promo || itemData.promo == 1){
             $('#ModalShowOne #promo').text('SI');
