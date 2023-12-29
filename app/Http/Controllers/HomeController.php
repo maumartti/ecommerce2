@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Tools;
 use Carbon\Carbon;
 use App\Models\Web;
@@ -98,17 +99,22 @@ class HomeController extends Controller
        // dd($salesByDayLastMonth);
         //END ---
        //dd($firstDayOfPreviousMonth);
-        return view('admin.home')->with('web',$web)
-        ->with('dataGraph',$dataGraph)
-        ->with('paymentsAllCount',$paymentsAllCount)
-        ->with('salesAllCount',$salesAllCount)
-        ->with('ordersMonthCount',$ordersMonthCount)
-        ->with('salesMonthCount',$salesMonthCount)
-        ->with('differenceSalesLastMonth',$differenceSalesLastMonth)
-        ->with('differenceOrdersLastMonth',$differenceOrdersLastMonth)
-        ->with('salesByDayMonth',$salesByDayMonth)
-        ->with('salesByDayLastMonth',$salesByDayLastMonth)
-        ->with('usersCount',$usersCount);
+       if(Auth::user()->type_id !== 1){
+           return view('admin.home')->with('web',$web)
+           ->with('dataGraph',$dataGraph)
+           ->with('paymentsAllCount',$paymentsAllCount)
+           ->with('salesAllCount',$salesAllCount)
+           ->with('ordersMonthCount',$ordersMonthCount)
+           ->with('salesMonthCount',$salesMonthCount)
+           ->with('differenceSalesLastMonth',$differenceSalesLastMonth)
+           ->with('differenceOrdersLastMonth',$differenceOrdersLastMonth)
+           ->with('salesByDayMonth',$salesByDayMonth)
+           ->with('salesByDayLastMonth',$salesByDayLastMonth)
+           ->with('usersCount',$usersCount);
+        }else{
+            return redirect('/admin/profile');
+
+       }
     }
 /*
     public function saveData(Request $request) {
