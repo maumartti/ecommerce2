@@ -7,6 +7,13 @@
     <meta property="og:description" content="Ponte en contacto con nuestra empresa {{ config('app.name') }}">
     <meta property="og:url" content="{{request()->url()}}">
     <meta property="og:type" content="website">
+		<style>
+			.wrap-menu-desktop{
+				top:0px !important;
+			}
+			#embed-map-display .text-marker{}
+			.map-generator{max-width: 100%; max-height: 100%; background: none;}
+		</style>
 @endsection
 
 
@@ -18,7 +25,7 @@
 		</h2>
 	</section>
 	<!-- Content page -->
-	<section class="bg0 p-t-104 p-b-116">
+	<section class="bg0 p-t-104 p-b-90">
 		<div class="container">
 		@if (session('success'))
 				<div class="alert alert-success">
@@ -114,15 +121,20 @@
 	</section>	
 	
 	
-	<!-- Map -->
-	<div class="map">
-		<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
+<!-- Map -->
+<div class="map">
+<div style="overflow:hidden;resize:none;max-width:100%;width:100%;height:500px;">
+<div id="embed-map-display" style="height:100%; width:100%;max-width:100%;">
+<iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Av.+Obispo+Manuel+Umaña+299,+9160000+Santiago,+Estación+Central,+Región+Metropolitana,+Chile&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
+</div>
+<a class="google-map-code-enabler" href="https://www.bootstrapskins.com/themes" id="auth-map-data">premium bootstrap themes</a>
+</div>
 	</div>
 @endsection
 
 @section('script')
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-	<script src="js/map-custom.js"></script>
+	<script src="/assets/theme/js/map-custom.js"></script>
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
