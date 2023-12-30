@@ -8,9 +8,6 @@
     <meta property="og:url" content="{{request()->url()}}">
     <meta property="og:type" content="website">
 		<style>
-			.wrap-menu-desktop{
-				/* top:0px !important; */
-			}
 			#embed-map-display .text-marker{}
 			.map-generator{max-width: 100%; max-height: 100%; background: none;}
 		</style>
