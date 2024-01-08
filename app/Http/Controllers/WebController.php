@@ -32,12 +32,12 @@ class WebController extends Controller
         $feed = $profile->refreshFeed(4);
         $feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
         //dd($feed);
-        $products = Product::orderBy('created_at', 'desc')->with('category', 'subcategory')->get();
-        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
-        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->with('category')->with('category', 'subcategory')->get();
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::where('promo', 1)->with('category', 'subcategory')->get();
+        $products = Product::where('status', 1)->orderBy('created_at', 'desc')->with('category', 'subcategory')->get();
+        $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::where('status', 1)->orderBy('likes', 'desc')->with('category')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->where('promo', 1)->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         return view('home')->with('web',$web)->with('feed',$feed)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
@@ -45,24 +45,24 @@ class WebController extends Controller
     public function contact()
     {
         $web = Web::find(1);
-        $products = Product::with('category', 'subcategory')->get();
-        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
-        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->with('category', 'subcategory')->get();
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::whereNotNull('promo')->with('category', 'subcategory')->get();
+        $products = Product::where('status', 1)->with('category', 'subcategory')->get();
+        $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::where('status', 1)->orderBy('likes', 'desc')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->whereNotNull('promo')->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         return view('contact')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
     }
     public function politics(Request $request) {
         $web = Web::find(1);
-        $products = Product::with('category', 'subcategory')->get();
-        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
-        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->with('category', 'subcategory')->get();
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::whereNotNull('promo')->with('category', 'subcategory')->get();
+        $products = Product::where('status', 1)->with('category', 'subcategory')->get();
+        $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::where('status', 1)->orderBy('likes', 'desc')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->whereNotNull('promo')->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         return view('politics')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
@@ -137,12 +137,12 @@ class WebController extends Controller
     public function about()
     {
         $web = Web::find(1);
-        $products = Product::with('category', 'subcategory')->get();
-        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
-        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->with('category', 'subcategory')->get();
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::whereNotNull('promo')->with('category', 'subcategory')->get();
+        $products = Product::where('status', 1)->with('category', 'subcategory')->get();
+        $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::where('status', 1)->orderBy('likes', 'desc')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->whereNotNull('promo')->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         return view('about')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
@@ -150,12 +150,12 @@ class WebController extends Controller
     public function blog($url = null)
     {
         $web = Web::find(1);
-        $products = Product::with('category', 'subcategory')->get();
-        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
-        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->with('category', 'subcategory')->get();
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::whereNotNull('promo')->with('category', 'subcategory')->get();
+        $products = Product::where('status', 1)->with('category', 'subcategory')->get();
+        $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::where('status', 1)->orderBy('likes', 'desc')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->whereNotNull('promo')->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         $categoriesBlog = CategoryBlog::all();
@@ -178,13 +178,13 @@ class WebController extends Controller
     public function blogCategory($url)
     {
         $web = Web::find(1);
-        $products = Product::with('category', 'subcategory')->get();
+        $products = Product::where('status', 1)->with('category', 'subcategory')->get();
         $category = CategoryBlog::where('url',$url)->first();
-        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
-        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->with('category', 'subcategory')->get();
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::whereNotNull('promo')->with('category', 'subcategory')->get();
+        $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::where('status', 1)->orderBy('likes', 'desc')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->whereNotNull('promo')->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         $categoriesBlog = CategoryBlog::all();
@@ -202,13 +202,13 @@ class WebController extends Controller
     public function blogTag($url)
     {
         $web = Web::find(1);
-        $products = Product::with('category', 'subcategory')->get();
+        $products = Product::where('status', 1)->with('category', 'subcategory')->get();
         //$category = CategoryBlog::where('url',$url)->first();
-        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
-        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->with('category', 'subcategory')->get();
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::whereNotNull('promo')->with('category', 'subcategory')->get();
+        $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::where('status', 1)->orderBy('likes', 'desc')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->whereNotNull('promo')->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         $categoriesBlog = CategoryBlog::all();
@@ -230,22 +230,22 @@ class WebController extends Controller
     }
     public function item(Request $request, $urlCat){
         $web = Web::find(1);
-        $product = Product::where('url', $urlCat)->with('category', 'subcategory')->first();
+        $product = Product::where('status', 1)->where('url', $urlCat)->with('category', 'subcategory')->first();
         if ($product) {
             $product->views += 1;// Incrementa el contador de vistas
             $product->save();
         }
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::where('promo', 1)->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->where('promo', 1)->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         return view('product')->with('web',$web)->with('product',$product)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('categories',$categories)->with('subcategories',$subcategories);
     }
     public function category(Request $request, $urlCat){
         $web = Web::find(1);
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
         $category = Category::where('url', $urlCat)->with('subcategories')->first();
-        $productsCategory = Product::where('category_id',$category->id)->with('category', 'subcategory')->get();
+        $productsCategory = Product::where('status', 1)->where('category_id',$category->id)->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         $subcategoriesCategory = SubCategory::where('category_id', $category->id)->get();
@@ -253,12 +253,12 @@ class WebController extends Controller
     }
     public function featured(Request $request){
         $web = Web::find(1);
-        $products = Product::where('promo', 1)->with('category', 'subcategory')->get();
-        $productsNew = Product::where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
-        $productsDescount = Product::whereNotNull('descount')->with('category', 'subcategory')->get();
-        $productsLikes = Product::orderBy('likes', 'desc')->with('category', 'subcategory')->get();
-        $productsViews = Product::whereNotNull('views')->with('category', 'subcategory')->get();
-        $productsPromo = Product::whereNotNull('promo')->with('category', 'subcategory')->get();
+        $products = Product::where('status', 1)->where('promo', 1)->with('category', 'subcategory')->get();
+        $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
+        $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
+        $productsLikes = Product::where('status', 1)->orderBy('likes', 'desc')->with('category', 'subcategory')->get();
+        $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
+        $productsPromo = Product::where('status', 1)->whereNotNull('promo')->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();
         $subcategories = SubCategory::with('category')->get();
         return view('featured')->with('web',$web)->with('products',$products)->with('productsPromo',$productsPromo)->with('productsViews',$productsViews)->with('productsLikes',$productsLikes)->with('productsNew',$productsNew)->with('productsDescount',$productsDescount)->with('categories',$categories)->with('subcategories',$subcategories);
