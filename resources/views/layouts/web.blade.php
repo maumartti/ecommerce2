@@ -1,1141 +1,632 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<!-- CSRF Token -->
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="/assets/theme/images/icons/favicon.png"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/fonts/linearicons-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/slick/slick.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/MagnificPopup/magnific-popup.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/assets/theme/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/assets/theme/css/main.css">
-<!--===============================================================================================-->
-
-<!--==============Favicon==========================================================================-->
-<link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/assets/favicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/assets/favicon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/assets/favicon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/assets/favicon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/assets/favicon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/favicon/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
-<!--==END=FAVICON=======================================================================-->
-
-@yield('head')
-
-<style>
-	.quit-cart:hover, .hov-tag1:hover, .js-addedwish-detail, .filter-link-active, .filter-link:hover, .main-menu > li.active-menu > a, .main-menu > li:hover > a, .hov-cl1:hover, .sub-menu > li:hover > a{
-		color: {{ isset($web) ? $web->color : 'black' }} !important;
-  }
-	.block2-btn:hover{
-		color: white !important;
-	}
-  .bg1 , .btn-back-to-top, .btn-back-to-top:hover, .icon-header-noti::after, .loader05, .swal-button, .icon-header-noti::after, .btn-back-to-top, .hov-btn3:hover, .show-search:hover::after, .show-filter:hover::after, .main-menu-m {
-		background-color: {{ isset($web) ? $web->color : 'black' }} ;
-  }
-  .hov-btn3:hover, .filter-link-active, .hov-tag1:hover, .filter-link:hover, .show-search:hover::after, .show-filter:hover::after, .loader05{
-    border-color: {{ isset($web) ? $web->color : 'black' }} ;
-  }
-  /* Add styles for your floating WhatsApp button */
-  .floating-whatsapp {
-    position: fixed;
-    bottom: 55px;
-    right: 32px;
-    z-index: 1000;
-  }
-
-  .floating-whatsapp a {
-    display: block;
-    width: 60px;
-    height: 60px;
-    background-color: transparent;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 60px;
-    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
-    transition: background-color 0.3s ease;
-  }
-
-  .floating-whatsapp a img {
-      width: 70px;
-  height: 70px;
-  border-radius: 100%;
-  }
-	/** -end wp- **/
-	.slick3-dots li{
-		margin-bottom:14px !important;
-	}
-	.label-featured::before:hover {
-  	display:inline-block !important;
-	}
-	.input-in-text{
-		width: 40px; 
-		height: 40px;
-		padding:2px;
-		border-radius: .25rem;
-		border: 1px solid #e1e5eb;
-	}
-
-
-	/* botones del modal agregado al carrito, seguir comprando */
-	.swal-button-container {
-		width: 47%; /* Each button occupies half of the width */
-		text-align: center; /* Center the button text */
-	}
-
-	/* Adjust padding/margin as needed */
-	.swal-button {
-		width: 100%;
-	}
-	.st-cmp-settings{
-		display:none !important;
-	}
-	@media (max-width: 768px) {
-	.swal-button-container{
-		margin:0px 3px;
-	}
-  .swal-button {
-		padding:10px 5px;
-    font-size: 14px; /* Tamaño de fuente para dispositivos pequeños */
-  }
-}
-	
-</style>
-
-
-
-<!-- botones share social -->
-<style>
-/* Estilo base para los botones */
-.social-button {
-		width: 40px; /* Ancho del botón */
-		height: 40px; /* Alto del botón */
-		display: inline-block;
-		margin: 5px; /* Espacio entre los botones */
-		text-align: center;
-		line-height: 40px; /* Centra el ícono verticalmente */
-		font-size: 24px; /* Tamaño del ícono */
-		/*border: 1px solid #ccc; /* Borde del botón (puedes personalizarlo) */
-		background-color: #f9f9f9; /* Color de fondo del botón */
-		border-radius: 5px; /* Borde redondeado */
-		color: #333; /* Color del ícono (puedes personalizarlo) */
-		text-decoration: none;
-		transition: color 0.3s, transform 0.3s;
-}
-.social-button:hover{
-	color: #fff;
-	transform: scale(1.14);
-}
-/* Estilo para los íconos de las redes sociales */
-.fa {
-		font-family: 'FontAwesome'; /* Usamos la fuente FontAwesome para los íconos */
-}
-/* Estilo específico para cada red social */
-.facebook {
-		background-color: #3b5998; /* Color de fondo de Facebook */
-		color: #fff; /* Color del ícono de Facebook */
-}
-.whatsapp {
-		background-color: #25d366; /* Color de fondo de WhatsApp */
-		color: #fff; /* Color del ícono de WhatsApp */
-}
-.twitter {
-		background-color: #000; /* Color de fondo de Twitter */
-		color: #fff; /* Color del ícono de Twitter */
-}
-.telegram {
-		background-color: #0088cc; /* Color de fondo de Telegram */
-		color: #fff; /* Color del ícono de Telegram */
-}
-</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>MiuKid - Multi Store Responsive HTML Template</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/theme/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/theme/css/slick.css">
+    <link rel="stylesheet" href="/assets/theme/css/slick-theme.css">
+    <link rel="stylesheet" href="/assets/theme/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/theme/Hover-master/Hover-master/css/hover-min.css">
+    <link rel="stylesheet" href="/assets/theme/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
 </head>
-<body class="animsition">
-	
-	<!-- Header -->
-	<header class="header-v1">
-		<!-- Header desktop -->
-		<div class="container-menu-desktop">
-			<!-- Topbar -->
-			<div class="top-bar">
-				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">
-						<!-- Envío gratis en compras a partir de $30.000 -->
-					</div>
 
-					<div class="right-top-bar flex-w h-full">
-						@guest
-						<a href="/registro" class="flex-c-m trans-04 p-lr-25">
-							Registro
-						</a>
-						@endguest
+<body>
+    <!-- push menu-->
+    <div class="pushmenu menu-home5">
+        <div class="menu-push">
+            <span class="close-left js-close"><i class="ion-ios-close-empty f-40"></i></span>
+            <div class="clearfix"></div>
+            <form role="search" method="get" id="searchform" class="searchform" action="/search">
+                <div>
+                    <label class="screen-reader-text" for="q"></label>
+                    <input type="text" placeholder="Search for products" value="" name="q" id="q" autocomplete="off">
+                    <input type="hidden" name="type" value="product">
+                    <button type="submit" id="searchsubmit"><i class="ion-ios-search-strong"></i></button>
+                </div>
+            </form>
+            <ul class="nav-home5 js-menubar">
+                <li class="level1 active dropdown">
+                    <a href="#">Home</a>
+                    <span class="icon-sub-menu"></span>
+                    <ul class="menu-level1 js-open-menu">
+                        <li class="level2"><a href="Homepage-v1.html" title="">Home 1</a></li>
+                        <li class="level2"><a href="Homepage-v2.html" title="">Home 2</a></li>
+                        <li class="level2"><a href="Homepage-v3.html" title="">Home 3</a></li>
+                        <li class="level2"><a href="#" title="">Demo 4</a></li>
+                        <li class="level2"><a href="#" title="">Demo 5</a></li>
+                        <li class="level2"><a href="#" title="">Demo 6</a></li>
+                    </ul>
+                </li>
+                <li class="level1 active dropdown"><a href="#">Shop</a>
+                    <span class="icon-sub-menu"></span>
+                    <div class="menu-level1 js-open-menu">
+                        <ul class="level1">
+                            <li class="level2">
+                                <a href="#">Shop Layout</a>
+                                <ul class="menu-level-2">
+                                    <li class="level3"><a href="Shop-page-v1.html" title="">Shop 1</a></li>
+                                    <li class="level3"><a href="Shop-page-v2.html" title="">Shop 2</a></li>
+                                    <li class="level3"><a href="Shop-page-v3.html" title="">Shop 3</a></li>
+                                    <li class="level3"><a href="Shop-page-v4.html" title="">Shop 4</a></li>
+                                    <li class="level3"><a href="Shop-page-v5.html" title="">Shop 5</a></li>
+                                    <li class="level3"><a href="Shop-page-v6.html" title="">Shop 6</a></li>
+                                    <li class="level3"><a href="Shop-page-v7.html" title="">Shop 7</a></li>
+                                    <li class="level3"><a href="Shop-page-v8.html" title="">Shop 8</a></li>
+                                </ul>
+                            </li>
+                            <li class="level2">
+                                <a href="#">Single Product Type</a>
+                                <ul class="menu-level-2">
+                                    <li class="level3"><a href="Product-details-v1.html" title="">Product 1</a></li>
+                                    <li class="level3"><a href="Product-details-v2.html" title="">Product 2</a></li>
+                                    <li class="level3"><a href="Product-details-v3html" title="">Product 3</a></li>
+                                    <li class="level3"><a href="Product-details-v4html" title="">Product 4</a></li>
+                                    <li class="level3"><a href="Product-details-v5.html">Product 5</a></li>
+                                    <li class="level3"><a href="#">Variable</a></li>
+                                    <li class="level3"><a href="#">External / Affiliate</a></li>
+                                    <li class="level3"><a href="#">Grouped</a></li>
+                                    <li class="level3"><a href="#">Out of stock</a></li>
+                                    <li class="level3"><a href="#">On sale</a></li>
+                                </ul>
+                            </li>
+                            <li class="level2"> 
+                                <a href="#">Categories</a>
+                                <ul class="menu-level-2">
+                                    <li class="level3"><a href="#" title="">Categories Full Width</a></li>
+                                    <li class="level3"><a href="#" title="">Categories Left Sidebar</a></li>
+                                    <li class="level3"><a href="#" title="">Categories Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li class="level2">
+                                <a href="#">Single Product Layout</a>
+                                <ul class="menu-level-2">
+                                    <li class="level3"><a href="#" title="">Product Extended</a></li>
+                                    <li class="level3"><a href="#" title="">Product Left Sidebar</a></li>
+                                    <li class="level3"><a href="#" title="">Product Right Sideba</a></li>
+                                </ul>
+                            </li>
+                            <li class="level2">
+                                <a href="#">Other Pages</a>
+                                <ul class="menu-level-2">
+                                    <li class="level3"><a href="#" title="">Shop</a></li>
+                                    <li class="level3"><a href="#" title="">Cart</a></li>
+                                    <li class="level3"><a href="#" title="">My Wishlist</a></li>
+                                    <li class="level3"><a href="#" title="">Checkout</a></li>
+                                    <li class="level3"><a href="#" title="">My Account</a></li>
+                                    <li class="level3"><a href="#" title="">Track Your Order</a></li>
+                                    <li class="level3"><a href="#" title="">Quick View</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+                <li class="level1 active dropdown"><a href="#">Mega Menu</a></li>
+                <li class="level1">
+                    <a href="#">Pages</a>
+                    <span class="icon-sub-menu"></span>
+                    <ul class="menu-level1 js-open-menu">
+                        <li class="level2"><a href="About-Us.html" title="About Us ">About Us </a></li>
+                        <li class="level2"><a href="About-Us-v2.html" title="Contact">About Us 2</a></li>
+                        <li class="level2"><a href="Contact-Us.html" title="FAQs">Contact-us</a></li>
+                        <li class="level2"><a href="#" title="404">404</a></li>
+                        <li class="level2"><a href="#" title="Coming Soon">Coming Soon</a></li>
+                    </ul>
+                </li>
+                <li class="level1">
+                    <a href="#">Blog</a>
+                    <span class="icon-sub-menu"></span>
+                    <ul class="menu-level1 js-open-menu">
+                        <li class="level2"><a href="Blog-grid-v1.html" title="Blog Standar">Blog Gird 1</a></li>
+                        <li class="level2"><a href="Blog-grid-v2.html" title="Blog Gird">Blog Gird 2</a></li>
+                        <li class="level2"><a href="Blog-grid-v3.html" title="Blog Sidebar">Blog Gird 3</a></li>
+                        <li class="level2"><a href="Blog-grid-v4.html" title="Blog Single Post">Blog Gird 4</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="mobile-account">
+                <li><a href="#"><i class="fa fa-unlock-alt"></i>Login</a></li>
+                <li><a href="#"><i class="fa fa-user-plus"></i>Register</a></li>
+                <li><a href="#"><i class="fa fa-heart"></i>Wishlist</a></li>
+            </ul>
+            <h4 class="mb-title">connect and follow</h4>
+            <div class="mobile-social mg-bottom-30">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+            </div>
+        </div>
+    </div>
+    <header id="header" class="header-v2 header-home-3">
+        <div class="container container-home-3 ctn-content">
+            <div class="topbar hidden-xs hidden-sm homepage2 home1">
 
-						@if(auth()->check())
-						<a href="/admin/home" class="flex-c-m trans-04 p-lr-25">
-						<i class="zmdi zmdi-account mr-2"></i> Panel
-						</a>
-						@else
-						<a href="/login" class="flex-c-m trans-04 p-lr-25">
-							Entrar
-						</a>
-						@endif
+                <!-- push-menu -->
+                <a href="#" class="icon-pushmenu js-push-menu">
+                    <i class="fa fa-bars" aria-hidden="true"></i></a>
+                    
+                    <div class="row flex">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-header-left-home3">
+                            <div class="topbar-left default-home3">
+                                <div class="a sms-hd">
+                                    <a href="#"><img src="/assets/theme/images/icon8.png" alt="icon">Sms Default welcome !</a>
+                                </div>
+                                <div class="topbar-social">
+                                    <a href="#"><i class="fa fa-gift home3" aria-hidden="true"></i>Gift Vouchers</a>
+                                    <span>02</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 justify-content-end fix-pd-right-homepage3">
+                            <div class="topbar-right home3">
+                                <div class="element element-currency home3">
+                                    <a href="#"><i class="fa fa-language home3" aria-hidden="true"></i>Language:</a>
+                                    <a id="label3" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                      <span>EN</span>
+                                      <span class="fa fa-chevron-down"></span>
+                                  </a>
+                                  <ul class="dropdown-menu home3 color-hp3" aria-labelledby="label3">
+                                    <li><a href="#">EN-English</a></li>
+                                    <li><a href="#">US-American</a></li>
+                                    <li><a href="#">FR-France</a></li>
+                                </ul>
+                            </div>
+                            <div class="element element-leaguage home3">
+                                <a href="#"><i class="fa fa-money home3" aria-hidden="true"></i>Curency:</a>
+                                <a id="label2" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                  <span>USD</span>
+                                  <span class="fa fa-chevron-down"></span>
+                              </a>
+                              <ul class="dropdown-menu home3 color-hp3" aria-labelledby="label2">
+                                <li><a href="#">USD-Dollar</a></li>
+                                <li><a href="#">Eur-Euro</a></li>
+                                <li><a href="#">GBP-Pound</a></li>
+                            </ul>
+                        </div>
+                        <div class="sign-in">
+                            <p><a href="#">Sign in / Register</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="header-center-1  pro-v1 hp1 hp3">
+        <div class="container container-home-3 ctn-content">
+            <div class="row flex align-items-center justify-content-between">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 header col-header-left-home3 col2 flex justify-content-end">
+                    <div class="logo logo-hp3">
+                        <a href="#"><img src="/assets/theme/images/logo-2.png" alt="logo"></a>
+                        <i class="fa fa-bars icon-pushmenu js-push-menu icon-menu" aria-hidden="true"></i>
 
-						<!-- <a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
-						</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-8 col-xs-12 logo col-header-left-home3">
+                    <ul class="nav navbar-nav js-menubar hidden-xs hidden-sm homepage2 hidden-home3">
+                        <li class="level1 active dropdown style-home3-menu"><a href="#" class="color-home3">Home</a>
+                            <span class="plus js-plus-icon"></span>
+                            <div class="menu-level-1 dropdown-menu style5">
+                                <ul class="level1">
+                                 <li class="level2 col-6">
+                                    <a href="#">Home Pages</a>
+                                    <ul class="menu-level-2">
+                                        <li class="level3"><a href="Homepage-v1.html" target="_blank" title="">Home page 1</a></li>
+                                        <li class="level3"><a href="Homepage-v2.html" target="_blank" title="">Home page 2</a></li>
+                                        <li class="level3"><a href="Homepage-v3.html" target="_blank" title="">Home page 3</a></li>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
-						</a> -->
-					</div>
-				</div>
-			</div>
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                    <li class="level1 dropdown hassub style-home3-menu"><a href="#" class="color-home3">Bestseller  <span class="fa fa-chevron-down"></span></a>
+                        <span class="plus js-plus-icon"></span>
+                        <div class="menu-level-1 dropdown-menu menu-st-hp3 bgr-megamenu">
+                            <ul class="level1">
+                                <li class="level2 col-4a">
+                                 <a href="#">Shop pages</a>
+                                 <ul class="menu-level-2">
+                                    <li class="level3"><a href="Shop-page-v1.html" target="_blank" title="">Shop Page 1</a></li>
+                                    <li class="level3"><a href="Shop-page-v2.html" target="_blank" title="">Shop Page 2</a></li>
+                                    <li class="level3"><a href="Shop-page-v3.html" target="_blank" title="">Shop Page 3</a></li>
+                                    <li class="level3"><a href="Shop-page-v4.html" target="_blank" title="">Shop Page 4</a></li>
+                                    <li class="level3"><a href="Shop-page-v5.html" target="_blank" title="">Shop Page 5</a></li>
+                                    <li class="level3"><a href="Shop-page-v6.html" target="_blank" title="">Shop Page 6</a></li>
+                                    <li class="level3"><a href="Shop-page-v7.html" target="_blank" title="">Shop Page 7</a></li>
+                                    <li class="level3"><a href="Shop-page-v8.html" target="_blank" title="">Shop Page 8</a></li>
+                                </ul>
+                            </li>
+                            <li class="level2 col-4a">
+                             <a href="#">Products</a>
+                             <ul class="menu-level-2">
+                                <li class="level3"><a href="Product-details-v1.html" target="_blank" title="">Product 1</a></li>
+                                <li class="level3"><a href="Product-details-v2.html" target="_blank" title="">Product 2</a></li>
+                                <li class="level3"><a href="Product-details-v3.html" target="_blank" title="">Product 3</a></li>
+                                <li class="level3"><a href="Product-details-v4.html" target="_blank" title="">Product 4</a></li>
+                                <li class="level3"><a href="Product-details-v5.html" target="_blank" title="">Product 5</a></li>
+                            </ul>
+                        </li>
+                        <li class="level2 col-4a">
+                            <a href="#">Other Pages</a>
+                            <ul class="menu-level-2">
+                                <li class="level3"><a href="Contact-Us.html" target="_blank" title="">Contact Us</a></li>
+                                <li class="level3"><a href="Quickview.html" target="_blank" title="">Quick View</a></li>
+                                <li class="level3"><a href="Popup-Newsletter.html" target="_blank" title="">Popup Newsletter</a></li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
 
-			<div class="wrap-menu-desktop" >
-				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
-					<a href="/" class="logo">
-						<img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO">
-					</a>
+            <li class="level1 hassub dropdown style-home3-menu">
+                <a href="#" class="color-home3">Newarrival <span class="fa fa-chevron-down"></span></a>
+                <div class="menu-level-1 dropdown-menu style3 homepage2">
+                    <div class="row">
+                        <div class="cate-item col-md-4 col-sm-12">
+                            <div class="demo-img">
+                                <a href="" class="effect-img3 plus-zoom">
+                                    <img src="/assets/theme/images/img86.jpg" alt="" class="img-reponsive">
+                                </a>
+                            </div>
+                            <div class="demo-text text-center">New Trending '18</div>
+                        </div>
+                        <div class="cate-item col-md-4 col-sm-12">
+                            <div class="demo-img">
+                                <a class="effect-img3 plus-zoom" href=""><img src="/assets/theme/images/img87.jpg" alt="" class="img-reponsive"></a>
+                            </div>
+                            <div class="demo-text text-center">New Lookbooks</div>
+                        </div>
+                        <div class="cate-item col-md-4 col-sm-12">
+                            <div class="demo-img">
+                                <a class="effect-img3 plus-zoom" href=""><img src="/assets/theme/images/img86.jpg" alt="" class="img-reponsive"></a>
+                            </div>
+                            <div class="demo-text text-center">Onsale</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="level1 hassub dropdown style-home3-menu">
+                <a href="#" class="color-home3">Sale <span class="fa fa-chevron-down"></span></a>
+                <div class="menu-level-1 dropdown-menu style3 homepage2">
+                    <div class="row">
+                        <div class="cate-item col-md-4 col-sm-12">
+                            <div class="demo-img">
+                                <a href="" class="effect-img3 plus-zoom">
+                                    <img src="/assets/theme/images/img109.jpg" alt="" class="img-reponsive">
+                                </a>
+                            </div>
+                            <div class="demo-text text-center">New Trending '18</div>
+                        </div>
+                        <div class="cate-item col-md-4 col-sm-12">
+                            <div class="demo-img">
+                                <a class="effect-img3 plus-zoom" href=""><img src="/assets/theme/images/img110.jpg" alt="" class="img-reponsive"></a>
+                            </div>
+                            <div class="demo-text text-center">New Lookbooks</div>
+                        </div>
+                        <div class="cate-item col-md-4 col-sm-12">
+                            <div class="demo-img">
+                                <a class="effect-img3 plus-zoom" href=""><img src="/assets/theme/images/img111.jpg" alt="" class="img-reponsive"></a>
+                            </div>
+                            <div class="demo-text text-center">Onsale</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="level1 dropdown hassub style-home3-menu">
+                <a href="#" class="color-home3">Blogs</a>
+                <span class="plus js-plus-icon"></span>
+                <div class="menu-level-1 dropdown-menu style2 homepage2 dropdown-menu-home3 blog-megamenu">
+                    <ul class="level1">
+                      <li class="level2 col-4">
+                        <a href="">Blogs</a>
+                        <ul class="menu-level-2">
+                            <li class="level3"><a href="Blog-grid-v1.html" target="_blank" title="">Blog Grid 1</a></li>
+                            <li class="level3"><a href="Blog-grid-v2.html" target="_blank" title="">Blog Grid 2</a></li>
+                            <li class="level3"><a href="Blog-grid-v3.html" target="_blank" title="">Blog Grid 3</a></li>
+                            <li class="level3"><a href="Blog-grid-v4.html" target="_blank" title="">Blog Grid 4</a></li>
+                        </ul>
+                    </li>                                 
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+        <li class="level1 active dropdown style-home3-menu">
+            <a href="#" class="color-home3 ">About us</a>
+            <ul class="dropdown-menu menu-level-1 ab-st-h2">
+                <li class="level2"><a href="#"  class="st-ab">About Us</a></li>
+                <li class="level2"><a href="About-Us.html" target="_blank" title="Blog List">About Us</a></li>
+                <li class="level2"><a href="About-Us-v2.html" target="_blank" title="Blog Gird">About Us 2</a></li>
+                
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="col-lg-5 col-md-5 col-sm-2 col-xs-12 header-center2 header-center-hom3">
+    <div class="search3 homepage2 home-3 home-3-right">
+        <form method="get" action="/search" role="search" class="search-form  has-categories-select">
+            <input name="q" class="search-input home3" type="text" value="" placeholder="Search..." autocomplete="off">
+            <input type="hidden" name="post_type" value="product">
+            <button type="submit"><i class="ion-ios-search-strong"></i></button>
+        </form>
+    </div>
+    <div class="date3 dropdown homepage2 home-3-right">
+        <div class="date mycart">
 
-					<!-- Menu desktop -->
-					<div class="menu-desktop">
-						<ul class="main-menu">
-							<li class="active-menu">
-								<a href="/">Home</a>
-							</li>
+            <button class="fa fa-shopping-bag dropdown-toggle home3" type="button" data-toggle="dropdown">
+            </button>
 
-							<li>
-								<a href="#">Categorías</a>
-									<ul class="sub-menu">
-									@if (isset($categories))
-										@if ($categories)
-											@foreach ($categories as $index => $category)
-											<li><a href="/categoria/{{$category->url}}">{{$category->name}}</a></li>
-											@endforeach
-										@endif
-									@endif
-									</ul>
-							</li>
+            <div class="dropdown-menu cart2 cart-home2 cart-home3">
 
-							<li class="label1" data-label1="hot">
-								<a href="/destacados">Destacados</a>
-							</li>
+                <div class="cart-2">
+                    <div class="check-out">
+                        <div class="img-cart">
+                            <a href="#" class="hover-images"><img src="/assets/theme/images/img27.jpg" alt="img"></a>
+                        </div>
+                        <div class="para-cart">
+                            <p><a href="#">Crepe Jacket With Pompom</a></p>
+                            <h4>$36.00</h4>
+                            <del>$42.00</del>
+                            <br>
+                            <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="check-out">
+                        <div class="img-cart">
+                            <a href="#" class="hover-images"><img src="/assets/theme/images/img28.jpg" alt="img"></a>
+                        </div>
+                        <div class="para-cart">
+                            <p><a href="#">Animal Print Sweatshirt</a></p>
+                            <h4>$36.00</h4>
+                            <del>$42.00</del>
+                            <br>
+                            <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="check-out bd-bt">
+                        <div class="img-cart">
+                            <a href="#" class="hover-images"><img src="/assets/theme/images/img29.jpg" alt="img"></a>
+                        </div>
+                        <div class="para-cart">
+                            <p><a href="#">Knit Cardigan</a></p>
+                            <br>
+                            <h4>$36.00</h4>
+                            <del>$42.00</del>
+                            <br>
+                            <a href="#"><i class="fa fa-trash-o st" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="check-out2">
+                        <div class="total">
+                            <p>Total</p>
+                            <span>$ 689.8</span>
+                        </div>
+                        <div class="check">
+                            <a href="#">check out</a>
+                        </div>
+                    </div>
+                </div>
 
-							<li>
-								<a href="/blog">Blog</a>
-							</li>
-
-							<li>
-								<a href="/nosotros">Nosotros</a>
-							</li>
-
-							<li>
-								<a href="/contacto">Contacto</a>
-							</li>
-						</ul>
-					</div>	
-
-					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
-						<!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div> -->
-
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{ session()->has('totalCart') ? session('totalCart') : 0 }}">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
-
-						<div class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-favorites" data-notify="{{ session()->has('favorites') ? count(session('favorites')) : 0 }}">
-							<i class="zmdi zmdi-favorite-outline"></i>
-						</div>
-					</div>
-				</nav>
-			</div>	
-		</div>
-
-		<!-- Header Mobile -->
-		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
-			<div class="logo-mobile">
-				<a href="/"><img src="/assets/images/{{$web->imageLogo}}" alt="IMG-LOGO"></a>
-			</div>
-
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-					<i class="zmdi zmdi-search"></i>
-				</div> -->
-
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="{{ session()->has('totalCart') ? session('totalCart') : 0 }}">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
-
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-favorites" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
-			</div>
-
-			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
-			</div>
-		</div>
-
-
-		<!-- Menu Mobile -->
-		<div class="menu-mobile">
-			<ul class="topbar-mobile">
-				<!-- <li>
-					<div class="left-top-bar">
-						Free shipping for standard order over $100
-					</div>
-				</li> -->
-
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						@guest
-						<a href="/registro" class="flex-c-m p-lr-10 trans-04">
-							Registro
-						</a>
-						@endguest
-
-						@if(auth()->check())
-						<a href="/admin/home" class="flex-c-m trans-04 p-lr-25">
-						<i class="zmdi zmdi-account mr-2"></i> Panel
-						</a>
-						@else
-						<a href="/login" class="flex-c-m trans-04 p-lr-25">
-							Entrar
-						</a>
-						@endif
-
-						<!-- <a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a> -->
-					</div>
-				</li>
-			</ul>
-
-			<ul class="main-menu-m">
-				<li>
-					<a href="#">Home</a>
-				</li>
-
-				<li>
-					<a>Cateogrías</a>
-					<ul class="sub-menu-m">
-						@if (isset($categories))
-							@if ($categories)
-								@foreach ($categories as $index => $category)
-								<li><a href="/categoria/{{$category->url}}">{{$category->name}}</a></li>
-								@endforeach
-							@endif
-						@endif
-					</ul>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
-				</li>
-
-				<li>
-					<a href="/destacados" class="label1 rs1" data-label1="hot">Destacados</a>
-				</li>
-
-				<li>
-					<a href="/blog">Blog</a>
-				</li>
-
-				<li>
-					<a href="/nosotros">Nosotros</a>
-				</li>
-
-				<li>
-					<a href="/contacto">Contacto</a>
-				</li>
-			</ul>
-		</div>
-
-		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<div class="container-search-header">
-				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="/assets/theme/images/icons/icon-close2.png" alt="CLOSE">
-				</button>
-
-				<!-- <form class="wrap-search-header flex-w p-l-15">
-					<button class="flex-c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
-				</form> -->
-			</div>
-		</div>
-	</header>
-
-  <div class="floating-whatsapp">
-    <a href="https://wa.me/+56982639595" target="_blank">
-      <img src="/assets/images/wp.png" alt="WhatsApp">
-    </a>
-  </div>
-	<!-- Cart -->
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
-
-		<div class="header-cart flex-col-l p-l-30 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Tu Carrito
-				</span>
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					@if(session()->has('cart'))
-						@foreach (session('cart') as $item)
-						<li product-id="{{$item['id']}}" class="header-cart-item flex-w flex-t m-b-20">
-								<div class="header-cart-item-img">
-										<img src="/assets/images/products/{{ $item['image1'] }}" alt="IMG">
-								</div>
-								<div class="header-cart-item-txt p-t-8">
-										<a href="/item/{{ $item['url'] }}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-												{{ $item['name'] }}
-										</a>
-										<span class="header-cart-item-info">
-												{{ $item['quantity'] }} x ${{ str_replace(',', '.', number_format($item['price'], 0, ',', '.')) }}
-												<a product-id="{{ $item['id'] }}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
-													<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
-												</a>
-										</span>
-								</div>
-						</li>
-						@endforeach
-					@else
-						<li class="empty-cart">El carrito está vacío</li>
-					@endif
-			</ul>
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: ${{ str_replace(',', '.', number_format(session('totalPrice', 0), 0, ',', '.')) }}
-					</div>
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg1 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							Completar pedido <i class="zmdi zmdi-shopping-cart ml-2"></i>
-						</a>
-						<!-- <a href="/carrito" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Completar compra
-						</a> -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Favorites -->
-	<div class="wrap-header-cart js-panel-favorites">
-		<div class="s-full js-hide-favorites"></div>
-
-		<div class="header-cart flex-col-l p-l-30 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Tus Favoritos
-				</span>
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-favorites">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-			<div class="header-favorite-content flex-w js-pscroll w-100">
-				<ul class="header-favorite-wrapitem w-full">
-					@if(session()->has('favorites') && !empty(session('favorites')))
-						@foreach (session('favorites') as $item)
-						<li product-id="{{$item['id']}}" class="header-cart-item flex-w flex-t m-b-20">
-								<div class="header-cart-item-img">
-										<img src="/assets/images/products/{{ $item['image1'] }}" alt="IMG">
-								</div>
-								<div class="header-cart-item-txt p-t-8">
-										<a href="/item/{{ $item['url'] }}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-												{{ $item['name'] }}
-										</a>
-										<span class="header-cart-item-info">
-												${{ str_replace(',', '.', number_format($item['price'], 0, ',', '.')) }}
-												<a product-id="{{ $item['id'] }}" class="header-cart-item-info float-right quit-favorite" style="cursor:pointer;">
-													<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
-												</a>
-										</span>
-								</div>
-						</li>
-						@endforeach
-					@else
-						<li class="empty-favorites">Aún no tienes favoritos</li>
-					@endif
-				</ul>
-			</div>
-		</div>
-	</div>
-
-		
-
+            </div>
+        </div>
+        <div class="para-a a4 home3 cart-home-3">
+            <h4 class="color"><a href="#">My Cart.</a></h4>
+            <p class="color">01 / $150.00</p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- header -->
 @yield('content')
+<!-- footer -->
+<footer>
+    <div class="footers">
+        <div class="border-ft-homepage-3"></div>
+        <div class="container container-home-3 ctn-content">
+            <div class="one">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3col-xs-12 ft-logo ft-logo-home3">
+                        <div class="logo-para">
+                            <a href="#"><img src="/assets/theme/images/logo.png" alt="logo"></a>
+                            <p><em><a href="#">Miukid is a premium eCommerce theme with<br>
+                            advanced admin module.</a></em></p>
+                        </div>
+                        <div class="icon-para">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>Telephone: +84 988  992 085</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>Email: lamhvdesigner@gmail.com</a></li>
+                                <li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>8:00 - 19:00, Monday - Saturday,<br> 
+                                Sunday - closed</a></li>
+                            </ul>
+                        </div>
+                        <div class="bytheme">
+                            <div class="bytheme2">
+                                <a href="#">Buy This Theme</a>
+                            </div>
+                            <div class="icons-ft">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-vine" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer-left -->
+                    <div class="col-md-6 col-sm-6 col-xs-12 fix ft-left-home3 ">
+                        <div class="ft-center">
+                            <div class="information info-home3-hd">
+                                <h4>Information</h4>
+                                <div class="border2"></div>
+                                <a href="#">About Us</a>
+                                <br>
+                                <a href="#">Shipping & Returns</a>
+                                <br>
+                                <a href="#">Privacy Notice</a>
+                                <br>
+                                <a href="#">Conditions of Use</a>
+                                <br>
+                                <a href="#">RSS</a>
+                                <br>
+                            </div>
+                            <div class="information center info-home3-hd">
+                                <h4>Service</h4>
+                                <div class="border2"></div>
+                                <a href="#">Online support</a>
+                                <br>
+                                <a href="#">Help & FAQs</a>
+                                <br>
+                                <a href="#">Call Center</a>
+                                <br>
+                                <a href="#">Contact Us</a>
+                                <br>
+                                <a href="#">Custom Link</a>
+                                <br>
+                            </div>
+                            <div class="information center info-home3-hd">
+                                <h4>Links</h4>
+                                <div class="border2"></div>
+                                <a href="#">Online support</a>
+                                <br>
+                                <a href="#">Help & FAQs</a>
+                                <br>
+                                <a href="#">Call Center</a>
+                                <br>
+                                <a href="#">Contact Us</a>
+                                <br>
+                                <a href="#">Custom Link</a>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer center -->
+                    <div class="col-md-3 col-sm-3 col-xs-12 right imgs ft-home3-right">
+                        <div class="Instagram">
+                            <h4>Instagram</h4>
+                            <div class="border2"></div>
+                        </div>
+                        <div class="img-ul img-ul-home3">
+                            <ul>
+                                <li><a href="#"><img src="/assets/theme/images/img18.jpg" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/img19.jpg" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/img20.jpg" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/img21.jpg" alt="img"></a></li>
 
+                            </ul>
+                        </div>
+                        <div class="img-ul img-ul-home3">
+                            <ul>
+                                <li><a href="#"><img src="/assets/theme/images/img22.jpg" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/img23.jpg" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/img24.jpg" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/img25.jpg" alt="img"></a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-ft menu-ft-home3">
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">New Arrivals</a></li>
+                                <li><a href="#">Site map</a></li>
+                            </ul>
+                        </div>
+                        <!-- footer right -->
+                    </div>
+                </div>
+            </div>
+            <div class="border"></div>
+        </div>
+    </div>
 
-	<!-- Footer -->
-	<footer class="bg3 p-t-75 p-b-32">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Categorías
-					</h4>
+<!-- footer-ending -->
+<div class="footerending">
+    <div class="container container-home-3 ctn-content">
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="fted-left">
+                    <p>Copyright © 2018 by </p>
+                    <a href="#">EngoTheme. </a>
+                    <span>All Rights Reserved.</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 ">
+                <div class="fted-left two">
+                    <ul>
+                        <li><a href="#"><img src="/assets/theme/images/icon1.png" alt="icon1"></a></li>
+                        <li><a href="#"><img src="/assets/theme/images/icon2.png" alt="icon"></a></li>
+                        <li><a href="#"><img src="/assets/theme/images/icon3.png" alt="icon"></a></li>
+                        <li><a href="#"><img src="/assets/theme/images/icon4.png" alt="icon"></a></li>
+                        <li><a href="#"><img src="/assets/theme/images/icon5.png" alt="icon"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</footer>
+<a href="#" class="zoa-btn scroll_top"><i class="ion-ios-arrow-up"></i></a>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/assets/theme/js/jquery.js"></script>
+<script src="/assets/theme/js/bootstrap.min.js"></script>
+<script src="/assets/theme/js/owl.carousel.min.js"></script>
+<script src="/assets/theme/js/slick.min.js"></script>
+<script src="/assets/theme/js/countdown.js"></script>
+<script src="/assets/theme/js/main.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            autoplay: false,
+            autoplayTimeout: 3000,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                480: {
+                    items: 1
+                },
+                1014: {
+                    items: 1
+                },
+                1200: {
+                    items: 1
+                },
+                1600: {
+                    items: 1
+                }
+            }
+        });
 
-					<ul>
-          @if (isset($categories))
-            @if ($categories)
-              @foreach ($categories as $index => $category)
-						<li class="p-b-10">
-							<a href="/categoria/{{$category->url}}" class="stext-107 cl7 hov-cl1 trans-04">
-								{{$category->name}}
-							</a>
-						</li>
-            @endforeach
-      	    @endif
-          @endif 
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Ayuda
-					</h4>
-
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Sistema de envíos
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Devoluciónes 
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="/politicas-privacidad" class="stext-107 cl7 hov-cl1 trans-04">
-								Políticas
-							</a>
-						</li>
-
-						<!-- <li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
-							</a>
-						</li> -->
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Contacto
-					</h4>
-
-					<p class="stext-107 cl7 size-201">
-          {{$web->address ? $web->address : 'Av. Afredo Acuña, 9160000 Estación Central, Región Metropolitana, Chile '}}
-					</p>
-
-					<div class="p-t-27">
-						<a href="{{$web->facebook ? $web->facebook : 'https://www.facebook.com'}}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="{{$web->instagram ? $web->instagram : 'https://www.instagram.com'}}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
-						</a>
-
-						<a href="{{$web->google ? $web->google : 'https://www.google.com'}}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-google"></i>
-						</a>
-						<a href="{{$web->tiktok ? $web->tiktok : 'https://www.tiktok.com'}}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" style="top: 2px;position: relative;" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#b2b2b2}</style><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
-						</a>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Subscribeté
-					</h4>
-
-					<form action="subscriber" method="POST">
-					@csrf
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
-
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
-
-			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="/assets/theme/images/icons/m.png" alt="ICON-PAY" style="width:32px;position:relative;top:-1px;height:21px;border-radius:3px;">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="/assets/theme/images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="/assets/theme/images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="/assets/theme/images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="/assets/theme/images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
-					<a href="#" class="m-all-1">
-						<img src="/assets/images/wps.png" alt="ICON-PAY" style="width:32px;position:relative;top:-1px;height:21px;border-radius:3px;">
-					</a>
-				</div>
-
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | tiendasacuanjoche.com
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
-				</p>
-			</div>
-		</div>
-	</footer>
-
-
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
-	</div>
-
-	<!-- Modal1 -->
-	<!-- <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
-
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="/assets/theme/images/icons/icon-close.png" alt="CLOSE">
-				</button>
-
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="/assets/theme/images/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="/assets/theme/images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="/assets/theme/images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
-
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
-
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>	
-							</div>
-
-					
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	@yield('modal')
-
-<!--===============================================================================================-->	
-	<script src="/assets/theme/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/bootstrap/js/popper.js"></script>
-	<script src="/assets/theme/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/select2/select2.min.js"></script>
-	<script>
-		$(".js-select2").each(function(){
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/daterangepicker/moment.min.js"></script>
-	<script src="/assets/theme/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/slick/slick.min.js"></script>
-	<script src="/assets/theme/js/slick-custom.js"></script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/parallax100/parallax100.js"></script>
-	<script>
-        $('.parallax100').parallax100();
-	</script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<script>
-		$('.gallery-lb').each(function() { // the containers for all your galleries
-			$(this).magnificPopup({
-		        delegate: 'a', // the selector for gallery item
-		        type: 'image',
-		        gallery: {
-		        	enabled:true
-		        },
-		        mainClass: 'mfp-fade'
-		    });
-		});
-	</script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/isotope/isotope.pkgd.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/sweetalert/sweetalert.min.js"></script>
-
-	
-	<script>
-$(document).ready(function () {
-
-	 sessionFavorites = @json(session('favorites') ?? []);//GLOBAL VARIABLE session con favoritos
-
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
-		});
-
-		//agregar favorito en lista 
-		$(document).on('click', '.js-addwish-b2', function () {
-				console.log('click add favoritos')
-				var productId = $(this).attr('data-product-id');
-				var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
-				var nameProduct = $(this).data('item');
-				$.ajax({
-						url: '/add-to-favorite/' + productId,
-						type: 'POST',
-						data: {
-								_token: csrfToken, // Incluye el token CSRF en los datos de la solicitud
-						},
-						success: function(data) {
-								if (data.status == 'success') {
-										// El producto se agregó exitosamente al carrito
-										//$.toastr.success('Agregado con éxito');
-										swal(nameProduct, "Agregado a Favoritos !", "success");
-										$('.swal-button-container').css('width', '100%').css('margin', 'auto');
-
-										//cambiamos el count de cart
-										$('.js-show-favorites').attr('data-notify',data.totalFav);
-										var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-										// Agrega el nuevo elemento al carrito usando jQuery
-										var favItem = data.favorites; // Último elemento del carrito
-										//console.log('favItem',favItem)
-										if(favItem){
-											var price = parseFloat(favItem.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-											var favItemHtml = `
-												<li product-id="${favItem.id}" class="header-cart-item flex-w flex-t m-b-20">
-														<div class="header-cart-item-img">
-																<img src="/assets/images/products/${favItem.image1}" alt="IMG">
-														</div>
-														<div class="header-cart-item-txt p-t-8">
-																<a href="/item/${favItem.url}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-																		${favItem.name}
-																</a>
-																<span class="header-cart-item-info">
-																		 $${price}
-																		<div product-id="${favItem.id}" class="header-cart-item-info float-right quit-favorite" style="cursor:pointer;">
-																				<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"></path></svg>
-																		</div>
-																</span>
-														</div>
-												</li>`;
-											//quite el elemento y aAgrega el nuevo elemento al carrito
-											$('.header-favorite-wrapitem li[product-id="' + favItem.id + '"]').remove();
-											$('.header-favorite-wrapitem').append(favItemHtml);
-											$(".js-addwish-b2[data-product-id='"+productId+"']").addClass('js-addedwish-b2');
-											sessionFavorites = data.sessionFavorites;//session con favoritos actualizada
-											$("#contAddFavoriteModal").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
-											$("#contAddFavorite").html('<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423"><i class="zmdi zmdi-favorite"></i> Agregado a favoritos</div>');
-											$('.empty-favorites').hide();
-										}
-								} else {
-										// Maneja el caso de error si es necesario
-										//$.toastr.error('Error al agregar');
-										swal(nameProduct, "Error al agregar !", "error");
-								}
-						},
-						error: function() {
-								// Maneja el caso de error si la solicitud falla
-								alert('Error al realizar la solicitud');
-						}
-				});
-				$(this).addClass('js-addedwish-b2');
-				$('.swal-button-container').css('width', '100%').css('margin', 'auto');
-				//$(this).off('click');
-			//});
-		});
-		//quitar item de Favoritos
-		/*---------------------------------------------*/
-		$('.header-favorite-wrapitem').on('click', '.quit-favorite', function() {
-			var nameProduct = $('.js-name-detail').find('a').text();
-			console.log('click quit favorite', nameProduct);
-			var btnQuit = $(this);
-			var productId = $(this).attr('product-id');
-			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
-			// Realiza una solicitud AJAX para agregar el producto al carrito
-			$.ajax({
-					url: '/quit-to-favorite/' + productId,
-					type: 'GET',
-					data: {
-							_token: csrfToken, // Incluye el token CSRF en los datos de la solicitud
-					},
-					success: function(data) {
-							if (data.status == 'success') {
-									//$.toastr.success('Agregado con éxito');
-									//swal(nameProduct, "Agregado al carrito !", "success");
-									$(".header-cart-item[product-id='"+productId+"']").remove();
-        					$('.js-show-favorites').attr('data-notify',data.totalFav);
-									$(".js-addwish-b2[data-product-id='"+productId+"']").removeClass('js-addedwish-b2');
-									sessionFavorites = data.sessionFavorites;//session con favoritos actualizada
-									$("#contAddFavorite").html('<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="'+nameProduct+'" data-product-id="'+productId+'" data-tooltip="Agregar"><i class="zmdi zmdi-favorite"></i> Agregar a favoritos </div>');
-									if(data.totalFav == 0){ $('.empty-favorites').show(); }
-								} else {
-									// Maneja el caso de error si es necesario
-									//$.toastr.error('Error al agregar');
-									swal(nameProduct, "Error al quitar !", "error");
-							}
-					},
-					error: function() {
-							// Maneja el caso de error si la solicitud falla
-							alert('Error al realizar la solicitud');
-					}
-			});
-		});
-		//agregar favorito dentro modal producto
-		// $('.js-addwish-detail').each(function(){
-		// 	$(this).on('click', function(){
-		// 		var nameProduct = $(this).data('item');
-		// 		swal(nameProduct, "Agregado a Favoritos !", "success");
-
-		// 		//$(this).addClass('js-addedwish-detail');
-		// 		$('.swal-button-container').css('width', '100%').css('margin', 'auto');
-		// 		$(this).off('click');
-		// 	});
-		// });
-
-		//funcion agregar al carrito click
-		/*---------------------------------------------*/
-		$('.js-addcart-detail').on('click', function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').find('a').text();
-			console.log('click add cart', nameProduct);
-			var productId = $(this).attr('data-product-id');
-			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
-			var quantity = $('#modal-cant').val(); //
-			// Realiza una solicitud AJAX para agregar el producto al carrito
-			$.ajax({
-					url: '/add-to-cart/' + productId,
-					type: 'POST',
-					data: {
-							_token: csrfToken, // Incluye el token CSRF en los datos de la solicitud
-							quantity: quantity
-					},
-					success: function(data) {
-							if (data.status == 'success') {
-									// El producto se agregó exitosamente al carrito
-									//$.toastr.success('Agregado con éxito');
-									swal({
-											title: nameProduct,
-											text: "Agregado al carrito !",
-											icon: "success",
-											buttons: ['Seguir comprando','Ir al carrito']
-									}).then((value) => {
-										if (value !== null) {
-												console.log('redirect carrito')
-												window.location.href = '/carrito';
-										}
-									});
-									//cambiamos el count de cart
-									$('.js-show-cart').attr('data-notify',data.totalCart);
-									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-        					$('.header-cart-total').text('Total: '+totalPriceFormatted);
-									// Agrega el nuevo elemento al carrito usando jQuery
-									var cartItem = data.cart; // Último elemento del carrito
-									//console.log('cartItem',cartItem)
-									if(cartItem){
-										var price = parseFloat(cartItem.price).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-										var cartItemHtml = `
-											<li product-id="${cartItem.id}" class="header-cart-item flex-w flex-t m-b-20">
-													<div class="header-cart-item-img">
-															<img src="/assets/images/products/${cartItem.image1}" alt="IMG">
-													</div>
-													<div class="header-cart-item-txt p-t-8">
-															<a href="/item/${cartItem.url}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-																	${cartItem.name}
-															</a>
-															<span class="header-cart-item-info">
-																	${cartItem.quantity} x $${price}
-																	<div product-id="${cartItem.id}" class="header-cart-item-info float-right quit-cart" style="cursor:pointer;">
-																			<span>Borrar</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="float: right;position: relative;top: -2px;"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"></path></svg>
-																	</div>
-															</span>
-													</div>
-											</li>`;
-										//quite el elemento y aAgrega el nuevo elemento al carrito
-										$('.header-cart-wrapitem li[product-id="' + cartItem.id + '"]').remove();
-										$('.header-cart-wrapitem').append(cartItemHtml);
-										$('.empty-cart').hide();
-									}
-							} else {
-									// Maneja el caso de error si es necesario
-									//$.toastr.error('Error al agregar');
-									swal(nameProduct, "Error al agregar !", "error");
-							}
-					},
-					error: function() {
-							// Maneja el caso de error si la solicitud falla
-							alert('Error al realizar la solicitud');
-					}
-			});
-		});
-		//quitar item del carrito
-		/*---------------------------------------------*/
-		$('.header-cart-wrapitem').on('click', '.quit-cart', function() {
-			console.log('click quit cart');
-			//var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			var btnQuit = $(this);
-			var productId = $(this).attr('product-id');
-			var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Obtener el token CSRF
-			// Realiza una solicitud AJAX para agregar el producto al carrito
-			$.ajax({
-					url: '/quit-to-cart/' + productId,
-					type: 'GET',
-					data: {
-							_token: csrfToken, // Incluye el token CSRF en los datos de la solicitud
-					},
-					success: function(data) {
-							if (data.status == 'success') {
-									//$.toastr.success('Agregado con éxito');
-									//swal(nameProduct, "Agregado al carrito !", "success");
-									$(".header-cart-item[product-id='"+productId+"']").remove();
-        					$('.js-show-cart').attr('data-notify',data.totalCart);
-									var totalPriceFormatted = parseFloat(data.totalPrice).toLocaleString('es-ES', {minimumFractionDigits: 0,maximumFractionDigits: 0,useGrouping: true});
-        					$('.header-cart-total').text('Total: '+totalPriceFormatted);
-        					$('.header-cart-subtotal').text('$'+totalPriceFormatted);
-									if (totalPriceFormatted == 0 && window.location.pathname === '/carrito') {//recarga la web si es /carrito y preciototal = 0
-        						window.location.reload();
-    							}
-									if(data.totalCart == 0){ $('.empty-cart').show(); }
-							} else {
-									// Maneja el caso de error si es necesario
-									//$.toastr.error('Error al agregar');
-									swal(nameProduct, "Error al quitar !", "error");
-							}
-					},
-					error: function() {
-							// Maneja el caso de error si la solicitud falla
-							alert('Error al realizar la solicitud');
-					}
-			});
-		});
-});	
+    });
 </script>
-
-@yield('script')
-
-<!--===============================================================================================-->
-	<script src="/assets/theme/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-	</script>
-<!--===============================================================================================-->
-	<script src="/assets/theme/js/main.js"></script>
-
- 
+<script> 
+    $(document).ready(function(){
+      $("#flip").click(function(){
+        $("#panel").slideToggle("slow");
+    });
+  });
+</script>
 </body>
+
 </html>
