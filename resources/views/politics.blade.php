@@ -38,7 +38,7 @@
 						</p> -->
 
 						<p class="stext-113 cl6 p-b-26">
-						Bienvenidos a <a href="https://importadoratatar.cl/">IMPORTADORATATAR.CL</a> Valoramos y respetamos su privacidad, y nos comprometemos a proteger la información personal que nos proporcione. Esta Política de Privacidad describe cómo recopilamos, utilizamos y compartimos su información cuando utiliza nuestros servicios en línea. Al acceder y utilizar nuestra tienda en línea, usted acepta los términos de esta Política de Privacidad.
+						Bienvenidos a <a href="https://tiendasacuanjoche.com/">IMPORTADORATATAR.CL</a> Valoramos y respetamos su privacidad, y nos comprometemos a proteger la información personal que nos proporcione. Esta Política de Privacidad describe cómo recopilamos, utilizamos y compartimos su información cuando utiliza nuestros servicios en línea. Al acceder y utilizar nuestra tienda en línea, usted acepta los términos de esta Política de Privacidad.
 
 1. Información que Recopilamos:
 
@@ -72,9 +72,9 @@ El 12 de diciembre celebramos el lanzamiento oficial de nuestra tienda en línea
 7. Cambios en la Política de Privacidad:
 Nos reservamos el derecho de actualizar o modificar esta Política de Privacidad en cualquier momento. Cualquier cambio será efectivo inmediatamente después de la publicación en nuestra tienda en línea. Le recomendamos revisar periódicamente esta política para estar informado sobre cómo protegemos su información.
 
-Para cualquier pregunta o inquietud sobre nuestra Política de Privacidad, no dude en ponerse en contacto con nosotros a través de correo electrónico ventas@importadoratatar.cl
+Para cualquier pregunta o inquietud sobre nuestra Política de Privacidad, no dude en ponerse en contacto con nosotros a través de correo electrónico ventas@tiendasacuanjoche.com
 
-Gracias por confiar en <a href="https://importadoratatar.cl/">IMPORTADORATATAR.CL</a> Estamos comprometidos a brindarle una experiencia de compra segura y satisfactoria.
+Gracias por confiar en <a href="https://tiendasacuanjoche.com/">IMPORTADORATATAR.CL</a> Estamos comprometidos a brindarle una experiencia de compra segura y satisfactoria.
 
 Atentamente,
 

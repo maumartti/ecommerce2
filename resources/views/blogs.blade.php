@@ -46,7 +46,7 @@
 		<meta name="description" content="Blog con artículos relacionados a importadora tatar">
 		<meta property="og:title" content="Blog - importadora tatar">
 		<meta property="og:description" content="Blog con artículos relacionados a importadora tatar">
-		<meta property="og:url" content="https://importadoratatar.cl/blog">
+		<meta property="og:url" content="https://tiendasacuanjoche.com/blog">
 		<meta property="og:type" content="website">
 	@endsection
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: @if($web->imageblog) url('/assets/images/{{$web->imageblog}}'); @else url('/assets/theme/images/bg-02.jpg'); @endif">

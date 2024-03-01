@@ -26,7 +26,7 @@ class WebpayController extends Controller
         // Opción C: Configurar en la instancia del producto (en este ejemplo, WebpayPlus\Transaction)
         $transaction->configureForProduction('597049766599', '401147f9-5d58-4164-8b48-aef3a1a13f0f'); 
 
-        $createResponse = $transaction->create($code, $id, $amount, 'https://importadoratatar.cl/webpay/respuesta?payment_id='. $id);
+        $createResponse = $transaction->create($code, $id, $amount, 'https://tiendasacuanjoche.com/webpay/respuesta?payment_id='. $id);
         //dd($createResponse->getToken());
         $redirectUrl = $createResponse->getUrl() . '?token_ws=' . $createResponse->getToken();
         header('Location: '.$redirectUrl, true, 302);
@@ -34,12 +34,12 @@ class WebpayController extends Controller
     }
 
     public function webpay_respuesta_post(Request $request){
-        return redirect('https://importadoratatar.cl')->with('data', $request->all());
+        return redirect('https://tiendasacuanjoche.com')->with('data', $request->all());
         dd($request->all());
         // $tbk = $request->input('TBK_ORDEN_COMPRA');
         // if (!$tbk) {
         //     // Redirecciona al carrito 
-        //     return redirect('https://importadoratatar.cl/carrito');
+        //     return redirect('https://tiendasacuanjoche.com/carrito');
         // }
     }
     public function webpay_respuesta(Request $request){

@@ -12,27 +12,27 @@
 
 <meta property="og:title" content="{{$blog->title}}">
 <meta property="og:description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
-<meta property="og:url" content="https://importadoratatar.cl/blog/{{$blog->url}}">
-<meta property="og:image" content="https://importadoratatar.cl/assets/images/blogs/{{$blog->image}}">
+<meta property="og:url" content="https://tiendasacuanjoche.com/blog/{{$blog->url}}">
+<meta property="og:image" content="https://tiendasacuanjoche.com/assets/images/blogs/{{$blog->image}}">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@importadoratatar">
 <meta name="twitter:title" content="{{$blog->title}}">
 <meta name="twitter:description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
-<meta name="twitter:image" content="https://importadoratatar.cl/assets/images/blogs/{{$blog->image}}">
+<meta name="twitter:image" content="https://tiendasacuanjoche.com/assets/images/blogs/{{$blog->image}}">
 
 <meta property="og:title" content="{{$blog->title}}">
 <meta property="og:description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
-<meta property="og:url" content="https://importadoratatar.cl/blog/{{$blog->url}}">
-<meta property="og:image" content="https://importadoratatar.cl/assets/images/blogs/{{$blog->image}}">
+<meta property="og:url" content="https://tiendasacuanjoche.com/blog/{{$blog->url}}">
+<meta property="og:image" content="https://tiendasacuanjoche.com/assets/images/blogs/{{$blog->image}}">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@nombredeusuario">
 <meta name="twitter:title" content="{{$blog->title}}">
 <meta name="twitter:description" content="{{$blog->title}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($blog->price, 0, '.', ',')) }}">
-<meta name="twitter:image" content="https://importadoratatar.cl/assets/images/blogs/{{$blog->image}}">
+<meta name="twitter:image" content="https://tiendasacuanjoche.com/assets/images/blogs/{{$blog->image}}">
 @endsection
 
 @section('content')

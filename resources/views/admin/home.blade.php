@@ -308,7 +308,7 @@
 
                 // Si el tipo de usuario es 1, redirige a la URL de perfil xq no es admin
                 @if (auth()->user()->type_id == 1)
-                    window.location.href = 'https://importadoratatar.cl/admin/profile';
+                    window.location.href = 'https://tiendasacuanjoche.com/admin/profile';
                 @endif
 
 				//si borramos imagen exsistente para saber que exsistia y ya no

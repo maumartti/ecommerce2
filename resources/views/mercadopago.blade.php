@@ -16,9 +16,9 @@
     $preference->external_reference = $payment->code;
 
     $preference->back_urls = array(
-        "success" => "https://importadoratatar.cl/mercadopago/respuesta",
-        "failure" => "https://importadoratatar.cl/mercadopago/respuesta",
-        "pending" => "https://importadoratatar.cl/mercadopago/respuesta"
+        "success" => "https://tiendasacuanjoche.com/mercadopago/respuesta",
+        "failure" => "https://tiendasacuanjoche.com/mercadopago/respuesta",
+        "pending" => "https://tiendasacuanjoche.com/mercadopago/respuesta"
     );
     $preference->auto_return = "approved";
     $preference->save();

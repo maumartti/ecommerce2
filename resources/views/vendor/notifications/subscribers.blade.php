@@ -1,7 +1,7 @@
 @component('mail::message')
 
 <div style="text-align:center;padding-bottom:30px;">
-  <img src="https://importadoratatar.cl/assets/images/logoh.png" >
+  <img src="https://tiendasacuanjoche.com/assets/images/logoh.png" >
 </div>
 
 # {{ $message }}

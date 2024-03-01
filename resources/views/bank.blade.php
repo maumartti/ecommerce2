@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="size-209">
                                     <strong class="text-danger productId header-cart-subtotal mtext-110 cl2">
-                                    ventas@importadoratatar.cl
+                                    ventas@tiendasacuanjoche.com
                                     </strong>
                                 </div>
                             </div>

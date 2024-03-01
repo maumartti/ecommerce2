@@ -99,7 +99,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'ventas@importadoratatar.cl'),
+        'address' => env('MAIL_FROM_ADDRESS', 'ventas@tiendasacuanjoche.com'),
         'name' => env('MAIL_FROM_NAME', 'Importadora Tatar'),
     ],
 

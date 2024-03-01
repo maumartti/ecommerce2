@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->tinyInteger('sales_show')->length(1)->default(1);
             $table->tinyInteger('sales_edit')->length(1)->default(1);
-            $table->tinyInteger('sales_delete')->length(1)->default(1);purchases
+            $table->tinyInteger('sales_delete')->length(1)->default(1);
 
             $table->tinyInteger('shipping_show')->length(1)->default(1);
             $table->tinyInteger('shipping_edit')->length(1)->default(1);

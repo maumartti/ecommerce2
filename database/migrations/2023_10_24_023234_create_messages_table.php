@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('email',100);
-            $table->string('text',500);
+            $table->string('email', 100);
+            $table->string('text', 500);
             $table->timestamps();
+
+            // Agregar índices si es necesario
+            // $table->index('email');
         });
     }
 

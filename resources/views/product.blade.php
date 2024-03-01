@@ -11,27 +11,27 @@
 
 <meta property="og:title" content="{{$product->name}}">
 <meta property="og:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
-<meta property="og:url" content="https://importadoratatar.cl/item/{{$product->url}}">
-<meta property="og:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
+<meta property="og:url" content="https://tiendasacuanjoche.com/item/{{$product->url}}">
+<meta property="og:image" content="https://tiendasacuanjoche.com/assets/images/products/{{$product->image1}}">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@importadoratatar">
 <meta name="twitter:title" content="{{$product->name}}">
 <meta name="twitter:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
-<meta name="twitter:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
+<meta name="twitter:image" content="https://tiendasacuanjoche.com/assets/images/products/{{$product->image1}}">
 
 <meta property="og:title" content="{{$product->name}}">
 <meta property="og:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
-<meta property="og:url" content="https://importadoratatar.cl/item/{{$product->url}}">
-<meta property="og:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
+<meta property="og:url" content="https://tiendasacuanjoche.com/item/{{$product->url}}">
+<meta property="og:image" content="https://tiendasacuanjoche.com/assets/images/products/{{$product->image1}}">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@nombredeusuario">
 <meta name="twitter:title" content="{{$product->name}}">
 <meta name="twitter:description" content="{{$product->name}} - {{$category_name}} - precio: ${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}">
-<meta name="twitter:image" content="https://importadoratatar.cl/assets/images/products/{{$product->image1}}">
+<meta name="twitter:image" content="https://tiendasacuanjoche.com/assets/images/products/{{$product->image1}}">
 
 <style>
 @media (max-width: 576px) {

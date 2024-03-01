@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +28,9 @@ class WebController extends Controller
         $web = Web::find(1);
         $profile = \Dymantic\InstagramFeed\Profile::for('importadora_tatar');
         $feed = [];
-        $feed = $profile->refreshFeed(4);
-        $feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
-        //dd($feed);
+         //$feed = $profile->refreshFeed(4);
+        //$feed = \Dymantic\InstagramFeed\InstagramFeed::for('importadora_tatar');
+        //dd($profile);
         $products = Product::where('status', 1)->orderBy('created_at', 'desc')->with('category', 'subcategory')->get();
         $productsNew = Product::where('status', 1)->where('created_at', '>=', Carbon::now()->subDays(7))->with('category', 'subcategory')->get();
         $productsDescount = Product::where('status', 1)->whereNotNull('descount')->with('category', 'subcategory')->get();
