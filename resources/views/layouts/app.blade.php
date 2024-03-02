@@ -102,7 +102,7 @@
             <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
               <a class="navbar-brand w-100 mr-0" href="/" style="line-height: 25px;">
                 <div class="d-table m-auto">
-                  <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 45px;" src="/assets/images/logo1.png" alt="Shards Dashboard">
+                  <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 45px;" src="/assets/images/cropped-sacuanjoche-logo-1-100x100.png" alt="Shards Dashboard">
                   <span class="d-none d-md-inline ml-1 pt-2" style="vertical-align: middle;">Mi Tienda</span>
                 </div>
               </a>
@@ -339,7 +339,7 @@
         </main>
       </div>
     </div>
-    <div class="promo-popup animated">
+    <!-- <div class="promo-popup animated">
       <a href=#" class="pp-cta extra-action"></a>
       <div class="pp-intro-bar"> Necesitas Ayuda?
         <span class="close">
@@ -354,7 +354,7 @@
         <p>A premium & modern Bootstrap 4 admin dashboard template pack.</p>
         <a class="pp-cta extra-action bg-success" href="#">Whatsapp</a>
       </div>
-    </div>
+    </div> -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

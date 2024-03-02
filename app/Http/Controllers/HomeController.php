@@ -37,9 +37,15 @@ class HomeController extends Controller
         $authorizedEnvCount = Payment::where('status', 'AUTHORIZED ENVIADO')->count();
         // Calculate percentages
         $totalCount = $initialCount + $authorizedCount + $authorizedEnvCount;
-        $initialPercentage = ($initialCount / $totalCount) * 100;
-        $authorizedPercentage = ($authorizedCount / $totalCount) * 100;
-        $authorizedEnvPercentage = ($authorizedEnvCount / $totalCount) * 100;
+        if($totalCount > 0){
+            $initialPercentage = ($initialCount / $totalCount) * 100;
+            $authorizedPercentage = ($authorizedCount / $totalCount) * 100;
+            $authorizedEnvPercentage = ($authorizedEnvCount / $totalCount) * 100;
+        }else{
+            $initialPercentage = 0;
+            $authorizedPercentage = 0;
+            $authorizedEnvPercentage = 0;
+        }
         // Create $dataGraph array
         $dataGraph = [$initialPercentage, $authorizedPercentage, $authorizedEnvPercentage];
         //END

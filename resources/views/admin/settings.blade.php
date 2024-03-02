@@ -1402,9 +1402,9 @@
                                 <div class="slim"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="10:2"
+                                    data-ratio="19:8"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cambiar Imágen</p></p>"
-                                    data-size="330,60">
+                                    data-size="146,64">
                                     @if($web->imageLogo)
                                     <img src="/assets/images/{{$web->imageLogo}}" />
                                     @endif
