@@ -260,10 +260,10 @@
                             <div class="slim col-12 "
                                 data-button-edit-title="Editar"
                                 data-button-remove-title="Borrar"
-                                data-ratio="19:9"
+                                data-ratio="77:48.75"
                                 data-fetcher="/slim-cropper-uploading/server/fetch.php"
                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                                data-size="1920,930">
+                                data-size="770,480">
                                 <input type="file" id="imageRotor1" name="imageRotor1"/>
                                 @if($web->imageRotor1)
                                 <img src="/assets/images/{{$web->imageRotor1}}" />
@@ -505,9 +505,9 @@
                             <div class="slim col-12 mt-1"
                                 data-button-edit-title="Editar"
                                 data-button-remove-title="Borrar"
-                                data-ratio="19:9"
+                                data-ratio="77:48.75"
                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                                data-size="1920,930">
+                                data-size="770,480">
                                 <input type="file" id="imageRotor2" name="imageRotor2"/>
                                 @if($web->imageRotor2)
                                 <img src="/assets/images/{{$web->imageRotor2}}" />
@@ -749,9 +749,9 @@
                             <div class="slim col-12 mt-1"
                                 data-button-edit-title="Editar"
                                 data-button-remove-title="Borrar"
-                                data-ratio="19:9"
+                                data-ratio="77:48.75"
                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                                data-size="1920,930">
+                                data-size="770,480">
                                 <input type="file" id="imageRotor3" name="imageRotor3"/>
                                 @if($web->imageRotor3)
                                 <img src="/assets/images/{{$web->imageRotor3}}" />
@@ -993,9 +993,9 @@
                             <div class="slim col-12 mt-1"
                                 data-button-edit-title="Editar"
                                 data-button-remove-title="Borrar"
-                                data-ratio="19:9"
+                                data-ratio="77:48.75"
                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                                data-size="1920,930">
+                                data-size="770,480">
                                 <input type="file" id="imageRotor4" name="imageRotor4"/>
                                 @if($web->imageRotor4)
                                 <img src="/assets/images/{{$web->imageRotor4}}" />
@@ -1237,9 +1237,9 @@
                             <div class="slim col-12 mt-1"
                                 data-button-edit-title="Editar"
                                 data-button-remove-title="Borrar"
-                                data-ratio="19:9"
+                                data-ratio="77:48.75"
                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i></p>"
-                                data-size="1920,930">
+                                data-size="770,480">
                                 <input type="file" id="imageRotor5" name="imageRotor5"/>
                                 @if($web->imageRotor5)
                                 <img src="/assets/images/{{$web->imageRotor5}}" />
