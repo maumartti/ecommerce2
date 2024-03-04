@@ -55,15 +55,6 @@
         <ul class="nav-home5 js-menubar">
             <li class="level1 active dropdown">
                 <a href="#">Home</a>
-                <span class="icon-sub-menu"></span>
-                <ul class="menu-level1 js-open-menu">
-                    <li class="level2"><a href="Homepage-v1.html" title="">Home 1</a></li>
-                    <li class="level2"><a href="Homepage-v2.html" title="">Home 2</a></li>
-                    <li class="level2"><a href="Homepage-v3.html" title="">Home 3</a></li>
-                    <li class="level2"><a href="#" title="">Demo 4</a></li>
-                    <li class="level2"><a href="#" title="">Demo 5</a></li>
-                    <li class="level2"><a href="#" title="">Demo 6</a></li>
-                </ul>
             </li>
             <li class="level1 active dropdown"><a href="#">Shop</a>
                 <span class="icon-sub-menu"></span>
@@ -166,7 +157,7 @@
     </div>
 </div>
 <header id="header" class="header-v2">
-    <div class="topbar hidden-xs hidden-sm">
+    <div class="topbar hidden-xs hidden-sm" style="background: #f8f5b9;">
         <div class="container">
             <div class="row flex">
                 <div class="col-md-5 col-sm-12 col-xs-12">
@@ -261,7 +252,7 @@
             </div>
         </div>
     </div>
-    <div class="header-center pro-v1 hp1">
+    <div class="header-center pro-v1 hp1" style="background: #d4db32;">
         <div class="container">
             <!-- push-menu -->
             <a href="#" class="icon-pushmenu js-push-menu">
@@ -269,58 +260,21 @@
                 <div class="row flex align-items-center justify-content-between">
                     <div class="col-md-6 col-xs-12 col-sm-6 col2 flex justify-content-end">
                         <ul class="nav navbar-nav js-menubar hidden-xs hidden-sm">
-                            <li class="level1 active dropdown home-page-v1-st style-menu-home-1"><a class="menu-home-3 home-1-font" href="#">Home</a>
+                            <li class="level1 active dropdown home-page-v1-st style-menu-home-1"><a class="menu-home-3 home-1-font" href="#">Home</a></li>
+                            <li class="level1 dropdown hassub style-menu-home-1"><a class="menu-home-3 home-1-font" href="#">Categorías <span class="fa fa-chevron-down"></span></a>
                                 <span class="plus js-plus-icon"></span>
                                 <div class="menu-level-1 dropdown-menu style5">
                                     <ul class="level1">
                                         <li class="level2 col-6">
-                                            <a href="#">Home Pages</a>
+                                            <a href="#">Categorías</a>
                                             <ul class="menu-level-2">
-                                                <li class="level3"><a href="Homepage-v1.html" target="_blank" title="">Home page 1</a></li>
-                                                <li class="level3"><a href="Homepage-v2.html" target="_blank" title="">Home page 2</a></li>
-                                                <li class="level3"><a href="Homepage-v3.html" target="_blank" title="">Home page 3</a></li>
-                                                
-                                            </ul>
-                                        </li>
-                                        
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </li>
-                            <li class="level1 dropdown hassub style-menu-home-1"><a class="menu-home-3 home-1-font" href="#">Products <span class="fa fa-chevron-down"></span></a>
-                                <span class="plus js-plus-icon"></span>
-                                <div class="menu-level-1 dropdown-menu style4 style-menu-header-hp1 bgr-megamenu">
-                                    <ul class="level1">
-                                        
-                                        <li class="level2 col-4a menu-hd-home1">
-                                            <a href="#">Shop pages</a>
-                                            <ul class="menu-level-2">
-                                                <li class="level3"><a href="Shop-page-v1.html" target="_blank" title="">Shop Page 1</a></li>
-                                                <li class="level3"><a href="Shop-page-v2.html" target="_blank" title="">Shop Page 2</a></li>
-                                                <li class="level3"><a href="Shop-page-v3.html" target="_blank" title="">Shop Page 3</a></li>
-                                                <li class="level3"><a href="Shop-page-v4.html" target="_blank" title="">Shop Page 4</a></li>
-                                                <li class="level3"><a href="Shop-page-v5.html" target="_blank" title="">Shop Page 5</a></li>
-                                                <li class="level3"><a href="Shop-page-v6.html" target="_blank" title="">Shop Page 6</a></li>
-                                                <li class="level3"><a href="Shop-page-v7.html" target="_blank" title="">Shop Page 7</a></li>
-                                                <li class="level3"><a href="Shop-page-v8.html" target="_blank" title="">Shop Page 8</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="level2 col-4a menu-hd-home1">
-                                            <a href="#">Products</a>
-                                            <ul class="menu-level-2">
-                                                <li class="level3"><a href="Product-details-v1.html" target="_blank" title="">Product 1</a></li>
-                                                <li class="level3"><a href="Product-details-v2.html" target="_blank" title="">Product 2</a></li>
-                                                <li class="level3"><a href="Product-details-v3.html" target="_blank" title="">Product 3</a></li>
-                                                <li class="level3"><a href="Product-details-v4.html" target="_blank" title="">Product 4</a></li>
-                                                <li class="level3"><a href="Product-details-v5.html" target="_blank" title="">Product 5</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="level2 col-4a menu-hd-home1">
-                                            <a href="#">Other Pages</a>
-                                            <ul class="menu-level-2">
-                                                <li class="level3"><a href="Contact-Us.html" target="_blank" title="">Contact Us</a></li>
-                                                <li class="level3"><a href="Quickview.html" target="_blank" title="">Quick View</a></li>
-                                                <li class="level3"><a href="Popup-Newsletter.html" target="_blank" title="">Popup Newsletter</a></li>
+                                            @if (isset($categories))
+                                                @if ($categories)
+                                                    @foreach ($categories as $index => $category)
+                                                    <li class="level3"><a href="/categoria/{{$category->url}}" target="_blank" title="">{{$category->name}}</a></li> 
+                                                    @endforeach
+                                                @endif
+                                            @endif                                               
                                             </ul>
                                         </li>
                                     </ul>
@@ -329,66 +283,13 @@
                             </li>
 
                             <li class="level1 hassub dropdown style-menu-home-1">
-                                <a class="menu-home-3 home-1-font" href="#">Sale <span class="fa fa-chevron-down"></span></a>
-                                <div class="menu-level-1 dropdown-menu style3 dropdown-hp1">
-                                    <div class="row">
-                                        <div class="cate-item col-md-4 col-sm-12">
-                                            <div class="demo-img">
-                                                <a href="" class="effect-img3 plus-zoom">
-                                                    <img src="/assets/theme/images/img86.jpg" alt="" class="img-reponsive">
-                                                </a>
-                                            </div>
-                                            <div class="demo-text text-center">New Trending '18</div>
-                                        </div>
-                                        <div class="cate-item col-md-4 col-sm-12">
-                                            <div class="demo-img">
-                                                <a class="effect-img3 plus-zoom" href=""><img src="/assets/theme/images/img87.jpg" alt="" class="img-reponsive"></a>
-                                            </div>
-                                            <div class="demo-text text-center">New Lookbooks</div>
-                                        </div>
-                                        <div class="cate-item col-md-4 col-sm-12">
-                                            <div class="demo-img">
-                                                <a class="effect-img3 plus-zoom" href=""><img src="/assets/theme/images/img86.jpg" alt="" class="img-reponsive"></a>
-                                            </div>
-                                            <div class="demo-text text-center">Onsale</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="menu-home-3 home-1-font" href="#">Destacados</a>
+                            </li>
+                            <li class="level1 dropdown hassub style-menu-home-1" >
+                                <a class="menu-home-3 home-1-font" href="#">Blog</a>
                             </li>
                             <li class="level1 dropdown hassub style-menu-home-1">
-                                <a class="menu-home-3 home-1-font" href="#">Blogs</a>
-                                <span class="plus js-plus-icon"></span>
-                                <div class="menu-level-1 dropdown-menu style2 dropdown-hp1 blog-megamenu">
-                                    <ul class="level1">
-                                        <li class="level2 col-4">
-                                            <a href="">Blogs</a>
-                                            <ul class="menu-level-2">
-                                                <li class="level3"><a href="Blog-grid-v1.html" target="_blank" title="">Blog Grid 1</a></li>
-                                                <li class="level3"><a href="Blog-grid-v2.html" target="_blank" title="">Blog Grid 2</a></li>
-                                                <li class="level3"><a href="Blog-grid-v3.html" target="_blank" title="">Blog Grid 3</a></li>
-                                                <li class="level3"><a href="Blog-grid-v4.html" target="_blank" title="">Blog Grid 4</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </li>
-                            <li class="level1 dropdown hassub style-menu-home-1">
-                                <a class="menu-home-3 home-1-font" href="#">About Us</a>
-                                <span class="plus js-plus-icon"></span>
-                                <div class="menu-level-1 dropdown-menu style2 dropdown-hp1 about-megamenu">
-                                    <ul class="level1">
-                                        <li class="level2 col-4">
-                                            <a href="">About Us</a>
-                                            <ul class="menu-level-2">
-                                                <li class="level3"><a href="About-Us.html" target="_blank" title="">About Us 1</a></li>
-                                                <li class="level3"><a href="About-Us-v2.html" target="_blank" title="">About Us 2</a></li>
-                                                
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
+                                <a class="menu-home-3 home-1-font" href="#">Nosotros</a>
                             </li>
                         </ul>
                     </div>

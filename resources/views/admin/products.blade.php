@@ -210,9 +210,9 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="7:9"
+                                                data-ratio="1:1"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="1000,800"
+                                                data-size="450,450"
                                                 style="background:#e6e6e6">
                                                 <input type="file" name="image1" required/>
                                             </div>
@@ -223,9 +223,9 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="7:9"
+                                                data-ratio="1:1"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="1000,800">
+                                                data-size="450,450">
                                                 <input type="file" name="image2" />
                                             </div>
                                         </div>
@@ -235,9 +235,9 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="7:9"
+                                                data-ratio="1:1"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="1000,800">
+                                                data-size="450,450">
                                                 <input type="file" name="image3"/>
                                             </div>
                                         </div>
@@ -247,9 +247,9 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="7:9"
+                                                data-ratio="1:1"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="1000,800"
+                                                data-size="450,450"
                                                 style="background:#e6e6e6">
                                                 <input type="file" name="image4"/>
                                             </div>
@@ -260,9 +260,9 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="7:9"
+                                                data-ratio="1:1"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="1000,800"
+                                                data-size="450,450"
                                                 style="background:#e6e6e6">
                                                 <input type="file" name="image5"/>
                                             </div>
@@ -273,9 +273,9 @@
                                             <div class="slim"
                                                 data-button-edit-title="Editar"
                                                 data-button-remove-title="Borrar"
-                                                data-ratio="7:9"
+                                                data-ratio="1:1"
                                                 data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                                data-size="1000,800">
+                                                data-size="450,450">
                                                 <input type="file" name="image6"/>
                                             </div>
                                         </div>
@@ -489,9 +489,9 @@
                                 <div class="slim" id="slim1" 
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="7:9"
+                                    data-ratio="1:1"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="1000,800"
+                                    data-size="450,450"
                                     style="background:#e6e6e6">
                                     <input type="file" name="image1" equired/>
                                 </div>
@@ -502,9 +502,9 @@
                                 <div class="slim" id="slim2"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="7:9"
+                                    data-ratio="1:1"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="1000,800">
+                                    data-size="450,450">
                                     <input type="file" name="image2" />
                                 </div>
                             </div>
@@ -514,9 +514,9 @@
                                 <div class="slim" id="slim3"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="7:9"
+                                    data-ratio="1:1"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="1000,800">
+                                    data-size="450,450">
                                     <input type="file" name="image3"/>
                                 </div>
                             </div>
@@ -526,9 +526,9 @@
                                 <div class="slim" id="slim4"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="7:9"
+                                    data-ratio="1:1"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="1000,800"
+                                    data-size="450,450"
                                     style="background:#e6e6e6">
                                     <input type="file" name="image4"/>
                                 </div>
@@ -539,9 +539,9 @@
                                 <div class="slim" id="slim5"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="7:9"
+                                    data-ratio="1:1"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="1000,800"
+                                    data-size="450,450"
                                     style="background:#e6e6e6">
                                     <input type="file" name="image5"/>
                                 </div>
@@ -552,9 +552,9 @@
                                 <div class="slim" id="slim6"
                                     data-button-edit-title="Editar"
                                     data-button-remove-title="Borrar"
-                                    data-ratio="7:9"
+                                    data-ratio="1:1"
                                     data-label="<p><i class='material-icons touch' style='font-size:40px;'>touch_app</i><p>Cargar Imágen</p></p>"
-                                    data-size="1000,800">
+                                    data-size="450,450">
                                     <input type="file" name="image6"/>
                                 </div>
                             </div>

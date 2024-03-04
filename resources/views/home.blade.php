@@ -62,13 +62,13 @@
         <div class="container">
             <div class="product-related hp1 featured-home1">
                 <div class="title-pro-v1 hp1">
-                    <h3 class="related-title text-center hp1">Featured</h3>
+                    <h3 class="related-title text-center hp1">Productos</h3>
                     <p><a href="" class="view">View All Products<i class="fa fa-angle-right" aria-hidden="true"></i></a></p>
                 </div>
                 <div class="owl-carousel owl-theme owl-cate v2 js-owl-cate-feat owl-feat-hp1">
                     <div class="product-item pro-v1 home1 ">
                         <div class="product-img product-img-home3">
-                            <a href=""><img src="/assets/theme/images/img61.jpg" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
+                            <a href=""><img src="/assets/theme/images/p1.png" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
                             <div class="sale-img shop1 shop2">
                                 <div class="before shop1 v2 pro-v1 hp1 featured-before before-home1 bf-featured-hp1"></div>
                             </div>
@@ -279,7 +279,7 @@
                 <div class="col-md-8 col-sm-12 col-xs-12">
                     <div class="product-related best">
                         <div class="title-pro-v1 hp1">
-                            <h3 class="related-title text-center hp1 best">Bestseller</h3>
+                            <h3 class="related-title text-center hp1 best">Destacados</h3>
                             <p><a href="" class="view">View All Products<i class="fa fa-angle-right" aria-hidden="true"></i></a></p>
                         </div>
                         <div class="owl-carousel owl-theme owl-cate v2 js-owl-cate-bestseller owl-best-hp1">
@@ -395,19 +395,19 @@
                         </div>
                         <div class="owl-carousel owl-theme">
                             <div class="item best">
-                                <a href=""><img class="img-st1" src="/assets/theme/images/img90.png" alt=""></a>
+                                <a href=""><img class="img-st1" src="/assets/theme/images/testimonial3.png" alt=""></a>
                                 <a href=""><h4>JoAnne Theodore<br><em>Graphic Design</em></h4></a>
                                 <img class="img-st" src="/assets/theme/images/img91.png" alt="">
                                 <p><em>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</em></p>
                             </div>
                             <div class="item best">
-                                <a href=""><img class="img-st1" src="/assets/theme/images/img90.png" alt=""></a>
+                                <a href=""><img class="img-st1" src="/assets/theme/images/testimonial1.png" alt=""></a>
                                 <a href=""><h4>JoAnne Theodore<br><em>Graphic Design</em></h4></a>
                                 <img class="img-st" src="/assets/theme/images/img91.png" alt="">
                                 <p><em>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</em></p>
                             </div>
                             <div class="item best">
-                                <a href=""><img class="img-st1" src="/assets/theme/images/img90.png" alt=""></a>
+                                <a href=""><img class="img-st1" src="/assets/theme/images/testimonial2.png" alt=""></a>
                                 <a href=""><h4>JoAnne Theodore<br><em>Graphic Design</em></h4></a>
                                 <img class="img-st" src="/assets/theme/images/img91.png" alt="">
                                 <p><em>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</em></p>
@@ -423,7 +423,7 @@
         <div class="container">
             <div class="product-related onsale">
                 <div class="title-pro-v1">
-                    <h3 class="related-title text-center onsale-home1">On Sale !</h3>
+                    <h3 class="related-title text-center onsale-home1">Descuentos</h3>
                     <p><a href="" class="view
                         ">View All Products<i class="fa fa-angle-right" aria-hidden="true"></i></a></p>
                     </div>
@@ -753,7 +753,7 @@
                     </div>
                     <div class="product-item pro-v1 news newsletter-hp1">
                         <div class="product-img  news news-home1">
-                            <a class="hover-images" href=""><img src="/assets/theme/images/img88.jpg" alt="" class="img-responsive"></a>
+                            <a class="hover-images" href=""><img src="/assets/theme/images/newsletter.png" alt="" class="img-responsive"></a>
                             <div class="product-button-group news">
                                 <a href=""><img src="/assets/theme/images/img89.png" alt=""></a>
                             </div>
