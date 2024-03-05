@@ -24,11 +24,11 @@
                         <div class="owl-carousel owl-theme owl-cate v2 js-owl-cate-hp1">
                             <div class="shop-now hp1">
                                 <img src="/assets/images/{{$web->imageRotor1}}" alt="">
-                                <h4>Kids Winter   <span>Jacket,<br>
-                                Coat & Sweater</span></h4>
-                                <p style="margin-top: 15px;">It is a long established fact that a reader will be distracted by the<br>
-                                readable content of a page when looking at its layout</p>
-                                <a href="" style="margin-top: 25px;">Shop now</a>
+                                <h4>Tu tienda   <span>Online,<br>
+                                Ropa & Tecnología</span></h4>
+                                <p style="margin-top: 15px;">Forma parte de nuesto mercado de artículos en ofertas de todas<br> las categorías procedentes 
+                                de múltiples tiendas asociadas</p>
+                                <a href="" style="margin-top: 25px;">Ver Más</a>
                             </div>
                             @if($web->imageRotor2)<img src="/assets/images/{{$web->imageRotor2}}" alt="">@endif
                             @if($web->imageRotor3)<img src="/assets/images/{{$web->imageRotor3}}" alt="">@endif
@@ -40,18 +40,18 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="backpack img81">
                         <a href="" class="hover-images"><img src="/assets/theme/images/img81.png" alt=""></a>
-                        <div class="pos">
+                        <!-- <div class="pos">
                             <p>New Styles</p>
                             <h4 class="st-font">Backpack</h4>
                             <span>2018</span>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="backpack">
                         <a href="" class="hover-images"><img src="/assets/theme/images/img82.png" alt=""></a>
-                        <div class="pos-st2">
+                        <!-- <div class="pos-st2">
                             <h4>Sale <span>50%</span> off</h4>
                             <p>This weekend only</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -66,19 +66,20 @@
                     <p><a href="" class="view">View All Products<i class="fa fa-angle-right" aria-hidden="true"></i></a></p>
                 </div>
                 <div class="owl-carousel owl-theme owl-cate v2 js-owl-cate-feat owl-feat-hp1">
+                    @if (isset($products))
+                    @if ($products)
+                    @foreach ($products as $product)
+                    @if ($product->stock > 0)
                     <div class="product-item pro-v1 home1 ">
                         <div class="product-img product-img-home3">
-                            <a href=""><img src="/assets/theme/images/p1.png" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
+                            <a href=""><img src="/assets/images/products/{{$product->image1}}" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
                             <div class="sale-img shop1 shop2">
                                 <div class="before shop1 v2 pro-v1 hp1 featured-before before-home1 bf-featured-hp1"></div>
                             </div>
-                            <div class="ribbon zoa-hot shop-v1 hp1 featured-sales"><span>New</span></div>
+                            @if($product->descount)<div class="ribbon zoa-hot shop-v1 v2 hp1 featured-sales"><span>{{$product->descount}}%</span></div>@endif
                             <div class="product-button-group hp1">
                                 <a href="#" class="zoa-btn zoa-quickview">
                                     <span class="fa fa-shopping-bag"></span>
-                                </a>
-                                <a href="#" class="zoa-btn zoa-wishlist">
-                                    <span class="fa fa-balance-scale"></span>
                                 </a>
                                 <a href="#" class="zoa-btn zoa-addcart">
                                     <span class="fa fa-heart "></span>
@@ -86,7 +87,7 @@
                             </div>
                         </div>
                         <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                            <p><a href="#">Animal Print Sweatshirt</a></p>
+                            <p><a href="/item/{{$product->url}}">{{$product->name}}</a></p>
                             <div class="star-icons">
                                 <ul>
                                     <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -98,12 +99,18 @@
                                 </ul>
                             </div>
                             <div class="review-hp1">
-                                <p>$36.00</p>
-                                <del>$42.00</del>
+                                <p>C${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</p>
+                                @if($product->price_old != 0)
+                                <del>C${{ str_replace(',', '.', number_format($product->price_old, 0, '.', ',')) }}</del>
+                                @endif
                             </div>
                         </div>
                     </div>
-                    <div class="product-item pro-v1 home1">
+                    @endif
+                    @endforeach
+                    @endif
+                    @endif
+                    <!-- <div class="product-item pro-v1 home1">
                         <div class="product-img product-img-home3">
                             <a href=""><img src="/assets/theme/images/img50.jpg" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
                             <div class="sale-img shop1 shop2 st-v2">
@@ -135,122 +142,12 @@
                                 </ul>
                             </div>
                             <div class="review-hp1">
-                                <p>$36.00</p>
+                                <p>$26.00</p>
                                 <del>$42.00</del>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-item pro-v1 home1">
-                        <div class="product-img product-img-home3">
-                            <div class="style-opacity">
-                                <div class="opacity-home2">
-                                    <a href=""><img src="/assets/theme/images/img51.jpg" alt="" class="img-responsive"></a>
-                                </div>
-                                <div class="out-of-stock">
-                                    <h4>out of stock!</h4>
-                                    <em><span>see</span>similar products</em>
-                                </div>
-                            </div>
-                            <div class="product-button-group hp1">
-                                <a href="#" class="zoa-btn zoa-quickview">
-                                    <span class="fa fa-shopping-bag"></span>
-                                </a>
-                                <a href="#" class="zoa-btn zoa-wishlist">
-                                    <span class="fa fa-balance-scale"></span>
-                                </a>
-                                <a href="#" class="zoa-btn zoa-addcart">
-                                    <span class="fa fa-heart "></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                            <p><a href="#">Animal Print Sweatshirt</a></p>
-                            <div class="star-icons">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li class="review"><a class="view" href=""><em>6 Review(s)</em></a></li>
-                                </ul>
-                            </div>
-                            <div class="review-hp1">
-                                <p>$36.00</p>
-                                <del>$42.00</del>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item pro-v1 home1">
-                        <div class="product-img product-img-home3">
-                            <a href=""><img src="/assets/theme/images/img63.jpg" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
-                            <div class="product-button-group hp1">
-                                <a href="#" class="zoa-btn zoa-quickview">
-                                    <span class="fa fa-shopping-bag"></span>
-                                </a>
-                                <a href="#" class="zoa-btn zoa-wishlist">
-                                    <span class="fa fa-balance-scale"></span>
-                                </a>
-                                <a href="#" class="zoa-btn zoa-addcart">
-                                    <span class="fa fa-heart "></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                            <p><a href="#">Animal Print Sweatshirt</a></p>
-                            <div class="star-icons">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li class="review"><a class="view" href=""><em>6 Review(s)</em></a></li>
-                                </ul>
-                            </div>
-                            <div class="review-hp1">
-                                <p>$36.00</p>
-                                <del>$42.00</del>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item pro-v1 home1">
-                        <div class="product-img product-img-home3">
-                            <a href=""><img src="/assets/theme/images/img61.jpg" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
-                            <div class="sale-img shop1 shop2">
-                                <div class="before shop1 v2 pro-v1 hp1 featured-before before-home1"></div>
-                            </div>
-                            <div class="ribbon zoa-hot shop-v1 hp1 featured-sales"><span>New</span></div>
-                            <div class="product-button-group hp1">
-                                <a href="#" class="zoa-btn zoa-quickview">
-                                    <span class="fa fa-shopping-bag"></span>
-                                </a>
-                                <a href="#" class="zoa-btn zoa-wishlist">
-                                    <span class="fa fa-balance-scale"></span>
-                                </a>
-                                <a href="#" class="zoa-btn zoa-addcart">
-                                    <span class="fa fa-heart "></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                            <p><a href="#">Animal Print Sweatshirt</a></p>
-                            <div class="star-icons">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li class="review"><a class="view" href=""><em>6 Review(s)</em></a></li>
-                                </ul>
-                            </div>
-                            <div class="review-hp1">
-                                <p>$36.00</p>
-                                <del>$42.00</del>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
+                    
                 </div>
             </div>
         </div>
@@ -283,108 +180,46 @@
                             <p><a href="" class="view">View All Products<i class="fa fa-angle-right" aria-hidden="true"></i></a></p>
                         </div>
                         <div class="owl-carousel owl-theme owl-cate v2 js-owl-cate-bestseller owl-best-hp1">
-                            <div class="item">
-                                <div class="best-seller">
-                                    <div class="img-bestseller">
-                                        <a href="" class=" hover-img-home1"><img src="/assets/theme/images/img50.jpg" alt=""></a>
-                                        <div class="sale-img shop1 shop2 st-v2">
-                                            <div class="before shop1 v2 pro-v1 st-v2 hp1 best"></div>
+                            @if (isset($productsPromo) && $productsPromo)
+                                @foreach ($productsPromo as $index => $product)
+                                    @if ($index % 2 == 0)
+                                        <div class="item">
+                                    @endif
+
+                                    @if ($product->stock > 0)
+                                        <div class="best-seller">
+                                            <div class="img-bestseller">
+                                                <a href="" class="hover-img-home1"><img src="/assets/images/products/{{$product->image1}}" alt=""></a>
+                                                <div class="sale-img shop1 shop2 st-v2">
+                                                    <div class="before shop1 v2 pro-v1 st-v2 hp1 best"></div>
+                                                </div>
+                                                <div class="ribbon zoa-hot shop-v1 v2 hp1 best-seller"><span>-25%</span></div>
+                                            </div>
+                                            <div class="para-best-home1">
+                                                <h4><a href="">{{$product->name}}</a></h4>
+                                                <ul>
+                                                    <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                    <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                    <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                    <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                    <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                    <li class="span"><em>6 Review(s)</em></li>
+                                                </ul>
+                                                <p>C${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</p>
+                                                @if($product->price_old != 0)
+                                                <del>C${{ str_replace(',', '.', number_format($product->price_old, 0, '.', ',')) }}</del><br>
+                                                @endif
+                                                <a href=""><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                                <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                            </div>
                                         </div>
-                                        <div class="ribbon zoa-hot shop-v1 v2 hp1 best-seller"><span>-25%</span></div>
-                                    </div>
-                                    <div class="para-best-home1">
-                                        <h4><a href="">Animal Print Sweatshirt</a></h4>
-                                        <ul>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li class="span"><em>6 Review(s)</em></li>
-                                        </ul>
-                                        <p>$36.00</p>
-                                        <del>$42.00</del><br>
-                                        <a href=""><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-balance-scale" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <div class="best-seller">
-                                    <div class="img-bestseller">
-                                        <a href="" class=" hover-img-home1"><img class="st-img-best" src="/assets/theme/images/img99.jpg" alt=""></a>
-                                        <div class="before shop1 v2 pro-v1 best"></div>
-                                        <div class="ribbon zoa-hot shop-v1 v2 hp1 best-seller"><span>-25%</span></div>
-                                    </div>
-                                    <div class="para-best-home1">
-                                        <h4><a href="">Animal Print Sweatshirt</a></h4>
-                                        <ul>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li class="span"><em>6 Review(s)</em></li>
-                                        </ul>
-                                        <p>$36.00</p>
-                                        <del>$42.00</del><br>
-                                        <a href=""><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-balance-scale" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="best-seller">
-                                    <div class="img-bestseller">
-                                        <a href="" class=" hover-img-home1"><img src="/assets/theme/images/img52.jpg" alt=""></a>
-                                        <div class="sale-img shop1 shop2 st-v2">
-                                            <div class="before shop1 v2 pro-v1 st-v2 hp1 best"></div>
-                                        </div>
-                                        <div class="ribbon zoa-hot shop-v1 v2 hp1 best-seller st-color-home1"><span>-25%</span></div>
-                                    </div>
-                                    <div class="para-best-home1">
-                                        <h4><a href="">Contrasting Dungarees With Craces</a></h4>
-                                        <ul>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li class="span"><em>6 Review(s)</em></li>
-                                        </ul>
-                                        <p>$36.00</p>
-                                        <del>$42.00</del><br>
-                                        <a href=""><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-balance-scale" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <div class="best-seller">
-                                    <div class="img-bestseller">
-                                        <a href="" class=" hover-img-home1"><img src="/assets/theme/images/img59.jpg" alt=""></a>
-                                        <div class="sale-img shop1 shop2 st-v2">
-                                            <div class="before shop1 v2 pro-v1 st-v2 hp1 best"></div>
-                                        </div>
-                                        <div class="ribbon zoa-hot shop-v1 v2 hp1 best-seller"><span>-25%</span></div>
-                                    </div>
-                                    <div class="para-best-home1">
-                                        <h4><a href="">Animal Print Sweatshirt</a></h4>
-                                        <ul>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                            <li class="span"><em>6 Review(s)</em></li>
-                                        </ul>
-                                        <p>$36.00</p>
-                                        <del>$42.00</del><br>
-                                        <a href=""><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-balance-scale" aria-hidden="true"></i></a>
-                                        <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                                    @endif
+
+                                    @if (($index + 1) % 2 == 0 || $index == count($productsPromo) - 1)
+                                        </div> <!-- Cierre de la clase "item" después de dos productos o al llegar al último producto -->
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -428,19 +263,20 @@
                         ">View All Products<i class="fa fa-angle-right" aria-hidden="true"></i></a></p>
                     </div>
                     <div class="owl-carousel owl-theme owl-cate v2 js-owl-cate-sales-hp1 owl-onsale">
+                        @if (isset($products))
+                        @if ($products)
+                        @foreach ($products as $product)
+                        @if ($product->stock > 0 && $product->descount)
                         <div class="product-item pro-v1 home1">
                             <div class="product-img product-img-home3">
-                                <a  href=""><img src="/assets/theme/images/img83.jpg" alt="" class="img-responsive"></a>
+                                <a  href=""><img src="/assets/images/products/{{$product->image1}}" alt="" class="img-responsive"></a>
                                 <div class="sale-img shop1 shop2 st-v2">
                                     <div class="before shop1 v2 pro-v1 st-v2 hp1 before-home1 bf-onsales-hp1"></div>
                                 </div>
-                                <div class="ribbon zoa-hot shop-v1 v2 hp1"><span>-25%</span></div>
+                                <div class="ribbon zoa-hot shop-v1 v2 hp1"><span>{{$product->descount}}%</span></div>
                                 <div class="product-button-group hp1 onsale-home1">
                                     <a href="#" class="zoa-btn zoa-quickview stwh-onsales-home1">
                                         <span class="fa fa-shopping-bag"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-wishlist stwh-onsales-home1">
-                                        <span class="fa fa-balance-scale"></span>
                                     </a>
                                     <a href="#" class="zoa-btn zoa-addcart stwh-onsales-home1">
                                         <span class="fa fa-heart "></span>
@@ -460,196 +296,17 @@
                                     </ul>
                                 </div>
                                 <div class="review-hp1">
-                                    <p>$36.00</p>
-                                    <del>$42.00</del>
+                                    <p>C${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</p>
+                                    @if($product->price_old != 0)
+                                    <del>C${{ str_replace(',', '.', number_format($product->price_old, 0, '.', ',')) }}</del>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <div class="product-item pro-v1 home1">
-                            <div class="product-img product-img-home3">
-                                <a  href=""><img src="/assets/theme/images/img100.jpg" alt="" class="img-responsive"></a>
-                                <div class="sale-img shop1 shop2 st-v2">
-                                    <div class="before shop1 v2 pro-v1 st-v2 hp1 before-home1 bf-onsales-hp1"></div>
-                                </div>
-                                <div class="ribbon zoa-hot shop-v1 v2 hp1"><span>-25%</span></div>
-                                <div class="product-button-group hp1 onsale-home1">
-                                    <a href="#" class="zoa-btn zoa-quickview stwh-onsales-home1">
-                                        <span class="fa fa-shopping-bag"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-wishlist stwh-onsales-home1">
-                                        <span class="fa fa-balance-scale"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-addcart stwh-onsales-home1">
-                                        <span class="fa fa-heart "></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                                <p><a href="#">Fabric Plimsolls With Bow<br> Detail</a></p>
-                                <div class="star-icons">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li class="review"><a class="view" href=""><em>6 Review(s)</em></a></li>
-                                    </ul>
-                                </div>
-                                <div class="review-hp1">
-                                    <p>$36.00</p>
-                                    <del>$42.00</del>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item pro-v1 home1">
-                            <div class="product-img product-img-home3">
-                                <a  href=""><img src="/assets/theme/images/img46.jpg" alt="" class="img-responsive"></a>
-                                <div class="sale-img shop1 shop2 st-v2">
-                                    <div class="before shop1 v2 pro-v1 st-v2 hp1 before-home1 bf-onsales-hp1"></div>
-                                </div>
-                                <div class="ribbon zoa-hot shop-v1 v2 hp1 before-home1"><span>-25%</span></div>
-                                <div class="product-button-group hp1 onsale-home1">
-                                    <a href="#" class="zoa-btn zoa-quickview stwh-onsales-home1">
-                                        <span class="fa fa-shopping-bag"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-wishlist stwh-onsales-home1">
-                                        <span class="fa fa-balance-scale"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-addcart stwh-onsales-home1">
-                                        <span class="fa fa-heart "></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                                <p><a href="#">Animal Print Sweatshirt</a></p>
-                                <div class="star-icons">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li class="review"><a class="view" href=""><em>6 Review(s)</em></a></li>
-                                    </ul>
-                                </div>
-                                <div class="review-hp1">
-                                    <p>$36.00</p>
-                                    <del>$42.00</del>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item pro-v1 home1">
-                            <div class="product-img product-img-home3">
-                                <a  href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
-                                <div class="sale-img shop1 shop2 st-v2">
-                                    <div class="before shop1 v2 pro-v1 st-v2 hp1 before-home1 bf-onsales-hp1"></div>
-                                </div>
-                                <div class="ribbon zoa-hot shop-v1 v2 hp1 "><span>-25%</span></div>
-                                <div class="product-button-group hp1 onsale-home1">
-                                    <a href="#" class="zoa-btn zoa-quickview stwh-onsales-home1">
-                                        <span class="fa fa-shopping-bag"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-wishlist stwh-onsales-home1">
-                                        <span class="fa fa-balance-scale"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-addcart stwh-onsales-home1">
-                                        <span class="fa fa-heart "></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                                <p><a href="#">Animal Print Sweatshirt</a></p>
-                                <div class="star-icons">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li class="review"><a class="view" href=""><em>6 Review(s)</em></a></li>
-                                    </ul>
-                                </div>
-                                <div class="review-hp1">
-                                    <p>$36.00</p>
-                                    <del>$42.00</del>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item pro-v1 home1">
-                            <div class="product-img product-img-home3">
-                                <a  href=""><img src="/assets/theme/images/img63.jpg" alt="" class="img-responsive"></a>
-                                <div class="sale-img shop1 shop2 st-v2">
-                                    <div class="before shop1 v2 pro-v1 st-v2 hp1 before-home1 bf-onsales-hp1"></div>
-                                </div>
-                                <div class="ribbon zoa-hot shop-v1 v2 hp1"><span>-25%</span></div>
-                                <div class="product-button-group hp1 onsale-home1">
-                                    <a href="#" class="zoa-btn zoa-quickview stwh-onsales-home1">
-                                        <span class="fa fa-shopping-bag"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-wishlist stwh-onsales-home1">
-                                        <span class="fa fa-balance-scale"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-addcart stwh-onsales-home1">
-                                        <span class="fa fa-heart "></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                                <p><a href="#">Animal Print Sweatshirt</a></p>
-                                <div class="star-icons">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li class="review"><a class="view" href=""><em>6 Review(s)</em></a></li>
-                                    </ul>
-                                </div>
-                                <div class="review-hp1">
-                                    <p>$36.00</p>
-                                    <del>$42.00</del>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item pro-v1 home1">
-                            <div class="product-img product-img-home3">
-                                <a  href=""><img src="/assets/theme/images/img60.jpg" alt="" class="img-responsive"></a>
-                                <div class="sale-img shop1 shop2 st-v2">
-                                    <div class="before shop1 v2 pro-v1 st-v2 hp1 before-home1 bf-onsales-hp1"></div>
-                                </div>
-                                <div class="ribbon zoa-hot shop-v1 v2 hp1"><span>-25%</span></div>
-                                <div class="product-button-group hp1 onsale-home1">
-                                    <a href="#" class="zoa-btn zoa-quickview stwh-onsales-home1">
-                                        <span class="fa fa-shopping-bag"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-wishlist stwh-onsales-home1">
-                                        <span class="fa fa-balance-scale"></span>
-                                    </a>
-                                    <a href="#" class="zoa-btn zoa-addcart stwh-onsales-home1">
-                                        <span class="fa fa-heart "></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="sale-para2 shop-1 pro-v1 hp2-para home1">
-                                <p><a href="#">Animal Print Sweatshirt</a></p>
-                                <div class="star-icons">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li class="review"><a class="view" href=""><em>6 Review(s)</em></a></li>
-                                    </ul>
-                                </div>
-                                <div class="review-hp1">
-                                    <p>$36.00</p>
-                                    <del>$42.00</del>
-                                </div>
-                            </div>
-                        </div>
+                        @endif
+                        @endforeach
+                        @endif
+                        @endif
                     </div>
                 </div>
             </div>
@@ -663,28 +320,28 @@
                 <div class="owl-carousel owl-theme owl-cate v2 js-owl-cate-blogs">
                     <div class="blog-v3 blog-home1">
                         <div class="img-blog-v2 v3 home-1 img-blog-home1">
-                            <a href=""><img class="img-home-1" src="/assets/theme/images/img86.jpg" alt="img"></a>
+                            <a href=""><img class="img-home-1" src="/assets/theme/images/blog1.png" alt="img"></a>
                         </div>
                         <div class="img-title2 v2 v3">
                             <div class="kid-all v2 v3 hp1">
                                 <div class="para blog-v2 v3 para-blog-hp3">
                                     <h4>
-                                        <a href="#">Our Kindergarten Anniversarty</a>
+                                        <a href="#">Formar parte del e-commerce 2024</a>
                                     </h4>
                                     <div class="img-title2 blog-v2 v3 hp1">
-                                        <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a>
-                                        <p><em>Pixel Creative</em></p>
+                                        <!-- <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a> -->
+                                        <p><em>Marcos domero</em></p>
                                     </div>
                                     <div class="img-title3 v2 v3 hp1">
                                         <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
                                         <p><em>Jan 30, 2018</em></p>
                                     </div>
                                     <div class="para2 v2 v3 hp1">
-                                        <p>The perfect class for your child with the best staff and best teachers...</p>
+                                        <p>El e-commerce a llegado para quedarse y muchos están accediendo a vender...</p>
                                     </div>
                                     <div class="icon v2 v3 hp1">
                                         <a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a>
-                                        <p><em>123 Comments</em></p>
+                                        <p><em>123 Comentarios</em></p>
                                     </div>
                                     <div class="icon v2 v3 hp1">
                                         <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
@@ -699,28 +356,28 @@
                     </div>
                     <div class="blog-v3 blog-home1">
                         <div class="img-blog-v2 v3 home1 img-blog-home1">
-                            <a href=""><img class="img-home-1" src="/assets/theme/images/img87.jpg" alt="img"></a>
+                            <a href=""><img class="img-home-1" src="/assets/theme/images/blog2.png" alt="img"></a>
                         </div>
                         <div class="img-title2 v2 v3">
                             <div class="kid-all v2 v3 hp1">
                                 <div class="para blog-v2 v3 para-blog-hp3">
                                     <h4>
-                                        <a href="#">Our Kindergarten Anniversarty</a>
+                                        <a href="#">El boom de las tiendas online</a>
                                     </h4>
                                     <div class="img-title2 blog-v2 v3 hp1">
-                                        <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a>
-                                        <p><em>Pixel Creative</em></p>
+                                        <!-- <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a> -->
+                                        <p><em>María Ortega</em></p>
                                     </div>
                                     <div class="img-title3 v2 v3 hp1">
                                         <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
                                         <p><em>Jan 30, 2018</em></p>
                                     </div>
                                     <div class="para2 v2 v3 hp1 hp1">
-                                        <p>The perfect class for your child with the best staff and best teachers...</p>
+                                        <p>Como ha inpactado las nuevas tecnologías a los emprendedores...</p>
                                     </div>
                                     <div class="icon v2 v3 hp1">
                                         <a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a>
-                                        <p><em>123 Comments</em></p>
+                                        <p><em>123 Comentarios</em></p>
                                     </div>
                                     <div class="icon v2 v3 hp1">
                                         <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
@@ -738,12 +395,11 @@
         </div>
         <!-- Newsletter -->
         <div class="newsletter hp1">
-            <h4>newsletter</h4>
+            <h4>Suscripción</h4>
             <div class="background-home1">
                 <div class="container">
                     <div class="newsletter-2">
-                        <p><em>Subscribe to the Miukid mailing list to receive updates on new arrivals, special offers<br>
-                        and other discount information.</em></p>
+                        <p><em>Suscríbase a la lista de correo de Miukid para recibir actualizaciones sobre novedades y ofertas especiales.y otra información sobre descuentos.</em></p>
                         <form class="form_newsletter hp1" action="#" method="post">
                             <input type="email" value="" placeholder="Enter your emaill" name="EMAIL" id="mail" class="newsletter-input form-control">
                             <button id="subscribe" class="button_mini zoa-btn button bt-form-home1" type="submit">
@@ -849,7 +505,7 @@
                         </h4>
 
                         <span id="modal-price" class="mtext-106 cl2">
-                            $0
+                            C$0
                         </span>
 
                         <p id="modal-category" class="stext-102 cl3 p-t-30">

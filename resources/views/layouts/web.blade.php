@@ -413,7 +413,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-12 fix ">
                         <div class="ft-center">
                             <div class="information">
-                                <h4>Information</h4>
+                                <h4>Información</h4>
                                 <div class="border2"></div>
                                 <a href="#">About Us</a>
                                 <br>
@@ -427,7 +427,7 @@
                                 <br>
                             </div>
                             <div class="information center">
-                                <h4>Service</h4>
+                                <h4>Servicios</h4>
                                 <div class="border2"></div>
                                 <a href="#">Online support</a>
                                 <br>
@@ -450,18 +450,18 @@
                         </div>
                         <div class="img-ul img-ft-st">
                             <ul>
-                                <li><a href="#"><img src="/assets/theme/images/img18.jpg" alt="img"></a></li>
-                                <li><a href="#"><img src="/assets/theme/images/img19.jpg" alt="img"></a></li>
-                                <li><a href="#"><img src="/assets/theme/images/img20.jpg" alt="img"></a></li>
-                                <li><a href="#"><img src="/assets/theme/images/img21.jpg" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/insta1.png" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/insta2.png" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/insta3.png" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/insta4.png" alt="img"></a></li>
                             </ul>
                         </div>
                         <div class="img-ul img-ft-st">
                             <ul>
-                                <li><a href="#"><img src="/assets/theme/images/img22.jpg" alt="img"></a></li>
-                                <li><a href="#"><img src="/assets/theme/images/img23.jpg" alt="img"></a></li>
-                                <li><a href="#"><img src="/assets/theme/images/img24.jpg" alt="img"></a></li>
-                                <li><a href="#"><img src="/assets/theme/images/img25.jpg" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/insta5.png" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/insta6.png" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/insta7.png" alt="img"></a></li>
+                                <li><a href="#"><img src="/assets/theme/images/insta8.png" alt="img"></a></li>
                             </ul>
                         </div>
                         <div class="menu-ft">

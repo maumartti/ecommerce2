@@ -32,7 +32,9 @@ class ProductsController extends Controller
         $allTags = [];
         foreach ($products as $product) {
             $tags = json_decode($product->tags, true); // Asegúrate de que "tags" sea un campo en tu modelo
-            $allTags = array_merge($allTags, $tags);
+            if (is_array($tags)) {
+                $allTags = array_merge($allTags, $tags);
+            }
         }
         // Eliminar etiquetas duplicadas
         $allTags = array_unique($allTags);
