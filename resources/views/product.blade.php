@@ -44,410 +44,337 @@
 
 @section('content')
 
-	<!-- breadcrumb -->
-	<div class="container m-t-83">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="/" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-			@if($category_name !== '')
-			<a href="/categoria/{{$category_url}}" class="stext-109 cl8 hov-cl1 trans-04">
-				{{$category_name}}
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-			@endif
-			<span class="stext-109 cl4">
-				{{$product->name}}
-			</span>
-		</div>
-	</div>
 		
 
-	<!-- Product Detail -->
-	<section class="sec-product-detail bg0 p-t-65 p-b-60">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-lg-7 p-b-30">
-					<div class="p-l-25 p-r-30 p-lr-0-lg">
-						<div class="wrap-slick3 flex-sb flex-w">
-							<div class="wrap-slick3-dots"></div>
-							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="/assets/images/products/{{$product->image1}}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="/assets/images/products/{{$product->image1}}" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-								<div class="item-slick3" data-thumb="{{ $product->image2 ? '/assets/images/products/'.$product->image2 : '/assets/images/no-image2.png' }}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="{{ $product->image2 ? '/assets/images/products/'.$product->image2 : '/assets/images/no-image2.png' }}" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ $product->image2 ? '/assets/images/products/'.$product->image2 : '/assets/images/no-image2.png' }}">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-								<div class="item-slick3" data-thumb="{{ $product->image3 ? '/assets/images/products/'.$product->image3 : '/assets/images/no-image2.png' }}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="{{ $product->image3 ? '/assets/images/products/'.$product->image3 : '/assets/images/no-image2.png' }}" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ $product->image3 ? '/assets/images/products/'.$product->image3 : '/assets/images/no-image2.png' }}">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-								<div class="item-slick3" data-thumb="{{ $product->image4 ? '/assets/images/products/'.$product->image4 : '/assets/images/no-image2.png' }}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="{{ $product->image4 ? '/assets/images/products/'.$product->image4 : '/assets/images/no-image2.png' }}" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ $product->image4 ? '/assets/images/products/'.$product->image4 : '/assets/images/no-image2.png' }}">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-								<div class="item-slick3" data-thumb="{{ $product->image5 ? '/assets/images/products/'.$product->image5 : '/assets/images/no-image2.png' }}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="{{ $product->image5 ? '/assets/images/products/'.$product->image5 : '/assets/images/no-image2.png' }}" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ $product->image5 ? '/assets/images/products/'.$product->image5 : '/assets/images/no-image2.png' }}">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-								<div class="item-slick3" data-thumb="{{ $product->image6 ? '/assets/images/products/'.$product->image6 : '/assets/images/no-image2.png' }}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="{{ $product->image6 ? '/assets/images/products/'.$product->image6 : '/assets/images/no-image2.png' }}" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ $product->image6 ? '/assets/images/products/'.$product->image6 : '/assets/images/no-image2.png' }}">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-					
-				<div class="col-md-6 col-lg-5 p-b-30">
-					<div class="p-r-50 p-t-0 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							<a class="cl2" href="#">{{$product->name}}</a>
-						</h4>
-						
-						<span class="mtext-106 cl2">
-							${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}
-						</span>
-						
-						<p class="stext-102 cl3 p-t-30">
-							@if($category_name !== '') Categoría: <strong>{{$category_name}}</strong> @endif
-						</p>
-
-						<p class="stext-102 cl3 p-t-30">
-							@if($product->kilos) Kilos: <strong>{{$product->kilos}}</strong> @endif
-						</p>
-
-						<p class="stext-102 cl3 p-t-10">
-							{{$product->description}}
-						</p>
-						<div id="modal-stock" class="mtext-106 cl2 p-t-30">
-								Stock: {{$product->stock}}
-						</div>
-						<!--  -->
-						<div class="p-t-20">           
-								<div class="flex-w flex-r-m p-b-10">
-										<div id="modal-cont-cart" class="size-204 flex-w flex-m mx-auto">
-											@if($product->stock > 0)
-												<div class="wrap-num-product flex-w m-l-20 m-tb-20 mx-auto">
-														<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-																<i class="fs-16 zmdi zmdi-minus"></i>
-														</div>
-														<input id="modal-cant" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" max="" min="1">
-														<div id="modal-cant-sum" data-max="{{$product->stock}}" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-																<i class="fs-16 zmdi zmdi-plus"></i>
-														</div>
-													</div>
-												<button id="modal-btn-cart" data-product-id="{{$product->id}}" class="mx-auto flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-														Agregar al carrito
-												</button>
-											@endif
-										</div>
-										@if($product->stock == 0)
-											<h4 id="modal-no-stock" style="margin: auto;padding-right: 24px;color: #de1616;padding-top:40px;" >Sin Stock !</h4>
-										@endif
-								</div>	
-						</div>
-						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-									<div id="contAddFavorite" class="flex-m  p-l-10 m-l-11">
-										@if(session('favorites') && collect(session('favorites'))->contains('id', $product->id))
-										<div class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 pointer" style="color:#DE2423">
-											<i class="zmdi zmdi-favorite"></i> Agregado a favoritos
-										</div>
-										@else
-										<div id="addFavoriteLink" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100 js-addwish-b2 pointer" data-item="{{$product->name}}" data-product-id="{{$product->id}}" data-tooltip="Agregar">
-											<i class="zmdi zmdi-favorite"></i> Agregar a favoritos
-										</div>
-										@endif
-									</div>
-							</div>
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-									<div class="flex-m  p-l-10 m-l-11">
-											<div class="text-center pb-2" style="padding-right: 65px;"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
-									</div>    
-									<div class="flex-m">
-											<div class="">
-													<!-- Botón de Facebook -->
-													<a id="linkFacebook" href="https://www.facebook.com/tu-pagina" class="social-button facebook" target="_blank">
-															<i class="fa fa-facebook"></i>
-													</a>
-													<!-- Botón de WhatsApp -->
-													<a id="linkWhatsapp" href="https://api.whatsapp.com/send?text=Visita%20mi%20p%C3%A1gina:%20https%3A%2F%2Fwww.tu-pagina.com" class="social-button whatsapp" target="_blank">
-															<i class="fa fa-whatsapp"></i>
-													</a>
-													<!-- Botón de Twitter -->
-													<a id="linkTwitter" href="https://twitter.com/tu-usuario-o-pagina" class="social-button twitter" target="_blank">
-															<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="position: relative;top: 4px;">
-																	<path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
-															</svg>
-													</a>
-													<!-- Botón de Telegram -->
-													<a id="linkTelegram" href="https://t.me/tu-canal" class="social-button telegram" target="_blank">
-															<i class="fa fa-telegram"></i>
-													</a>
-											</div>
-									</div>
-							</div>
-					
-					</div>
-				</div>
-			</div>
-
-			<!-- <div class="bor10 m-t-50 p-t-43 p-b-40">
-				<div class="tab01">
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="nav-item p-b-10">
-							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Descripción</a>
-						</li>
-
-						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Datos del producto</a>
-						</li>
-
-						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reseñas (1)</a>
-						</li>
+	<section>
+		<div class="product-v1 pro-v4">
+			<div class="container">
+				<div class="menu-prv1">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="">/</a></li>
+						@if($category_name !== '')<li><a href="/categoria/{{$category_url}}">{{$category_name}}</a></li>@endif
+						<li><a href="">/</a></li>
+						<li><a href="">{{$product->name}}</a></li>
 					</ul>
-
-					<div class="tab-content p-t-43">
-						<div class="tab-pane fade show active" id="description" role="tabpanel">
-							<div class="how-pos2 p-lr-15-md">
-								<p class="stext-102 cl6">
-									{{$product->description}}
-								</p>
-							</div>
-						</div>
-
-						<div class="tab-pane fade" id="information" role="tabpanel">
-							<div class="row">
-								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-									<ul class="p-lr-28 p-lr-15-sm">
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Weight
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												0.79 kg
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Dimensions
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												110 x 33 x 100 cm
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Materials
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												60% cotton
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Color
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												Black, Blue, Grey, Green, Red, White
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Size
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												XL, L, M, S
-											</span>
-										</li>
-									</ul>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12 pro-v4">
+						<div class="product-img-slide pro-v4">
+							<div class="product-images quickview">
+								<div class="main-img js-product-slider-normal">
+									@if($product->image1)<a href="#" class="hover-images effect"><img src="/assets/images/products/{{$product->image1}}" alt="photo" class="img-responsive"></a>@endif
+									@if($product->image2)<a href="#" class="hover-images effect"><img src="/assets/images/products/{{$product->image2}}" alt="photo" class="img-responsive"></a>@endif
+									@if($product->image3)<a href="#" class="hover-images effect"><img src="/assets/images/products/{{$product->image3}}" alt="photo" class="img-responsive"></a>@endif
+									@if($product->image4)<a href="#" class="hover-images effect"><img src="/assets/images/products/{{$product->image4}}" alt="photo" class="img-responsive"></a>@endif
+									@if($product->image5)<a href="#" class="hover-images effect"><img src="/assets/images/products/{{$product->image5}}" alt="photo" class="img-responsive"></a>@endif
+									@if($product->image6)<a href="#" class="hover-images effect"><img src="/assets/images/products/{{$product->image6}}" alt="photo" class="img-responsive"></a>@endif
 								</div>
 							</div>
-						</div>
-
-						<div class="tab-pane fade" id="reviews" role="tabpanel">
-							<div class="row">
-								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-									<div class="p-b-30 m-lr-15-sm">
-										<div class="flex-w flex-t p-b-68">
-											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="/assets/theme/images/avatar-01.jpg" alt="AVATAR">
-											</div>
-
-											<div class="size-207">
-												<div class="flex-w flex-sb-m p-b-17">
-													<span class="mtext-107 cl2 p-r-20">
-														Ariana Grande
-													</span>
-
-													<span class="fs-18 cl11">
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
-													</span>
-												</div>
-
-												<p class="stext-102 cl6">
-													Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
-												</p>
-											</div>
-										</div>
-										
-
-										<form class="w-full">
-											<h5 class="mtext-108 cl2 p-b-7">
-												Add a review
-											</h5>
-
-											<p class="stext-102 cl6">
-												Your email address will not be published. Required fields are marked *
-											</p>
-
-											<div class="flex-w flex-m p-t-50 p-b-23">
-												<span class="stext-102 cl3 m-r-16">
-													Your Rating
-												</span>
-
-												<span class="wrap-rating fs-18 cl11 pointer">
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<input class="dis-none" type="number" name="rating">
-												</span>
-											</div>
-
-											<div class="row p-b-25">
-												<div class="col-12 p-b-5">
-													<label class="stext-102 cl3" for="review">Your review</label>
-													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="name">Name</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="email">Email</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
-												</div>
-											</div>
-
-											<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-												Submit
-											</button>
-										</form>
+							<div class="multiple-img-list js-click-product-normal">
+								@if($product->image1)
+								<div class="product-col">
+									<div class="img pro-v4 ">
+										<img src="/assets/images/products/{{$product->image1}}" alt="photo" class="img-responsive">
 									</div>
 								</div>
+								@endif
+								@if($product->image2)
+								<div class="product-col">
+									<div class="img pro-v4 ">
+										<img src="/assets/images/products/{{$product->image2}}" alt="photo" class="img-responsive">
+									</div>
+								</div>
+								@endif
+								@if($product->image3)
+								<div class="product-col">
+									<div class="img pro-v4 ">
+										<img src="/assets/images/products/{{$product->image3}}" alt="photo" class="img-responsive">
+									</div>
+								</div>
+								@endif
+								@if($product->image4)
+								<div class="product-col">
+									<div class="img pro-v4 ">
+										<img src="/assets/images/products/{{$product->image4}}" alt="photo" class="img-responsive">
+									</div>
+								</div>
+								@endif
+								@if($product->image5)
+								<div class="product-col">
+									<div class="img pro-v4 ">
+										<img src="/assets/images/products/{{$product->image5}}" alt="photo" class="img-responsive">
+									</div>
+								</div>
+								@endif
+								@if($product->image6)
+								<div class="product-col">
+									<div class="img pro-v4 ">
+										<img src="/assets/images/products/{{$product->image6}}" alt="photo" class="img-responsive">
+									</div>
+								</div>
+								@endif
 							</div>
 						</div>
 					</div>
-				</div>
-			</div> -->
-		</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="product-info s8 pro-v1 pro-v4">
+							<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7 shop-8 pro-v1">
+								<p><a href="#">{{$product->name}}</a></p>
+								<ul>
+									<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+									<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+									<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+									<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+									<li class="st"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+												Review(s)</span></em></li>
 
-		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25">
-				CODE: <strong>{{$product->code}}</strong>
-			</span>
-			<span class="stext-107 cl6 p-lr-25">
-				Nombre: <strong>{{$product->name}}</strong>
-			</span>
-			<span class="stext-107 cl6 p-lr-25">
-				Categories: <strong>{{$category_name}}</strong>
-			</span>
-		</div>
-	</section>
+									<li><a class="sales-36-products" href="#">C${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</a>
+									</li>
 
-
-	<!-- Related Products -->
-	<section class="sec-relate-product bg0 p-t-45 p-b-105">
-		<div class="container">
-			<div class="p-b-45">
-				<h3 class="ltext-106 cl5 txt-center">
-					Produtos destacados
-				</h3>
-			</div>
-
-			<!-- Slide2 -->
-			<div class="wrap-slick2">
-				<div class="slick2">
-				@if (isset($productsPromo) && $productsPromo)
-					@foreach ($productsPromo as $index => $product)
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15  @if ($loop->first) active @endif {{$product->category_id}} @if($product->promo == 1) populares @endif @if($product->new == 1) new @endif @if($product->size) size-{{$product->size}} @endif @if($product->kilos) kilos-{{$product->kilos}} @endif @if($product->color) color-{{$product->color}} @endif @if($product->tags) @foreach(json_decode($product->tags) as $tag) tag-{{$tag}} @endforeach @endif" data-id="{{$product->id}}" data-price="{{$product->price}}" data-sales="{{$product->sales}}">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New"" >
-								<img src="/assets/images/products/{{ $product->image1 }}" alt="{{ $product->name }}">
-								<a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Ver
+								</ul>
+							</div>
+							<div class="short-desc">
+								<p class="product-desc s8 pro-v1 pro-v4">{{$product->description}}</p>
+							</div>
+							<div class="color pr1 pro-v4">
+								<h4>Color</h4>
+								<ul>
+									<li><a href=""><img src="/assets/theme/images/elip1.png" alt=""></a></li>
+									<li><a href=""><img src="/assets/theme/images/elip2.png" alt=""></a></li>
+									<li><a href=""><img src="/assets/theme/images/elip3.png" alt=""></a></li>
+									<li><a href=""><img src="/assets/theme/images/elip4.png" alt=""></a></li>
+									<li><a href=""><img src="/assets/theme/images/elip5.png" alt=""></a></li>
+								</ul>
+							</div>
+							<div class="size shop5 pro-1 pro-v4">
+								<h4>Size</h4>
+								<ul>
+									<li><a class="st-xs" href="#">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+							<div class="zoa-qtt pro-v1">
+								<button type="button" class="quantity-left-minus btn btn-number js-minus" data-type="minus"
+									data-field="">
+								</button>
+								<input type="text" name="number" value="1" class="product_quantity_number js-number">
+								<button type="button" class="quantity-right-plus btn btn-number js-plus" data-type="plus" data-field="">
+								</button>
+							</div>
+							<div class="product-bottom-group shop7 s8 pro-v1 pro-v2">
+								<a href="#" class="fa fa-shopping-bag shop7 pro-v1">
+									<span class="zoa-icon-quick-view shop7"></span>
+								</a> <a href="#" class="fa fa-balance-scale shop7 pro-v1">
+									<span class="zoa-icon-heart shop7"></span>
+								</a>
+								<a href="#" class="fa fa-heart shop7">
+									<span class="zoa-icon-cart shop7"></span>
 								</a>
 							</div>
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									{{ $product->name }}
-									</a>
-									<span class="stext-105 cl3">
-									${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}
-									</span>
+							<div class="size-guide pro-v4">
+								<div class="guide">
+									<ul>
+										<li><a href="">Guía de tallas</a></li>
+										<li><a href="">Entrega y devolución</a></li>
+									</ul>
 								</div>
-								<div class="block2-txt-child2 flex-r p-t-3">
-										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 {{ session('favorites') && collect(session('favorites'))->contains('id', $product->id) ? 'js-addedwish-b2' : '' }}" data-item="{{$product->name}}" data-product-id="{{$product->id}}">
-											<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-										</a>
+								<div class="sku pro-v1">
+									<p>SKU: <span>CK-2207</span></p><br>
+									<p>Categories: <span>Jackets, Jewellery, Masonry, Accessories, Denim</span></p>
+									<p>Tags: <span>jewellery, jackets, masonry, shoes, short</span></p>
 								</div>
 							</div>
+							<div class="share-shop7 s8">
+								<ul>
+									<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+									<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+									<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- details -->
+		<div class="container">
+			<div class="single-product-tab bd-bottom">
+				<ul class="tabs text-center">
+					<li class="active"><a data-toggle="pill" href="#review">Description</a></li>
+					<!-- <li><a data-toggle="pill" href="#desc">Additional information</a></li> -->
+					<li><a data-toggle="pill" href="#add">Reviews(s)</a></li>
+				</ul>
+				<div class="tab-content">
+					<!-- <div id="desc" class="tab-pane fade in ">
+
+						<div class="para-v4">
+							<p><em>Duis id odio quis purus lacinia</em> viverra non eget sapien. Aenean sed tortor sapien. Aenean ut
+								iaculis justo, in hendrerit sem. Ut ac tincidunt velit, ac ultrices est. <strong>Nullam eu massa auctor,
+								</strong>aecenas in ligula neque. Etiam nec ligula finibus, scelerisque tellus sed, rutrum mauris. Donec
+								iaculis mattis interdum. Praesent et mauris non orci lacinia dignissim. Pellentesque vel sapien <em>ut
+									ante interdum aliquam.</em></p>
+						</div>
+						<div class="para-v4 bgr">
+							<p><span>"</span><em>Nullam eu massa auctor, euismod arcu eget, suscipit nisl. Maecenas in ligula neque.
+									Etiam nec ligula finibus, scelerisque tellus sed, rutrum mauris. Donec iaculis mattis interdum.
+									Praesent et mauris non orci lacinia dignissim. Pellentesque vel sapien ut ante interdum aliquam.</em>
+							</p>
+						</div>
+						<div class="row two">
+							<div class="col-md-4 col-sm-5 col-xs-12">
+								<div class="img-v4">
+									<a href="#" class="plus-zoom"><img src="/assets/theme/images/img36.jpg" alt="img"></a>
+									<p>Photo: Baby happy with Zara</p>
+								</div>
+							</div>
+							<div class="col-md-8 col-sm-7 col-xs-12">
+								<div class="para-v4">
+									<p><em>Duis id odio quis purus lacinia</em> viverra non eget sapien. Aenean sed tortor sapien. Aenean
+										ut iaculis justo, in hendrerit sem. Ut ac tincidunt velit, ac ultrices est. <strong>Nullam eu massa
+											auctor, </strong>aecenas in ligula neque. Etiam nec ligula finibus, scelerisque tellus sed, rutrum
+										mauris. Donec iaculis mattis interdum. Praesent et mauris non orci lacinia dignissim. Pellentesque
+										vel sapien <em>ut ante interdum aliquam.</em></p>
+								</div>
+								<div class="para-v4">
+									<p><em>Duis id odio quis purus lacinia</em> viverra non eget sapien. Aenean sed tortor sapien. Aenean
+										ut iaculis justo, in hendrerit sem. Ut ac tincidunt velit, ac ultrices est. <strong>Nullam eu massa
+											auctor, </strong>aecenas in ligula neque. Etiam nec ligula finibus, scelerisque tellus sed, rutrum
+										mauris. Donec iaculis mattis interdum. Praesent et mauris non orci lacinia dignissim. Pellentesque
+										vel sapien <em>ut ante interdum aliquam.</em></p>
+								</div>
+							</div>
+						</div>
+						<div class="para-v4">
+							<p><em>Duis id odio quis purus lacinia</em> viverra non eget sapien. Aenean sed tortor sapien. Aenean ut
+								iaculis justo, in hendrerit sem. Ut ac tincidunt velit, ac ultrices est. <strong>Nullam eu massa auctor,
+								</strong>aecenas in ligula neque. Etiam nec ligula finibus, scelerisque tellus sed, rutrum mauris. Donec
+								iaculis mattis interdum. Praesent et mauris non orci lacinia dignissim. Pellentesque vel sapien <em>ut
+									ante interdum aliquam.</em></p>
+						</div>
+						<div class="share">
+							<div class="share2">
+								<p>Share: </p>
+							</div>
+							<div class="ul-li v4">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div><br>
+					</div> -->
+					<div id="review" class="tab-pane fade in active ">
+						<div class="details">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-8 col-sm-6 col-xs-12 pro-v4">
+										<div class="para-details">
+											<p>{{$product->description}}</p>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-6 col-xs-12 pro-v4">
+										<div class="img-details">
+											<a href="" class="plus-zoom"><img src="/assets/images/products/{{$product->image1}}"" alt=""></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="add" class="tab-pane fade in">
+						<div class="para-pro-v1">
+							<p>{{$product->name}} <br>
+								<span>La dirección de correo electrónico no será publicada. Los campos obligatorios están marcados*</span>
+							</p>
+						</div>
+						<div class="rating">
+							<h4>Your rating:</h4>
+							<ul>
+								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+							</ul>
+						</div>
+						<div class="form-v4 pro-v1">
+							<form method="post" class="form-customer form-login">
+								<div class="form-group review">
+
+									<p>Your review*</p>
+									<input type="text" class="form-control form-account">
+								</div>
+								<div class=" form-group name pro-v1">
+
+									<p>Name*</p>
+									<input type="text" class="form-control form-account">
+								</div>
+								<div class="form-group email pro-v1">
+
+									<p>Email address*</p>
+									<input type="email" class="form-control form-account">
+								</div>
+								<div class="btn-button-group mg-top-30 mg-bottom-15">
+									<button type="submit" class="zoa-btn btn-login hover-white">Enviar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="product-related pd-products">
+				<div class="title-pro-v1">
+					<h3 class="related-title text-center">Destacados</h3>
+					<p><a href="">View All Products<i class="fa fa-angle-right" aria-hidden="true"></i></a></p>
+				</div>
+				<div class="owl-carousel owl-theme owl-cate v2 js-owl-cate">
+				@if (isset($productsPromo) && $productsPromo)
+					@foreach ($productsPromo as $index => $product)
+					<div class="product-item pro-v1 ">
+						<div class="product-img">
+							<a href="/item/{{$product->url}}"><img src="/assets/images/products/{{$product->image1}}" alt="" class="img-responsive"></a>
+							<div class="sale-img shop1 shop2">
+								<div class="before shop1 v2 pro-v1 before-pro-v1"></div>
+							</div>
+							<div class="ribbon zoa-hot shop-v1 new-pro-v1"><span>New</span></div>
+							<div class="product-button-group product-details">
+								<a href="#" class="zoa-btn zoa-quickview">
+									<span class="fa fa-shopping-bag"></span>
+								</a>
+								<a href="#" class="zoa-btn zoa-addcart">
+									<span class="fa fa-heart"></span>
+								</a>
+							</div>
+						</div>
+						<div class="sale-para2 shop-1 pro-v1">
+							<p><a href="#">{{$product->name}}</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-36" href="#">$C{{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</a>
+								</li>
+
+							</ul>
 						</div>
 					</div>
 					@endforeach
 				@endif
-
-
 				</div>
 			</div>
 		</div>

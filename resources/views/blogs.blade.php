@@ -49,320 +49,427 @@
 		<meta property="og:url" content="https://tiendasacuanjoche.com/blog">
 		<meta property="og:type" content="website">
 	@endsection
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92 m-t-83" style="background-image: @if($web->imageblog) url('/assets/images/{{$web->imageblog}}'); @else url('/assets/theme/images/bg-02.jpg'); @endif">
-		<h2 class="ltext-105 cl0 txt-center">
-		Blog
-		</h2>
-	</section>	
+	<div class="header-page bg-img1" style="background-image: @if($web->imageblog) url('/assets/images/{{$web->imageblog}}'); @else url('/assets/theme/images/bg-02.jpg'); @endif">
+			<div class="container myContainer" style="margin-bottom:20px;">
+				<h1 class="text-center" style="margin-top: 34px;font-weight:bold;margin-bottom: 40px;">Blog</h1>
+			</div>
+	</div>
 @endif
 
-
-	<!-- Content page -->
-	<section class="bg0 p-t-62 p-b-60">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80">
-					<div class="p-r-45 p-r-0-lg">
-
-						<!-- item blog -->
-						@if (isset($blogs))
-        			@if ($blogs)
-          			@foreach ($blogs as $blog)
-								<div class="p-b-63">
-									<a href="/blog/{{$blog->url}}" class="hov-img0 how-pos5-parent">
-										<img src="/assets/images/blogs/{{$blog->image}}" alt="imágen de : {{$blog->title}}">
-										<div class="flex-col-c-m size-123 bg9 how-pos5">
-											<span class="ltext-107 cl2 txt-center">
-											{{ $blog->updated_at->format('d') }}
-											</span>
-											<span class="stext-109 cl3 txt-center">
-											{{ $blog->updated_at->format('M Y') }}
-											</span>
+<!-- Content page -->
+<section>
+    <div class="kid v3">
+        <div class="container">
+            <div class="row v3">
+                <div class="col-md-9 col-sm-12 col-xs-12 v3">
+                    <div class="blog-v3 xs-mg-15">
+                        <div class="img-blog-v2 v3">
+                            <a href=""><img src="/assets/theme/images/img33.jpg" alt="img"></a>
+                        </div>
+                        <div class="img-title2 v2 v3">
+                            <div class="kid-all v2 v3">
+                                <div class="para blog-v2 v3">
+                                    <h4>
+                                        <a href="#">Our Kindergarten Anniversarty</a>
+                                    </h4>
+                                    <div class="img-title2 blog-v2 v3">
+                                        <!-- <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a> -->
+                                        <p><em>Pixel Creative</em></p>
+                                    </div>
+                                    <div class="img-title3 v2 v3">
+                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                        <p><em>Jan 30, 2018</em></p>
+                                    </div>
+                                    <div class="para2 v2 v3">
+                                        <p>Morbi sed dui id purus dictum vestibulum in id lectus. Duis<br>
+                                        rutrum ornare mi id consectetur. </p>
+                                    </div>
+                                    <div class="icon v2 v3">
+                                        <a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a>
+                                        <p><em>123 Comments</em></p>
+                                    </div>
+                                    <div class="icon v2 v3">
+                                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                        <p><em>98 likes</em></p>
+                                    </div>
+                                    <div class="read v2 v3">
+                                        <p><em><a href="#">read more</a></em></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-v3 xs-mg-15">
+                        <div class="img-blog-v2 v3 blogs-st">
+                            <a href=""><img src="/assets/theme/images/img34.jpg" alt="img"></a>
+                        </div>
+                        <div class="img-title2 v2 v3">
+                            <div class="kid-all v2 v3">
+                                <div class="para blog-v2 v3">
+                                    <h4>
+                                        <a href="#">Our Kindergarten Anniversarty</a>
+                                    </h4>
+                                    <div class="img-title2 blog-v2 v3">
+                                        <!-- <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a> -->
+                                        <p><em>Pixel Creative</em></p>
+                                    </div>
+                                    <div class="img-title3 v2 v3">
+                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                        <p><em>Jan 30, 2018</em></p>
+                                    </div>
+                                    <div class="para2 v2 v3">
+                                        <p>Morbi sed dui id purus dictum vestibulum in id lectus. Duis<br>
+                                        rutrum ornare mi id consectetur. </p>
+                                    </div>
+                                    <div class="icon v2 v3">
+                                        <a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a>
+                                        <p> <em>123 Comments</em></p>
+                                    </div>
+                                    <div class="icon v2 v3">
+                                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                        <p><em>98 likes</em></p>
+                                    </div>
+                                    <div class="read v2 v3">
+                                        <p><em><a href="#">read more</a></em></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-v3 xs-mg-15">
+                        <div class="img-blog-v2 v3">
+                            <a href=""><img src="/assets/theme/images/img35.jpg" alt="img"></a>
+                        </div>
+                        <div class="img-title2 v2 v3">
+                            <div class="kid-all v2 v3">
+                                <div class="para blog-v2 v3">
+                                    <h4>
+                                        <a href="#">Our Kindergarten Anniversarty</a>
+                                    </h4>
+                                    <div class="img-title2 blog-v2 v3">
+                                        <!-- <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a> -->
+                                        <p><em>Pixel Creative</em></p>
+                                    </div>
+                                    <div class="img-title3 v2 v3">
+                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                        <p><em>Jan 30, 2018</em></p>
+                                    </div>
+                                    <div class="para2 v2 v3">
+                                        <p>Morbi sed dui id purus dictum vestibulum in id lectus. Duis<br>
+                                        rutrum ornare mi id consectetur. </p>
+                                    </div>
+                                    <div class="icon v2 v3">
+                                        <a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a>
+                                        <p><em>123 Comments</em></p>
+                                    </div>
+                                    <div class="icon v2 v3">
+                                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                        <p><em>98 likes</em></p>
+                                    </div>
+                                    <div class="read v2 v3">
+                                        <p><em><a href="#">read more</a></em></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-v3 xs-mg-15">
+                        <div class="img-blog-v2 v3 blogs-st">
+                            <a href=""><img src="/assets/theme/images/img30.jpg" alt="img"></a>
+                        </div>
+                        <div class="img-title2 v2 v3">
+                            <div class="kid-all v2 v3">
+                                <div class="para blog-v2 v3">
+                                    <h4>
+                                     <a href="#">Our Kindergarten Anniversarty</a>
+                                 </h4>
+                                 <div class="img-title2 blog-v2 v3">
+                                    <!-- <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a> -->
+                                    <p><em>Pixel Creative</em></p>
+                                </div>
+                                <div class="img-title3 v2 v3">
+                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                    <p><em>Jan 30, 2018</em></p>
+                                </div>
+                                <div class="para2 v2 v3">
+                                    <p>Morbi sed dui id purus dictum vestibulum in id lectus. Duis<br>
+                                    rutrum ornare mi id consectetur. </p>
+                                </div>
+                                <div class="icon v2 v3">
+                                    <a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a>
+                                    <p> <em>123 Comments</em></p>
+                                </div>
+                                <div class="icon v2 v3">
+                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                    <p><em>98 likes</em></p>
+                                </div>
+                                <div class="read v2 v3">
+                                    <p><em><a href="#">read more</a></em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-v3 xs-mg-15">
+                    <div class="img-blog-v2 v3">
+                        <a href=""><img src="/assets/theme/images/img31.jpg" alt="img"></a>
+                    </div>
+                    <div class="img-title2 v2 v3">
+                        <div class="kid-all v2 v3">
+                            <div class="para blog-v2 v3">
+                                <h4>
+                                    <a href="#">Our Kindergarten Anniversarty</a>
+                                </h4>
+                                <div class="img-title2 blog-v2 v3">
+                                    <!-- <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a> -->
+                                    <p><em>Pixel Creative</em></p>
+                                </div>
+                                <div class="img-title3 v2 v3">
+                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                    <p><em>Jan 30, 2018</em></p>
+                                </div>
+                                <div class="para2 v2 v3">
+                                    <p>Morbi sed dui id purus dictum vestibulum in id lectus. Duis<br>
+                                    rutrum ornare mi id consectetur. </p>
+                                </div>
+                                <div class="icon v2 v3">
+                                    <a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a>
+                                    <p> <em>123 Comments</em></p>
+                                </div>
+                                <div class="icon v2 v3">
+                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                    <p><em>98 likes</em></p>
+                                </div>
+                                <div class="read v2 v3">
+                                   <p> <em><a href="#">read more</a></em></p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="blog-v3 xs-mg-15">
+                <div class="img-blog-v2 v3 blogs-st">
+                    <a href=""><img src="/assets/theme/images/img32.jpg" alt="img"></a>
+                </div>
+                <div class="img-title2 v2 v3">
+                    <div class="kid-all v2 v3">
+                        <div class="para blog-v2 v3">
+                            <h4>
+                                <a href="#">Our Kindergarten Anniversarty</a>
+                            </h4>
+                            <div class="img-title2 blog-v2 v3">
+                                <!-- <a href="#"><img src="/assets/theme/images/img4.png" alt="img"></a> -->
+                                <p> <em>Pixel Creative</em></p>
+                            </div>
+                            <div class="img-title3 v2 v3">
+                                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                <p><em>Jan 30, 2018</em></p>
+                            </div>
+                            <div class="para2 v2 v3">
+                                <p>Morbi sed dui id purus dictum vestibulum in id lectus. Duis<br>
+                                rutrum ornare mi id consectetur. </p>
+                            </div>
+                            <div class="icon v2 v3">
+                                <a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a>
+                                <p><em>123 Comments</em></p>
+                            </div>
+                            <div class="icon v2 v3">
+                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                <p>  <em>98 likes</em></p>
+                            </div>
+                            <div class="read v2 v3">
+                               <p> <em><a href="#">read more</a></em></p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="col-md-3 col-sm-12 col-xs-12 feed">
+        <div class="search2">
+            <div class="search">
+                <form method="get" action="/search" role="search" class="search-form  has-categories-select">
+                    <input name="q" class="search-input" type="text" value="" placeholder="Search..." autocomplete="off">
+                    <input type="hidden" name="post_type" value="product">
+                    <button type="submit" ><i class="ion-ios-search-strong"></i></button>
+                </form>
+            </div>
+            <div class="categories">
+                <h4>Categories</h4>
+                <div class="ul-li">
+                    <ul>
+                        <li><a href="#">Beauty (4)</a></li>
+                        <li><a href="#">Fashion (6)</a></li>
+                        <li><a href="#">Food (5)</a></li>
+                        <li><a href="#">Travel (6)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--instargram Feed-->
+        <div class="instargram">
+            <h4>Instargram Feed</h4>
+            <div class="imgs">
+                <a href="#"><img src="/assets/theme/images/insta1.png" alt="img"></a>
+                <a href="#"><img src="/assets/theme/images/insta2.png" alt="img"></a>
+                <a href="#"><img src="/assets/theme/images/insta3.png" alt="img"></a>
+                <a href="#"><img src="/assets/theme/images/insta4.png" alt="img"></a>
+                <a href="#"><img src="/assets/theme/images/insta5.png" alt="img"></a>
+                <a href="#"><img src="/assets/theme/images/insta6.png" alt="img"></a>
+            </div>
+        </div>
+        <!-- Recent Posts -->
+        <div class="recentposts">
+            <h4>Recent Posts</h4>
+            <div class="recentposts2 v3">
+                <ul>
+                    <li><a href="#">La Femme For Flaunt Magazine</a>
+                        <br><em><span>Jan 30, 2018</span></em></li>
+                        <li><a href="#">Gardner and the Gang was founded...</a>
+                            <br><em><span>Jan 30, 2018</span></em></li>
+                            <li><a href="#">How did gardener and the gang first...</a>
+                                <br><em><span>Jan 30, 2018</span></em>
+                            </li>
+                            <li><a href="#">Singapore and a teacher that kindly...</a>
+                                <br><em><span>Jan 30, 2018</span></em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Recent Comments -->
+                <div class="recentcomments v3">
+                    <h4>Recent Comments</h4>
+                    <ul>
+                        <li><a href="#">JoAnne on</a><em><span>How did gardener and the...</span></em></li>
+                        <li><a href="#">Blase on</a><em><span>The lookbook for kid 2018</span></em>
+                            <br>
+                        </li>
+                        <li><a href="#">Pixel on</a><em><span>Two weeks to become a great...</span></em></li>
+                        <li><a href="#">Anna Tran on</a><em><span>Big dream come to</span></em></li>
+                    </ul>
+                </div>
+                <!-- sale Products -->
+                <div class="saleproduct v3">
+                    <h4>Sale Products</h4>
+                    <div class="all">
+                        <div class="sale-img">
+                            <a href="#"><img src="/assets/theme/images/img14.jpg" alt="img"></a>
+                            <div class="sale"><a href="#">-50%</a></div>
+                            <div class="before"></div>
+                        </div>
+                        <div class="sale-para">
+                            <p><a href="#">Contrasting Dungarees<br>
+                            With Craces</a>
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6Review(s)</span></em></li>        
+														<li><a class="sales-36" href="#">$36.00</a>
+																<del>$42.00</del>
+														</li>     
+												</ul>
 										</div>
-									</a>
-									<div class="p-t-32">
-										<h4 class="p-b-15">
-											<a href="/blog/{{$blog->url}}" class="ltext-108 cl2 hov-cl1 trans-04">
-											{{$blog->title}}
-											</a>
-										</h4>
-										<p class="stext-117 cl6">
-										{{$blog->cita}}
-										</p>
-										<div class="flex-w flex-sb-m p-t-18">
-											<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-												<span>
-													<span class="cl4">By</span> {{$blog->user->name}}  
-													<span class="cl12 m-l-4 m-r-6">|</span>
-												</span>
-												<span>
-													@if($blog->category)
-													<a href="/blog/categoria/{{$blog->category->url}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-														{{$blog->category->name}}
-													</a>
-													@endif	
-													<!-- <span class="cl12 m-l-4 m-r-6">|</span> -->
-												</span>
-												<!-- <span>
-													8 Comments
-												</span> -->
-											</span>
-											<a href="/blog/{{$blog->url}}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-												Continuar leyendo
-												<i class="fa fa-long-arrow-right m-l-9"></i>
-											</a>
+								</div>
+								<div class="all">
+										<div class="sale-img">
+												<a href="#"><img src="/assets/theme/images/img15.jpg" alt="img"></a>
+												<div class="sale"><a href="#">-25%</a></div>
+												<div class="before"></div>
 										</div>
+										<div class="sale-para2 v2">
+												<p><a href="#">Clouds Sweater</a></p>
+												<ul>
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6Review(s)</span></em></li>
+														<li><a class="sales-36" href="#">$36.00</a>
+																<del>$42.00</del>
+														</li>
+													</ul>
+											</div>
 									</div>
-								</div>
-								@endforeach
-							@endif
-						@endif		
-
-						<!-- item blog -->
-						<!-- <div class="p-b-63">
-							<a href="#" class="hov-img0 how-pos5-parent">
-								<img src="/assets/theme/images/blog-05.jpg" alt="IMG-BLOG">
-
-								<div class="flex-col-c-m size-123 bg9 how-pos5">
-									<span class="ltext-107 cl2 txt-center">
-										18
-									</span>
-
-									<span class="stext-109 cl3 txt-center">
-										Jan 2018
-									</span>
-								</div>
-							</a>
-
-							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<a href="#" class="ltext-108 cl2 hov-cl1 trans-04">
-										The Great Big List of Men’s Gifts for the Holidays 
-									</a>
-								</h4>
-
-								<p class="stext-117 cl6">
-									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-								</p>
-
-								<div class="flex-w flex-sb-m p-t-18">
-									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span>
-											<span class="cl4">By</span> Admin  
-											<span class="cl12 m-l-4 m-r-6">|</span>
-										</span>
-
-										<span>
-											StreetStyle, Fashion, Couple  
-											<span class="cl12 m-l-4 m-r-6">|</span>
-										</span>
-
-										<span>
-											8 Comments
-										</span>
-									</span>
-
-									<a href="#" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-										Continue Reading
-
-										<i class="fa fa-long-arrow-right m-l-9"></i>
-									</a>
-								</div>
-							</div>
-						</div> -->
-
-
-						<!-- Pagination -->
-						<!-- <div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
-							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-								1
-							</a>
-
-							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
-								2
-							</a>
-						</div> -->
-					</div>
-				</div>
-
-				<div class="col-md-4 col-lg-3 p-b-80">
-					<div class="side-menu">
-						<!-- <div class="bor17 of-hidden pos-relative">
-							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
-
-							<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-								<i class="zmdi zmdi-search"></i>
-							</button>
-						</div> -->
-
-						<div class="p-t-0">
-							<h4 class="mtext-112 cl2 p-b-33">
-								Categorías
-							</h4>
-
-							<ul>
-								@foreach ($categoriesBlog as $cat)
-								<li class="bor18">
-									<a href="/blog/categoria/{{$cat->url}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										{{$cat->name}}
-									</a>
-								</li>
-								@endforeach
-
-								</li>
-							</ul>
-						</div>
-
-						<div class="p-t-65">
-							<h4 class="mtext-112 cl2 p-b-33">
-								Productos Destacados
-							</h4>
-							<ul>
-								@if($productsPromo)
-								@foreach ($productsPromo as $item)
-								<li class="flex-w flex-t p-b-30">
-									<a href="/item/{{$item->url}}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="/assets/images/products/{{$item->image1}}" alt="PRODUCT" style="width: 90px;">
-									</a>
-									<div class="size-215 flex-col-t p-t-8">
-										<a href="/item/{{$item->url}}" class="stext-116 cl8 hov-cl1 trans-04">
-											{{$item->name}}
-										</a>
-										<span class="stext-116 cl6 p-t-20">
-										${{ str_replace(',', '.', number_format($item->price, 0, '.', ',')) }}
-										</span>
+									<div class="all">
+											<div class="sale-img">
+													<a href="#"><img src="/assets/theme/images/img16.jpg" alt="img"></a>
+													<div class="sale"><a href="#">-50%</a></div>
+													<div class="before"></div>
+											</div>
+											<div class="sale-para">
+													<p><a href="#">Contrasting Dungarees<br>
+													With Craces</a>
+											</p>
+											<ul>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6Review(s)</span></em></li>			
+												<li><a class="sales-36" href="#">$36.00</a>
+													<del>$42.00</del>
+												</li>					
+											</ul>
 									</div>
-								</li>
-								@endforeach
-								@endif
-							</ul>
-						</div>
-
-						<!-- <div class="p-t-55">
-							<h4 class="mtext-112 cl2 p-b-20">
-								Archive
-							</h4>
-
-							<ul>
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											July 2018
-										</span>
-
-										<span>
-											(9)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											June 2018
-										</span>
-
-										<span>
-											(39)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											May 2018
-										</span>
-
-										<span>
-											(29)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											April  2018
-										</span>
-
-										<span>
-											(35)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											March 2018
-										</span>
-
-										<span>
-											(22)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											February 2018
-										</span>
-
-										<span>
-											(32)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											January 2018
-										</span>
-
-										<span>
-											(21)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											December 2017
-										</span>
-
-										<span>
-											(26)
-										</span>
-									</a>
-								</li>
-							</ul>
-						</div> -->
-
-						<div class="p-t-50">
-							<h4 class="mtext-112 cl2 p-b-27">
-								Tags
-							</h4>
-							<div class="flex-w m-r--5">
-								@if($tagsAll)
-								@foreach ($tagsAll as $tag)
-								@if($tag)
-								<a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									{{$tag}}
-								</a>
-								@endif
-								@endforeach
-								@endif
 							</div>
-						</div>
+							<div class="all">
+									<div class="sale-img">
+											<a href="#"><img src="/assets/theme/images/img17.jpg" alt="img"></a>
+											<div class="sale"><a href="#">-25%</a></div>
+											<div class="before"></div>
+									</div>
+									<div class="sale-para2 v2">
+											<p><a href="#">louds Sweater</a></p>
+											<ul>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6Review(s)</span></em></li>
+												<li><a class="sales-36" href="#">$36.00</a>
+													<del>$42.00</del>
+												</li>							
+											</ul>
+									</div>
+							</div>
 					</div>
-				</div>
+					<!-- blog tags -->
+					<div class="blogtags">
+							<h4>Blog Tags</h4>
+							<div class="ul-1">
+									<ul>
+											<li><a href="#">watch</a></li>
+											<li><a href="#">bottom</a></li>
+											<li><a href="#">jeans</a></li>
+											
+											<li><a href="#">accessories</a></li>
+											<li><a href="#">clothes</a></li>
+											
+											<li><a href="#">shoes</a></li>
+											<li><a href="#">iBaby</a></li>
+											<li><a href="#">Momy</a></li>
+									</ul>
+							</div>
+					</div>
 			</div>
-		</div>
-	</section>	
+			<div class="pagination2 v3">
+					<ul class="pagination v2 v3">
+							<li><a href="#">Prew</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">Next</a></li>
+					</ul>
+			</div>          
+	</div>         
+</div>
+</div>
+</section>
 @endsection
 
 @section('script')

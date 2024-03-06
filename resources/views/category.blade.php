@@ -12,105 +12,1046 @@
 
 
 @section('content')
-	<!-- Product -->
-	<section class="bg0 p-t-73 p-b-60 m-t-40">
+    <div class="header-page bg-img1" style="">
+        <div class="container myContainer" style="margin-bottom:20px;">
+            <h1 class="text-center" style="font-weight:bold;">Categoría: {{$category->name}}</h1>
+        </div>
+	</div>
+    <div class="shop-page">
 		<div class="container">
-			<div class="p-b-10">
-				<h3 class="ltext-103 cl5">
-					Categoría: {{$category->name}}
-				</h3>
-			</div>
-
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						Ver Todos
-					</button>
-
-                    @if (isset($subcategoriesCategory))
-                        @if ($subcategoriesCategory)
-                        @foreach ($subcategoriesCategory as $index => $category)
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{$category->id}}">
-                            {{$category->name}}
-                        </button>
-                        @endforeach
-                        @endif
-                    @endif     
-
-				</div>
-
-				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						Filtros
+			<div class="row shop">
+				<div class="col-md-8 col-sm-6 col-xs-12 shoppage1 found-shoppage7">
+					<div class="we-found s4 we-found-shoppage7">
+						<h4>Encontramos <strong>25</strong> productos disponibles</h4>
 					</div>
-
-					<!-- <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						Buscar
-					</div> -->
+					<div class="view-mode view-group shop-7">
+						<a href="#" class="list-icon list"><i title="Grid view" class="fa fa-th"></i></a>
+						<a href="#" class="grid-icon col active"><i title="List view" class="fa fa-list"></i></a>
+					</div>
 				</div>
-				
-				<!-- Search product -->
-				<div class="dis-none panel-search w-full p-t-10 p-b-15">
-					<div class="bor8 dis-flex p-l-15">
-						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-							<i class="zmdi zmdi-search"></i>
-						</button>
-
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-					</div>	
-				</div>
-
-				<!-- Filter -->
-				@include('filters')
-
-			<div class="row isotope-grid">
-      @if (isset($productsCategory))
-        @if ($productsCategory)
-          @foreach ($productsCategory as $product)
-          @if ($product->stock > 0)
-          	@if ($loop->iteration <= 8)
-						<div class="col-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}} {{$product->subcategory_id}} @if($product->promo == 1) populares @endif @if($product->new == 1) new @endif @if($product->size) size-{{$product->size}} @endif @if($product->kilos) kilos-{{$product->kilos}} @endif @if($product->color) color-{{$product->color}} @endif @if($product->tags) @foreach(json_decode($product->tags) as $tag) tag-{{$tag}} @endforeach @endif" data-id="{{$product->id}}" data-price="{{$product->price}}" data-sales="{{$product->sales}}">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-pic hov-img0 {{ $product->new == 1 ? 'label-new' : '' }} {{ $product->promo == 1 ? 'label-featured' : '' }}" data-label="New">
-									<img src="/assets/images/products/{{$product->image1}}" alt="IMG-PRODUCT">
-									<a href="#" data-product="{{ json_encode($product) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-										Ver
-									</a>
-								</div>
-								<div class="block2-txt flex-w flex-t p-t-14">
-									<div class="block2-txt-child1 flex-col-l ">
-										<a href="/item/{{$product->url}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										{{$product->name}}
-										</a>
-										<span class="stext-105 cl3">
-											<strong>${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</strong>
-										</span>
-									</div>
-									<div class="block2-txt-child2 flex-r p-t-3">
-										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 {{ session('favorites') && collect(session('favorites'))->contains('id', $product->id) ? 'js-addedwish-b2' : '' }}" data-item="{{$product->name}}" data-product-id="{{$product->id}}">
-											<img class="icon-heart1 dis-block trans-04" src="/assets/theme/images/icons/icon-heart-01.png" alt="ICON">
-											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/theme/images/icons/icon-heart-02.png" alt="ICON">
-										</a>
+				<div class="col-md-4 col-sm-6 col-xs-12 shoppage1">
+					<div class="wrappage">
+						<!-- Filters -->
+						<div class="dropdown drop-filter">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+								<span class="caret"></span><img class="img-filter" src="/assets/theme/images/icon7.png" alt="">Filters</button>
+							<div class=" dropdown-menu filter-shoppage filter-shoppages-v7">
+								<div class="container container-filter">
+									<div class="row">
+										<div class="col-md-2 widget-filter filter-cate no-pd-top">
+											<h4>Sort by</h4>
+											<ul>
+												<li><a href="">Default</a></li>
+												<li><a href="">Popularity</a></li>
+												<li><a href="">Newnest</a></li>
+												<li><a href="">Price: low to high</a></li>
+												<li><a href="">Price: high to low</a></li>
+											</ul>
+										</div>
+										<div class="col-md-2 widget-filter filter-cate filter-color">
+											<h4>Price</h4>
+											<ul>
+												<li><a href="">$0.00 - $300.00</a></li>
+												<li><a href="">$300.00 - $600.00</a></li>
+												<li><a href="">$600.00 - $900.00</a></li>
+												<li><a href="">$900.00 - $120.00</a></li>
+												<li><a href="">$120.00+</a></li>
+											</ul>
+										</div>
+										<div class="col-md-3 widget-filter filter-cate  filter-style-size">
+											<h4>Size</h4>
+											<ul>
+												<li><a class="st-xs" href="#">XS</a></li>
+												<li><a href="">S</a></li>
+												<li><a href="">M</a></li>
+												<li><a href="">L</a></li>
+												<li><a class="st-xl" href="">XL</a></li>
+												<li><a class="xxl" href="">XXL</a></li>
+												<li><a class="xxl" href="">Free size</a></li>
+											</ul>
+										</div>
+										<div class="col-md-2 widget-filter filter-cate filter-style">
+											<h4>Color</h4>
+											<ul class="color2">
+												<li><a href=""><img src="/assets/theme/images/elip1.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip2.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip3.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip4.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip5.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip6.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip7.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip8.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip9.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip10.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip11.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip12.png" alt=""></a></li>
+												<li><a href=""><img src="/assets/theme/images/elip13.png" alt=""></a></li>
+											</ul>
+										</div>
+										<div class="col-md-3 widget-filter filter-cate  filter-style-brand">
+											<h4>Brand</h4>
+											<div class="ul-1 shop3">
+												<ul>
+													<li><a href="#">Miukid</a></li>
+													<li><a href="#">KidStar</a></li>
+													<li><a href="#">Momy</a></li>
+													<li><a href="#">Huggies</a></li>
+													<li><a href="#">Mshop</a></li>
+													<li><a href="#">iBaby</a></li>
+													<li><a href="#">Me & Be</a></li>
+													<li><a href="#">CocoShop</a></li>
+												</ul>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
+							<div class="wrappage">
+								<div class="filter-collection-left hidden-lg hidden-md">
+									<a class="btn"><i class="zoa-icon-filter"><img src="/assets/theme/images/icon7.png" alt=""></i> Filter</a>
+								</div>
+								<div class="col-xs-12 hidden-md hidden-lg col-left collection-sidebar" id="filter-sidebar">
+									<div class="close-sidebar-collection hidden-lg hidden-md">
+										<span>Filter</span><i class="icon_close ion-close"></i>
+									</div>
+									<div class="widget-filter filter-cate no-pd-top">
+										<h4>Sort by</h4>
+										<ul>
+											<li><a href="">Default</a></li>
+											<li><a href="">Popularity</a></li>
+											<li><a href="">Newnest</a></li>
+											<li><a href="">Price: low to high</a></li>
+											<li><a href="">Price: high to low</a></li>
+										</ul>
+									</div>
+									<div class="widget-filter filter-cate filter-color">
+										<h4>Price</h4>
+										<ul>
+											<li><a href="">$0.00 - $300.00</a></li>
+											<li><a href="">$300.00 - $600.00</a></li>
+											<li><a href="">$600.00 - $900.00</a></li>
+											<li><a href="">$900.00 - $120.00</a></li>
+											<li><a href="">$120.00+</a></li>
+										</ul>
+									</div>
+									<div class="widget-filter filter-cate filter-size">
+										<h4>Size</h4>
+										<ul>
+											<li><a href="#">XS</a></li>
+											<li><a href="">S</a></li>
+											<li><a href="">M</a></li>
+											<li><a href="">L</a></li>
+											<li><a href="">XL</a></li>
+											<li><a class="xxl" href="">XXL</a></li>
+											<li><a class="xxl" href="">Free size</a></li>
+										</ul>
+									</div>
+									<div class="widget-filter filter-cate filter-size">
+										<h4>Color</h4>
+										<ul class="color2">
+											<li><a href=""><img src="/assets/theme/images/elip1.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip2.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip3.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip4.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip5.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip6.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip7.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip8.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip9.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip10.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip11.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip12.png" alt=""></a></li>
+											<li><a href=""><img src="/assets/theme/images/elip13.png" alt=""></a></li>
+										</ul>
+									</div>
+									<div class="widget-filter filter-cate filter-size">
+										<h4>Brand</h4>
+										<div class="ul-1 shop3">
+											<ul>
+												<li><a href="#">Miukid</a></li>
+												<li><a href="#">KidStar</a></li>
+												<li><a href="#">Momy</a></li>
+												<li><a href="#">Huggies</a></li>
+												<li><a href="#">Mshop</a></li>
+												<li><a href="#">iBaby</a></li>
+												<li><a href="#">Me & Be</a></li>
+												<li><a href="#">CocoShop</a></li>
+											</ul>
+										</div>
+									</div>
+									<a class="zoa-btn btn-filter">
+										Filter
+									</a>
+								</div>
+							</div>
 						</div>
-          	@else
-            	@break
-          	@endif
-          @endif
-          @endforeach
-      	@endif
-      @endif
+					</div>
+				</div>
 			</div>
-
+			<div class="border shopv1"></div>
 		</div>
-	</section>
+	</div>
+	<!-- Content -->
+	<div class="container">
+		<div class="shop-top page-7">
+			<div class="shop-element right shop-7">
+			</div>
+		</div>
+		<div class="product-collection-grid product-grid bd-bottom">
+			<div class="row">
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img60.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU:</p> <span>CKLS-2207</span>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img61.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU:</p> <span>CKLS-2207</span>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU:</p> <span>CKLS-2207</span>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU:</p> <span>CKLS-2207</span>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="product-collection-grid product-grid bd-bottom">
+			<div class="row">
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img60.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU:</p> <span>CKLS-2207</span>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img61.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU: <span>CKLS-2207</span></p>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU:<span>CKLS-2207</span></p>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU: <span>CKLS-2207</span></p>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="product-collection-grid product-grid bd-bottom">
+			<div class="row">
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img60.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU:<span>CKLS-2207</span></p>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img61.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU: <span>CKLS-2207</span></p>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU: <span>CKLS-2207</span></p>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+					<div class="product-img">
+						<a href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
+						<div class="product-button-group product-details">
+							<a href="#" class="zoa-btn zoa-quickview">
+								<span class="fa fa-shopping-bag"></span>
+							</a>
+							<a href="#" class="zoa-btn zoa-addcart">
+								<span class="fa fa-heart"></span>
+							</a>
+						</div>
+					</div>
+					<div class="product-info">
+						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
+							<ul>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+											Review(s)</span></em></li>
+
+								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="short-desc">
+							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
+								a galley<br>
+								of type and scrambled it to make a type specimen book.
+						</div>
+						<div class="sku">
+							<p>SKU: <span>CKLS-2207</span></p>
+						</div>
+						<div class="size shop-7">
+							<div class="size-h4">
+								<h4>Size: </h4>
+							</div>
+							<div class="size-ul">
+								<ul>
+									<li><a class="st-xs" href="">XS</a></li>
+									<li><a href="">S</a></li>
+									<li><a href="">M</a></li>
+									<li><a href="">L</a></li>
+									<li><a class="st-xl" href="">XL</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-bottom-group shop7">
+							<a href="#" class="fa fa-shopping-bag shop7">
+								<span class="zoa-icon-quick-view shop7"></span>
+							</a>
+							<a href="#" class="fa fa-heart shop7">
+								<span class="zoa-icon-cart shop7"></span>
+							</a>
+						</div>
+						<div class="share-shop7">
+							<ul>
+								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="loadmore">
+				<a href="#">load more</a>
+			</div>
+			<div class="border"></div>
+		</div>
+	</div>
 @endsection
 
 

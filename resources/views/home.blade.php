@@ -72,7 +72,7 @@
                     @if ($product->stock > 0)
                     <div class="product-item pro-v1 home1 ">
                         <div class="product-img product-img-home3">
-                            <a href=""><img src="/assets/images/products/{{$product->image1}}" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
+                            <a href="/item/{{$product->url}}"><img src="/assets/images/products/{{$product->image1}}" alt="" class="img-responsive"><i class="fa fa-arrows" aria-hidden="true"></i><span class="quick">Quick view</span></a>
                             <div class="sale-img shop1 shop2">
                                 <div class="before shop1 v2 pro-v1 hp1 featured-before before-home1 bf-featured-hp1"></div>
                             </div>
@@ -189,7 +189,7 @@
                                     @if ($product->stock > 0)
                                         <div class="best-seller">
                                             <div class="img-bestseller">
-                                                <a href="" class="hover-img-home1"><img src="/assets/images/products/{{$product->image1}}" alt=""></a>
+                                                <a href="/item/{{$product->url}}" class="hover-img-home1"><img src="/assets/images/products/{{$product->image1}}" alt=""></a>
                                                 <div class="sale-img shop1 shop2 st-v2">
                                                     <div class="before shop1 v2 pro-v1 st-v2 hp1 best"></div>
                                                 </div>
@@ -269,7 +269,7 @@
                         @if ($product->stock > 0 && $product->descount)
                         <div class="product-item pro-v1 home1">
                             <div class="product-img product-img-home3">
-                                <a  href=""><img src="/assets/images/products/{{$product->image1}}" alt="" class="img-responsive"></a>
+                                <a  href="/item/{{$product->url}}"><img src="/assets/images/products/{{$product->image1}}" alt="" class="img-responsive"></a>
                                 <div class="sale-img shop1 shop2 st-v2">
                                     <div class="before shop1 v2 pro-v1 st-v2 hp1 before-home1 bf-onsales-hp1"></div>
                                 </div>

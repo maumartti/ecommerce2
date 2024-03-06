@@ -234,6 +234,7 @@ class WebController extends Controller
             $product->views += 1;// Incrementa el contador de vistas
             $product->save();
         }
+        //dd($product);
         $productsViews = Product::where('status', 1)->whereNotNull('views')->with('category', 'subcategory')->get();
         $productsPromo = Product::where('status', 1)->where('promo', 1)->with('category', 'subcategory')->get();
         $categories = Category::with('subcategories')->orderBy('pos')->get();

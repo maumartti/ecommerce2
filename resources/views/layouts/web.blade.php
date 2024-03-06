@@ -145,7 +145,7 @@
         </ul>
         <ul class="mobile-account">
             <li><a href="/login"><i class="fa fa-unlock-alt"></i>Login</a></li>
-            <!-- <li><a href="#"><i class="fa fa-user-plus"></i>Register</a></li> -->
+            <li><a href="#"><i class="fa fa-user-plus"></i>Registro</a></li>
             <li><a href="#"><i class="fa fa-heart"></i>Wishlist</a></li>
         </ul>
         <h4 class="mb-title">connect and follow</h4>
@@ -163,10 +163,10 @@
                 <div class="col-md-5 col-sm-12 col-xs-12">
                     <div class="topbar-left homepage-v1">
                         <div class="a">
-                            <a class="hover-images" href="#"><img src="/assets/theme/images/icon.png" alt="icon">Sms Default welcome !</a>
+                            <a class="hover-images" href="#"><img src="/assets/theme/images/truck.png" style="width: 45px;" alt="icon" >Envíos a todo el país !</a>
                         </div>
                         <div class="topbar-social gift">
-                            <a href="#"><i class="fa fa-gift home3" aria-hidden="true"></i>Gift Vouchers</a>
+                            <a href="#"><i class="fa fa-gift home3" aria-hidden="true"></i>Devoluciones</a>
                             <span>02</span>
                         </div>
                     </div>
@@ -199,6 +199,9 @@
                         </div> -->
                         <div class="sign-in">
                             <p><a href="/login">Login</a></p>
+                        </div>
+                        <div class="sign-in">
+                            <p><a href="/login">Registro</a></p>
                         </div>
                     </div>
                 </div>
@@ -260,7 +263,7 @@
                 <div class="row flex align-items-center justify-content-between">
                     <div class="col-md-6 col-xs-12 col-sm-6 col2 flex justify-content-end">
                         <ul class="nav navbar-nav js-menubar hidden-xs hidden-sm">
-                            <li class="level1 active dropdown home-page-v1-st style-menu-home-1"><a class="menu-home-3 home-1-font" href="#">Home</a></li>
+                            <li class="level1 active dropdown home-page-v1-st style-menu-home-1"><a class="menu-home-3 home-1-font" href="/">Home</a></li>
                             <li class="level1 dropdown hassub style-menu-home-1"><a class="menu-home-3 home-1-font" href="#">Categorías <span class="fa fa-chevron-down"></span></a>
                                 <span class="plus js-plus-icon"></span>
                                 <div class="menu-level-1 dropdown-menu style5">
@@ -271,7 +274,7 @@
                                             @if (isset($categories))
                                                 @if ($categories)
                                                     @foreach ($categories as $index => $category)
-                                                    <li class="level3"><a href="/categoria/{{$category->url}}" target="_blank" title="">{{$category->name}}</a></li> 
+                                                    <li class="level3"><a href="/categoria/{{$category->url}}" title="">{{$category->name}}</a></li> 
                                                     @endforeach
                                                 @endif
                                             @endif                                               
@@ -283,13 +286,13 @@
                             </li>
 
                             <li class="level1 hassub dropdown style-menu-home-1">
-                                <a class="menu-home-3 home-1-font" href="#">Destacados</a>
+                                <a class="menu-home-3 home-1-font" href="/destacados">Destacados</a>
                             </li>
                             <li class="level1 dropdown hassub style-menu-home-1" >
-                                <a class="menu-home-3 home-1-font" href="#">Blog</a>
+                                <a class="menu-home-3 home-1-font" href="/blog">Blog</a>
                             </li>
                             <li class="level1 dropdown hassub style-menu-home-1">
-                                <a class="menu-home-3 home-1-font" href="#">Nosotros</a>
+                                <a class="menu-home-3 home-1-font" href="/nosotros">Nosotros</a>
                             </li>
                         </ul>
                     </div>
