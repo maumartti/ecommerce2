@@ -44,52 +44,25 @@
     <div class="menu-push">
         <span class="close-left js-close"><i class="ion-ios-close-empty f-40"></i></span>
         <div class="clearfix"></div>
-        <form role="search" method="get" id="searchform" class="searchform" action="/search">
+        <!-- <form role="search" method="get" id="searchform" class="searchform" action="/search">
             <div>
                 <label class="screen-reader-text" for="q"></label>
                 <input type="text" placeholder="Search for products" value="" name="q" id="q" autocomplete="off">
                 <input type="hidden" name="type" value="product">
                 <button type="submit" id="searchsubmit"><i class="ion-ios-search-strong"></i></button>
             </div>
-        </form>
+        </form> -->
         <ul class="nav-home5 js-menubar">
-            <li class="level1 active dropdown">
-                <a href="#">Home</a>
+            <li class="level1">
+                <a href="/">Home</a>
             </li>
-            <li class="level1 active dropdown"><a href="#">Shop</a>
+            <li class="level1 "><a href="/destacados">Destacados</a></li>
+            <li class="level1 dropdown"><a href="#">Categorías</a>
                 <span class="icon-sub-menu"></span>
                 <div class="menu-level1 js-open-menu">
                     <ul class="level1">
-                        <li class="level2">
-                            <a href="#">Shop Layout</a>
-                            <ul class="menu-level-2">
-                                <li class="level3"><a href="Shop-page-v1.html" title="">Shop 1</a></li>
-                                <li class="level3"><a href="Shop-page-v2.html" title="">Shop 2</a></li>
-                                <li class="level3"><a href="Shop-page-v3.html" title="">Shop 3</a></li>
-                                <li class="level3"><a href="Shop-page-v4.html" title="">Shop 4</a></li>
-                                <li class="level3"><a href="Shop-page-v5.html" title="">Shop 5</a></li>
-                                <li class="level3"><a href="Shop-page-v6.html" title="">Shop 6</a></li>
-                                <li class="level3"><a href="Shop-page-v7.html" title="">Shop 7</a></li>
-                                <li class="level3"><a href="Shop-page-v8.html" title="">Shop 8</a></li>
-                            </ul>
-                        </li>
-                        <li class="level2">
-                            <a href="#">Single Product Type</a>
-                            <ul class="menu-level-2">
-                                <li class="level3"><a href="Product-details-v1.html" title="">Product 1</a></li>
-                                <li class="level3"><a href="Product-details-v2.html" title="">Product 2</a></li>
-                                <li class="level3"><a href="Product-details-v3html" title="">Product 3</a></li>
-                                <li class="level3"><a href="Product-details-v4html" title="">Product 4</a></li>
-                                <li class="level3"><a href="Product-details-v5.html">Product 5</a></li>
-                                <li class="level3"><a href="#">Variable</a></li>
-                                <li class="level3"><a href="#">External / Affiliate</a></li>
-                                <li class="level3"><a href="#">Grouped</a></li>
-                                <li class="level3"><a href="#">Out of stock</a></li>
-                                <li class="level3"><a href="#">On sale</a></li>
-                            </ul>
-                        </li>
                         <li class="level2">	
-                            <a href="#">Categories</a>
+                            <a href="#">Categorías</a>
                             <ul class="menu-level-2">
                                 <li class="level3"><a href="#" title="">Categories Full Width</a></li>
                                 <li class="level3"><a href="#" title="">Categories Left Sidebar</a></li>
@@ -120,35 +93,19 @@
                     <div class="clearfix"></div>
                 </div>
             </li>
-            <li class="level1 active dropdown"><a href="#">Mega Menu</a></li>
+            <li class="level1 active dropdown"><a href="/nosotros">Nosotros</a></li>
             <li class="level1">
-                <a href="#">Pages</a>
-                <span class="icon-sub-menu"></span>
-                <ul class="menu-level1 js-open-menu">
-                    <li class="level2"><a href="About-Us.html" title="About Us ">About Us </a></li>
-                    <li class="level2"><a href="About-Us-v2.html" title="Contact">About Us 2</a></li>
-                    <li class="level2"><a href="Contact-Us.html" title="FAQs">Contact-us</a></li>
-                    <li class="level2"><a href="#" title="404">404</a></li>
-                    <li class="level2"><a href="#" title="Coming Soon">Coming Soon</a></li>
-                </ul>
+                <a href="#">Contacto</a>
             </li>
             <li class="level1">
-                <a href="#">Blog</a>
-                <span class="icon-sub-menu"></span>
-                <ul class="menu-level1 js-open-menu">
-                    <li class="level2"><a href="Blog-grid-v1.html" title="Blog Standar">Blog Gird 1</a></li>
-                    <li class="level2"><a href="Blog-grid-v2.html" title="Blog Gird">Blog Gird 2</a></li>
-                    <li class="level2"><a href="Blog-grid-v3.html" title="Blog Sidebar">Blog Gird 3</a></li>
-                    <li class="level2"><a href="Blog-grid-v4.html" title="Blog Single Post">Blog Gird 4</a></li>
-                </ul>
+                <a href="/blog">Blog</a>
             </li>
         </ul>
         <ul class="mobile-account">
             <li><a href="/login"><i class="fa fa-unlock-alt"></i>Login</a></li>
             <li><a href="#"><i class="fa fa-user-plus"></i>Registro</a></li>
-            <li><a href="#"><i class="fa fa-heart"></i>Wishlist</a></li>
         </ul>
-        <h4 class="mb-title">connect and follow</h4>
+        <h4 class="mb-title">Nuestras redes</h4>
         <div class="mobile-social mg-bottom-30">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
