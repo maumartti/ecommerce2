@@ -23,7 +23,7 @@
 			<div class="row shop">
 				<div class="col-md-8 col-sm-6 col-xs-12 shoppage1 found-shoppage7">
 					<div class="we-found s4 we-found-shoppage7">
-						<h4>We found <strong>25</strong> products available for you</h4>
+						<h4>Encontramos <b>25</b> productos disponibles</h4>
 					</div>
 					<div class="view-mode view-group shop-7">
 						<a href="#" class="list-icon list"><i title="Grid view" class="fa fa-th"></i></a>
@@ -200,288 +200,86 @@
 		</div>
 		<div class="product-collection-grid product-grid bd-bottom">
 			<div class="row">
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
-					<div class="product-img">
-						<a href=""><img src="/assets/theme/images/img60.jpg" alt="" class="img-responsive"></a>
-						<div class="product-button-group product-details">
-							<a href="#" class="zoa-btn zoa-quickview">
-								<span class="fa fa-shopping-bag"></span>
-							</a>
-							<a href="#" class="zoa-btn zoa-addcart">
-								<span class="fa fa-heart"></span>
-							</a>
+			@if (isset($products))
+        @if ($products)
+          @foreach ($products as $product)
+          @if ($product->stock > 0)
+          	@if ($loop->iteration <= 8)
+						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
+							<div class="product-img">
+								<a href="/item/{{$product->url}}"><img src="/assets/images/products/{{$product->image1}}" alt="" class="img-responsive"></a>
+								<div class="product-button-group product-details">
+									<a href="#" class="zoa-btn zoa-quickview">
+										<span class="fa fa-shopping-bag"></span>
+									</a>
+									<a href="#" class="zoa-btn zoa-addcart">
+										<span class="fa fa-heart"></span>
+									</a>
+								</div>
+							</div>
+							<div class="product-info">
+								<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
+									<p><a href="#">{{$product->name}}</a></p>
+									<ul>
+										<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+										<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+										<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+										<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+										<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
+													Review(s)</span></em></li>
+										<li><a class="sales-pro-v1-36" href="#">C${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</a>
+										</li>
+									</ul>
+								</div>
+								<div class="short-desc">
+								</div>
+								<div class="sku">
+									<p>SKU:</p> <span>CKLS-2207</span>
+								</div>
+								<div class="size shop-7">
+									<div class="size-h4">
+										<h4>Size: </h4>
+									</div>
+									<div class="size-ul">
+										<ul>
+											<li><a class="st-xs" href="">XS</a></li>
+											<li><a href="">S</a></li>
+											<li><a href="">M</a></li>
+											<li><a href="">L</a></li>
+											<li><a class="st-xl" href="">XL</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="product-bottom-group shop7">
+									<a href="#" class="fa fa-shopping-bag shop7">
+										<span class="zoa-icon-quick-view shop7"></span>
+									</a>
+									<a href="#" class="fa fa-heart shop7">
+										<span class="zoa-icon-cart shop7"></span>
+									</a>
+								</div>
+								<div class="share-shop7">
+									<ul>
+										<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+										<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+										<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+										<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+										<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+									</ul>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="product-info">
-						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
-							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
-							<ul>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
-											Review(s)</span></em></li>
+						@else
+            	@break
+          	@endif
+          	@endif
+          @endforeach
+      	@endif
+      @endif
 
-								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
-								</li>
-
-							</ul>
-						</div>
-						<div class="short-desc">
-							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
-								a galley<br>
-								of type and scrambled it to make a type specimen book.
-						</div>
-						<div class="sku">
-							<p>SKU:</p> <span>CKLS-2207</span>
-						</div>
-						<div class="size shop-7">
-							<div class="size-h4">
-								<h4>Size: </h4>
-							</div>
-							<div class="size-ul">
-								<ul>
-									<li><a class="st-xs" href="">XS</a></li>
-									<li><a href="">S</a></li>
-									<li><a href="">M</a></li>
-									<li><a href="">L</a></li>
-									<li><a class="st-xl" href="">XL</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="product-bottom-group shop7">
-							<a href="#" class="fa fa-shopping-bag shop7">
-								<span class="zoa-icon-quick-view shop7"></span>
-							</a>
-							<a href="#" class="fa fa-heart shop7">
-								<span class="zoa-icon-cart shop7"></span>
-							</a>
-						</div>
-						<div class="share-shop7">
-							<ul>
-								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
-					<div class="product-img">
-						<a href=""><img src="/assets/theme/images/img61.jpg" alt="" class="img-responsive"></a>
-						<div class="product-button-group product-details">
-							<a href="#" class="zoa-btn zoa-quickview">
-								<span class="fa fa-shopping-bag"></span>
-							</a>
-							<a href="#" class="zoa-btn zoa-addcart">
-								<span class="fa fa-heart"></span>
-							</a>
-						</div>
-					</div>
-					<div class="product-info">
-						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
-							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
-							<ul>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
-											Review(s)</span></em></li>
-
-								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
-								</li>
-
-							</ul>
-						</div>
-						<div class="short-desc">
-							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
-								a galley<br>
-								of type and scrambled it to make a type specimen book.
-						</div>
-						<div class="sku">
-							<p>SKU:</p> <span>CKLS-2207</span>
-						</div>
-						<div class="size shop-7">
-							<div class="size-h4">
-								<h4>Size: </h4>
-							</div>
-							<div class="size-ul">
-								<ul>
-									<li><a class="st-xs" href="">XS</a></li>
-									<li><a href="">S</a></li>
-									<li><a href="">M</a></li>
-									<li><a href="">L</a></li>
-									<li><a class="st-xl" href="">XL</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="product-bottom-group shop7">
-							<a href="#" class="fa fa-shopping-bag shop7">
-								<span class="zoa-icon-quick-view shop7"></span>
-							</a>
-							<a href="#" class="fa fa-heart shop7">
-								<span class="zoa-icon-cart shop7"></span>
-							</a>
-						</div>
-						<div class="share-shop7">
-							<ul>
-								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
-					<div class="product-img">
-						<a href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
-						<div class="product-button-group product-details">
-							<a href="#" class="zoa-btn zoa-quickview">
-								<span class="fa fa-shopping-bag"></span>
-							</a>
-							<a href="#" class="zoa-btn zoa-addcart">
-								<span class="fa fa-heart"></span>
-							</a>
-						</div>
-					</div>
-					<div class="product-info">
-						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
-							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
-							<ul>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
-											Review(s)</span></em></li>
-								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
-								</li>
-
-							</ul>
-						</div>
-						<div class="short-desc">
-							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
-								a galley<br>
-								of type and scrambled it to make a type specimen book.
-						</div>
-						<div class="sku">
-							<p>SKU:</p> <span>CKLS-2207</span>
-						</div>
-						<div class="size shop-7">
-							<div class="size-h4">
-								<h4>Size: </h4>
-							</div>
-							<div class="size-ul">
-								<ul>
-									<li><a class="st-xs" href="">XS</a></li>
-									<li><a href="">S</a></li>
-									<li><a href="">M</a></li>
-									<li><a href="">L</a></li>
-									<li><a class="st-xl" href="">XL</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="product-bottom-group shop7">
-							<a href="#" class="fa fa-shopping-bag shop7">
-								<span class="zoa-icon-quick-view shop7"></span>
-							</a>
-							<a href="#" class="fa fa-heart shop7">
-								<span class="zoa-icon-cart shop7"></span>
-							</a>
-						</div>
-						<div class="share-shop7">
-							<ul>
-								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
-					<div class="product-img">
-						<a href=""><img src="/assets/theme/images/img62.jpg" alt="" class="img-responsive"></a>
-						<div class="product-button-group product-details">
-							<a href="#" class="zoa-btn zoa-quickview">
-								<span class="fa fa-shopping-bag"></span>
-							</a>
-							<a href="#" class="zoa-btn zoa-addcart">
-								<span class="fa fa-heart"></span>
-							</a>
-						</div>
-					</div>
-					<div class="product-info">
-						<div class="sale-para2 shop-1 pro-v1 shop-5 shop-6 shop-7">
-							<p><a href="#">Calvin Klein Logo Sweatpants</a></p>
-							<ul>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-								<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
-											Review(s)</span></em></li>
-
-								<li><a class="sales-pro-v1-36" href="#">$36.00</a>
-								</li>
-
-							</ul>
-						</div>
-						<div class="short-desc">
-							<p class="product-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-								Ipsum has been<br> the industry's standard dummy text ever since the 1500s, when an unknown printer took
-								a galley<br>
-								of type and scrambled it to make a type specimen book.
-						</div>
-						<div class="sku">
-							<p>SKU:</p> <span>CKLS-2207</span>
-						</div>
-						<div class="size shop-7">
-							<div class="size-h4">
-								<h4>Size: </h4>
-							</div>
-							<div class="size-ul">
-								<ul>
-									<li><a class="st-xs" href="">XS</a></li>
-									<li><a href="">S</a></li>
-									<li><a href="">M</a></li>
-									<li><a href="">L</a></li>
-									<li><a class="st-xl" href="">XL</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="product-bottom-group shop7">
-							<a href="#" class="fa fa-shopping-bag shop7">
-								<span class="zoa-icon-quick-view shop7"></span>
-							</a>
-							<a href="#" class="fa fa-heart shop7">
-								<span class="zoa-icon-cart shop7"></span>
-							</a>
-						</div>
-						<div class="share-shop7">
-							<ul>
-								<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
-		<div class="product-collection-grid product-grid bd-bottom">
+		<!-- <div class="product-collection-grid product-grid bd-bottom">
 			<div class="row">
 				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 product-item">
 					<div class="product-img">
@@ -1051,7 +849,7 @@
 				<a href="#">load more</a>
 			</div>
 			<div class="border"></div>
-		</div>
+		</div> -->
 	</div>
 @endsection
 
