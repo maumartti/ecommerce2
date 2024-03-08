@@ -227,7 +227,7 @@
 										<li class="st-rv"><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6
 													Review(s)</span></em></li>
 
-										<li><a class="sales-pro-v1-36" href="#">$36.00</a>
+										<li><a class="sales-pro-v1-36" href="#">C${{ str_replace(',', '.', number_format($product->price, 0, '.', ',')) }}</a>
 										</li>
 
 									</ul>
