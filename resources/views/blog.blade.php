@@ -36,343 +36,290 @@
 @endsection
 
 @section('content')
-	<!-- breadcrumb -->
-	<div class="container p-t-92">
-		<div class="bread-crumb flex-w p-r-15 p-t-20 p-lr-0-lg">
-			<a href="/" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
 
-			<a href="/blog" class="stext-109 cl8 hov-cl1 trans-04">
-				Blog
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
+<!-- Content page -->
+<section>
+            <div class="kid v3 v4">
+                <div class="container">
+                    <div class="row v3 v4">
+                        <div class="col-md-9 col-sm-12 col-xs-12 v3 v4">
+                            <div class="blog-v3 v4">
+                                <div class="img-title2 v2 v3 v4">
+                                    <div class="kid-all v2 v3 v4">
+                                        <div class="para blog-v2 v3 v4">
+                                            <h1 style="margin-bottom:23px;">{{$blog->title}}</h1>
+                                            <div class="img-title2 blog-v2 v3 v4">
+                                                <p><em>By {{$blog->user->name}}</em></p>
+                                            </div>
+                                            <div class="img-title3 v2 v3 v4">
+                                                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                                <p><em>{{ $blog->updated_at->format('d-m-Y') }}</em></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border v4"></div>
+                                </div>
+                            </div>
+                            <!-- <div class="border"></div> -->
+                            <div class="row two">
+                                
+																<div class="col-md-12 col-sm-12 col-xs-12">
+																	<div class="img-v4" style="margin-bottom:26px;">
+																		<a href="#" class=""><img src="/assets/images/blogs/{{$blog->image}}" alt="img"></a>
+																	</div>
+                                    <div class="para-v4">
+																		{!! $blog->text !!}
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="share">
+                                <div class="share2">
+                                    <p>Share: </p>
+                                </div>
+                                <div class="ul-li v4">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div><br>
+                            <!-- <div class="happykid">
+                                <div class="happykid2">
+                                    <p><a href="#"><i class="fa fa-tags" aria-hidden="true"></i></a>Happy kid, Ut accumsan, Nullam eu</p>
+                                </div>
+                                <div class="cmt-like">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i></a> 1 Comment</li>
+                                        <li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a> 98 Likes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="jan">
+                                <div class="left-v4">
+                                    <a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a><p>La Femme For Flaunt Magazine<br> Jan 30, 2018</p>
+                                </div>
+                                <div class="right-v4">
+                                    <a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a><p>How did gardener and the gang first...<br> Jan 30, 2018</p>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <h4>comments(1)</h4>
+                                <div class="border v4 cmt"></div>
+                                <div class="img-cmt-v4">
+                                    <a href="#"><img src="images/img37.png" alt="img"></a>
+                                </div>
+                                <div class="para-cmt">
+                                    <h4>JoAnne Theodore</h4><br>
+                                    <p>Feb 30, 2018 at 10:25 AM</p>
+                                    <div class="lorem">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lacus eu erat integer bibendum rutrum, sed arcu molestie, in quis ornare, rhoncus sceleris velit, nam feugiat nibh leo. Ac suspendisse turpis posuere, cursus fames eu eget.<br>
+                                    </div>
+                                    <a href="#"><em>Reply</em></a>
+                                </div>
+                            </div>
 
-			<span class="stext-109 cl4">
-				{{$blog->title}}
-			</span>
-		</div>
-	</div>
+                            <div class="form-v4">
+                                <h4>Comments (1)</h4>
+                                <form method="post" class="form-customer form-login">
+                                    <div class="form-group review">
+                                     
+                                        <input type="text" class="form-control form-account" placeholder="Your review*" >
+                                    </div>
+                                    <div class="form-group name">
+                                     
+                                        <input type="text" class="form-control form-account"  placeholder="Name*" >
+                                    </div>
+                                    <div class="form-group email">
+                                     
+                                        <input type="email" class="form-control form-account" id="exampleInputEmail1" placeholder="Email address*">
+                                    </div>
+                                    <div class="btn-button-group mg-top-30 mg-bottom-15">
+                                        <button type="submit" class="zoa-btn btn-login hover-white">Submit</button>
+                                    </div>
+                                </form>
+                            </div> -->
 
-	<!-- Content page -->
-	<section class="bg0 p-t-32 p-b-20">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80">
-					<div class="p-r-45 p-r-0-lg">
-						<!--  -->
-						<div class="wrap-pic-w how-pos5-parent">
-							<img src="/assets/images/blogs/{{$blog->image}}" alt="IMG-BLOG">
-
-							<div class="flex-col-c-m size-123 bg9 how-pos5">
-								<span class="ltext-107 cl2 txt-center">
-								{{ $blog->updated_at->format('d') }}
-								</span>
-
-								<span class="stext-109 cl3 txt-center">
-								{{ $blog->updated_at->format('M Y') }}
-								</span>
-							</div>
-						</div>
-
-						<div class="p-t-32">
-							<span class="flex-w flex-m stext-111 cl2 p-b-19">
-								<span>
-									<span class="cl4">By</span> Admin  
-									<span class="cl12 m-l-4 m-r-6">|</span>
-								</span>
-
-								<span>
-								{{ $blog->updated_at->format('d') }} {{ $blog->updated_at->format('M Y') }}
-									<span class="cl12 m-l-4 m-r-6">|</span>
-								</span>
-
-								<span>
-									@if($blog->category)
-										<a href="/blog/categoria/{{$blog->category->url}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-											{{$blog->category->name}}
-										</a>
-									@endif
-									<!-- <span class="cl12 m-l-4 m-r-6">|</span> -->
-								</span>
-
-								<!-- <span>
-									8 Comments
-								</span> -->
-							</span>
-
-							<h4 class="ltext-109 cl2 p-b-10">
-								{{$blog->title}}
-							</h4>
-
-							<p class="stext-117 cl6 p-b-26">
-							{!! $blog->text !!}
-							</p>
-
-							<!-- <p class="stext-117 cl6 p-b-26">
-								Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet suscipit in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit. Sed tempor magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel placerat orci, a venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh arcu. Vivamus sagittis accumsan felis, quis vulputate
-							</p> -->
-						</div>
-
-						<div class="flex-w flex-t p-t-16">
-							@if($blog->tags)
-							<span class="size-216 stext-116 cl8 p-t-4">
-								Tags
-							</span>
-							@endif
-
-							<div class="flex-w size-217">
-							@if($blog->tags)
-							@foreach (explode(',', $blog->tags) as $tag)
-									<a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-											{{ trim($tag) }}
-									</a>
-							@endforeach
-							@endif
-							</div>
-
-							<div class="p-t-30 m-auto">
-								<div class="text-center pb-2"><i class="zmdi zmdi-share"></i> Compartir en redes</div>
-								<div class="">
-										<!-- Botón de Facebook -->
-										<a id="linkFacebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimportadoratatar.cl/blog/{{$blog->url}}" class="social-button facebook" target="_blank">
-												<i class="fa fa-facebook"></i>
-										</a>
-										<!-- Botón de WhatsApp -->
-										<a id="linkWhatsapp" href="https://api.whatsapp.com/send?text=Producto:%20https%3A%2F%2Fimportadoratatar.cl/blog/{{$blog->url}}" class="social-button whatsapp" target="_blank">
-												<i class="fa fa-whatsapp"></i>
-										</a>
-										<!-- Botón de Twitter -->
-										<a id="linkTwitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fimportadoratatar.cl/blog/{{$blog->url}}" class="social-button twitter" target="_blank">
-												<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="position: relative;top: 4px;">
-														<path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
-												</svg>
-										</a>
-										<!-- Botón de Telegram -->
-										<a id="linkTelegram" href="https://t.me/share/url?url=https%3A%2F%2Fimportadoratatar.cl/blog/{{$blog->url}}" class="social-button telegram" target="_blank">
-												<i class="fa fa-telegram"></i>
-										</a>
-								</div>
-							</div>
-
-
-						</div>
-
-						<!--  -->
-						<!-- <div class="p-t-40">
-							<h5 class="mtext-113 cl2 p-b-12">
-								Leave a Comment
-							</h5>
-
-							<p class="stext-107 cl6 p-b-40">
-								Your email address will not be published. Required fields are marked *
-							</p>
-
-							<form>
-								<div class="bor19 m-b-20">
-									<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="cmt" placeholder="Comment..."></textarea>
-								</div>
-
-								<div class="bor19 size-218 m-b-20">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="name" placeholder="Name *">
-								</div>
-
-								<div class="bor19 size-218 m-b-20">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="email" placeholder="Email *">
-								</div>
-
-								<div class="bor19 size-218 m-b-30">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="web" placeholder="Website">
-								</div>
-
-								<button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
-									Post Comment
-								</button>
-							</form>
-						</div> -->
-					</div>
-				</div>
-
-				<div class="col-md-4 col-lg-3 p-b-80">
-					<div class="side-menu" >
-						<!-- <div class="bor17 of-hidden pos-relative">
-							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
-
-							<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-								<i class="zmdi zmdi-search"></i>
-							</button>
-						</div> -->
-
-						<div class="p-t-0">
-							<h4 class="mtext-112 cl2 p-b-33">
-								Categorías
-							</h4>
-
-							<ul>
-							@foreach ($categoriesBlog as $cat)
-								<li class="bor18">
-									<a href="/blog/categoria/{{$cat->url}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										{{$cat->name}}
-									</a>
-								</li>
-								@endforeach
-							</ul>
-						</div>
-
-						<div class="p-t-65">
-							<h4 class="mtext-112 cl2 p-b-33">
-								Productos Destacados
-							</h4>
-							<ul>
-								@if($productsPromo)
-								@foreach ($productsPromo as $item)
-								<li class="flex-w flex-t p-b-30">
-									<a href="/item/{{$item->url}}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="/assets/images/products/{{$item->image1}}" alt="PRODUCT" style="width: 90px;">
-									</a>
-									<div class="size-215 flex-col-t p-t-8">
-										<a href="/item/{{$item->url}}" class="stext-116 cl8 hov-cl1 trans-04">
-											{{$item->name}}
-										</a>
-										<span class="stext-116 cl6 p-t-20">
-										${{ str_replace(',', '.', number_format($item->price, 0, '.', ',')) }}
-										</span>
+                        </div>
+                        <!--categories-->
+                        <div class="col-md-3 col-sm-12 col-xs-12 feed">
+                            <div class="search2">
+                                <div class="search search-blog-4">
+                                    <form method="get" action="/search" role="search" class="search-form  has-categories-select">
+                                        <input name="q" class="search-input" type="text" value="" placeholder="Search..." autocomplete="off">
+                                        <input type="hidden" name="post_type" value="product">
+                                        <button type="submit" id="search-btn"><i class="ion-ios-search-strong"></i></button>
+                                    </form>
+                                </div>
+                                <div class="categories">
+                                    <h4>Categorías</h4>
+                                    <div class="ul-li">
+                                        <ul>
+																				@foreach ($categoriesBlog as $cat)
+																				<li><a href="/blog/categoria/{{$cat->url}}">{{$cat->name}}</a></li>
+																				@endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--instargram Feed-->
+                            <div class="instargram v4">
+                                <h4>Instargram Feed</h4>
+                                <div class="imgs">
+                                    <a href="#"><img src="images/img5.jpg" alt="img"></a>
+                                    <a href="#"><img src="images/img6.jpg" alt="img"></a>
+                                    <a href="#"><img src="images/img7.jpg" alt="img"></a>
+                                    <a href="#"><img src="images/img8.jpg" alt="img"></a>
+                                    <a href="#"><img src="images/img9.jpg" alt="img"></a>
+                                    <a href="#"><img src="images/img10.jpg" alt="img"></a>
+                                    <a href="#"><img src="images/img11.jpg" alt="img"></a>
+                                    <a href="#"><img src="images/img12.jpg" alt="img"></a>
+                                    <a href="#"><img src="images/img13.jpg" alt="img"></a>
+                                </div>
+                            </div>
+                            <!-- Recent Posts -->
+                            <div class="recentposts">
+                                <h4>Últimos Posts</h4>
+                                <div class="recentposts2">
+                                    <ul>
+																		@if (isset($blogs))
+																		@if ($blogs)
+																		@foreach ($blogs as $index => $blog)
+																				@if($index < 5)
+																				<li><a href="/blog/{{$blog->url}}">{{$blog->title}}</a>
+																						<br><em><span>{{ $blog->updated_at->format('d-m-Y') }}</span></em>
+																				</li>
+																				@endif
+																		@endforeach
+																		@endif
+																		@endif	
+																		</ul>
+																	</div>
+															</div>
+															<!-- Recent Comments -->
+															<!-- <div class="recentcomments">
+																	<h4>Recent Comments</h4>
+																	<ul>
+																			<li><a href="#">JoAnne on</a><em><span>How did gardener and the...</span></em></li>
+																			<li><a href="#">Blase on</a><em><span>The lookbook for kid 2018</span></em>
+																					<br>
+																			</li>
+																			<li><a href="#">Pixel on</a><em><span>Two weeks to become a great...</span></em></li>
+																			<li><a href="#">Anna Tran on</a><em><span>Big dream come to</span></em></li>
+																	</ul>
+															</div> -->
+															<!-- blog tags -->
+															<div class="blogtags v4">
+																	<h4>Blog Tags</h4>
+																	<div class="ul-1">
+																			<ul>
+																			@if($tagsAll)
+																			@foreach ($tagsAll as $tag)
+																			@if($tag)
+																				<li><a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}">{{$tag}}</a></li>
+																			@endif
+																			@endforeach
+																			@endif
+																			</ul>
+																	</div>
+															</div>
+															<!-- sale Products -->
+															<!-- <div class="saleproduct v4">
+																	<h4>Sale Products</h4>
+																	<div class="all">
+																			<div class="sale-img">
+																					<a href="#"><img src="images/img14.jpg" alt="img"></a>
+																					<div class="sale"><a href="#">-50%</a></div>
+																					<div class="before"></div>
+																			</div>
+																			<div class="sale-para">
+																					<p><a href="#">Contrasting Dungarees<br>
+																					With Craces</a>
+																			</p>
+																			<ul>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6 Review(s)</span></em></li>
+																					<li><a class="sales-36" href="#">$36.00</a>
+																							<del>$42.00</del>
+																					</li> 
+																			</ul>
+																	</div>
+															</div> -->
+															<!-- <div class="all">
+																	<div class="sale-img">
+																			<a href="#"><img src="images/img15.jpg" alt="img"></a>
+																			<div class="sale"><a href="#">-25%</a></div>
+																			<div class="before"></div>
+																	</div>
+																	<div class="sale-para2">
+																			<p><a href="#">Clouds Sweater</a></p>
+																			<ul>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6 Review(s)</span></em></li>
+																					<li><a class="sales-36" href="#">$36.00</a>
+																							<del>$42.00</del>
+																					</li>
+																			</ul>
+																	</div>
+															</div>
+															<div class="all">
+																	<div class="sale-img">
+																			<a href="#"><img src="images/img16.jpg" alt="img"></a>
+																			<div class="sale"><a href="#">-50%</a></div>
+																			<div class="before"></div>
+																	</div>
+																	<div class="sale-para">
+																			<p><a href="#">Contrasting Dungarees<br>
+																			With Craces</a>
+																	</p>
+																	<ul>
+																			<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																			<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																			<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																			<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																			<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6 Review(s)</span></em></li>       
+																			<li><a class="sales-36" href="#">$36.00</a>
+																					<del>$42.00</del>
+																			</li>      
+																	</ul>
+															</div>
+															</div>
+															<div class="all">
+																	<div class="sale-img">
+																			<a href="#"><img src="images/img17.jpg" alt="img"></a>
+																			<div class="sale"><a href="#">-25%</a></div>
+																			<div class="before"></div>
+																	</div>
+																	<div class="sale-para2">
+																			<p><a href="#">Clouds Sweater</a></p>
+																			<ul>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+																					<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a><em><span>6 Review(s)</span></em></li>
+																					<li><a class="sales-36" href="#">$36.00</a>
+																							<del>$42.00</del>
+																					</li>			
+																			</ul>
+																	</div>
+															</div> -->
+											</div>
+											
 									</div>
-								</li>
-								@endforeach
-								@endif
-							</ul>
-						</div>
-
-						<!-- <div class="p-t-55">
-							<h4 class="mtext-112 cl2 p-b-20">
-								Archive
-							</h4>
-
-							<ul>
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											July 2018
-										</span>
-
-										<span>
-											(9)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											June 2018
-										</span>
-
-										<span>
-											(39)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											May 2018
-										</span>
-
-										<span>
-											(29)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											April  2018
-										</span>
-
-										<span>
-											(35)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											March 2018
-										</span>
-
-										<span>
-											(22)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											February 2018
-										</span>
-
-										<span>
-											(32)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											January 2018
-										</span>
-
-										<span>
-											(21)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											December 2017
-										</span>
-
-										<span>
-											(26)
-										</span>
-									</a>
-								</li>
-							</ul>
-						</div> -->
-
-						<div class="p-t-50">
-							<h4 class="mtext-112 cl2 p-b-27">
-								Tags
-							</h4>
-
-							<div class="flex-w m-r--5">
-								@if($tagsAll)
-								@foreach ($tagsAll as $tag)
-								@if($tag)
-								<a href="/blog/tag/{{ str_replace(' ', '-', $tag) }}" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									{{$tag}}
-								</a>
-								@endif
-								@endforeach
-								@endif
 							</div>
-							
-
-						</div>
+							<div class="border"></div>
 					</div>
-				</div>
 			</div>
-		</div>
-	</section>	
+</section>
 @endsection
 
 @section('script')
