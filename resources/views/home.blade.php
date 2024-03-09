@@ -201,16 +201,16 @@
                         </div>
                         <div id="cont-gal-cat" class="owl-carousel owl-theme owl-cate v2 js-owl-cate-feat owl-feat-hp1">
                             @if (isset($categories) && $categories)
-                                @foreach ($categories as $index => $product)
+                                @foreach ($categories as $index => $cat)
                                     @if ($index % 2 == 0)
                                         <div class="item">
                                     @endif
                                         <div class="best-seller" style="display: flex;">
                                             <div class="img-bestseller" style="width:150px;">
-                                                <a href="/item/{{$product->url}}" class="hover-img-home1" style="">
-                                                    <img src="/assets/images/{{$product->image}}" style="border-radius: 100%;" alt="">
+                                                <a href="/categoria/{{$cat->url}}" class="hover-img-home1" style="">
+                                                    <img src="/assets/images/{{$cat->image}}" style="border-radius: 100%;" alt="">
                                                 </a>
-                                                <h3 class="text-center"><a href="">{{$product->name}}</a></h3>
+                                                <h3 class="text-center"><a href="/categoria/{{$cat->url}}">{{$cat->name}}</a></h3>
                                             </div>
                                         </div>
                                     @if (($index + 1) % 2 == 0 || $index == count($categories) - 1)
