@@ -520,10 +520,10 @@ $('.js-owl-cate2').owlCarousel({
         navText: ["<span class='fa fa-angle-left'></span>", "<span class='fa fa-angle-right'></span>"],
         responsive: {
             0: {
-                items: 1
+                items: 2
             },
             480: {
-                items: 1
+                items: 2
             },
             768: {
                 items: 2
@@ -785,10 +785,10 @@ $('.js-owl-cate2').owlCarousel({
         navText: ["<span class='fa fa-angle-left'></span>", "<span class='fa fa-angle-right'></span>"],
         responsive: {
             0: {
-                items: 1
+                items: 2
             },
             481: {
-                items: 1
+                items: 2
             },
             667: {
                 items: 2

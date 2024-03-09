@@ -10,7 +10,11 @@
 
 
 <style>
-
+@media(max-width:765px) {  
+    /* #cont-gal-cat .owl-item{
+        width:180px !important;
+    } */
+}
 </style>
 @endsection
 
@@ -156,20 +160,71 @@
     <div class="banner-homepage1">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-sm-8 col-xs-12 banner">
+                <div class="col-md-4 col-sm-4 col-xs-4 banner">
                     <div class="banner-right">
-                        <img src="/assets/theme/images/banner.png" alt="">
+                        <img src="/assets/images/bann1.png" alt="">
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12 banner">
+                <div class="col-md-4 col-sm-4 col-xs-4 banner">
                     <div class="banner-right">
-                        <img src="/assets/theme/images/banner2.png" alt="">
+                        <img src="/assets/images/bann2.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 banner">
+                    <div class="banner-right">
+                        <img src="/assets/images/bann3.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 banner" style="padding-top:15px;">
+                    <div class="banner-right">
+                        <img src="/assets/images/bann4.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 banner" style="padding-top:15px;">
+                    <div class="banner-right">
+                        <img src="/assets/images/bann5.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Bestseller -->
+    <!-- Categoría galery -->
+    <div class="bestseller">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="product-related best">
+                        <div class="title-pro-v1 hp1">
+                            <h3 class="related-title text-center hp1 best">Categorías</h3>
+                        </div>
+                        <div id="cont-gal-cat" class="owl-carousel owl-theme owl-cate v2 js-owl-cate-feat owl-feat-hp1">
+                            @if (isset($categories) && $categories)
+                                @foreach ($categories as $index => $product)
+                                    @if ($index % 2 == 0)
+                                        <div class="item">
+                                    @endif
+                                        <div class="best-seller" style="display: flex;">
+                                            <div class="img-bestseller" style="width:150px;">
+                                                <a href="/item/{{$product->url}}" class="hover-img-home1" style="">
+                                                    <img src="/assets/images/{{$product->image}}" style="border-radius: 100%;" alt="">
+                                                </a>
+                                                <h3 class="text-center"><a href="">{{$product->name}}</a></h3>
+                                            </div>
+                                        </div>
+                                    @if (($index + 1) % 2 == 0 || $index == count($categories) - 1)
+                                        </div> <!-- Cierre de la clase "item" después de dos productos o al llegar al último producto -->
+                                    @endif
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Descuentos -->
     <div class="bestseller">
         <div class="container">
             <div class="row">
@@ -629,9 +684,7 @@
 
 
 @section('script')
-
 <script>
 
 </script>
-
 @endsection
